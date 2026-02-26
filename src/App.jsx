@@ -18,7 +18,7 @@ import {
   Code
 } from 'lucide-react';
 
-const apiKey = "";
+const apiKey = "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";
 
 const App = () => {
   const [lang, setLang] = useState('tr');
@@ -102,7 +102,7 @@ const App = () => {
   const askAI = async (retryCount = 0) => {
     if (!chatInput.trim()) return;
     if (!apiKey) {
-      setChatResponse(lang === 'tr' ? "Lütfen bir Gemini API anahtarı ekleyin." : "Please add a Gemini API key.");
+      setChatResponse(lang === 'tr' ? "Lütfen bir API anahtarı ekleyin." : "Please add an API key.");
       return;
     }
 
@@ -110,12 +110,20 @@ const App = () => {
     const systemPrompt = `User: Serkan Işık. Bio: 21, Anadolu University student. Skills: Embedded, SQL, FPV, UAV-1 Pilot. Response must be concise and professional in ${lang === 'tr' ? 'Turkish' : 'English'}.`;
 
     try {
-      const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, {
+      const response = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${apiKey}`
+        },
         body: JSON.stringify({
-          contents: [{ parts: [{ text: chatInput }] }],
-          systemInstruction: { parts: [{ text: systemPrompt }] }
+          model: "llama-3.3-70b-versatile",
+          messages: [
+            { role: "system", content: systemPrompt },
+            { role: "user", content: chatInput }
+          ],
+          temperature: 0.7,
+          max_tokens: 150
         })
       });
 
@@ -124,12 +132,12 @@ const App = () => {
       }
 
       const data = await response.json();
-      setChatResponse(data.candidates?.[0]?.content?.parts?.[0]?.text || (lang === 'tr' ? "Yanıt alınamadı." : "No response from AI."));
+      setChatResponse(data.choices?.[0]?.message?.content || (lang === 'tr' ? "Yanıt alınamadı." : "No response from AI."));
     } catch (error) {
       console.error("AI Error:", error);
       if (retryCount < 2 && !error.message.includes('403') && !error.message.includes('401')) {
         setTimeout(() => askAI(retryCount + 1), 1000);
-        return; // Don't set typing to false yet as it will be set by the retry
+        return;
       }
       setChatResponse(lang === 'tr' ? "Yapay zeka şu an meşgul veya API anahtarı hatalı." : "AI is busy or API key is invalid.");
     } finally {
