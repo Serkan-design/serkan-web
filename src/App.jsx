@@ -28,34 +28,14 @@ const App = () => {
   const [chatResponse, setChatResponse] = useState("");
   const [isTyping, setIsTyping] = useState(false);
 
-  // Arkaplan görsel döngüsü için state
-  const [bgIndex, setBgIndex] = useState(0);
-
   const images = {
     aviation: [
       "https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&q=50&w=800",
-      "https://images.unsplash.com/photo-1473960104312-30e37d59074b?auto=format&fit=crop&q=50&w=800",
-      "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?auto=format&fit=crop&q=50&w=800"
     ],
     tech: [
       "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=50&w=800",
-      "https://images.unsplash.com/photo-1544380903-583b710c5e04?auto=format&fit=crop&q=50&w=800",
-      "https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&q=50&w=800"
     ]
   };
-
-  useEffect(() => {
-    // Görselleri önceden yükle
-    [...images.aviation, ...images.tech].forEach(src => {
-      const img = new Image();
-      img.src = src;
-    });
-
-    const timer = setInterval(() => {
-      setBgIndex((prev) => (prev + 1) % images.aviation.length);
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
 
   const content = {
     tr: {
@@ -188,15 +168,11 @@ const App = () => {
           </div>
           <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#020617] via-transparent to-transparent opacity-90 pointer-events-none"></div>
           <div className="absolute inset-0 z-10 bg-[#020617]/20 group-hover:bg-transparent transition-colors duration-500 pointer-events-none"></div>
-          {images.aviation.map((src, idx) => (
-            <img
-              key={src}
-              src={src}
-              className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 scale-100 group-hover:scale-110 ${idx === bgIndex ? 'opacity-100' : 'opacity-0'
-                }`}
-              alt="Aviation Background"
-            />
-          ))}
+          <img
+            src={images.aviation[0]}
+            className="absolute inset-0 w-full h-full object-cover transition-all duration-500 scale-100 group-hover:scale-110 opacity-100"
+            alt="Aviation Background"
+          />
           <div className="relative z-20 h-full flex flex-col justify-center items-center text-center px-12 md:px-24">
             <div className="inline-flex items-center gap-2 bg-[#c29b40] px-4 py-2 text-[10px] font-black tracking-[0.3em] uppercase mb-8 w-fit shadow-xl">
               <Plane size={14} className="text-white" />
@@ -215,15 +191,11 @@ const App = () => {
           </div>
           <div className="absolute inset-0 z-10 bg-gradient-to-l from-[#020617] via-transparent to-transparent opacity-90 pointer-events-none"></div>
           <div className="absolute inset-0 z-10 bg-[#020617]/40 group-hover:bg-transparent transition-colors duration-500 pointer-events-none"></div>
-          {images.tech.map((src, idx) => (
-            <img
-              key={src}
-              src={src}
-              className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 scale-100 group-hover:scale-110 grayscale group-hover:grayscale-0 ${idx === bgIndex ? 'opacity-40 group-hover:opacity-100' : 'opacity-0'
-                }`}
-              alt="Software Background"
-            />
-          ))}
+          <img
+            src={images.tech[0]}
+            className="absolute inset-0 w-full h-full object-cover transition-all duration-500 scale-100 group-hover:scale-110 grayscale group-hover:grayscale-0 opacity-40 group-hover:opacity-100"
+            alt="Software Background"
+          />
 
           <div className="relative z-20 h-full flex flex-col justify-center items-center px-6 md:px-12">
             <div className="max-w-4xl w-full">
