@@ -228,9 +228,9 @@ const App = () => {
                   <span className="text-[12px] font-black tracking-[0.6em] text-white uppercase opacity-90">SYST_ENV_PRO.03</span>
                 </div>
 
-                <div className="h-10"></div>
+                <div className="h-16"></div>
 
-                <div className="mb-4 px-6">
+                <div className="mb-4 px-6 mt-4">
                   <p className="text-[11px] font-black text-[#c29b40] mb-12 tracking-[0.4em] uppercase opacity-80">Serkan'a Sorun (AI Assistant)</p>
                   <div className="flex flex-col sm:flex-row gap-4 mb-4">
                     <input
@@ -297,9 +297,10 @@ const App = () => {
                 { icon: Box, label: "LRS/CROSSFIRE", desc: "Long Range Control" }
               ].map((item, i) => (
                 <div key={i} className="bg-white/[0.02] p-12 border border-white/10 group/item hover:bg-white/[0.05] transition-all hover:translate-y-[-8px] flex flex-col items-center text-center">
-                  <item.icon size={36} className="text-[#c29b40] mb-10 group-hover/item:scale-110 transition-transform" />
-                  <p className="text-[13px] font-black uppercase tracking-[0.4em] mb-2">{item.label}</p>
-                  <p className="text-[11px] text-gray-500 font-mono italic mt-6">{item.desc}</p>
+                  <item.icon size={36} className="text-[#c29b40] mb-12 group-hover/item:scale-110 transition-transform" />
+                  <p className="text-[13px] font-black uppercase tracking-[0.4em] mb-4">{item.label}</p>
+                  <div className="h-6"></div>
+                  <p className="text-[11px] text-gray-500 font-mono italic mt-4">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -319,15 +320,16 @@ const App = () => {
               <div className="w-16 h-[1px] bg-white/20 mt-8"></div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-24 w-full relative z-10 px-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-32 w-full relative z-10 px-12 mt-12">
               {t.skills.map((skill, index) => (
-                <div key={index} className="group/skill cursor-default flex flex-col items-center text-center">
-                  <div className="flex items-center justify-center gap-8 mb-4 w-full">
+                <div key={index} className="group/skill cursor-default flex flex-col items-center text-center mb-8">
+                  <div className="flex items-center justify-center gap-8 mb-8 w-full">
                     <div className="w-10 h-[1.5px] bg-white/5 group-hover/skill:bg-[#c29b40]/30 transition-all"></div>
                     <span className="font-black text-2xl md:text-3xl tracking-tighter uppercase group-hover/skill:text-[#c29b40] transition-colors">{skill.name}</span>
                     <div className="w-10 h-[1.5px] bg-white/5 group-hover/skill:bg-[#c29b40]/30 transition-all"></div>
                   </div>
-                  <p className="text-[14px] text-gray-400 uppercase tracking-[0.2em] italic leading-relaxed group-hover/skill:text-gray-200 transition-all max-w-xl px-4 mt-8">
+                  <div className="h-8"></div>
+                  <p className="text-[14px] text-gray-400 uppercase tracking-[0.2em] italic leading-relaxed group-hover/skill:text-gray-200 transition-all max-w-xl px-4 mt-4">
                     {skill.desc}
                   </p>
                 </div>
