@@ -209,43 +209,47 @@ const App = () => {
             alt="Software Background"
           />
 
-          <div className="relative z-20 h-full flex flex-col justify-center p-8 md:p-20">
-            <div className="max-w-xl w-full">
-              <div className="flex items-center gap-3 mb-12">
-                <Code size={20} className="text-[#c29b40]" />
-                <span className="text-[12px] font-black tracking-[0.5em] text-white uppercase">Dev Environment</span>
-              </div>
+          <div className="relative z-20 h-full flex flex-col justify-center items-center p-8 md:p-20">
+            <div className="max-w-2xl w-full">
 
-              {/* AI Tool Integrated in Right Panel */}
-              <div className="bg-[#020617]/60 backdrop-blur-2xl border border-white/5 p-8 shadow-2xl relative group/ai overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-[#c29b40]"></div>
-                <p className="text-[11px] font-black text-[#c29b40] mb-6 tracking-[0.3em] uppercase opacity-80">Serkan'a Sorun (AI)</p>
-                <div className="flex gap-4">
-                  <input
-                    value={chatInput}
-                    onChange={(e) => setChatInput(e.target.value)}
-                    onKeyPress={(e) => e.key === 'Enter' && askAI()}
-                    placeholder={t.aiPlaceholder}
-                    className="flex-1 bg-white/5 border border-white/10 px-6 py-4 text-sm focus:outline-none focus:border-[#c29b40]/50 text-white placeholder:text-gray-600 transition-all"
-                  />
-                  <button onClick={() => askAI()} disabled={isTyping} className="bg-[#c29b40] px-8 py-4 font-black text-[12px] uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all flex items-center gap-2 group-hover/ai:translate-x-1 duration-300">
-                    {isTyping ? <Loader2 size={16} className="animate-spin" /> : <>SOR <Sparkles size={14} /></>}
-                  </button>
+              {/* Centralized AI Container */}
+              <div className="bg-white/[0.03] backdrop-blur-3xl border border-white/10 p-12 md:p-16 shadow-[0_0_100px_rgba(0,0,0,0.5)] relative overflow-hidden group/box transition-all duration-500 hover:border-white/20">
+                <div className="absolute top-0 left-0 w-1.5 h-full bg-[#c29b40] shadow-[0_0_20px_rgba(194,155,64,0.4)]"></div>
+
+                <div className="flex items-center gap-4 mb-10">
+                  <Code size={24} className="text-[#c29b40] animate-pulse" />
+                  <span className="text-[14px] font-black tracking-[0.6em] text-white uppercase opacity-90">DEV ENVIRONMENT</span>
                 </div>
-                {chatResponse && (
-                  <div className="mt-4 text-[11px] text-gray-400 italic border-t border-white/5 pt-4 animate-in fade-in slide-in-from-top-2">
-                    {chatResponse}
-                  </div>
-                )}
-              </div>
 
-              <div className="mt-12 flex flex-wrap gap-6">
-                <button onClick={() => setIsAboutOpen(true)} className="flex items-center justify-center gap-3 px-10 py-4 bg-white text-black text-[11px] font-black uppercase tracking-[0.3em] hover:bg-[#c29b40] hover:text-white transition-all min-w-[180px]">
-                  <User size={16} /> {t.openAbout}
-                </button>
-                <a href="https://www.instagram.com/sserkan.77/" target="_blank" className="flex items-center justify-center gap-3 px-10 py-4 border border-white/20 text-white text-[11px] font-black uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all min-w-[180px]">
-                  <Instagram size={16} /> INSTA
-                </a>
+                <div className="mb-10">
+                  <p className="text-[12px] font-black text-[#c29b40] mb-6 tracking-[0.4em] uppercase opacity-80">Serkan'a Sorun (AI)</p>
+                  <div className="flex flex-col sm:flex-row gap-4">
+                    <input
+                      value={chatInput}
+                      onChange={(e) => setChatInput(e.target.value)}
+                      onKeyPress={(e) => e.key === 'Enter' && askAI()}
+                      placeholder={t.aiPlaceholder}
+                      className="flex-1 bg-white/5 border border-white/10 px-8 py-5 text-sm focus:outline-none focus:border-[#c29b40]/50 text-white placeholder:text-gray-600 transition-all rounded-sm"
+                    />
+                    <button onClick={() => askAI()} disabled={isTyping} className="bg-[#c29b40] px-10 py-5 font-black text-[13px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all flex items-center justify-center gap-3 shadow-[0_0_30px_rgba(194,155,64,0.2)]">
+                      {isTyping ? <Loader2 size={18} className="animate-spin" /> : <>SOR <Sparkles size={16} /></>}
+                    </button>
+                  </div>
+                  {chatResponse && (
+                    <div className="mt-8 text-[12px] text-gray-400 italic border-t border-white/10 pt-6 animate-in fade-in slide-in-from-top-4 duration-500 leading-relaxed">
+                      {chatResponse}
+                    </div>
+                  )}
+                </div>
+
+                <div className="flex flex-wrap gap-6 pt-4 border-t border-white/5">
+                  <button onClick={() => setIsAboutOpen(true)} className="flex-1 flex items-center justify-center gap-4 px-8 py-5 bg-white text-black text-[12px] font-black uppercase tracking-[0.3em] hover:bg-[#c29b40] hover:text-white transition-all">
+                    <User size={18} /> {t.openAbout}
+                  </button>
+                  <a href="https://www.instagram.com/sserkan.77/" target="_blank" className="flex-1 flex items-center justify-center gap-4 px-8 py-5 border border-white/10 text-white text-[12px] font-black uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all">
+                    <Instagram size={18} /> INSTA
+                  </a>
+                </div>
               </div>
             </div>
           </div>
