@@ -352,27 +352,31 @@ const App = () => {
       )}
 
       {/* Footer */}
-      <footer className="relative z-30 bg-[#020617] border-t border-white/5 py-24">
+      <footer className="relative z-30 bg-[#020617] border-t border-white/5 py-16">
         <div className="w-full px-12 flex flex-col items-center justify-center text-center">
-          <div className="w-24 h-[1px] bg-[#c29b40]/30 mb-12"></div>
+          <div className="w-16 h-[1px] bg-[#c29b40]/30 mb-8"></div>
 
-          <div className="flex flex-col items-center gap-6 mb-12">
-            <div className="w-16 h-16 bg-[#c29b40] flex items-center justify-center rounded-sm shadow-[0_0_40px_rgba(194,155,64,0.2)]">
-              <Box size={32} className="text-white fill-current" />
+          <div className="flex flex-col items-center gap-4 mb-10">
+            <div className="w-12 h-12 bg-[#c29b40] flex items-center justify-center rounded-sm shadow-[0_0_20px_rgba(194,155,64,0.2)]">
+              <Box size={24} className="text-white fill-current" />
             </div>
-            <span className="font-black tracking-tighter text-4xl">SI<span className="text-[#c29b40]">.</span>TECH</span>
+            <span className="font-black tracking-tighter text-2xl">SI<span className="text-[#c29b40]">.</span>TECH</span>
           </div>
 
-          <p className="text-[12px] text-gray-500 uppercase tracking-[1em] font-black mb-12 opacity-40 ml-4">{t.footer}</p>
+          <p className="text-[11px] text-gray-500 uppercase tracking-[0.8em] font-black mb-8 opacity-40">{t.footer}</p>
 
-          <div className="flex space-x-16">
-            <a href="https://www.instagram.com/sserkan.77/" className="text-gray-500 hover:text-[#c29b40] transition-all transform hover:scale-125 duration-300"><Instagram size={28} /></a>
-            <a href="mailto:serkanisik67@gmail.com" className="text-gray-500 hover:text-[#c29b40] transition-all transform hover:scale-125 duration-300"><Mail size={28} /></a>
-            <a href="https://github.com/Serkan-design" className="text-gray-500 hover:text-[#c29b40] transition-all transform hover:scale-125 duration-300"><Code size={28} /></a>
+          <div className="flex space-x-12">
+            <a href="https://www.instagram.com/sserkan.77/" className="text-gray-500 hover:text-[#c29b40] transition-all transform hover:scale-110 duration-300"><Instagram size={24} /></a>
+            <a href="mailto:serkanisik67@gmail.com" className="text-gray-500 hover:text-[#c29b40] transition-all transform hover:scale-110 duration-300"><Mail size={24} /></a>
+            <a href="https://github.com/Serkan-design" className="text-gray-500 hover:text-[#c29b40] transition-all transform hover:scale-110 duration-300"><Code size={24} /></a>
           </div>
         </div>
       </footer>
+      <a href="https://github.com/Serkan-design" className="text-gray-500 hover:text-[#c29b40] transition-all transform hover:scale-125 duration-300"><Code size={28} /></a>
     </div>
+        </div >
+      </footer >
+    </div >
   );
 };
 
