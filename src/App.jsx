@@ -222,7 +222,7 @@ const App = () => {
                   <span className="text-[12px] font-black tracking-[0.6em] text-white uppercase opacity-90">SYST_ENV_PRO.03</span>
                 </div>
 
-                <div className="mb-12 px-6">
+                <div className="mb-12 px-6 flex-1">
                   <p className="text-[11px] font-black text-[#c29b40] mb-6 tracking-[0.4em] uppercase opacity-80">Serkan'a Sorun (AI Assistant)</p>
                   <div className="flex flex-col sm:flex-row gap-4 mb-4">
                     <input
