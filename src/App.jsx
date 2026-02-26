@@ -372,12 +372,10 @@ const App = () => {
           </div>
         </div>
       </footer>
-      <a href="https://github.com/Serkan-design" className="text-gray-500 hover:text-[#c29b40] transition-all transform hover:scale-125 duration-300"><Code size={28} /></a>
-    </div>
-        </div >
-      </footer >
+    </footer>
     </div >
   );
+};
 };
 
 export default App;
