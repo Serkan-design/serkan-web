@@ -23,6 +23,7 @@ const apiKey = "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";
 const App = () => {
   const [lang, setLang] = useState('tr');
   const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [showContact, setShowContact] = useState(false);
   const [chatInput, setChatInput] = useState("");
   const [chatResponse, setChatResponse] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -32,14 +33,14 @@ const App = () => {
 
   const images = {
     aviation: [
-      "https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&q=70&w=1200",
-      "https://images.unsplash.com/photo-1473960104312-30e37d59074b?auto=format&fit=crop&q=70&w=1200",
-      "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?auto=format&fit=crop&q=70&w=1200"
+      "https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&q=50&w=800",
+      "https://images.unsplash.com/photo-1473960104312-30e37d59074b?auto=format&fit=crop&q=50&w=800",
+      "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?auto=format&fit=crop&q=50&w=800"
     ],
     tech: [
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=70&w=1200",
-      "https://images.unsplash.com/photo-1544380903-583b710c5e04?auto=format&fit=crop&q=70&w=1200",
-      "https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&q=70&w=1200"
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=50&w=800",
+      "https://images.unsplash.com/photo-1544380903-583b710c5e04?auto=format&fit=crop&q=50&w=800",
+      "https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&q=50&w=800"
     ]
   };
 
@@ -170,9 +171,9 @@ const App = () => {
             <button onClick={() => setLang(lang === 'tr' ? 'en' : 'tr')} className="text-[12px] font-bold tracking-[0.2em] text-gray-500 hover:text-white uppercase transition-colors">
               {lang === 'tr' ? 'EN' : 'TR'}
             </button>
-            <a href="mailto:serkanisik67@gmail.com" className="px-8 py-2.5 bg-[#c29b40] text-white text-[11px] font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all shadow-[0_0_20px_rgba(194,155,64,0.3)]">
+            <button onClick={() => setShowContact(true)} className="px-8 py-2.5 bg-[#c29b40] text-white text-[11px] font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all shadow-[0_0_20px_rgba(194,155,64,0.3)]">
               {t.contactBtn}
-            </a>
+            </button>
           </div>
         </div>
       </nav>
@@ -368,6 +369,24 @@ const App = () => {
               </p>
               <div className="absolute -bottom-4 -right-4 text-[#c29b40]/10 font-black text-8xl pointer-events-none select-none">RESUME</div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Contact Modal */}
+      {showContact && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-6">
+          <div className="absolute inset-0 bg-[#020617]/95 backdrop-blur-xl" onClick={() => setShowContact(false)}></div>
+          <div className="relative bg-[#0f172a] border border-white/10 w-full max-w-md p-12 shadow-[0_0_100px_rgba(0,0,0,0.8)] overflow-hidden text-center flex flex-col items-center">
+            <div className="absolute top-0 left-0 w-full h-1 bg-[#c29b40]"></div>
+            <Mail size={48} className="text-[#c29b40] mb-6 animate-pulse" />
+            <h3 className="text-2xl font-black uppercase tracking-widest mb-2 text-white">Email</h3>
+            <p className="text-lg md:text-xl text-gray-300 font-mono bg-white/[0.05] border border-white/10 px-6 py-4 mt-6 w-full select-all">
+              serkanisik67@gmail.com
+            </p>
+            <button onClick={() => setShowContact(false)} className="mt-8 px-8 py-3 bg-[#c29b40] text-white text-[11px] font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all w-full md:w-auto">
+              {lang === 'tr' ? 'KAPAT' : 'CLOSE'}
+            </button>
           </div>
         </div>
       )}
