@@ -128,26 +128,26 @@ const App = () => {
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-[100] bg-[#020617]/80 backdrop-blur-md border-b border-[#c29b40]/20">
-        <div className="max-w-6xl mx-auto px-4 h-14 flex items-center justify-between">
-          <div className="flex items-center gap-2 group cursor-pointer">
-            <div className="w-8 h-8 bg-[#c29b40] flex items-center justify-center rounded-sm">
-              <Box size={18} className="text-white group-hover:rotate-90 transition-transform" />
+        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+          <div className="flex items-center gap-3 group cursor-pointer">
+            <div className="w-9 h-9 bg-[#c29b40] flex items-center justify-center rounded-sm">
+              <Box size={20} className="text-white group-hover:rotate-90 transition-transform" />
             </div>
-            <span className="font-black tracking-tighter text-lg">
+            <span className="font-black tracking-tighter text-xl">
               SI<span className="text-[#c29b40]">.</span>TECH
             </span>
           </div>
 
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center gap-6">
             <button
               onClick={() => setLang(lang === 'tr' ? 'en' : 'tr')}
-              className="text-[10px] font-bold tracking-widest text-gray-400 hover:text-white uppercase transition-colors"
+              className="text-sm font-bold tracking-widest text-gray-400 hover:text-white uppercase transition-colors px-2 py-1 border border-white/10 hover:border-white/30"
             >
               {lang === 'tr' ? 'EN' : 'TR'}
             </button>
             <a
               href="mailto:serkanisik67@gmail.com"
-              className="px-4 py-1.5 bg-[#c29b40] text-white text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all"
+              className="px-6 py-2 bg-[#c29b40] text-white text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-black transition-all"
             >
               {t.contactBtn}
             </a>
@@ -167,12 +167,12 @@ const App = () => {
             className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 scale-105 group-hover:scale-110"
             alt="Aviation Background"
           />
-          <div className="relative z-20 h-full flex flex-col justify-end p-8 md:p-12 pb-20 md:pb-32">
-            <div className="inline-flex items-center gap-2 bg-[#c29b40] px-3 py-1 text-[9px] font-bold tracking-widest uppercase mb-4 w-fit">
+          <div className="relative z-20 h-full flex flex-col justify-center p-8 md:p-16">
+            <div className="inline-flex items-center gap-2 bg-[#c29b40] px-3 py-1 text-[9px] font-bold tracking-widest uppercase mb-6 w-fit">
               <Plane size={12} className="text-white" />
               <span>Aviation & FPV Expert</span>
             </div>
-            <h2 className="text-4xl md:text-6xl font-black mb-2 tracking-tighter leading-none">{t.name}</h2>
+            <h2 className="text-5xl md:text-7xl font-black mb-3 tracking-tighter leading-none">{t.name}</h2>
             <p className="text-gray-300 font-mono text-xs tracking-widest uppercase opacity-70 italic">Licensed UAV-1 Pilot</p>
           </div>
         </div>
@@ -232,9 +232,9 @@ const App = () => {
                   href="https://www.instagram.com/sserkan.77/"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 border border-white/20 text-white text-[10px] font-bold uppercase tracking-widest hover:bg-white/10 transition-all"
+                  className="flex items-center gap-2 px-6 py-3 bg-red-600 text-white text-xs font-bold uppercase tracking-widest hover:bg-red-500 transition-all"
                 >
-                  <Instagram size={14} /> INSTA
+                  <Instagram size={16} /> Instagram
                 </a>
               </div>
             </div>
