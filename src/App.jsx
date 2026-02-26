@@ -209,48 +209,48 @@ const App = () => {
             alt="Software Background"
           />
 
-          <div className="relative z-20 h-full flex flex-col justify-center items-center px-8 md:px-20">
-            <div className="max-w-5xl w-full">
+          <div className="relative z-20 h-full flex flex-col justify-center items-center px-6 md:px-12">
+            <div className="max-w-4xl w-full">
 
-              {/* Centralized AI Container - Fully Transparent & Wider */}
-              <div className="bg-transparent backdrop-blur-md border border-white/10 p-12 md:p-16 shadow-[0_0_150px_rgba(0,0,0,0.6)] relative overflow-visible group/box transition-all duration-500 hover:border-white/20 flex flex-col justify-center min-h-[350px]">
+              {/* Centralized AI Container - Transparent & Optimized */}
+              <div className="bg-transparent backdrop-blur-md border border-white/10 p-8 md:p-12 shadow-[0_0_100px_rgba(0,0,0,0.5)] relative overflow-visible group/box transition-all duration-500 hover:border-white/20 flex flex-col justify-center min-h-[300px]">
                 <div className="absolute top-0 left-0 w-2 h-full bg-[#c29b40] shadow-[0_0_30px_rgba(194,155,64,0.4)]"></div>
 
-                <div className="flex items-center gap-6 mb-10 px-6">
-                  <Terminal size={28} className="text-[#c29b40] animate-pulse" />
-                  <span className="text-[16px] font-black tracking-[0.8em] text-white uppercase opacity-90">SYST_ENV_PRO.03</span>
+                <div className="flex items-center gap-4 mb-8 px-4">
+                  <Terminal size={22} className="text-[#c29b40] animate-pulse" />
+                  <span className="text-[12px] font-black tracking-[0.6em] text-white uppercase opacity-90">SYST_ENV_PRO.03</span>
                 </div>
 
-                <div className="mb-10 px-8">
-                  <p className="text-[13px] font-black text-[#c29b40] mb-8 tracking-[0.6em] uppercase opacity-80">Serkan'a Sorun (AI Assistant)</p>
-                  <div className="flex flex-col sm:flex-row gap-6">
+                <div className="mb-8 px-6">
+                  <p className="text-[11px] font-black text-[#c29b40] mb-6 tracking-[0.4em] uppercase opacity-80">Serkan'a Sorun (AI Assistant)</p>
+                  <div className="flex flex-col sm:flex-row gap-4">
                     <input
                       value={chatInput}
                       onChange={(e) => setChatInput(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && askAI()}
                       placeholder={t.aiPlaceholder}
-                      className="flex-1 bg-white/5 border border-white/10 px-12 py-7 text-lg focus:outline-none focus:border-[#c29b40]/50 text-white placeholder:text-gray-600 transition-all rounded-sm font-mono"
+                      className="flex-1 bg-white/5 border border-white/10 px-8 py-5 text-sm focus:outline-none focus:border-[#c29b40]/50 text-white placeholder:text-gray-600 transition-all rounded-sm font-mono"
                     />
-                    <button onClick={() => askAI()} disabled={isTyping} className="bg-[#c29b40] px-14 py-7 font-black text-[15px] uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all flex items-center justify-center gap-4 shadow-[0_0_50px_rgba(194,155,64,0.3)]">
-                      {isTyping ? <Loader2 size={22} className="animate-spin" /> : <>SOR <Sparkles size={20} /></>}
+                    <button onClick={() => askAI()} disabled={isTyping} className="bg-[#c29b40] px-10 py-5 font-black text-[12px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all flex items-center justify-center gap-3 shadow-[0_0_30px_rgba(194,155,64,0.2)]">
+                      {isTyping ? <Loader2 size={18} className="animate-spin" /> : <>SOR <Sparkles size={16} /></>}
                     </button>
                   </div>
                   {chatResponse && (
-                    <div className="mt-10 text-[14px] text-gray-300 font-mono italic border-t border-white/10 pt-8 animate-in fade-in slide-in-from-top-4 duration-500 leading-relaxed bg-white/[0.01] p-8">
+                    <div className="mt-8 text-[12px] text-gray-300 font-mono italic border-t border-white/10 pt-6 animate-in fade-in slide-in-from-top-4 duration-500 leading-relaxed bg-white/[0.01] p-6">
                       <span className="text-[#c29b40] font-bold inline-block mr-3">SERK_AI&gt;</span>{chatResponse}
                     </div>
                   )}
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-10 border-t border-white/5 px-8">
-                  <button onClick={() => setIsAboutOpen(true)} className="flex items-center justify-center gap-4 px-8 h-24 bg-white text-black text-[13px] font-black uppercase tracking-[0.4em] hover:bg-[#c29b40] hover:text-white transition-all shadow-xl">
-                    <User size={20} /> {t.openAbout}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 border-t border-white/5 px-6">
+                  <button onClick={() => setIsAboutOpen(true)} className="flex items-center justify-center gap-3 px-6 h-16 bg-white text-black text-[11px] font-black uppercase tracking-[0.3em] hover:bg-[#c29b40] hover:text-white transition-all shadow-lg">
+                    <User size={16} /> {t.openAbout}
                   </button>
-                  <a href="https://www.instagram.com/sserkan.77/" target="_blank" className="flex items-center justify-center gap-4 px-8 h-24 border border-white/10 text-white text-[13px] font-black uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all">
-                    <Instagram size={20} /> INSTA
+                  <a href="https://www.instagram.com/sserkan.77/" target="_blank" className="flex items-center justify-center gap-3 px-6 h-16 border border-white/10 text-white text-[11px] font-black uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all">
+                    <Instagram size={16} /> INSTA
                   </a>
-                  <a href="https://github.com/Serkan-design" target="_blank" className="flex items-center justify-center gap-4 px-8 h-24 border border-white/10 text-[#c29b40] text-[13px] font-black uppercase tracking-[0.4em] hover:bg-[#c29b40] hover:text-white transition-all">
-                    <Code size={20} /> GITHUB
+                  <a href="https://github.com/Serkan-design" target="_blank" className="flex items-center justify-center gap-3 px-6 h-16 border border-white/10 text-[#c29b40] text-[11px] font-black uppercase tracking-[0.3em] hover:bg-[#c29b40] hover:text-white transition-all">
+                    <Code size={16} /> GITHUB
                   </a>
                 </div>
               </div>
@@ -259,64 +259,64 @@ const App = () => {
         </div>
       </section>
 
-      {/* Main Content Sections - Centered & Fluid */}
-      <main className="w-full flex flex-col items-center gap-32 relative z-30 -mt-32">
+      {/* Main Content Sections - Centered & Optimized */}
+      <main className="w-full flex flex-col items-center gap-24 relative z-30 -mt-32">
 
-        {/* FPV Details - Expanded Grid */}
-        <div className="w-full max-w-[1700px] px-8 md:px-16">
-          <div className="bg-[#1e293b]/10 backdrop-blur-3xl border border-white/5 p-16 md:p-32 relative overflow-visible transition-all duration-700 hover:border-[#c29b40]/20 flex flex-col items-center text-center">
+        {/* FPV Details - Symmetric Content */}
+        <div className="w-full max-w-[1500px] px-6 md:px-12">
+          <div className="bg-[#1e293b]/10 backdrop-blur-3xl border border-white/5 p-12 md:p-24 relative overflow-visible transition-all duration-700 hover:border-[#c29b40]/20 flex flex-col items-center text-center">
             <div className="absolute inset-0 bg-gradient-to-b from-[#c29b40]/5 to-transparent pointer-events-none"></div>
 
-            <div className="flex flex-col items-center justify-center gap-10 mb-24 relative z-10 w-full">
-              <div className="w-32 h-[4px] bg-[#c29b40] mb-6"></div>
-              <h3 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-tight">
+            <div className="flex flex-col items-center justify-center gap-6 mb-16 relative z-10 w-full">
+              <div className="w-20 h-[3px] bg-[#c29b40] mb-4"></div>
+              <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">
                 {t.fpvTitle}
               </h3>
-              <Wind className="text-[#c29b40] opacity-50 animate-bounce mt-4" size={56} />
+              <Wind className="text-[#c29b40] opacity-40 animate-pulse mt-2" size={40} />
             </div>
 
-            <p className="text-gray-400 text-2xl md:text-4xl leading-relaxed mb-28 italic max-w-6xl relative z-10 px-6">
+            <p className="text-gray-400 text-xl md:text-2xl leading-relaxed mb-20 italic max-w-4xl relative z-10 px-6">
               {t.fpvDesc}
             </p>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-16 w-full relative z-10 px-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 w-full relative z-10 px-8">
               {[
                 { icon: Award, label: "SHGM İHA-1", desc: "Commercial License" },
                 { icon: Cpu, label: "BTFA-FLIGHT", desc: "System Optimization" },
                 { icon: Box, label: "LRS/CROSSFIRE", desc: "Long Range Control" }
               ].map((item, i) => (
-                <div key={i} className="bg-white/[0.02] p-16 border border-white/10 group/item hover:bg-white/[0.06] transition-all hover:translate-y-[-15px] flex flex-col items-center text-center shadow-2xl">
-                  <item.icon size={48} className="text-[#c29b40] mb-12 group-hover/item:scale-125 transition-transform" />
-                  <p className="text-[16px] font-black uppercase tracking-[0.6em] mb-6">{item.label}</p>
-                  <p className="text-[14px] text-gray-500 font-mono italic">{item.desc}</p>
+                <div key={i} className="bg-white/[0.02] p-10 border border-white/10 group/item hover:bg-white/[0.05] transition-all hover:translate-y-[-8px] flex flex-col items-center text-center">
+                  <item.icon size={36} className="text-[#c29b40] mb-8 group-hover/item:scale-110 transition-transform" />
+                  <p className="text-[13px] font-black uppercase tracking-[0.4em] mb-4">{item.label}</p>
+                  <p className="text-[11px] text-gray-500 font-mono italic">{item.desc}</p>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Technical Skills - Expanded & Symmetric */}
-        <div className="w-full max-w-[1700px] px-8 md:px-16">
-          <div className="bg-white/[0.01] backdrop-blur-3xl p-16 md:p-32 border border-white/5 relative overflow-visible group transition-all duration-700 hover:border-[#c29b40]/20 flex flex-col items-center">
-            <div className="absolute bottom-0 left-0 w-[1000px] h-[1000px] bg-[#c29b40]/5 rounded-full blur-[250px] pointer-events-none opacity-50"></div>
+        {/* Technical Skills - Symmetric & Centered */}
+        <div className="w-full max-w-[1500px] px-6 md:px-12">
+          <div className="bg-white/[0.01] backdrop-blur-3xl p-12 md:p-24 border border-white/5 relative overflow-visible group transition-all duration-700 hover:border-[#c29b40]/20 flex flex-col items-center">
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#c29b40]/5 rounded-full blur-[200px] pointer-events-none opacity-40"></div>
 
-            <div className="flex flex-col items-center justify-center mb-28 relative z-10 w-full text-center">
-              <Database size={56} className="text-[#c29b40] opacity-60 mb-12" />
-              <h3 className="text-[20px] font-black uppercase tracking-[1.2em] text-gray-400">
+            <div className="flex flex-col items-center justify-center mb-20 relative z-10 w-full text-center">
+              <Database size={40} className="text-[#c29b40] opacity-50 mb-8" />
+              <h3 className="text-[16px] font-black uppercase tracking-[0.8em] text-gray-400">
                 {t.skillsTitle}
               </h3>
-              <div className="w-24 h-[1px] bg-white/20 mt-10"></div>
+              <div className="w-16 h-[1px] bg-white/20 mt-6"></div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-40 gap-y-28 w-full relative z-10 px-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-20 w-full relative z-10 px-12">
               {t.skills.map((skill, index) => (
                 <div key={index} className="group/skill cursor-default flex flex-col items-center text-center">
-                  <div className="flex items-center justify-center gap-10 mb-10 w-full">
-                    <div className="w-16 h-[2px] bg-white/5 group-hover/skill:bg-[#c29b40]/40 transition-all"></div>
-                    <span className="font-black text-4xl md:text-6xl tracking-tighter uppercase group-hover/skill:text-[#c29b40] transition-colors">{skill.name}</span>
-                    <div className="w-16 h-[2px] bg-white/5 group-hover/skill:bg-[#c29b40]/40 transition-all"></div>
+                  <div className="flex items-center justify-center gap-8 mb-6 w-full">
+                    <div className="w-10 h-[1.5px] bg-white/5 group-hover/skill:bg-[#c29b40]/30 transition-all"></div>
+                    <span className="font-black text-2xl md:text-3xl tracking-tighter uppercase group-hover/skill:text-[#c29b40] transition-colors">{skill.name}</span>
+                    <div className="w-10 h-[1.5px] bg-white/5 group-hover/skill:bg-[#c29b40]/30 transition-all"></div>
                   </div>
-                  <p className="text-[17px] text-gray-400 uppercase tracking-[0.3em] italic leading-relaxed group-hover/skill:text-gray-100 transition-all max-w-2xl px-4">
+                  <p className="text-[14px] text-gray-400 uppercase tracking-[0.2em] italic leading-relaxed group-hover/skill:text-gray-200 transition-all max-w-xl px-4">
                     {skill.desc}
                   </p>
                 </div>
@@ -372,10 +372,8 @@ const App = () => {
           </div>
         </div>
       </footer>
-    </footer>
-    </div >
+    </div>
   );
-};
 };
 
 export default App;
