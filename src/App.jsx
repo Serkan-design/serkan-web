@@ -185,13 +185,17 @@ const App = () => {
           <div className="absolute top-6 left-6 z-30 opacity-20 pointer-events-none">
             <span className="text-[10px] uppercase tracking-[0.8em] font-light">Aviation Background</span>
           </div>
-          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#020617] via-transparent to-transparent opacity-90"></div>
-          <div className="absolute inset-0 z-10 bg-[#020617]/20 group-hover:bg-transparent transition-colors duration-1000"></div>
-          <img
-            src={images.aviation[bgIndex]}
-            className="absolute inset-0 w-full h-full object-cover transition-all duration-[2000ms] scale-100 group-hover:scale-110"
-            alt="Aviation Background"
-          />
+          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#020617] via-transparent to-transparent opacity-90 pointer-events-none"></div>
+          <div className="absolute inset-0 z-10 bg-[#020617]/20 group-hover:bg-transparent transition-colors duration-500 pointer-events-none"></div>
+          {images.aviation.map((src, idx) => (
+            <img
+              key={src}
+              src={src}
+              className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 scale-100 group-hover:scale-110 ${idx === bgIndex ? 'opacity-100' : 'opacity-0'
+                }`}
+              alt="Aviation Background"
+            />
+          ))}
           <div className="relative z-20 h-full flex flex-col justify-center items-center text-center px-12 md:px-24">
             <div className="inline-flex items-center gap-2 bg-[#c29b40] px-4 py-2 text-[10px] font-black tracking-[0.3em] uppercase mb-8 w-fit shadow-xl">
               <Plane size={14} className="text-white" />
@@ -208,13 +212,17 @@ const App = () => {
           <div className="absolute top-6 right-6 z-30 opacity-20 pointer-events-none text-right">
             <span className="text-[10px] uppercase tracking-[0.8em] font-light">Software Background</span>
           </div>
-          <div className="absolute inset-0 z-10 bg-gradient-to-l from-[#020617] via-transparent to-transparent opacity-90"></div>
-          <div className="absolute inset-0 z-10 bg-[#020617]/40 group-hover:bg-transparent transition-colors duration-1000"></div>
-          <img
-            src={images.tech[bgIndex]}
-            className="absolute inset-0 w-full h-full object-cover transition-all duration-[2000ms] scale-100 group-hover:scale-110 grayscale opacity-40 group-hover:opacity-100 group-hover:grayscale-0"
-            alt="Software Background"
-          />
+          <div className="absolute inset-0 z-10 bg-gradient-to-l from-[#020617] via-transparent to-transparent opacity-90 pointer-events-none"></div>
+          <div className="absolute inset-0 z-10 bg-[#020617]/40 group-hover:bg-transparent transition-colors duration-500 pointer-events-none"></div>
+          {images.tech.map((src, idx) => (
+            <img
+              key={src}
+              src={src}
+              className={`absolute inset-0 w-full h-full object-cover transition-all duration-500 scale-100 group-hover:scale-110 grayscale group-hover:grayscale-0 ${idx === bgIndex ? 'opacity-40 group-hover:opacity-100' : 'opacity-0'
+                }`}
+              alt="Software Background"
+            />
+          ))}
 
           <div className="relative z-20 h-full flex flex-col justify-center items-center px-6 md:px-12">
             <div className="max-w-4xl w-full">
