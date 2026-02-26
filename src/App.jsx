@@ -44,6 +44,12 @@ const App = () => {
   };
 
   useEffect(() => {
+    // Görselleri önceden yükle
+    [...images.aviation, ...images.tech].forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+
     const timer = setInterval(() => {
       setBgIndex((prev) => (prev + 1) % images.aviation.length);
     }, 5000);
@@ -222,10 +228,10 @@ const App = () => {
                   <span className="text-[12px] font-black tracking-[0.6em] text-white uppercase opacity-90">SYST_ENV_PRO.03</span>
                 </div>
 
-                <div className="h-4"></div>
+                <div className="h-10"></div>
 
                 <div className="mb-4 px-6">
-                  <p className="text-[11px] font-black text-[#c29b40] mb-8 tracking-[0.4em] uppercase opacity-80">Serkan'a Sorun (AI Assistant)</p>
+                  <p className="text-[11px] font-black text-[#c29b40] mb-12 tracking-[0.4em] uppercase opacity-80">Serkan'a Sorun (AI Assistant)</p>
                   <div className="flex flex-col sm:flex-row gap-4 mb-4">
                     <input
                       value={chatInput}
@@ -272,7 +278,7 @@ const App = () => {
           <div className="bg-[#1e293b]/10 backdrop-blur-3xl border border-white/5 p-12 md:p-24 relative overflow-visible transition-all duration-700 hover:border-[#c29b40]/20 flex flex-col items-center text-center">
             <div className="absolute inset-0 bg-gradient-to-b from-[#c29b40]/5 to-transparent pointer-events-none"></div>
 
-            <div className="flex flex-col items-center justify-center gap-6 mb-16 relative z-10 w-full">
+            <div className="flex flex-col items-center justify-center gap-6 mb-24 relative z-10 w-full">
               <div className="w-20 h-[3px] bg-[#c29b40] mb-4"></div>
               <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">
                 {t.fpvTitle}
@@ -280,7 +286,7 @@ const App = () => {
               <Wind className="text-[#c29b40] opacity-40 animate-pulse mt-2" size={40} />
             </div>
 
-            <p className="text-gray-400 text-xl md:text-2xl leading-relaxed mb-20 italic max-w-4xl relative z-10 px-6">
+            <p className="text-gray-400 text-xl md:text-2xl leading-relaxed mb-[120px] italic max-w-4xl relative z-10 px-6">
               {t.fpvDesc}
             </p>
 
@@ -290,10 +296,10 @@ const App = () => {
                 { icon: Cpu, label: "BTFA-FLIGHT", desc: "System Optimization" },
                 { icon: Box, label: "LRS/CROSSFIRE", desc: "Long Range Control" }
               ].map((item, i) => (
-                <div key={i} className="bg-white/[0.02] p-10 border border-white/10 group/item hover:bg-white/[0.05] transition-all hover:translate-y-[-8px] flex flex-col items-center text-center">
-                  <item.icon size={36} className="text-[#c29b40] mb-8 group-hover/item:scale-110 transition-transform" />
-                  <p className="text-[13px] font-black uppercase tracking-[0.4em] mb-4">{item.label}</p>
-                  <p className="text-[11px] text-gray-500 font-mono italic">{item.desc}</p>
+                <div key={i} className="bg-white/[0.02] p-12 border border-white/10 group/item hover:bg-white/[0.05] transition-all hover:translate-y-[-8px] flex flex-col items-center text-center">
+                  <item.icon size={36} className="text-[#c29b40] mb-10 group-hover/item:scale-110 transition-transform" />
+                  <p className="text-[13px] font-black uppercase tracking-[0.4em] mb-2">{item.label}</p>
+                  <p className="text-[11px] text-gray-500 font-mono italic mt-6">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -305,23 +311,23 @@ const App = () => {
           <div className="bg-white/[0.01] backdrop-blur-3xl p-12 md:p-24 border border-white/5 relative overflow-visible group transition-all duration-700 hover:border-[#c29b40]/20 flex flex-col items-center">
             <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#c29b40]/5 rounded-full blur-[200px] pointer-events-none opacity-40"></div>
 
-            <div className="flex flex-col items-center justify-center mb-20 relative z-10 w-full text-center">
+            <div className="flex flex-col items-center justify-center mb-28 relative z-10 w-full text-center">
               <Database size={40} className="text-[#c29b40] opacity-50 mb-8" />
               <h3 className="text-[16px] font-black uppercase tracking-[0.8em] text-gray-400">
                 {t.skillsTitle}
               </h3>
-              <div className="w-16 h-[1px] bg-white/20 mt-6"></div>
+              <div className="w-16 h-[1px] bg-white/20 mt-8"></div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-20 w-full relative z-10 px-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-24 w-full relative z-10 px-12">
               {t.skills.map((skill, index) => (
                 <div key={index} className="group/skill cursor-default flex flex-col items-center text-center">
-                  <div className="flex items-center justify-center gap-8 mb-6 w-full">
+                  <div className="flex items-center justify-center gap-8 mb-4 w-full">
                     <div className="w-10 h-[1.5px] bg-white/5 group-hover/skill:bg-[#c29b40]/30 transition-all"></div>
                     <span className="font-black text-2xl md:text-3xl tracking-tighter uppercase group-hover/skill:text-[#c29b40] transition-colors">{skill.name}</span>
                     <div className="w-10 h-[1.5px] bg-white/5 group-hover/skill:bg-[#c29b40]/30 transition-all"></div>
                   </div>
-                  <p className="text-[14px] text-gray-400 uppercase tracking-[0.2em] italic leading-relaxed group-hover/skill:text-gray-200 transition-all max-w-xl px-4">
+                  <p className="text-[14px] text-gray-400 uppercase tracking-[0.2em] italic leading-relaxed group-hover/skill:text-gray-200 transition-all max-w-xl px-4 mt-8">
                     {skill.desc}
                   </p>
                 </div>
