@@ -214,7 +214,7 @@ const App = () => {
             <div className="max-w-4xl w-full">
 
               {/* Centralized AI Container - Transparent & Optimized */}
-              <div className="bg-transparent backdrop-blur-md border border-white/10 p-8 md:p-12 shadow-[0_0_100px_rgba(0,0,0,0.5)] relative overflow-visible group/box transition-all duration-500 hover:border-white/20 flex flex-col justify-center min-h-[480px]">
+              <div className="bg-transparent backdrop-blur-md border border-white/10 p-8 md:p-12 shadow-[0_0_100px_rgba(0,0,0,0.5)] relative overflow-visible group/box transition-all duration-500 hover:border-white/20 flex flex-col justify-center min-h-[420px]">
 
 
                 <div className="flex items-center gap-4 mb-8 px-4">
@@ -223,7 +223,7 @@ const App = () => {
                 </div>
 
                 <div className="mb-4 px-6">
-                  <p className="text-[11px] font-black text-[#c29b40] mb-6 tracking-[0.4em] uppercase opacity-80">Serkan'a Sorun (AI Assistant)</p>
+                  <p className="text-[11px] font-black text-[#c29b40] mb-12 tracking-[0.4em] uppercase opacity-80">Serkan'a Sorun (AI Assistant)</p>
                   <div className="flex flex-col sm:flex-row gap-4 mb-4">
                     <input
                       value={chatInput}
@@ -243,7 +243,7 @@ const App = () => {
                   )}
                 </div>
 
-                <div className="h-16 md:h-24"></div>
+                <div className="h-8 md:h-12"></div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-12 border-t border-white/5 px-6">
                   <button onClick={() => setIsAboutOpen(true)} className="flex items-center justify-center gap-3 px-6 h-16 bg-white text-black text-[11px] font-black uppercase tracking-[0.3em] hover:bg-[#c29b40] hover:text-white transition-all shadow-lg">
