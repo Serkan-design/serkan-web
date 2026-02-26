@@ -191,7 +191,7 @@ const App = () => {
               <Plane size={14} className="text-white" />
               <span>Aviation & FPV Expert</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-black mb-2 tracking-tighter leading-none">{t.name}</h2>
+            <h2 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter leading-none">{t.name}</h2>
             <p className="text-[#c29b40] font-mono text-sm tracking-[0.4em] uppercase opacity-90">{lang === 'tr' ? 'Lisanslı İHA-1 Pilotu' : 'Licensed UAV-1 Pilot'}</p>
           </div>
         </div>
@@ -213,7 +213,7 @@ const App = () => {
             <div className="max-w-4xl w-full">
 
               {/* Centralized AI Container - Transparent & Optimized */}
-              <div className="bg-transparent backdrop-blur-md border border-white/10 p-8 md:p-12 shadow-[0_0_100px_rgba(0,0,0,0.5)] relative overflow-visible group/box transition-all duration-500 hover:border-white/20 flex flex-col justify-center min-h-[300px]">
+              <div className="bg-transparent backdrop-blur-md border border-white/10 p-8 md:p-12 shadow-[0_0_100px_rgba(0,0,0,0.5)] relative overflow-visible group/box transition-all duration-500 hover:border-white/20 flex flex-col justify-center min-h-[380px]">
 
 
                 <div className="flex items-center gap-4 mb-8 px-4">
@@ -221,9 +221,9 @@ const App = () => {
                   <span className="text-[12px] font-black tracking-[0.6em] text-white uppercase opacity-90">SYST_ENV_PRO.03</span>
                 </div>
 
-                <div className="mb-8 px-6">
+                <div className="mb-12 px-6">
                   <p className="text-[11px] font-black text-[#c29b40] mb-6 tracking-[0.4em] uppercase opacity-80">Serkan'a Sorun (AI Assistant)</p>
-                  <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex flex-col sm:flex-row gap-4 mb-4">
                     <input
                       value={chatInput}
                       onChange={(e) => setChatInput(e.target.value)}
@@ -242,7 +242,7 @@ const App = () => {
                   )}
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-8 border-t border-white/5 px-6">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 pt-8 border-t border-white/5 px-6">
                   <button onClick={() => setIsAboutOpen(true)} className="flex items-center justify-center gap-3 px-6 h-16 bg-white text-black text-[11px] font-black uppercase tracking-[0.3em] hover:bg-[#c29b40] hover:text-white transition-all shadow-lg">
                     <User size={16} /> {t.openAbout}
                   </button>
