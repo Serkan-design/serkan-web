@@ -191,7 +191,7 @@ const App = () => {
               <Plane size={14} className="text-white" />
               <span>Aviation & FPV Expert</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-black mb-0 tracking-tighter leading-none">{t.name}</h2>
+            <h2 className="text-5xl md:text-7xl font-black mb-2 tracking-tighter leading-none">{t.name}</h2>
             <p className="text-[#c29b40] font-mono text-sm tracking-[0.4em] uppercase opacity-90">{lang === 'tr' ? 'Lisanslı İHA-1 Pilotu' : 'Licensed UAV-1 Pilot'}</p>
           </div>
         </div>
