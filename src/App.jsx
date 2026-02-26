@@ -152,7 +152,7 @@ const App = () => {
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-[100] bg-[#020617]/80 backdrop-blur-md border-b border-white/5">
-        <div className="w-full px-12 h-20 flex items-center justify-between">
+        <div className="w-full px-16 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3 group cursor-pointer">
             <div className="w-10 h-10 bg-[#c29b40] flex items-center justify-center rounded-sm shadow-[0_0_20px_rgba(194,155,64,0.3)]">
               <Box size={22} className="text-white fill-current" />
@@ -161,10 +161,10 @@ const App = () => {
           </div>
 
           <div className="flex items-center gap-12">
-            <button onClick={() => setLang(lang === 'tr' ? 'en' : 'tr')} className="text-[13px] font-bold tracking-[0.2em] text-gray-500 hover:text-white uppercase transition-colors">
+            <button onClick={() => setLang(lang === 'tr' ? 'en' : 'tr')} className="text-[14px] font-bold tracking-[0.2em] text-gray-500 hover:text-white uppercase transition-colors">
               {lang === 'tr' ? 'EN' : 'TR'}
             </button>
-            <a href="mailto:serkanisik67@gmail.com" className="px-10 py-3 bg-[#c29b40] text-white text-[12px] font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all shadow-[0_0_25px_rgba(194,155,64,0.4)]">
+            <a href="mailto:serkanisik67@gmail.com" className="px-12 py-3 bg-[#c29b40] text-white text-[12px] font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all shadow-[0_0_25px_rgba(194,155,64,0.4)]">
               {t.contactBtn}
             </a>
           </div>
@@ -186,13 +186,13 @@ const App = () => {
             className="absolute inset-0 w-full h-full object-cover transition-all duration-[2000ms] scale-100 group-hover:scale-110"
             alt="Aviation Background"
           />
-          <div className="relative z-20 h-full flex flex-col justify-center px-16 md:px-32">
-            <div className="inline-flex items-center gap-2 bg-[#c29b40] px-4 py-2 text-[10px] font-black tracking-[0.3em] uppercase mb-8 w-fit shadow-xl">
-              <Plane size={14} className="text-white" />
+          <div className="relative z-20 h-full flex flex-col justify-center items-center text-center px-12 md:px-24">
+            <div className="inline-flex items-center gap-2 bg-[#c29b40] px-6 py-3 text-[11px] font-black tracking-[0.3em] uppercase mb-10 w-fit shadow-2xl">
+              <Plane size={16} className="text-white" />
               <span>Aviation & FPV Expert</span>
             </div>
-            <h2 className="text-6xl md:text-8xl font-black mb-4 tracking-tighter leading-none translate-x-4 pl-1">{t.name}</h2>
-            <p className="text-[#c29b40] font-mono text-sm tracking-[0.4em] uppercase opacity-80 pl-6">Licensed UAV-1 Pilot</p>
+            <h2 className="text-7xl md:text-9xl font-black mb-6 tracking-tighter leading-none">{t.name}</h2>
+            <p className="text-[#c29b40] font-mono text-base tracking-[0.5em] uppercase opacity-90">{lang === 'tr' ? 'Lisanslı İHA-1 Pilotu' : 'Licensed UAV-1 Pilot'}</p>
           </div>
         </div>
 
@@ -209,48 +209,48 @@ const App = () => {
             alt="Software Background"
           />
 
-          <div className="relative z-20 h-full flex flex-col justify-center items-center px-4 md:px-12">
-            <div className="max-w-4xl w-full">
+          <div className="relative z-20 h-full flex flex-col justify-center items-center px-8 md:px-20">
+            <div className="max-w-5xl w-full">
 
-              {/* Centralized AI Container - Transparent & Wide */}
-              <div className="bg-white/[0.01] backdrop-blur-md border border-white/10 p-10 md:p-14 shadow-[0_0_120px_rgba(0,0,0,0.5)] relative overflow-visible group/box transition-all duration-500 hover:border-white/20 flex flex-col justify-center min-h-[350px]">
+              {/* Centralized AI Container - Fully Transparent & Wider */}
+              <div className="bg-transparent backdrop-blur-md border border-white/10 p-12 md:p-16 shadow-[0_0_150px_rgba(0,0,0,0.6)] relative overflow-visible group/box transition-all duration-500 hover:border-white/20 flex flex-col justify-center min-h-[350px]">
                 <div className="absolute top-0 left-0 w-2 h-full bg-[#c29b40] shadow-[0_0_30px_rgba(194,155,64,0.4)]"></div>
 
-                <div className="flex items-center gap-6 mb-8 px-2">
-                  <Terminal size={24} className="text-[#c29b40] animate-pulse" />
-                  <span className="text-[14px] font-black tracking-[0.8em] text-white uppercase opacity-90">SYST_ENV_PRO.03</span>
+                <div className="flex items-center gap-6 mb-10 px-6">
+                  <Terminal size={28} className="text-[#c29b40] animate-pulse" />
+                  <span className="text-[16px] font-black tracking-[0.8em] text-white uppercase opacity-90">SYST_ENV_PRO.03</span>
                 </div>
 
-                <div className="mb-8 px-4">
-                  <p className="text-[12px] font-black text-[#c29b40] mb-6 tracking-[0.6em] uppercase opacity-80">Serkan'a Sorun (AI Assistant)</p>
-                  <div className="flex flex-col sm:flex-row gap-5">
+                <div className="mb-10 px-8">
+                  <p className="text-[13px] font-black text-[#c29b40] mb-8 tracking-[0.6em] uppercase opacity-80">Serkan'a Sorun (AI Assistant)</p>
+                  <div className="flex flex-col sm:flex-row gap-6">
                     <input
                       value={chatInput}
                       onChange={(e) => setChatInput(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && askAI()}
                       placeholder={t.aiPlaceholder}
-                      className="flex-1 bg-white/5 border border-white/10 px-10 py-6 text-base focus:outline-none focus:border-[#c29b40]/50 text-white placeholder:text-gray-600 transition-all rounded-sm font-mono"
+                      className="flex-1 bg-white/5 border border-white/10 px-12 py-7 text-lg focus:outline-none focus:border-[#c29b40]/50 text-white placeholder:text-gray-600 transition-all rounded-sm font-mono"
                     />
-                    <button onClick={() => askAI()} disabled={isTyping} className="bg-[#c29b40] px-12 py-6 font-black text-[13px] uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all flex items-center justify-center gap-4 shadow-[0_0_40px_rgba(194,155,64,0.3)]">
-                      {isTyping ? <Loader2 size={18} className="animate-spin" /> : <>SOR <Sparkles size={16} /></>}
+                    <button onClick={() => askAI()} disabled={isTyping} className="bg-[#c29b40] px-14 py-7 font-black text-[15px] uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all flex items-center justify-center gap-4 shadow-[0_0_50px_rgba(194,155,64,0.3)]">
+                      {isTyping ? <Loader2 size={22} className="animate-spin" /> : <>SOR <Sparkles size={20} /></>}
                     </button>
                   </div>
                   {chatResponse && (
-                    <div className="mt-8 text-[13px] text-gray-300 font-mono italic border-t border-white/10 pt-6 animate-in fade-in slide-in-from-top-4 duration-500 leading-relaxed bg-white/[0.01] p-6">
+                    <div className="mt-10 text-[14px] text-gray-300 font-mono italic border-t border-white/10 pt-8 animate-in fade-in slide-in-from-top-4 duration-500 leading-relaxed bg-white/[0.01] p-8">
                       <span className="text-[#c29b40] font-bold inline-block mr-3">SERK_AI&gt;</span>{chatResponse}
                     </div>
                   )}
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-8 border-t border-white/5 px-4">
-                  <button onClick={() => setIsAboutOpen(true)} className="flex items-center justify-center gap-4 px-6 h-20 bg-white text-black text-[12px] font-black uppercase tracking-[0.3em] hover:bg-[#c29b40] hover:text-white transition-all shadow-lg">
-                    <User size={18} /> {t.openAbout}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-10 border-t border-white/5 px-8">
+                  <button onClick={() => setIsAboutOpen(true)} className="flex items-center justify-center gap-4 px-8 h-24 bg-white text-black text-[13px] font-black uppercase tracking-[0.4em] hover:bg-[#c29b40] hover:text-white transition-all shadow-xl">
+                    <User size={20} /> {t.openAbout}
                   </button>
-                  <a href="https://www.instagram.com/sserkan.77/" target="_blank" className="flex items-center justify-center gap-4 px-6 h-20 border border-white/10 text-white text-[12px] font-black uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all">
-                    <Instagram size={18} /> INSTA
+                  <a href="https://www.instagram.com/sserkan.77/" target="_blank" className="flex items-center justify-center gap-4 px-8 h-24 border border-white/10 text-white text-[13px] font-black uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all">
+                    <Instagram size={20} /> INSTA
                   </a>
-                  <a href="https://github.com/Serkan-design" target="_blank" className="flex items-center justify-center gap-4 px-6 h-20 border border-white/10 text-[#c29b40] text-[12px] font-black uppercase tracking-[0.3em] hover:bg-[#c29b40] hover:text-white transition-all">
-                    <Code size={18} /> GITHUB
+                  <a href="https://github.com/Serkan-design" target="_blank" className="flex items-center justify-center gap-4 px-8 h-24 border border-white/10 text-[#c29b40] text-[13px] font-black uppercase tracking-[0.4em] hover:bg-[#c29b40] hover:text-white transition-all">
+                    <Code size={20} /> GITHUB
                   </a>
                 </div>
               </div>
@@ -259,64 +259,64 @@ const App = () => {
         </div>
       </section>
 
-      {/* Main Content Sections - Centered & Wide */}
+      {/* Main Content Sections - Centered & Fluid */}
       <main className="w-full flex flex-col items-center gap-32 relative z-30 -mt-32">
 
-        {/* FPV Details - Centered Content */}
-        <div className="w-full max-w-[1600px] px-6 md:px-12">
+        {/* FPV Details - Expanded Grid */}
+        <div className="w-full max-w-[1700px] px-8 md:px-16">
           <div className="bg-[#1e293b]/10 backdrop-blur-3xl border border-white/5 p-16 md:p-32 relative overflow-visible transition-all duration-700 hover:border-[#c29b40]/20 flex flex-col items-center text-center">
             <div className="absolute inset-0 bg-gradient-to-b from-[#c29b40]/5 to-transparent pointer-events-none"></div>
 
-            <div className="flex flex-col items-center justify-center gap-8 mb-20 relative z-10">
-              <div className="w-24 h-[3px] bg-[#c29b40] mb-4"></div>
-              <h3 className="text-5xl md:text-7xl font-black uppercase tracking-tighter">
+            <div className="flex flex-col items-center justify-center gap-10 mb-24 relative z-10 w-full">
+              <div className="w-32 h-[4px] bg-[#c29b40] mb-6"></div>
+              <h3 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-tight">
                 {t.fpvTitle}
               </h3>
-              <Wind className="text-[#c29b40] opacity-40 animate-pulse" size={48} />
+              <Wind className="text-[#c29b40] opacity-50 animate-bounce mt-4" size={56} />
             </div>
 
-            <p className="text-gray-400 text-2xl md:text-3xl leading-relaxed mb-24 italic max-w-5xl relative z-10">
+            <p className="text-gray-400 text-2xl md:text-4xl leading-relaxed mb-28 italic max-w-6xl relative z-10 px-6">
               {t.fpvDesc}
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 w-full relative z-10 px-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-16 w-full relative z-10 px-8">
               {[
                 { icon: Award, label: "SHGM İHA-1", desc: "Commercial License" },
                 { icon: Cpu, label: "BTFA-FLIGHT", desc: "System Optimization" },
                 { icon: Box, label: "LRS/CROSSFIRE", desc: "Long Range Control" }
               ].map((item, i) => (
-                <div key={i} className="bg-white/[0.02] p-12 border border-white/10 group/item hover:bg-white/[0.05] transition-all hover:translate-y-[-10px] flex flex-col items-center text-center">
-                  <item.icon size={40} className="text-[#c29b40] mb-10 group-hover/item:scale-125 transition-transform" />
-                  <p className="text-[14px] font-black uppercase tracking-[0.5em] mb-4">{item.label}</p>
-                  <p className="text-[12px] text-gray-500 font-mono italic">{item.desc}</p>
+                <div key={i} className="bg-white/[0.02] p-16 border border-white/10 group/item hover:bg-white/[0.06] transition-all hover:translate-y-[-15px] flex flex-col items-center text-center shadow-2xl">
+                  <item.icon size={48} className="text-[#c29b40] mb-12 group-hover/item:scale-125 transition-transform" />
+                  <p className="text-[16px] font-black uppercase tracking-[0.6em] mb-6">{item.label}</p>
+                  <p className="text-[14px] text-gray-500 font-mono italic">{item.desc}</p>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Technical Skills - Expanded & Centered */}
-        <div className="w-full max-w-[1600px] px-6 md:px-12">
+        {/* Technical Skills - Expanded & Symmetric */}
+        <div className="w-full max-w-[1700px] px-8 md:px-16">
           <div className="bg-white/[0.01] backdrop-blur-3xl p-16 md:p-32 border border-white/5 relative overflow-visible group transition-all duration-700 hover:border-[#c29b40]/20 flex flex-col items-center">
-            <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-[#c29b40]/5 rounded-full blur-[200px] pointer-events-none opacity-50"></div>
+            <div className="absolute bottom-0 left-0 w-[1000px] h-[1000px] bg-[#c29b40]/5 rounded-full blur-[250px] pointer-events-none opacity-50"></div>
 
-            <div className="flex flex-col items-center justify-center mb-24 relative z-10 w-full text-center">
-              <Database size={48} className="text-[#c29b40] opacity-50 mb-10" />
-              <h3 className="text-[18px] font-black uppercase tracking-[1em] text-gray-400">
+            <div className="flex flex-col items-center justify-center mb-28 relative z-10 w-full text-center">
+              <Database size={56} className="text-[#c29b40] opacity-60 mb-12" />
+              <h3 className="text-[20px] font-black uppercase tracking-[1.2em] text-gray-400">
                 {t.skillsTitle}
               </h3>
-              <div className="w-16 h-[1px] bg-white/20 mt-8"></div>
+              <div className="w-24 h-[1px] bg-white/20 mt-10"></div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-32 gap-y-24 w-full relative z-10 px-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-40 gap-y-28 w-full relative z-10 px-12">
               {t.skills.map((skill, index) => (
                 <div key={index} className="group/skill cursor-default flex flex-col items-center text-center">
-                  <div className="flex items-center justify-center gap-6 mb-8 w-full">
-                    <div className="w-12 h-[1px] bg-white/5 group-hover/skill:bg-[#c29b40]/30 transition-all"></div>
-                    <span className="font-black text-3xl md:text-5xl tracking-tighter uppercase group-hover/skill:text-[#c29b40] transition-colors">{skill.name}</span>
-                    <div className="w-12 h-[1px] bg-white/5 group-hover/skill:bg-[#c29b40]/30 transition-all"></div>
+                  <div className="flex items-center justify-center gap-10 mb-10 w-full">
+                    <div className="w-16 h-[2px] bg-white/5 group-hover/skill:bg-[#c29b40]/40 transition-all"></div>
+                    <span className="font-black text-4xl md:text-6xl tracking-tighter uppercase group-hover/skill:text-[#c29b40] transition-colors">{skill.name}</span>
+                    <div className="w-16 h-[2px] bg-white/5 group-hover/skill:bg-[#c29b40]/40 transition-all"></div>
                   </div>
-                  <p className="text-[15px] text-gray-400 uppercase tracking-[0.2em] italic leading-relaxed group-hover/skill:text-gray-200 transition-all max-w-lg">
+                  <p className="text-[17px] text-gray-400 uppercase tracking-[0.3em] italic leading-relaxed group-hover/skill:text-gray-100 transition-all max-w-2xl px-4">
                     {skill.desc}
                   </p>
                 </div>
