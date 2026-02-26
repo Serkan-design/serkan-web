@@ -214,16 +214,18 @@ const App = () => {
             <div className="max-w-4xl w-full">
 
               {/* Centralized AI Container - Transparent & Optimized */}
-              <div className="bg-transparent backdrop-blur-md border border-white/10 p-8 md:p-12 shadow-[0_0_100px_rgba(0,0,0,0.5)] relative overflow-visible group/box transition-all duration-500 hover:border-white/20 flex flex-col justify-center min-h-[420px]">
+              <div className="bg-transparent backdrop-blur-md border border-white/10 p-6 md:p-10 shadow-[0_0_100px_rgba(0,0,0,0.5)] relative overflow-visible group/box transition-all duration-500 hover:border-white/20 flex flex-col justify-center min-h-[380px]">
 
 
-                <div className="flex items-center gap-4 mb-8 px-4">
+                <div className="flex items-center gap-4 px-4">
                   <Terminal size={22} className="text-[#c29b40] animate-pulse" />
                   <span className="text-[12px] font-black tracking-[0.6em] text-white uppercase opacity-90">SYST_ENV_PRO.03</span>
                 </div>
 
+                <div className="h-4"></div>
+
                 <div className="mb-4 px-6">
-                  <p className="text-[11px] font-black text-[#c29b40] mb-12 tracking-[0.4em] uppercase opacity-80">Serkan'a Sorun (AI Assistant)</p>
+                  <p className="text-[11px] font-black text-[#c29b40] mb-8 tracking-[0.4em] uppercase opacity-80">Serkan'a Sorun (AI Assistant)</p>
                   <div className="flex flex-col sm:flex-row gap-4 mb-4">
                     <input
                       value={chatInput}
@@ -243,7 +245,7 @@ const App = () => {
                   )}
                 </div>
 
-                <div className="h-8 md:h-12"></div>
+                <div className="h-6 md:h-10"></div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-12 border-t border-white/5 px-6">
                   <button onClick={() => setIsAboutOpen(true)} className="flex items-center justify-center gap-3 px-6 h-16 bg-white text-black text-[11px] font-black uppercase tracking-[0.3em] hover:bg-[#c29b40] hover:text-white transition-all shadow-lg">
