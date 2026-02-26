@@ -187,8 +187,8 @@ const App = () => {
             alt="Software Background"
           />
 
-          <div className="relative z-20 h-full flex flex-col justify-center items-center md:items-start p-8 md:p-12">
-            <div className="max-w-md w-full">
+          <div className="relative z-20 h-full flex flex-col justify-center items-center p-8 md:p-12">
+            <div className="max-w-lg w-full">
               <div className="flex items-center gap-2 mb-4">
                 <Code size={16} className="text-[#c29b40]" />
                 <span className="text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase">Dev Environment</span>
@@ -221,7 +221,7 @@ const App = () => {
                 )}
               </div>
 
-              <div className="mt-8 flex gap-4 justify-center md:justify-start">
+              <div className="mt-8 flex gap-4 justify-center">
                 <button
                   onClick={() => setIsAboutOpen(true)}
                   className="flex items-center gap-2 px-6 py-3 bg-white text-black text-[10px] font-bold uppercase tracking-widest hover:bg-[#c29b40] hover:text-white transition-all"
@@ -275,7 +275,7 @@ const App = () => {
 
         {/* Technical Skills */}
         <div className="lg:col-span-5">
-          <div className="bg-white/5 backdrop-blur-md p-8 border border-white/10 h-full">
+          <div className="bg-white/5 backdrop-blur-md p-8 border border-white/10 h-full flex flex-col justify-start">
             <div className="flex items-center justify-between mb-10">
               <h3 className="text-sm font-black uppercase tracking-[0.4em] opacity-80">{t.skillsTitle}</h3>
               <Database size={16} className="text-[#c29b40]" />
