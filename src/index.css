@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+:root {
+  --primary-gold: #c29b40;
+  --bg-navy: #020617;
+  --glass-bg: rgba(2, 6, 23, 0.7);
+  --border-gold: rgba(194, 155, 64, 0.2);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,5 +15,22 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #020617;
+  background-color: var(--bg-navy);
+  color: #f8fafc;
+  overflow-x: hidden;
+}
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-gold);
+}
+
+.text-gold {
+  color: var(--primary-gold);
+}
+
+.bg-gold {
+  background-color: var(--primary-gold);
 }
