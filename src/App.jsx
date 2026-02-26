@@ -172,7 +172,7 @@ const App = () => {
               <Plane size={12} className="text-white" />
               <span>Aviation & FPV Expert</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-black mb-3 tracking-tighter leading-none">{t.name}</h2>
+            <h2 className="text-5xl md:text-7xl font-black mb-3 tracking-tighter leading-none text-left">{t.name}</h2>
             <p className="text-gray-300 font-mono text-xs tracking-widest uppercase opacity-70 italic">Licensed UAV-1 Pilot</p>
           </div>
         </div>
@@ -232,9 +232,9 @@ const App = () => {
                   href="https://www.instagram.com/sserkan.77/"
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 bg-red-600 text-white text-xs font-bold uppercase tracking-widest hover:bg-red-500 transition-all"
+                  className="flex items-center gap-2 px-6 py-3 border border-white/30 text-white text-[10px] font-bold uppercase tracking-widest hover:bg-white/10 transition-all"
                 >
-                  <Instagram size={16} /> Instagram
+                  <Instagram size={14} /> INSTA
                 </a>
               </div>
             </div>
