@@ -256,58 +256,63 @@ const App = () => {
         </div>
       </section>
 
-      {/* Main Content Sections - Now Stacked and Centered */}
-      <main className="max-w-7xl mx-auto px-6 py-24 flex flex-col items-center gap-16 relative z-30 -mt-20">
+      {/* Main Content Sections - Expanded & Refined */}
+      <main className="w-full px-4 md:px-12 py-32 flex flex-col items-center gap-32 relative z-30 -mt-32">
 
-        {/* FPV Details - Stacked & Centered */}
-        <div className="w-full max-w-5xl">
-          <div className="bg-[#1e293b]/20 backdrop-blur-3xl border border-white/5 p-12 md:p-16 group relative overflow-hidden transition-all duration-500 hover:border-white/10">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#c29b40]/5 rounded-full blur-[120px] -mr-32 -mt-32"></div>
-            <div className="flex items-center justify-between mb-12">
-              <h3 className="text-3xl font-black uppercase tracking-tight flex items-center gap-6">
-                <span className="w-16 h-[2px] bg-[#c29b40]"></span>
+        {/* FPV Details - Ultra Wide */}
+        <div className="w-full max-w-[1400px]">
+          <div className="bg-[#1e293b]/10 backdrop-blur-3xl border border-white/5 p-12 md:p-24 group relative overflow-hidden transition-all duration-700 hover:border-[#c29b40]/20">
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#c29b40]/5 rounded-full blur-[150px] -mr-64 -mt-64"></div>
+
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-16 relative z-10">
+              <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter flex items-center gap-8">
+                <span className="w-20 h-[3px] bg-[#c29b40]"></span>
                 {t.fpvTitle}
               </h3>
-              <Wind className="text-[#c29b40] opacity-40 group-hover:rotate-180 transition-transform duration-[3000ms]" />
+              <Wind className="text-[#c29b40] opacity-30 group-hover:rotate-180 transition-transform duration-[4000ms]" size={40} />
             </div>
-            <p className="text-gray-400 text-lg leading-relaxed mb-16 italic border-l-4 border-[#c29b40]/30 pl-8 ml-1">
+
+            <p className="text-gray-400 text-xl md:text-2xl leading-relaxed mb-24 italic border-l-4 border-[#c29b40]/30 pl-10 ml-1 max-w-4xl relative z-10">
               {t.fpvDesc}
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 relative z-10">
               {[
-                { icon: Award, label: "SHGM İHA-1" },
-                { icon: Cpu, label: "Betaflight" },
-                { icon: Box, label: "LRS/Crossfire" }
+                { icon: Award, label: "SHGM İHA-1", desc: "Commercial License" },
+                { icon: Cpu, label: "BTFA-FLIGHT", desc: "System Optimization" },
+                { icon: Box, label: "LRS/CROSSFIRE", desc: "Long Range Control" }
               ].map((item, i) => (
-                <div key={i} className="bg-white/[0.02] p-8 border border-white/5 text-center group/item hover:bg-white/[0.05] transition-all hover:translate-y-[-4px]">
-                  <item.icon size={24} className="text-[#c29b40] mx-auto mb-5 group-hover/item:scale-110 transition-transform" />
-                  <p className="text-[11px] font-black uppercase tracking-[0.3em]">{item.label}</p>
+                <div key={i} className="bg-white/[0.01] p-10 border border-white/5 group/item hover:bg-white/[0.03] transition-all hover:translate-y-[-8px] text-left">
+                  <item.icon size={32} className="text-[#c29b40] mb-8 group-hover/item:scale-110 transition-transform" />
+                  <p className="text-[12px] font-black uppercase tracking-[0.4em] mb-2">{item.label}</p>
+                  <p className="text-[10px] text-gray-600 font-mono italic">{item.desc}</p>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Technical Skills - Stacked & Centered */}
-        <div className="w-full max-w-5xl">
-          <div className="bg-white/[0.02] backdrop-blur-3xl p-12 md:p-16 border border-white/5 relative overflow-hidden group transition-all duration-500 hover:border-white/10">
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#c29b40]/5 rounded-full blur-[120px] -ml-32 -mb-32"></div>
-            <div className="flex items-center justify-between mb-16">
-              <h3 className="text-[14px] font-black uppercase tracking-[0.6em] text-gray-500 flex items-center gap-4">
-                <span className="w-8 h-[1px] bg-white/20"></span>
+        {/* Technical Skills - High-End Layout */}
+        <div className="w-full max-w-[1400px]">
+          <div className="bg-white/[0.01] backdrop-blur-3xl p-12 md:p-24 border border-white/5 relative overflow-hidden group transition-all duration-700 hover:border-[#c29b40]/20">
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#c29b40]/5 rounded-full blur-[150px] -ml-64 -mb-64"></div>
+
+            <div className="flex items-center justify-between mb-24 relative z-10">
+              <h3 className="text-[16px] font-black uppercase tracking-[0.8em] text-gray-500 flex items-center gap-6">
+                <span className="w-12 h-[1px] bg-white/20"></span>
                 {t.skillsTitle}
               </h3>
-              <Database size={24} className="text-[#c29b40] opacity-60" />
+              <Database size={32} className="text-[#c29b40] opacity-50" />
             </div>
-            <div className="grid md:grid-cols-2 gap-x-20 gap-y-12">
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-32 gap-y-20 relative z-10">
               {t.skills.map((skill, index) => (
                 <div key={index} className="group/skill cursor-default">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="font-black text-[13px] tracking-[0.3em] uppercase group-hover/skill:text-[#c29b40] transition-colors">{skill.name}</span>
-                    <div className="h-[1px] flex-1 mx-6 bg-white/5 group-hover/skill:bg-[#c29b40]/20 transition-all"></div>
-                    <ChevronRight size={16} className="text-gray-700 group-hover/skill:text-[#c29b40] transition-all translate-x-[-4px] group-hover/skill:translate-x-0" />
+                  <div className="flex items-center justify-between mb-6">
+                    <span className="font-black text-2xl md:text-3xl tracking-tighter uppercase group-hover/skill:text-[#c29b40] transition-colors">{skill.name}</span>
+                    <ChevronRight size={24} className="text-gray-800 group-hover/skill:text-[#c29b40] transition-all group-hover/skill:translate-x-2" />
                   </div>
-                  <p className="text-[12px] text-gray-500 uppercase tracking-widest italic leading-relaxed group-hover/skill:text-gray-400 transition-all pl-2">
+                  <p className="text-[13px] text-gray-500 uppercase tracking-widest italic leading-relaxed group-hover/skill:text-gray-300 transition-all pl-1 border-l border-white/5 group-hover:border-[#c29b40]/20 py-1">
                     {skill.desc}
                   </p>
                 </div>
