@@ -156,7 +156,7 @@ const App = () => {
       </nav>
 
       {/* Split-Screen Hero Section */}
-      <section className="relative h-[90vh] md:h-[80vh] w-full flex flex-col md:flex-row pt-14 overflow-hidden">
+      <section className="relative h-screen w-full flex flex-col md:flex-row pt-16 overflow-hidden">
 
         {/* Left Panel: Aviation/FPV */}
         <div className="relative w-full md:w-1/2 h-full group overflow-hidden border-r border-[#c29b40]/10">
@@ -177,67 +177,80 @@ const App = () => {
           </div>
         </div>
 
-        {/* Right Panel: Software/DB */}
-        <div className="relative w-full md:w-1/2 h-full group overflow-hidden">
-          <div className="absolute inset-0 z-10 bg-gradient-to-l from-[#020617] via-transparent to-transparent opacity-80" />
-          <div className="absolute inset-0 z-10 bg-[#020617]/60 group-hover:bg-transparent transition-colors duration-700" />
+        {/* Right Panel: AI Chat */}
+        <div className="relative w-full md:w-1/2 h-full overflow-hidden flex flex-col">
+          <div className="absolute inset-0 z-10 bg-gradient-to-l from-[#020617] via-[#020617]/90 to-transparent" />
           <img
             src={images.tech[bgIndex]}
-            className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 scale-105 group-hover:scale-110 grayscale group-hover:grayscale-0"
+            className="absolute inset-0 w-full h-full object-cover transition-all duration-1000 scale-105 grayscale opacity-30"
             alt="Software Background"
           />
 
-          <div className="relative z-20 h-full flex flex-col justify-center items-center p-8 md:p-12">
-            <div className="max-w-lg w-full">
-              <div className="flex items-center gap-2 mb-4">
-                <Code size={16} className="text-[#c29b40]" />
-                <span className="text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase">Dev Environment</span>
-              </div>
+          <div className="relative z-20 h-full flex flex-col justify-center px-10 md:px-16 py-12 gap-8">
 
-              {/* AI Tool */}
-              <div className="bg-black/60 backdrop-blur-xl border border-white/10 p-4 shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 left-0 w-1 h-full bg-[#c29b40]" />
-                <p className="text-[10px] font-bold text-[#c29b40] mb-3 tracking-[0.2em] uppercase">Serkan'a Sorun (AI)</p>
-                <div className="flex gap-2">
+            {/* Header */}
+            <div>
+              <div className="flex items-center gap-3 mb-3">
+                <Code size={18} className="text-[#c29b40]" />
+                <span className="text-xs font-bold tracking-[0.35em] text-gray-400 uppercase">Dev Environment</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-white leading-none">
+                Serkan'a <span className="text-[#c29b40]">Sorun</span>
+              </h2>
+              <p className="mt-2 text-xs text-gray-500 uppercase tracking-widest">Yapay Zeka destekli asistan</p>
+            </div>
+
+            {/* AI Tool Box */}
+            <div className="bg-black/70 backdrop-blur-2xl border border-white/10 p-6 shadow-2xl relative overflow-hidden flex-1 flex flex-col justify-between max-h-72">
+              <div className="absolute top-0 left-0 w-1 h-full bg-[#c29b40]" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#c29b40]/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+
+              <div className="flex flex-col gap-4 flex-1">
+                <div className="flex gap-3">
                   <input
                     value={chatInput}
                     onChange={(e) => setChatInput(e.target.value)}
                     onKeyPress={(e) => e.key === 'Enter' && askAI()}
                     placeholder={t.aiPlaceholder}
-                    className="flex-1 bg-white/5 border border-white/10 px-3 py-2 text-xs focus:outline-none focus:border-[#c29b40] text-white"
+                    className="flex-1 bg-white/5 border border-white/10 px-4 py-3 text-sm focus:outline-none focus:border-[#c29b40] text-white placeholder-gray-600 transition-colors"
                   />
                   <button
                     onClick={() => askAI()}
                     disabled={isTyping}
-                    className="bg-[#c29b40] px-4 py-2 font-black text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition-all"
+                    className="bg-[#c29b40] px-6 py-3 font-black text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all whitespace-nowrap flex items-center gap-2"
                   >
-                    {isTyping ? <Loader2 size={14} className="animate-spin" /> : t.aiButton}
+                    {isTyping ? <Loader2 size={16} className="animate-spin" /> : t.aiButton}
                   </button>
                 </div>
-                {chatResponse && (
-                  <div className="mt-3 text-[10px] text-gray-300 italic border-t border-white/10 pt-2">
-                    {chatResponse}
-                  </div>
-                )}
-              </div>
 
-              <div className="mt-8 flex gap-4 justify-center">
-                <button
-                  onClick={() => setIsAboutOpen(true)}
-                  className="flex items-center gap-2 px-6 py-3 bg-white text-black text-[10px] font-bold uppercase tracking-widest hover:bg-[#c29b40] hover:text-white transition-all"
-                >
-                  <User size={14} /> {t.openAbout}
-                </button>
-                <a
-                  href="https://www.instagram.com/sserkan.77/"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-2 px-6 py-3 border border-white/30 text-white text-[10px] font-bold uppercase tracking-widest hover:bg-white/10 transition-all"
-                >
-                  <Instagram size={14} /> INSTA
-                </a>
+                <div className="flex-1 min-h-[80px] bg-white/3 border border-white/5 p-4 overflow-y-auto">
+                  {chatResponse ? (
+                    <p className="text-sm text-gray-200 leading-relaxed">{chatResponse}</p>
+                  ) : (
+                    <p className="text-xs text-gray-600 italic">Yanıt burada görünecek...</p>
+                  )}
+                </div>
               </div>
             </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-4">
+              <button
+                onClick={() => setIsAboutOpen(true)}
+                className="flex items-center gap-2 px-7 py-3.5 bg-white text-black text-xs font-bold uppercase tracking-widest hover:bg-[#c29b40] hover:text-white transition-all flex-1 justify-center"
+              >
+                <User size={15} /> {t.openAbout}
+              </button>
+              <a
+                href="https://www.instagram.com/sserkan.77/"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 px-7 py-3.5 border border-white/30 text-white text-xs font-bold uppercase tracking-widest hover:bg-white/10 transition-all flex-1 justify-center"
+              >
+                <Instagram size={15} /> INSTA
+              </a>
+            </div>
+
           </div>
         </div>
       </section>
