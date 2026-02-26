@@ -32,14 +32,14 @@ const App = () => {
 
   const images = {
     aviation: [
-      "https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&q=80&w=1000",
-      "https://images.unsplash.com/photo-1473960104312-30e37d59074b?auto=format&fit=crop&q=80&w=1000",
-      "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?auto=format&fit=crop&q=80&w=1000"
+      "https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&q=70&w=1200",
+      "https://images.unsplash.com/photo-1473960104312-30e37d59074b?auto=format&fit=crop&q=70&w=1200",
+      "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?auto=format&fit=crop&q=70&w=1200"
     ],
     tech: [
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=80&w=1000",
-      "https://images.unsplash.com/photo-1544380903-583b710c5e04?auto=format&fit=crop&q=80&w=1000",
-      "https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&q=80&w=1000"
+      "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=70&w=1200",
+      "https://images.unsplash.com/photo-1544380903-583b710c5e04?auto=format&fit=crop&q=70&w=1200",
+      "https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&q=70&w=1200"
     ]
   };
 
@@ -191,7 +191,7 @@ const App = () => {
               <Plane size={14} className="text-white" />
               <span>Aviation & FPV Expert</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-black mb-4 tracking-tighter leading-none">{t.name}</h2>
+            <h2 className="text-5xl md:text-7xl font-black mb-0 tracking-tighter leading-none">{t.name}</h2>
             <p className="text-[#c29b40] font-mono text-sm tracking-[0.4em] uppercase opacity-90">{lang === 'tr' ? 'Lisanslı İHA-1 Pilotu' : 'Licensed UAV-1 Pilot'}</p>
           </div>
         </div>
@@ -214,7 +214,7 @@ const App = () => {
 
               {/* Centralized AI Container - Transparent & Optimized */}
               <div className="bg-transparent backdrop-blur-md border border-white/10 p-8 md:p-12 shadow-[0_0_100px_rgba(0,0,0,0.5)] relative overflow-visible group/box transition-all duration-500 hover:border-white/20 flex flex-col justify-center min-h-[300px]">
-                <div className="absolute top-0 left-0 w-2 h-full bg-[#c29b40] shadow-[0_0_30px_rgba(194,155,64,0.4)]"></div>
+
 
                 <div className="flex items-center gap-4 mb-8 px-4">
                   <Terminal size={22} className="text-[#c29b40] animate-pulse" />
