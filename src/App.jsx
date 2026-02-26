@@ -243,7 +243,7 @@ const App = () => {
                   )}
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12 pt-10 border-t border-white/5 px-6">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-24 pt-12 border-t border-white/5 px-6">
                   <button onClick={() => setIsAboutOpen(true)} className="flex items-center justify-center gap-3 px-6 h-16 bg-white text-black text-[11px] font-black uppercase tracking-[0.3em] hover:bg-[#c29b40] hover:text-white transition-all shadow-lg">
                     <User size={16} /> {t.openAbout}
                   </button>
