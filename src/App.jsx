@@ -186,13 +186,13 @@ const App = () => {
             className="absolute inset-0 w-full h-full object-cover transition-all duration-[2000ms] scale-100 group-hover:scale-110"
             alt="Aviation Background"
           />
-          <div className="relative z-20 h-full flex flex-col justify-center px-12 md:px-24">
+          <div className="relative z-20 h-full flex flex-col justify-center px-16 md:px-32">
             <div className="inline-flex items-center gap-2 bg-[#c29b40] px-4 py-2 text-[10px] font-black tracking-[0.3em] uppercase mb-8 w-fit shadow-xl">
               <Plane size={14} className="text-white" />
               <span>Aviation & FPV Expert</span>
             </div>
-            <h2 className="text-6xl md:text-8xl font-black mb-4 tracking-tighter leading-none translate-x-1">{t.name}</h2>
-            <p className="text-[#c29b40] font-mono text-sm tracking-[0.4em] uppercase opacity-80 pl-2">Licensed UAV-1 Pilot</p>
+            <h2 className="text-6xl md:text-8xl font-black mb-4 tracking-tighter leading-none translate-x-4 pl-1">{t.name}</h2>
+            <p className="text-[#c29b40] font-mono text-sm tracking-[0.4em] uppercase opacity-80 pl-6">Licensed UAV-1 Pilot</p>
           </div>
         </div>
 
@@ -209,48 +209,48 @@ const App = () => {
             alt="Software Background"
           />
 
-          <div className="relative z-20 h-full flex flex-col justify-center items-center p-8 md:p-20">
+          <div className="relative z-20 h-full flex flex-col justify-center items-center px-4 md:px-12">
             <div className="max-w-3xl w-full">
 
-              {/* Centralized AI Container - Enlarged */}
-              <div className="bg-white/[0.03] backdrop-blur-3xl border border-white/10 p-12 md:p-20 shadow-[0_0_120px_rgba(194,155,64,0.1)] relative overflow-hidden group/box transition-all duration-500 hover:border-white/20 min-h-[500px] flex flex-col justify-center">
+              {/* Centralized AI Container - Compact & Professional */}
+              <div className="bg-white/[0.03] backdrop-blur-3xl border border-white/10 p-10 md:p-14 shadow-[0_0_120px_rgba(194,155,64,0.1)] relative overflow-visible group/box transition-all duration-500 hover:border-white/20 flex flex-col justify-center min-h-[350px]">
                 <div className="absolute top-0 left-0 w-2 h-full bg-[#c29b40] shadow-[0_0_30px_rgba(194,155,64,0.4)]"></div>
 
-                <div className="flex items-center gap-6 mb-12">
-                  <Terminal size={28} className="text-[#c29b40] animate-pulse" />
-                  <span className="text-[16px] font-black tracking-[0.8em] text-white uppercase opacity-90">SYST_ENV_PRO.03</span>
+                <div className="flex items-center gap-6 mb-8">
+                  <Terminal size={24} className="text-[#c29b40] animate-pulse" />
+                  <span className="text-[14px] font-black tracking-[0.8em] text-white uppercase opacity-90 ml-2">SYST_ENV_PRO.03</span>
                 </div>
 
-                <div className="mb-12">
-                  <p className="text-[13px] font-black text-[#c29b40] mb-8 tracking-[0.6em] uppercase opacity-80">Serkan'a Sorun (AI Assistant)</p>
-                  <div className="flex flex-col sm:flex-row gap-6">
+                <div className="mb-8 pl-2">
+                  <p className="text-[12px] font-black text-[#c29b40] mb-6 tracking-[0.6em] uppercase opacity-80">Serkan'a Sorun (AI Assistant)</p>
+                  <div className="flex flex-col sm:flex-row gap-5">
                     <input
                       value={chatInput}
                       onChange={(e) => setChatInput(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && askAI()}
                       placeholder={t.aiPlaceholder}
-                      className="flex-1 bg-white/5 border border-white/10 px-10 py-6 text-base focus:outline-none focus:border-[#c29b40]/50 text-white placeholder:text-gray-600 transition-all rounded-sm font-mono"
+                      className="flex-1 bg-white/5 border border-white/10 px-8 py-5 text-base focus:outline-none focus:border-[#c29b40]/50 text-white placeholder:text-gray-600 transition-all rounded-sm font-mono"
                     />
-                    <button onClick={() => askAI()} disabled={isTyping} className="bg-[#c29b40] px-12 py-6 font-black text-[14px] uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all flex items-center justify-center gap-4 shadow-[0_0_40px_rgba(194,155,64,0.3)]">
-                      {isTyping ? <Loader2 size={20} className="animate-spin" /> : <>SOR <Sparkles size={18} /></>}
+                    <button onClick={() => askAI()} disabled={isTyping} className="bg-[#c29b40] px-10 py-5 font-black text-[13px] uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all flex items-center justify-center gap-4 shadow-[0_0_40px_rgba(194,155,64,0.3)]">
+                      {isTyping ? <Loader2 size={18} className="animate-spin" /> : <>SOR <Sparkles size={16} /></>}
                     </button>
                   </div>
                   {chatResponse && (
-                    <div className="mt-10 text-[14px] text-gray-300 font-mono italic border-t border-white/10 pt-8 animate-in fade-in slide-in-from-top-4 duration-500 leading-relaxed bg-white/[0.01] p-6">
+                    <div className="mt-8 text-[13px] text-gray-300 font-mono italic border-t border-white/10 pt-6 animate-in fade-in slide-in-from-top-4 duration-500 leading-relaxed bg-white/[0.01] p-5">
                       <span className="text-[#c29b40] font-bold inline-block mr-3">SERK_AI&gt;</span>{chatResponse}
                     </div>
                   )}
                 </div>
 
-                <div className="flex flex-wrap gap-6 pt-8 border-t border-white/5">
-                  <button onClick={() => setIsAboutOpen(true)} className="flex-1 min-w-[150px] flex items-center justify-center gap-4 px-8 py-5 bg-white text-black text-[13px] font-black uppercase tracking-[0.4em] hover:bg-[#c29b40] hover:text-white transition-all shadow-lg">
-                    <User size={18} /> {t.openAbout}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-8 border-t border-white/5 px-2">
+                  <button onClick={() => setIsAboutOpen(true)} className="flex items-center justify-center gap-4 px-6 py-4 bg-white text-black text-[12px] font-black uppercase tracking-[0.3em] hover:bg-[#c29b40] hover:text-white transition-all shadow-lg">
+                    <User size={16} /> {t.openAbout}
                   </button>
-                  <a href="https://www.instagram.com/sserkan.77/" target="_blank" className="flex-1 min-w-[150px] flex items-center justify-center gap-4 px-8 py-5 border border-white/10 text-white text-[13px] font-black uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all">
-                    <Instagram size={18} /> INSTA
+                  <a href="https://www.instagram.com/sserkan.77/" target="_blank" className="flex items-center justify-center gap-4 px-6 py-4 border border-white/10 text-white text-[12px] font-black uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all">
+                    <Instagram size={16} /> INSTA
                   </a>
-                  <a href="https://github.com/Serkan-design" target="_blank" className="flex-1 min-w-[150px] flex items-center justify-center gap-4 px-8 py-5 border border-white/10 text-[#c29b40] text-[13px] font-black uppercase tracking-[0.4em] hover:bg-[#c29b40] hover:text-white transition-all">
-                    <Code size={18} /> GITHUB
+                  <a href="https://github.com/Serkan-design" target="_blank" className="flex items-center justify-center gap-4 px-6 py-4 border border-white/10 text-[#c29b40] text-[12px] font-black uppercase tracking-[0.3em] hover:bg-[#c29b40] hover:text-white transition-all">
+                    <Code size={16} /> GITHUB
                   </a>
                 </div>
               </div>
@@ -260,26 +260,26 @@ const App = () => {
       </section>
 
       {/* Main Content Sections - Expanded & Refined */}
-      <main className="w-full px-4 md:px-12 py-32 flex flex-col items-center gap-32 relative z-30 -mt-32">
+      <main className="w-full px-12 md:px-24 py-32 flex flex-col items-center gap-32 relative z-30 -mt-32">
 
         {/* FPV Details - Ultra Wide */}
         <div className="w-full max-w-[1400px]">
-          <div className="bg-[#1e293b]/10 backdrop-blur-3xl border border-white/5 p-12 md:p-24 group relative overflow-hidden transition-all duration-700 hover:border-[#c29b40]/20">
-            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#c29b40]/5 rounded-full blur-[150px] -mr-64 -mt-64"></div>
+          <div className="bg-[#1e293b]/10 backdrop-blur-3xl border border-white/5 p-16 md:p-32 group relative overflow-visible transition-all duration-700 hover:border-[#c29b40]/20">
+            <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#c29b40]/5 rounded-full blur-[150px] -mr-64 -mt-64 pointer-events-none"></div>
 
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-16 relative z-10">
-              <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter flex items-center gap-8">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-16 relative z-10 px-4">
+              <h3 className="text-4xl md:text-5xl font-black uppercase tracking-tighter flex items-center gap-8 translate-x-2">
                 <span className="w-20 h-[3px] bg-[#c29b40]"></span>
                 {t.fpvTitle}
               </h3>
               <Wind className="text-[#c29b40] opacity-30 group-hover:rotate-180 transition-transform duration-[4000ms]" size={40} />
             </div>
 
-            <p className="text-gray-400 text-xl md:text-2xl leading-relaxed mb-24 italic border-l-4 border-[#c29b40]/30 pl-10 ml-1 max-w-4xl relative z-10">
+            <p className="text-gray-400 text-xl md:text-2xl leading-relaxed mb-24 italic border-l-4 border-[#c29b40]/30 pl-12 ml-6 max-w-4xl relative z-10">
               {t.fpvDesc}
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 relative z-10">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 relative z-10 px-4">
               {[
                 { icon: Award, label: "SHGM İHA-1", desc: "Commercial License" },
                 { icon: Cpu, label: "BTFA-FLIGHT", desc: "System Optimization" },
@@ -287,8 +287,8 @@ const App = () => {
               ].map((item, i) => (
                 <div key={i} className="bg-white/[0.01] p-10 border border-white/5 group/item hover:bg-white/[0.03] transition-all hover:translate-y-[-8px] text-left">
                   <item.icon size={32} className="text-[#c29b40] mb-8 group-hover/item:scale-110 transition-transform" />
-                  <p className="text-[12px] font-black uppercase tracking-[0.4em] mb-2">{item.label}</p>
-                  <p className="text-[10px] text-gray-600 font-mono italic">{item.desc}</p>
+                  <p className="text-[12px] font-black uppercase tracking-[0.4em] mb-2 pl-1">{item.label}</p>
+                  <p className="text-[10px] text-gray-600 font-mono italic pl-1">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -297,25 +297,25 @@ const App = () => {
 
         {/* Technical Skills - High-End Layout */}
         <div className="w-full max-w-[1400px]">
-          <div className="bg-white/[0.01] backdrop-blur-3xl p-12 md:p-24 border border-white/5 relative overflow-hidden group transition-all duration-700 hover:border-[#c29b40]/20">
-            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#c29b40]/5 rounded-full blur-[150px] -ml-64 -mb-64"></div>
+          <div className="bg-white/[0.01] backdrop-blur-3xl p-16 md:p-32 border border-white/5 relative overflow-visible group transition-all duration-700 hover:border-[#c29b40]/20">
+            <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-[#c29b40]/5 rounded-full blur-[150px] -ml-64 -mb-64 pointer-events-none"></div>
 
-            <div className="flex items-center justify-between mb-24 relative z-10">
-              <h3 className="text-[16px] font-black uppercase tracking-[0.8em] text-gray-500 flex items-center gap-6">
+            <div className="flex items-center justify-between mb-24 relative z-10 px-4">
+              <h3 className="text-[16px] font-black uppercase tracking-[0.8em] text-gray-500 flex items-center gap-6 translate-x-2">
                 <span className="w-12 h-[1px] bg-white/20"></span>
                 {t.skillsTitle}
               </h3>
               <Database size={32} className="text-[#c29b40] opacity-50" />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-32 gap-y-20 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-32 gap-y-20 relative z-10 px-4">
               {t.skills.map((skill, index) => (
-                <div key={index} className="group/skill cursor-default">
+                <div key={index} className="group/skill cursor-default px-2">
                   <div className="flex items-center justify-between mb-6">
-                    <span className="font-black text-2xl md:text-3xl tracking-tighter uppercase group-hover/skill:text-[#c29b40] transition-colors">{skill.name}</span>
+                    <span className="font-black text-2xl md:text-3xl tracking-tighter uppercase group-hover/skill:text-[#c29b40] transition-colors translate-x-2">{skill.name}</span>
                     <ChevronRight size={24} className="text-gray-800 group-hover/skill:text-[#c29b40] transition-all group-hover/skill:translate-x-2" />
                   </div>
-                  <p className="text-[13px] text-gray-500 uppercase tracking-widest italic leading-relaxed group-hover/skill:text-gray-300 transition-all pl-1 border-l border-white/5 group-hover:border-[#c29b40]/20 py-1">
+                  <p className="text-[13px] text-gray-500 uppercase tracking-widest italic leading-relaxed group-hover/skill:text-gray-300 transition-all pl-4 border-l-2 border-white/5 group-hover:border-[#c29b40]/30 py-1">
                     {skill.desc}
                   </p>
                 </div>
