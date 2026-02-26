@@ -33,7 +33,7 @@ const App = () => {
       "https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&q=50&w=800",
     ],
     tech: [
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?auto=format&fit=crop&q=50&w=800",
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=50&w=800",
     ]
   };
 
@@ -193,7 +193,7 @@ const App = () => {
           <div className="absolute inset-0 z-10 bg-[#020617]/40 group-hover:bg-transparent transition-colors duration-500 pointer-events-none"></div>
           <img
             src={images.tech[0]}
-            className="absolute inset-0 w-full h-full object-cover transition-all duration-500 scale-100 group-hover:scale-110 grayscale group-hover:grayscale-0 opacity-40 group-hover:opacity-100"
+            className="absolute inset-0 w-full h-full object-cover transition-all duration-500 scale-100 group-hover:scale-110 opacity-100"
             alt="Software Background"
           />
 
