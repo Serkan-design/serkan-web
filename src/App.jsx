@@ -256,54 +256,60 @@ const App = () => {
         </div>
       </section>
 
-      {/* Main Grid Content */}
-      <main className="max-w-7xl mx-auto px-6 py-24 grid lg:grid-cols-12 gap-12 relative z-30 -mt-20">
+      {/* Main Content Sections - Now Stacked and Centered */}
+      <main className="max-w-7xl mx-auto px-6 py-24 flex flex-col items-center gap-16 relative z-30 -mt-20">
 
-        {/* FPV Details */}
-        <div className="lg:col-span-7">
-          <div className="bg-[#1e293b]/20 backdrop-blur-3xl border border-white/5 p-12 group relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[#c29b40]/5 rounded-full blur-3xl -mr-16 -mt-16"></div>
+        {/* FPV Details - Stacked & Centered */}
+        <div className="w-full max-w-5xl">
+          <div className="bg-[#1e293b]/20 backdrop-blur-3xl border border-white/5 p-12 md:p-16 group relative overflow-hidden transition-all duration-500 hover:border-white/10">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-[#c29b40]/5 rounded-full blur-[120px] -mr-32 -mt-32"></div>
             <div className="flex items-center justify-between mb-12">
-              <h3 className="text-2xl font-black uppercase tracking-tight flex items-center gap-4">
-                <span className="w-12 h-[2px] bg-[#c29b40]"></span>
+              <h3 className="text-3xl font-black uppercase tracking-tight flex items-center gap-6">
+                <span className="w-16 h-[2px] bg-[#c29b40]"></span>
                 {t.fpvTitle}
               </h3>
-              <Wind className="text-[#c29b40] opacity-40 group-hover:rotate-180 transition-transform duration-[2000ms]" />
+              <Wind className="text-[#c29b40] opacity-40 group-hover:rotate-180 transition-transform duration-[3000ms]" />
             </div>
-            <p className="text-gray-400 text-base leading-relaxed mb-12 italic border-l-2 border-[#c29b40]/30 pl-6">
+            <p className="text-gray-400 text-lg leading-relaxed mb-16 italic border-l-4 border-[#c29b40]/30 pl-8 ml-1">
               {t.fpvDesc}
             </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-8">
               {[
                 { icon: Award, label: "SHGM İHA-1" },
                 { icon: Cpu, label: "Betaflight" },
                 { icon: Box, label: "LRS/Crossfire" }
               ].map((item, i) => (
-                <div key={i} className="bg-white/[0.02] p-6 border border-white/5 text-center group/item hover:bg-white/[0.05] transition-all">
-                  <item.icon size={20} className="text-[#c29b40] mx-auto mb-4 group-hover/item:scale-110 transition-transform" />
-                  <p className="text-[10px] font-black uppercase tracking-[0.2em]">{item.label}</p>
+                <div key={i} className="bg-white/[0.02] p-8 border border-white/5 text-center group/item hover:bg-white/[0.05] transition-all hover:translate-y-[-4px]">
+                  <item.icon size={24} className="text-[#c29b40] mx-auto mb-5 group-hover/item:scale-110 transition-transform" />
+                  <p className="text-[11px] font-black uppercase tracking-[0.3em]">{item.label}</p>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* Technical Skills */}
-        <div className="lg:col-span-5">
-          <div className="bg-white/[0.02] backdrop-blur-3xl p-12 border border-white/5 h-full relative">
+        {/* Technical Skills - Stacked & Centered */}
+        <div className="w-full max-w-5xl">
+          <div className="bg-white/[0.02] backdrop-blur-3xl p-12 md:p-16 border border-white/5 relative overflow-hidden group transition-all duration-500 hover:border-white/10">
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-[#c29b40]/5 rounded-full blur-[120px] -ml-32 -mb-32"></div>
             <div className="flex items-center justify-between mb-16">
-              <h3 className="text-[12px] font-black uppercase tracking-[0.5em] text-gray-500">{t.skillsTitle}</h3>
-              <Database size={20} className="text-[#c29b40] opacity-60" />
+              <h3 className="text-[14px] font-black uppercase tracking-[0.6em] text-gray-500 flex items-center gap-4">
+                <span className="w-8 h-[1px] bg-white/20"></span>
+                {t.skillsTitle}
+              </h3>
+              <Database size={24} className="text-[#c29b40] opacity-60" />
             </div>
-            <div className="space-y-10">
+            <div className="grid md:grid-cols-2 gap-x-20 gap-y-12">
               {t.skills.map((skill, index) => (
-                <div key={index} className="group cursor-default">
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="font-black text-[11px] tracking-[0.2em] uppercase group-hover:text-[#c29b40] transition-colors">{skill.name}</span>
-                    <div className="h-[1px] flex-1 mx-6 bg-white/5 group-hover:bg-[#c29b40]/20 transition-all"></div>
-                    <ChevronRight size={14} className="text-gray-700 group-hover:text-[#c29b40] transition-colors" />
+                <div key={index} className="group/skill cursor-default">
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="font-black text-[13px] tracking-[0.3em] uppercase group-hover/skill:text-[#c29b40] transition-colors">{skill.name}</span>
+                    <div className="h-[1px] flex-1 mx-6 bg-white/5 group-hover/skill:bg-[#c29b40]/20 transition-all"></div>
+                    <ChevronRight size={16} className="text-gray-700 group-hover/skill:text-[#c29b40] transition-all translate-x-[-4px] group-hover/skill:translate-x-0" />
                   </div>
-                  <p className="text-[11px] text-gray-500 uppercase tracking-widest italic leading-relaxed group-hover:text-gray-400 transition-colors">{skill.desc}</p>
+                  <p className="text-[12px] text-gray-500 uppercase tracking-widest italic leading-relaxed group-hover/skill:text-gray-400 transition-all pl-2">
+                    {skill.desc}
+                  </p>
                 </div>
               ))}
             </div>
