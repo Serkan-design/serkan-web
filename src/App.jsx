@@ -152,7 +152,7 @@ const App = () => {
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-[100] bg-[#020617]/80 backdrop-blur-md border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div className="w-full px-12 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3 group cursor-pointer">
             <div className="w-10 h-10 bg-[#c29b40] flex items-center justify-center rounded-sm shadow-[0_0_20px_rgba(194,155,64,0.3)]">
               <Box size={22} className="text-white fill-current" />
@@ -160,11 +160,11 @@ const App = () => {
             <span className="font-black tracking-tighter text-2xl">SI<span className="text-[#c29b40]">.</span>TECH</span>
           </div>
 
-          <div className="flex items-center gap-10">
+          <div className="flex items-center gap-12">
             <button onClick={() => setLang(lang === 'tr' ? 'en' : 'tr')} className="text-[13px] font-bold tracking-[0.2em] text-gray-500 hover:text-white uppercase transition-colors">
               {lang === 'tr' ? 'EN' : 'TR'}
             </button>
-            <a href="mailto:serkanisik67@gmail.com" className="px-8 py-3 bg-[#c29b40] text-white text-[12px] font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all shadow-[0_0_25px_rgba(194,155,64,0.4)]">
+            <a href="mailto:serkanisik67@gmail.com" className="px-10 py-3 bg-[#c29b40] text-white text-[12px] font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all shadow-[0_0_25px_rgba(194,155,64,0.4)]">
               {t.contactBtn}
             </a>
           </div>
@@ -186,13 +186,13 @@ const App = () => {
             className="absolute inset-0 w-full h-full object-cover transition-all duration-[2000ms] scale-100 group-hover:scale-110"
             alt="Aviation Background"
           />
-          <div className="relative z-20 h-full flex flex-col justify-center p-8 md:p-20">
+          <div className="relative z-20 h-full flex flex-col justify-center px-12 md:px-24">
             <div className="inline-flex items-center gap-2 bg-[#c29b40] px-4 py-2 text-[10px] font-black tracking-[0.3em] uppercase mb-8 w-fit shadow-xl">
               <Plane size={14} className="text-white" />
               <span>Aviation & FPV Expert</span>
             </div>
-            <h2 className="text-6xl md:text-8xl font-black mb-4 tracking-tighter leading-none">{t.name}</h2>
-            <p className="text-[#c29b40] font-mono text-sm tracking-[0.4em] uppercase opacity-80">Licensed UAV-1 Pilot</p>
+            <h2 className="text-6xl md:text-8xl font-black mb-4 tracking-tighter leading-none translate-x-1">{t.name}</h2>
+            <p className="text-[#c29b40] font-mono text-sm tracking-[0.4em] uppercase opacity-80 pl-2">Licensed UAV-1 Pilot</p>
           </div>
         </div>
 
@@ -210,44 +210,47 @@ const App = () => {
           />
 
           <div className="relative z-20 h-full flex flex-col justify-center items-center p-8 md:p-20">
-            <div className="max-w-2xl w-full">
+            <div className="max-w-3xl w-full">
 
-              {/* Centralized AI Container */}
-              <div className="bg-white/[0.03] backdrop-blur-3xl border border-white/10 p-12 md:p-16 shadow-[0_0_100px_rgba(0,0,0,0.5)] relative overflow-hidden group/box transition-all duration-500 hover:border-white/20">
-                <div className="absolute top-0 left-0 w-1.5 h-full bg-[#c29b40] shadow-[0_0_20px_rgba(194,155,64,0.4)]"></div>
+              {/* Centralized AI Container - Enlarged */}
+              <div className="bg-white/[0.03] backdrop-blur-3xl border border-white/10 p-12 md:p-20 shadow-[0_0_120px_rgba(194,155,64,0.1)] relative overflow-hidden group/box transition-all duration-500 hover:border-white/20 min-h-[500px] flex flex-col justify-center">
+                <div className="absolute top-0 left-0 w-2 h-full bg-[#c29b40] shadow-[0_0_30px_rgba(194,155,64,0.4)]"></div>
 
-                <div className="flex items-center gap-4 mb-10">
-                  <Code size={24} className="text-[#c29b40] animate-pulse" />
-                  <span className="text-[14px] font-black tracking-[0.6em] text-white uppercase opacity-90">DEV ENVIRONMENT</span>
+                <div className="flex items-center gap-6 mb-12">
+                  <Terminal size={28} className="text-[#c29b40] animate-pulse" />
+                  <span className="text-[16px] font-black tracking-[0.8em] text-white uppercase opacity-90">SYST_ENV_PRO.03</span>
                 </div>
 
-                <div className="mb-10">
-                  <p className="text-[12px] font-black text-[#c29b40] mb-6 tracking-[0.4em] uppercase opacity-80">Serkan'a Sorun (AI)</p>
-                  <div className="flex flex-col sm:flex-row gap-4">
+                <div className="mb-12">
+                  <p className="text-[13px] font-black text-[#c29b40] mb-8 tracking-[0.6em] uppercase opacity-80">Serkan'a Sorun (AI Assistant)</p>
+                  <div className="flex flex-col sm:flex-row gap-6">
                     <input
                       value={chatInput}
                       onChange={(e) => setChatInput(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && askAI()}
                       placeholder={t.aiPlaceholder}
-                      className="flex-1 bg-white/5 border border-white/10 px-8 py-5 text-sm focus:outline-none focus:border-[#c29b40]/50 text-white placeholder:text-gray-600 transition-all rounded-sm"
+                      className="flex-1 bg-white/5 border border-white/10 px-10 py-6 text-base focus:outline-none focus:border-[#c29b40]/50 text-white placeholder:text-gray-600 transition-all rounded-sm font-mono"
                     />
-                    <button onClick={() => askAI()} disabled={isTyping} className="bg-[#c29b40] px-10 py-5 font-black text-[13px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all flex items-center justify-center gap-3 shadow-[0_0_30px_rgba(194,155,64,0.2)]">
-                      {isTyping ? <Loader2 size={18} className="animate-spin" /> : <>SOR <Sparkles size={16} /></>}
+                    <button onClick={() => askAI()} disabled={isTyping} className="bg-[#c29b40] px-12 py-6 font-black text-[14px] uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all flex items-center justify-center gap-4 shadow-[0_0_40px_rgba(194,155,64,0.3)]">
+                      {isTyping ? <Loader2 size={20} className="animate-spin" /> : <>SOR <Sparkles size={18} /></>}
                     </button>
                   </div>
                   {chatResponse && (
-                    <div className="mt-8 text-[12px] text-gray-400 italic border-t border-white/10 pt-6 animate-in fade-in slide-in-from-top-4 duration-500 leading-relaxed">
-                      {chatResponse}
+                    <div className="mt-10 text-[14px] text-gray-300 font-mono italic border-t border-white/10 pt-8 animate-in fade-in slide-in-from-top-4 duration-500 leading-relaxed bg-white/[0.01] p-6">
+                      <span className="text-[#c29b40] font-bold inline-block mr-3">SERK_AI&gt;</span>{chatResponse}
                     </div>
                   )}
                 </div>
 
-                <div className="flex flex-wrap gap-6 pt-4 border-t border-white/5">
-                  <button onClick={() => setIsAboutOpen(true)} className="flex-1 flex items-center justify-center gap-4 px-8 py-5 bg-white text-black text-[12px] font-black uppercase tracking-[0.3em] hover:bg-[#c29b40] hover:text-white transition-all">
+                <div className="flex flex-wrap gap-6 pt-8 border-t border-white/5">
+                  <button onClick={() => setIsAboutOpen(true)} className="flex-1 min-w-[150px] flex items-center justify-center gap-4 px-8 py-5 bg-white text-black text-[13px] font-black uppercase tracking-[0.4em] hover:bg-[#c29b40] hover:text-white transition-all shadow-lg">
                     <User size={18} /> {t.openAbout}
                   </button>
-                  <a href="https://www.instagram.com/sserkan.77/" target="_blank" className="flex-1 flex items-center justify-center gap-4 px-8 py-5 border border-white/10 text-white text-[12px] font-black uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all">
+                  <a href="https://www.instagram.com/sserkan.77/" target="_blank" className="flex-1 min-w-[150px] flex items-center justify-center gap-4 px-8 py-5 border border-white/10 text-white text-[13px] font-black uppercase tracking-[0.4em] hover:bg-white hover:text-black transition-all">
                     <Instagram size={18} /> INSTA
+                  </a>
+                  <a href="https://github.com/Serkan-design" target="_blank" className="flex-1 min-w-[150px] flex items-center justify-center gap-4 px-8 py-5 border border-white/10 text-[#c29b40] text-[13px] font-black uppercase tracking-[0.4em] hover:bg-[#c29b40] hover:text-white transition-all">
+                    <Code size={18} /> GITHUB
                   </a>
                 </div>
               </div>
@@ -348,17 +351,23 @@ const App = () => {
       )}
 
       {/* Footer */}
-      <footer className="relative z-30 bg-[#020617] border-t border-white/5 py-20">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col items-center">
-          <div className="w-20 h-[1px] bg-[#c29b40]/30 mb-10"></div>
-          <div className="flex items-center gap-4 mb-8">
-            <Box size={20} className="text-[#c29b40]" />
-            <span className="font-black tracking-tighter text-xl">SI<span className="text-[#c29b40]">.</span>TECH</span>
+      <footer className="relative z-30 bg-[#020617] border-t border-white/5 py-24">
+        <div className="w-full px-12 flex flex-col items-center justify-center text-center">
+          <div className="w-24 h-[1px] bg-[#c29b40]/30 mb-12"></div>
+
+          <div className="flex flex-col items-center gap-6 mb-12">
+            <div className="w-16 h-16 bg-[#c29b40] flex items-center justify-center rounded-sm shadow-[0_0_40px_rgba(194,155,64,0.2)]">
+              <Box size={32} className="text-white fill-current" />
+            </div>
+            <span className="font-black tracking-tighter text-4xl">SI<span className="text-[#c29b40]">.</span>TECH</span>
           </div>
-          <p className="text-[10px] text-gray-500 uppercase tracking-[0.8em] font-black mb-10 opacity-60 text-center">{t.footer}</p>
-          <div className="flex space-x-12">
-            <a href="https://www.instagram.com/sserkan.77/" className="text-gray-500 hover:text-[#c29b40] transition-all transform hover:scale-110"><Instagram size={24} /></a>
-            <a href="mailto:serkanisik67@gmail.com" className="text-gray-500 hover:text-[#c29b40] transition-all transform hover:scale-110"><Mail size={24} /></a>
+
+          <p className="text-[12px] text-gray-500 uppercase tracking-[1em] font-black mb-12 opacity-40 ml-4">{t.footer}</p>
+
+          <div className="flex space-x-16">
+            <a href="https://www.instagram.com/sserkan.77/" className="text-gray-500 hover:text-[#c29b40] transition-all transform hover:scale-125 duration-300"><Instagram size={28} /></a>
+            <a href="mailto:serkanisik67@gmail.com" className="text-gray-500 hover:text-[#c29b40] transition-all transform hover:scale-125 duration-300"><Mail size={28} /></a>
+            <a href="https://github.com/Serkan-design" className="text-gray-500 hover:text-[#c29b40] transition-all transform hover:scale-125 duration-300"><Code size={28} /></a>
           </div>
         </div>
       </footer>
