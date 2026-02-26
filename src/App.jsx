@@ -152,19 +152,19 @@ const App = () => {
 
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-[100] bg-[#020617]/80 backdrop-blur-md border-b border-white/5">
-        <div className="w-full px-16 h-20 flex items-center justify-between">
+        <div className="w-full px-12 h-20 flex items-center justify-between">
           <div className="flex items-center gap-3 group cursor-pointer">
             <div className="w-10 h-10 bg-[#c29b40] flex items-center justify-center rounded-sm shadow-[0_0_20px_rgba(194,155,64,0.3)]">
-              <Box size={22} className="text-white fill-current" />
+              <Box size={20} className="text-white fill-current" />
             </div>
-            <span className="font-black tracking-tighter text-2xl">SI<span className="text-[#c29b40]">.</span>TECH</span>
+            <span className="font-black tracking-tighter text-xl">SI<span className="text-[#c29b40]">.</span>TECH</span>
           </div>
 
-          <div className="flex items-center gap-12">
-            <button onClick={() => setLang(lang === 'tr' ? 'en' : 'tr')} className="text-[14px] font-bold tracking-[0.2em] text-gray-500 hover:text-white uppercase transition-colors">
+          <div className="flex items-center gap-10">
+            <button onClick={() => setLang(lang === 'tr' ? 'en' : 'tr')} className="text-[12px] font-bold tracking-[0.2em] text-gray-500 hover:text-white uppercase transition-colors">
               {lang === 'tr' ? 'EN' : 'TR'}
             </button>
-            <a href="mailto:serkanisik67@gmail.com" className="px-12 py-3 bg-[#c29b40] text-white text-[12px] font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all shadow-[0_0_25px_rgba(194,155,64,0.4)]">
+            <a href="mailto:serkanisik67@gmail.com" className="px-8 py-2.5 bg-[#c29b40] text-white text-[11px] font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all shadow-[0_0_20px_rgba(194,155,64,0.3)]">
               {t.contactBtn}
             </a>
           </div>
@@ -187,12 +187,12 @@ const App = () => {
             alt="Aviation Background"
           />
           <div className="relative z-20 h-full flex flex-col justify-center items-center text-center px-12 md:px-24">
-            <div className="inline-flex items-center gap-2 bg-[#c29b40] px-6 py-3 text-[11px] font-black tracking-[0.3em] uppercase mb-10 w-fit shadow-2xl">
-              <Plane size={16} className="text-white" />
+            <div className="inline-flex items-center gap-2 bg-[#c29b40] px-4 py-2 text-[10px] font-black tracking-[0.3em] uppercase mb-8 w-fit shadow-xl">
+              <Plane size={14} className="text-white" />
               <span>Aviation & FPV Expert</span>
             </div>
-            <h2 className="text-7xl md:text-9xl font-black mb-6 tracking-tighter leading-none">{t.name}</h2>
-            <p className="text-[#c29b40] font-mono text-base tracking-[0.5em] uppercase opacity-90">{lang === 'tr' ? 'Lisanslı İHA-1 Pilotu' : 'Licensed UAV-1 Pilot'}</p>
+            <h2 className="text-5xl md:text-7xl font-black mb-4 tracking-tighter leading-none">{t.name}</h2>
+            <p className="text-[#c29b40] font-mono text-sm tracking-[0.4em] uppercase opacity-90">{lang === 'tr' ? 'Lisanslı İHA-1 Pilotu' : 'Licensed UAV-1 Pilot'}</p>
           </div>
         </div>
 
