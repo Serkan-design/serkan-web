@@ -1,15 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   Instagram,
   Mail,
   Cpu,
   Database,
-  ChevronRight,
-  Globe,
   Wind,
   Terminal,
   User,
-  X,
   Plane,
   Award,
   Sparkles,
@@ -214,7 +211,7 @@ const App = () => {
                 <div className="h-16"></div>
 
                 <div className="mb-4 px-6 mt-4">
-                  <p className="text-[11px] font-black text-[#c29b40] mb-12 tracking-[0.4em] uppercase opacity-80">Serkan'a Sorun (AI Assistant)</p>
+                  <p className="text-[11px] font-black text-[#c29b40] mb-12 tracking-[0.4em] uppercase opacity-80">Serkan&apos;a Sorun (AI Assistant)</p>
                   <div className="flex flex-col sm:flex-row gap-4 mb-4">
                     <input
                       value={chatInput}
@@ -237,10 +234,10 @@ const App = () => {
                 <div className="h-6 md:h-10"></div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-12 border-t border-white/5 px-6">
-                  <a href="https://www.instagram.com/sserkan.77/" target="_blank" className="flex items-center justify-center gap-3 px-6 h-16 border border-white/10 text-white text-[11px] font-black uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all">
+                  <a href="https://www.instagram.com/sserkan.77/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 px-6 h-16 border border-white/10 text-white text-[11px] font-black uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all">
                     <Instagram size={16} /> INSTA
                   </a>
-                  <a href="https://github.com/Serkan-design" target="_blank" className="flex items-center justify-center gap-3 px-6 h-16 border border-white/10 text-[#c29b40] text-[11px] font-black uppercase tracking-[0.3em] hover:bg-[#c29b40] hover:text-white transition-all">
+                  <a href="https://github.com/Serkan-design" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 px-6 h-16 border border-white/10 text-[#c29b40] text-[11px] font-black uppercase tracking-[0.3em] hover:bg-[#c29b40] hover:text-white transition-all">
                     <Code size={16} /> GITHUB
                   </a>
                 </div>
