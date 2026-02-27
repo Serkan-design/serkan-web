@@ -22,7 +22,6 @@ const apiKey = "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";
 
 const App = () => {
   const [lang, setLang] = useState('tr');
-  const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [showContact, setShowContact] = useState(false);
   const [chatInput, setChatInput] = useState("");
   const [chatResponse, setChatResponse] = useState("");
@@ -151,6 +150,9 @@ const App = () => {
             <button onClick={() => setLang(lang === 'tr' ? 'en' : 'tr')} className="text-[12px] font-bold tracking-[0.2em] text-gray-500 hover:text-white uppercase transition-colors">
               {lang === 'tr' ? 'EN' : 'TR'}
             </button>
+            <a href="#about" className="text-[12px] font-bold tracking-[0.2em] text-gray-500 hover:text-white uppercase transition-colors">
+              {t.openAbout}
+            </a>
             <button onClick={() => setShowContact(true)} className="px-8 py-2.5 bg-[#c29b40] text-white text-[11px] font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all shadow-[0_0_20px_rgba(194,155,64,0.3)]">
               {t.contactBtn}
             </button>
@@ -234,10 +236,7 @@ const App = () => {
 
                 <div className="h-6 md:h-10"></div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-12 border-t border-white/5 px-6">
-                  <button onClick={() => setIsAboutOpen(true)} className="flex items-center justify-center gap-3 px-6 h-16 bg-white text-black text-[11px] font-black uppercase tracking-[0.3em] hover:bg-[#c29b40] hover:text-white transition-all shadow-lg">
-                    <User size={16} /> {t.openAbout}
-                  </button>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-12 border-t border-white/5 px-6">
                   <a href="https://www.instagram.com/sserkan.77/" target="_blank" className="flex items-center justify-center gap-3 px-6 h-16 border border-white/10 text-white text-[11px] font-black uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all">
                     <Instagram size={16} /> INSTA
                   </a>
@@ -320,30 +319,6 @@ const App = () => {
         </div>
       </main>
 
-      {/* Modal */}
-      {isAboutOpen && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-6">
-          <div className="absolute inset-0 bg-[#020617]/95 backdrop-blur-xl" onClick={() => setIsAboutOpen(false)}></div>
-          <div className="relative bg-[#0f172a] border border-white/10 w-full max-w-2xl p-16 shadow-[0_0_100px_rgba(0,0,0,0.8)] overflow-hidden">
-            <div className="absolute top-0 left-0 w-2 h-full bg-[#c29b40]"></div>
-            <div className="flex justify-between items-start mb-12">
-              <div>
-                <h3 className="text-4xl font-black uppercase tracking-tighter mb-2 italic">{t.aboutTitle}</h3>
-                <div className="w-20 h-1 bg-[#c29b40]"></div>
-              </div>
-              <button onClick={() => setIsAboutOpen(false)} className="text-gray-500 hover:text-white transition-colors transform hover:rotate-90 duration-300">
-                <X size={40} strokeWidth={1.5} />
-              </button>
-            </div>
-            <div className="relative">
-              <p className="text-lg text-gray-300 leading-relaxed font-light text-justify italic bg-white/[0.03] p-10 border border-white/5">
-                {t.aboutText}
-              </p>
-              <div className="absolute -bottom-4 -right-4 text-[#c29b40]/10 font-black text-8xl pointer-events-none select-none">RESUME</div>
-            </div>
-          </div>
-        </div>
-      )}
 
       {/* Contact Modal */}
       {showContact && (
@@ -362,6 +337,20 @@ const App = () => {
           </div>
         </div>
       )}
+
+      {/* About Section at Bottom */}
+      <section id="about" className="relative z-30 w-full max-w-[1000px] mx-auto px-6 md:px-12 pb-24 text-center">
+        <div className="flex flex-col items-center justify-center mb-12">
+          <User size={32} className="text-[#c29b40] mb-6 opacity-30" />
+          <h3 className="text-[14px] font-black uppercase tracking-[0.8em] text-gray-500 opacity-60">
+            {t.aboutTitle}
+          </h3>
+          <div className="w-12 h-[1px] bg-white/5 mt-6"></div>
+        </div>
+        <p className="text-[12px] text-gray-600 font-mono leading-relaxed italic tracking-widest max-w-4xl mx-auto px-6 opacity-80 decoration-white/5">
+          {t.aboutText}
+        </p>
+      </section>
 
       {/* Footer */}
       <footer className="relative z-30 bg-[#020617] border-t border-white/5 py-16">
