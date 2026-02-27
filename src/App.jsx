@@ -314,8 +314,20 @@ const App = () => {
             </div>
           </div>
         </div>
+        {/* About Section at Bottom */}
+        <section id="about" className="relative z-30 w-full max-w-[1200px] mx-auto px-6 md:px-12 pt-12 text-center flex flex-col items-center">
+          <div className="flex flex-col items-center justify-center mb-12 w-full">
+            <User size={32} className="text-[#c29b40] mb-8 opacity-30" />
+            <h3 className="text-[16px] font-black uppercase tracking-[0.8em] text-gray-400">
+              {t.aboutTitle}
+            </h3>
+            <div className="w-24 h-[1px] bg-[#c29b40]/30 mt-8"></div>
+          </div>
+          <p className="text-[13px] text-gray-400 font-mono leading-relaxed italic tracking-widest max-w-4xl px-4 md:px-12 text-center decoration-white/5 opacity-80">
+            {t.aboutText}
+          </p>
+        </section>
       </main>
-
 
       {/* Contact Modal */}
       {showContact && (
@@ -334,20 +346,6 @@ const App = () => {
           </div>
         </div>
       )}
-
-      {/* About Section at Bottom */}
-      <section id="about" className="relative z-30 w-full max-w-[1000px] mx-auto px-6 md:px-12 pb-24 text-center">
-        <div className="flex flex-col items-center justify-center mb-12">
-          <User size={32} className="text-[#c29b40] mb-6 opacity-30" />
-          <h3 className="text-[14px] font-black uppercase tracking-[0.8em] text-gray-500 opacity-60">
-            {t.aboutTitle}
-          </h3>
-          <div className="w-12 h-[1px] bg-white/5 mt-6"></div>
-        </div>
-        <p className="text-[12px] text-gray-600 font-mono leading-relaxed italic tracking-widest max-w-4xl mx-auto px-6 opacity-80 decoration-white/5">
-          {t.aboutText}
-        </p>
-      </section>
 
       {/* Footer */}
       <footer className="relative z-30 bg-[#020617] border-t border-white/5 py-16">
