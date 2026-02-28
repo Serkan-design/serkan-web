@@ -162,9 +162,6 @@ const App = () => {
 
         {/* Left Panel: Aviation/FPV */}
         <div className="relative w-full md:w-1/2 h-full group overflow-hidden border-r border-white/5">
-          <div className="absolute top-6 left-6 z-30 opacity-20 pointer-events-none">
-            <span className="text-[10px] uppercase tracking-[0.8em] font-light">Aviation Background</span>
-          </div>
           <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#020617] via-transparent to-transparent opacity-90 pointer-events-none"></div>
           <div className="absolute inset-0 z-10 bg-[#020617]/20 group-hover:bg-transparent transition-colors duration-500 pointer-events-none"></div>
           <img
@@ -172,22 +169,19 @@ const App = () => {
             className="absolute inset-0 w-full h-full object-cover transition-all duration-500 scale-100 group-hover:scale-110 opacity-100"
             alt="Aviation Background"
           />
-          <div className="relative z-20 h-full flex flex-col justify-center items-center text-center px-12 md:px-24">
+          <div className="relative z-20 h-full flex flex-col items-start" style={{ justifyContent: 'center', paddingLeft: '18%', paddingRight: '5%', marginTop: '8%' }}>
             <div className="inline-flex items-center gap-2 bg-[#c29b40] px-4 py-2 text-[10px] font-black tracking-[0.3em] uppercase mb-8 w-fit shadow-xl">
               <Plane size={14} className="text-white" />
               <span>Aviation & FPV Expert</span>
             </div>
             <h2 className="text-5xl md:text-7xl font-black tracking-tighter leading-tight">{t.name}</h2>
             <div className="h-4 md:h-6"></div>
-            <p className="text-[#c29b40] font-mono text-sm tracking-[0.4em] uppercase opacity-90">{lang === 'tr' ? 'Lisanslı İHA-1 Pilotu' : 'Licensed UAV-1 Pilot'}</p>
+            <p className="font-mono text-sm tracking-[0.4em] uppercase" style={{ color: 'rgba(255,255,255,0.9)', textShadow: '0 1px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)' }}>{lang === 'tr' ? 'Lisanslı İHA-1 Pilotu' : 'Licensed UAV-1 Pilot'}</p>
           </div>
         </div>
 
         {/* Right Panel: Software/DB */}
         <div className="relative w-full md:w-1/2 h-full group overflow-hidden">
-          <div className="absolute top-6 right-6 z-30 opacity-20 pointer-events-none text-right">
-            <span className="text-[10px] uppercase tracking-[0.8em] font-light">Software Background</span>
-          </div>
           <div className="absolute inset-0 z-10 bg-gradient-to-l from-[#020617] via-transparent to-transparent opacity-90 pointer-events-none"></div>
           <div className="absolute inset-0 z-10 bg-[#020617]/40 group-hover:bg-transparent transition-colors duration-500 pointer-events-none"></div>
           <img
@@ -196,52 +190,82 @@ const App = () => {
             alt="Software Background"
           />
 
-          <div className="relative z-20 h-full flex flex-col justify-center items-center px-6 md:px-12">
-            <div className="max-w-4xl w-full">
+          <div className="relative z-20 h-full flex flex-col justify-center items-center px-8 md:px-14">
+            <div className="w-full max-w-lg">
 
-              {/* Centralized AI Container - Transparent & Optimized */}
-              <div className="bg-transparent backdrop-blur-md border border-white/10 p-6 md:p-10 shadow-[0_0_100px_rgba(0,0,0,0.5)] relative overflow-visible group/box transition-all duration-500 hover:border-white/20 flex flex-col justify-center min-h-[380px]">
+              {/* Terminal system tag */}
+              <div className="flex items-center gap-2 mb-6 opacity-60">
+                <Terminal size={11} className="text-[#c29b40]" />
+                <span className="text-[10px] font-mono tracking-[0.35em] text-gray-400 uppercase">SYST_ENV_PRO.03</span>
+                <div className="flex-1 h-px bg-white/10 ml-2"></div>
+              </div>
 
+              {/* DEV ENVIRONMENT label */}
+              <div className="flex items-center gap-3 mb-5">
+                <span className="text-[#c29b40] font-mono text-[15px] font-bold">&lt;&gt;</span>
+                <span className="text-[12px] font-bold tracking-[0.25em] text-gray-300 uppercase">Dev Environment</span>
+              </div>
 
-                <div className="flex items-center gap-4 px-4">
-                  <Terminal size={22} className="text-[#c29b40] animate-pulse" />
-                  <span className="text-[12px] font-black tracking-[0.6em] text-white uppercase opacity-90">SYST_ENV_PRO.03</span>
-                </div>
+              {/* Main AI Box — glassmorphism */}
+              <div className="relative border-l-[3px] border-[#c29b40] bg-black/60 backdrop-blur-xl shadow-[0_0_60px_rgba(194,155,64,0.08)] overflow-hidden">
+                {/* top accent line */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-[#c29b40]/60 via-white/5 to-transparent"></div>
+                {/* subtle glow orb */}
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#c29b40]/10 rounded-full blur-3xl pointer-events-none"></div>
 
-                <div className="h-16"></div>
+                <div className="p-6 relative z-10">
+                  {/* AI label */}
+                  <div className="flex items-center gap-2" style={{ marginBottom: '14px' }}>
+                    <Sparkles size={11} className="text-[#c29b40] opacity-80" />
+                    <h3 className="text-[11px] font-black text-[#c29b40] tracking-[0.2em] uppercase">
+                      SERKAN&apos;A SORUN <span className="text-white/30 font-normal">(AI Assistant)</span>
+                    </h3>
+                  </div>
 
-                <div className="mb-4 px-6 mt-4">
-                  <p className="text-[11px] font-black text-[#c29b40] mb-12 tracking-[0.4em] uppercase opacity-80">Serkan&apos;a Sorun (AI Assistant)</p>
-                  <div className="flex flex-col sm:flex-row gap-4 mb-4">
+                  {/* Input row */}
+                  <div className="flex w-full gap-2" style={{ height: '52px' }}>
                     <input
                       value={chatInput}
                       onChange={(e) => setChatInput(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && askAI()}
                       placeholder={t.aiPlaceholder}
-                      className="flex-1 bg-white/5 border border-white/10 px-8 py-5 text-sm focus:outline-none focus:border-[#c29b40]/50 text-white placeholder:text-gray-600 transition-all rounded-sm font-mono"
+                      style={{ height: '52px' }}
+                      className="flex-1 bg-white/[0.05] border border-white/[0.10] px-5 text-[13px] text-gray-200 placeholder:text-gray-500 focus:outline-none focus:border-[#c29b40]/40 transition-colors font-sans"
                     />
-                    <button onClick={() => askAI()} disabled={isTyping} className="bg-[#c29b40] px-10 py-5 font-black text-[12px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all flex items-center justify-center gap-3 shadow-[0_0_30px_rgba(194,155,64,0.2)]">
-                      {isTyping ? <Loader2 size={18} className="animate-spin" /> : <>SOR <Sparkles size={16} /></>}
+                    <button
+                      onClick={() => askAI()}
+                      disabled={isTyping}
+                      style={{ height: '52px' }}
+                      className="bg-[#c29b40] px-8 font-black text-[12px] uppercase tracking-[0.2em] text-white hover:bg-[#d4a845] focus:outline-none transition-all flex items-center gap-2 whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(194,155,64,0.3)]"
+                    >
+                      {isTyping ? <Loader2 size={16} className="animate-spin" /> : <>SOR <span className="opacity-70">→</span></>}
                     </button>
                   </div>
+
+                  {/* AI response */}
                   {chatResponse && (
-                    <div className="mt-8 text-[12px] text-gray-300 font-mono italic border-t border-white/10 pt-6 animate-in fade-in slide-in-from-top-4 duration-500 leading-relaxed bg-white/[0.01] p-6">
-                      <span className="text-[#c29b40] font-bold inline-block mr-3">SERK_AI&gt;</span>{chatResponse}
+                    <div className="mt-4 text-[12px] text-gray-300 font-mono border-t border-white/5 pt-4 leading-relaxed bg-black/20 px-4 py-3">
+                      <span className="text-[#c29b40] font-bold mr-2">SERK_AI&gt;</span>{chatResponse}
                     </div>
                   )}
                 </div>
 
-                <div className="h-6 md:h-10"></div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-12 border-t border-white/5 px-6">
-                  <a href="https://www.instagram.com/sserkan.77/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 px-6 h-16 border border-white/10 text-white text-[11px] font-black uppercase tracking-[0.3em] hover:bg-white hover:text-black transition-all">
-                    <Instagram size={16} /> INSTA
-                  </a>
-                  <a href="https://github.com/Serkan-design" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-3 px-6 h-16 border border-white/10 text-[#c29b40] text-[11px] font-black uppercase tracking-[0.3em] hover:bg-[#c29b40] hover:text-white transition-all">
-                    <Code size={16} /> GITHUB
-                  </a>
-                </div>
+                {/* bottom scan line */}
+                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c29b40]/20 to-transparent"></div>
               </div>
+
+              {/* Social links — refined */}
+              <div className="grid grid-cols-2 gap-3" style={{ marginTop: '16px' }}>
+                <a href="https://www.instagram.com/sserkan.77/" target="_blank" rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 h-11 bg-white/[0.04] border border-white/[0.08] text-white text-[10px] font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black hover:border-white transition-all duration-300">
+                  <Instagram size={13} /> INSTA
+                </a>
+                <a href="https://github.com/Serkan-design" target="_blank" rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 h-11 bg-white/[0.04] border border-[#c29b40]/30 text-[#c29b40] text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#c29b40] hover:text-white hover:border-[#c29b40] transition-all duration-300">
+                  <Code size={13} /> GITHUB
+                </a>
+              </div>
+
             </div>
           </div>
         </div>
