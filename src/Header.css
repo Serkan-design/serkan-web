@@ -13,16 +13,15 @@
 }
 
 .header .container {
-    max-width: 1200px;
-    /* Content width */
-    margin: 0 auto;
-    /* Center horizontally */
-    padding: 0 20px;
+    max-width: 100%;
+    /* Full width */
+    margin: 0;
+    padding: 0 30px;
     /* Side spacing */
     display: flex;
     /* Place logo and menu side by side */
-    justify-content: space-between;
-    /* Space between items */
+    justify-content: flex-start;
+    /* Logo stays left */
     align-items: center;
     /* Vertically center */
 }

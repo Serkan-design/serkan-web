@@ -6,7 +6,7 @@ const Header = () => (
         <div className="container">
             <div className="logo-area">
                 <a href="index.html" className="logo-link">
-                    <img src="/img/si-tech-logo.png" alt="Si.Tech Logo" className="main-logo" />
+                    <img src={`${import.meta.env.BASE_URL}img/si-tech-logo.png`} alt="Si.Tech Logo" className="main-logo" />
                 </a>
             </div>
             <nav className="navigation">
