@@ -376,12 +376,12 @@ const App = () => {
           <div className="w-16 h-[1px] bg-[#c29b40]/30 mb-8"></div>
 
           <div className="flex flex-col items-center gap-4 mb-4">
-            <div className="footer-logo">
-              <div className="custom-logo scale-90">
+            <a href={import.meta.env.BASE_URL} className="footer-logo transition-transform hover:scale-110">
+              <div className="custom-logo scale-75">
                 <div className="badge-wrapper">
                   <svg viewBox="0 0 100 100" className="badge-svg w-12 h-12">
                     <polygon
-                      points="50,10 90,30 90,70 50,90 10,70 10,30"
+                      points="50,15 85,32.5 85,67.5 50,85 15,67.5 15,32.5"
                       fill="none"
                       stroke="#c29b40"
                       strokeWidth="3.5"
@@ -394,8 +394,8 @@ const App = () => {
                   </svg>
                 </div>
               </div>
-            </div>
-            <span className="font-black tracking-tighter text-2xl">SI<span className="text-[#c29b40]">.</span>TECH</span>
+            </a>
+            <span className="font-black tracking-tighter text-xl">SI<span className="text-[#c29b40]">.</span>TECH</span>
           </div>
 
           <p className="text-[11px] text-gray-500 uppercase tracking-[0.8em] font-black mb-8 opacity-40">{t.footer}</p>

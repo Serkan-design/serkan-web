@@ -25,13 +25,13 @@
 .custom-logo {
     display: flex;
     align-items: center;
-    gap: 12px;
-    height: 60px;
+    gap: 10px;
+    height: 48px;
 }
 
 .badge-wrapper {
     height: 100%;
-    width: 60px;
+    width: 48px;
     display: flex;
     align-items: center;
     position: relative;
@@ -47,9 +47,9 @@
 .logo-text {
     font-family: 'Arial Black', 'Inter', sans-serif;
     font-weight: 900;
-    font-size: 24px;
+    font-size: 20px;
     color: #ffffff;
-    letter-spacing: 2px;
+    letter-spacing: 1.5px;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
