@@ -40,14 +40,10 @@
 }
 
 .main-logo {
-    max-height: 50px;
-    /* Limit logo height (adjust to header) */
+    height: 46px;
     width: auto;
-    /* Keep proportional width */
     display: block;
-    /* Make the image a block element */
     transition: transform 0.3s ease;
-    /* Hover animation */
 }
 
 /* Hover effect on the logo */
