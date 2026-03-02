@@ -15,48 +15,75 @@
 .header .container {
     max-width: 100%;
     margin: 0;
-    padding: 0 50px;
-    /* Sol boşluk - logoyu kenardan biraz ayırmak için */
+    padding: 0 40px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
 }
 
-/* Logo Area */
-.logo-area {
-    margin-right: auto;
-    /* Align logo to the left */
+/* Custom Logo Styled Badge Design */
+.custom-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: 60px;
+}
+
+.badge-wrapper {
+    height: 100%;
+    width: 60px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: visible;
+}
+
+.badge-svg {
+    height: 100%;
+    width: 100%;
+    filter: drop-shadow(0 0 5px rgba(194, 155, 64, 0.2));
+}
+
+.logo-text {
+    font-family: 'Arial Black', 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 24px;
+    color: #ffffff;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.logo-text .dot {
+    color: #c29b40;
+}
+
+.logo-link:hover .badge-svg {
+    transform: scale(1.1) rotate(-2deg);
+    filter: drop-shadow(0 0 15px rgba(194, 155, 64, 0.5));
+}
+
+.logo-link:hover .logo-text {
+    color: #c29b40;
+    transition: color 0.3s ease;
 }
 
 .logo-link {
-    display: inline-block;
-    /* Size link to the image */
     text-decoration: none;
-    /* Remove underline */
-}
-
-.main-logo {
-    height: 65px;
-    width: auto;
-    display: block;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.main-logo:hover {
-    transform: scale(1.08) rotate(-1deg);
-    filter: drop-shadow(0 0 20px rgba(194, 155, 64, 0.4));
-}
-
-/* Hover effect on the logo */
-.logo-link:hover .main-logo {
-    transform: scale(1.05);
-    /* Slightly enlarge on hover */
+    transition: all 0.4s ease;
 }
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
-    .main-logo {
-        max-height: 40px;
-        /* Smaller logo for small screens */
+    .custom-logo {
+        height: 45px;
+        gap: 8px;
+    }
+
+    .badge-wrapper {
+        width: 45px;
+    }
+
+    .logo-text {
+        font-size: 18px;
     }
 }
