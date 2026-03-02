@@ -14,16 +14,13 @@
 
 .header .container {
     max-width: 100%;
-    /* Full width */
+    /* Ekranın tamamını kullan */
     margin: 0;
-    padding: 0 30px;
-    /* Side spacing */
+    padding: 0 40px;
+    /* Sol ve sağ boşluğu artır */
     display: flex;
-    /* Place logo and menu side by side */
     justify-content: flex-start;
-    /* Logo stays left */
     align-items: center;
-    /* Vertically center */
 }
 
 /* Logo Area */
@@ -40,10 +37,15 @@
 }
 
 .main-logo {
-    height: 46px;
+    height: 52px;
+    /* Daha büyük ve baskın logo */
     width: auto;
     display: block;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.main-logo:hover {
+    filter: drop-shadow(0 0 8px rgba(194, 155, 64, 0.4));
 }
 
 /* Hover effect on the logo */
