@@ -1,0 +1,66 @@
+/* Header Styles */
+.header {
+    background-color: #0c1a2e;
+    /* Dark navy header color */
+    padding: 15px 0;
+    /* Top and bottom spacing */
+    position: fixed;
+    /* Fix header at the top */
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    /* Ensure it stays above other elements */
+}
+
+.header .container {
+    max-width: 1200px;
+    /* Content width */
+    margin: 0 auto;
+    /* Center horizontally */
+    padding: 0 20px;
+    /* Side spacing */
+    display: flex;
+    /* Place logo and menu side by side */
+    justify-content: space-between;
+    /* Space between items */
+    align-items: center;
+    /* Vertically center */
+}
+
+/* Logo Area */
+.logo-area {
+    margin-right: auto;
+    /* Align logo to the left */
+}
+
+.logo-link {
+    display: inline-block;
+    /* Size link to the image */
+    text-decoration: none;
+    /* Remove underline */
+}
+
+.main-logo {
+    max-height: 50px;
+    /* Limit logo height (adjust to header) */
+    width: auto;
+    /* Keep proportional width */
+    display: block;
+    /* Make the image a block element */
+    transition: transform 0.3s ease;
+    /* Hover animation */
+}
+
+/* Hover effect on the logo */
+.logo-link:hover .main-logo {
+    transform: scale(1.05);
+    /* Slightly enlarge on hover */
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .main-logo {
+        max-height: 40px;
+        /* Smaller logo for small screens */
+    }
+}

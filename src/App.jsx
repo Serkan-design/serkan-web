@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Header from './Header';
 import {
   Instagram,
   Mail,
@@ -134,28 +135,7 @@ const App = () => {
     <div className="min-h-screen bg-[#020617] text-[#f8fafc] font-sans relative overflow-x-hidden">
 
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-[100] bg-[#020617]/80 backdrop-blur-md border-b border-white/5">
-        <div className="w-full px-12 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-3 group cursor-pointer">
-            <div className="w-10 h-10 bg-[#c29b40] flex items-center justify-center rounded-sm shadow-[0_0_20px_rgba(194,155,64,0.3)]">
-              <Box size={20} className="text-white fill-current" />
-            </div>
-            <span className="font-black tracking-tighter text-xl">SI<span className="text-[#c29b40]">.</span>TECH</span>
-          </div>
-
-          <div className="flex items-center gap-10">
-            <button onClick={() => setLang(lang === 'tr' ? 'en' : 'tr')} className="text-[12px] font-bold tracking-[0.2em] text-gray-500 hover:text-white uppercase transition-colors">
-              {lang === 'tr' ? 'EN' : 'TR'}
-            </button>
-            <a href="#about" className="text-[12px] font-bold tracking-[0.2em] text-gray-500 hover:text-white uppercase transition-colors">
-              {t.openAbout}
-            </a>
-            <button onClick={() => setShowContact(true)} className="px-8 py-2.5 bg-[#c29b40] text-white text-[11px] font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all shadow-[0_0_20px_rgba(194,155,64,0.3)]">
-              {t.contactBtn}
-            </button>
-          </div>
-        </div>
-      </nav>
+      <Header />
 
       {/* Split-Screen Hero Section */}
       <section className="relative h-screen w-full flex flex-col md:flex-row overflow-hidden">
@@ -215,7 +195,7 @@ const App = () => {
 
                 <div className="p-6 relative z-10">
                   {/* AI label */}
-                  <div className="flex items-center gap-2" style={{ marginBottom: '14px' }}>
+                  <div className="flex items-center gap-2" style={{ marginBottom: '16px' }}>
                     <Sparkles size={11} className="text-[#c29b40] opacity-80" />
                     <h3 className="text-[11px] font-black text-[#c29b40] tracking-[0.2em] uppercase">
                       SERKAN&apos;A SORUN <span className="text-white/30 font-normal">(AI Assistant)</span>
@@ -255,7 +235,7 @@ const App = () => {
               </div>
 
               {/* Social links — refined */}
-              <div className="grid grid-cols-2 gap-3" style={{ marginTop: '16px' }}>
+              <div className="grid grid-cols-2 gap-4" style={{ marginTop: '16px' }}>
                 <a href="https://www.instagram.com/sserkan.77/" target="_blank" rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 h-11 bg-white/[0.04] border border-white/[0.08] text-white text-[10px] font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black hover:border-white transition-all duration-300">
                   <Instagram size={13} /> INSTA
