@@ -13,7 +13,9 @@ import {
   Sparkles,
   Loader2,
   Box,
-  Code
+  Code,
+  Globe,
+  Monitor
 } from 'lucide-react';
 
 const apiKey = "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";
@@ -301,16 +303,33 @@ const App = () => {
               <div className="w-16 h-[1px] bg-white/20 mt-8"></div>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-32 w-full relative z-10 px-12 mt-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-16 w-full relative z-10 px-12 mt-12">
               {t.skills.map((skill, index) => (
-                <div key={index} className="group/skill cursor-default flex flex-col items-center text-center mb-8">
-                  <div className="flex items-center justify-center gap-8 mb-8 w-full">
-                    <div className="w-10 h-[1.5px] bg-white/5 group-hover/skill:bg-[#c29b40]/30 transition-all"></div>
-                    <span className="font-black text-2xl md:text-3xl tracking-tighter uppercase group-hover/skill:text-[#c29b40] transition-colors">{skill.name}</span>
-                    <div className="w-10 h-[1.5px] bg-white/5 group-hover/skill:bg-[#c29b40]/30 transition-all"></div>
+                <div key={index} className="group/skill cursor-default flex flex-col items-center text-center p-8 bg-white/[0.02] border border-white/5 hover:border-[#c29b40]/30 transition-all duration-300">
+                  <div className="flex flex-col items-center justify-center gap-6 mb-8 w-full">
+                    {/* Specialized Technical Icons */}
+                    <div className="mb-4">
+                      {skill.name.includes(".NET") && (
+                        <svg viewBox="0 0 24 24" className="w-12 h-12 text-[#c29b40]" fill="currentColor">
+                          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                        </svg>
+                      )}
+                      {skill.name.includes("Python") && (
+                        <svg viewBox="0 0 24 24" className="w-12 h-12 text-[#c29b40]" fill="currentColor">
+                          <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm1 14h-2v2h2v-2zm-1-10c-2.206 0-4 1.794-4 4h2c0-1.103.897-2 2-2s2 .897 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.206-1.794-4-4-4z" />
+                        </svg>
+                      )}
+                      {skill.name.includes("Veritabanı") && <Database size={48} className="text-[#c29b40]" />}
+                      {skill.name.includes("Gömülü") && <Cpu size={48} className="text-[#c29b40]" />}
+                    </div>
+
+                    <div className="flex items-center justify-center gap-4">
+                      <div className="w-6 h-[1px] bg-white/10 group-hover/skill:bg-[#c29b40]/30"></div>
+                      <span className="font-black text-xl md:text-2xl tracking-tighter uppercase group-hover/skill:text-[#c29b40] transition-colors">{skill.name}</span>
+                      <div className="w-6 h-[1px] bg-white/10 group-hover/skill:bg-[#c29b40]/30"></div>
+                    </div>
                   </div>
-                  <div className="h-8"></div>
-                  <p className="text-[14px] text-gray-400 uppercase tracking-[0.2em] italic leading-relaxed group-hover/skill:text-gray-200 transition-all max-w-xl px-4 mt-4">
+                  <p className="text-[13px] text-gray-500 uppercase tracking-[0.2em] italic leading-relaxed group-hover/skill:text-gray-300 transition-all max-w-sm">
                     {skill.desc}
                   </p>
                 </div>
@@ -356,9 +375,25 @@ const App = () => {
         <div className="w-full px-12 flex flex-col items-center justify-center text-center">
           <div className="w-16 h-[1px] bg-[#c29b40]/30 mb-8"></div>
 
-          <div className="flex flex-col items-center gap-4 mb-10">
-            <div className="w-12 h-12 bg-[#c29b40] flex items-center justify-center rounded-sm shadow-[0_0_20px_rgba(194,155,64,0.2)]">
-              <Box size={24} className="text-white fill-current" />
+          <div className="flex flex-col items-center gap-4 mb-4">
+            <div className="footer-logo">
+              <div className="custom-logo scale-90">
+                <div className="badge-wrapper">
+                  <svg viewBox="0 0 100 100" className="badge-svg w-12 h-12">
+                    <polygon
+                      points="50,10 90,30 90,70 50,90 10,70 10,30"
+                      fill="none"
+                      stroke="#c29b40"
+                      strokeWidth="3.5"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M30 45 L45 45 L48 35 L52 35 L55 45 L70 45 L70 50 L55 50 L52 60 L48 60 L45 50 L30 50 Z"
+                      fill="#c29b40"
+                    />
+                  </svg>
+                </div>
+              </div>
             </div>
             <span className="font-black tracking-tighter text-2xl">SI<span className="text-[#c29b40]">.</span>TECH</span>
           </div>

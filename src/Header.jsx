@@ -5,24 +5,31 @@ const Header = () => (
     <header className="header">
         <div className="container">
             <div className="logo-area">
-                <a href="index.html" className="logo-link">
-                    {/* The EXACT Logo - Hexagonal Gold Badge with Drone Design */}
+                <a href="/" className="logo-link">
                     <div className="custom-logo">
                         <div className="badge-wrapper">
-                            <svg viewBox="0 0 100 80" className="badge-svg">
-                                {/* Hexagon with specific orientation */}
+                            <svg viewBox="0 0 100 100" className="badge-svg">
+                                {/* Outer Glow/Shadow Hex (Subtle) */}
                                 <polygon
-                                    points="50,5 92,25 92,65 50,85 8,65 8,25"
+                                    points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5"
+                                    fill="rgba(194, 155, 64, 0.1)"
+                                />
+                                {/* Main Gold Hexagon */}
+                                <polygon
+                                    points="50,10 90,30 90,70 50,90 10,70 10,30"
                                     fill="none"
                                     stroke="#c29b40"
-                                    strokeWidth="2.5"
+                                    strokeWidth="3.5"
+                                    strokeLinejoin="round"
                                 />
-                                {/* Drone Silhouette inside */}
-                                <g transform="translate(25, 30) scale(1)" fill="#c29b40">
-                                    <path d="M0 10 L15 10 L18 2 L32 2 L35 10 L50 10 L50 15 L35 15 L32 23 L18 23 L15 15 L0 15 Z" />
-                                    <rect x="15" y="0" width="20" height="1.5" rx="1" />
-                                    <rect x="15" y="24" width="20" height="1.5" rx="1" />
-                                </g>
+                                {/* Drone/Aviation Icon inside */}
+                                <path
+                                    d="M30 45 L45 45 L48 35 L52 35 L55 45 L70 45 L70 50 L55 50 L52 60 L48 60 L45 50 L30 50 Z"
+                                    fill="#c29b40"
+                                />
+                                {/* Propellers / Details */}
+                                <line x1="45" y1="33" x2="55" y2="33" stroke="#c29b40" strokeWidth="2" strokeLinecap="round" />
+                                <line x1="45" y1="62" x2="55" y2="62" stroke="#c29b40" strokeWidth="2" strokeLinecap="round" />
                             </svg>
                         </div>
                         <div className="logo-text">
