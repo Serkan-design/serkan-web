@@ -136,7 +136,7 @@ const App = () => {
     <div className="min-h-screen bg-[#020617] text-[#f8fafc] font-sans relative overflow-x-hidden">
 
       {/* Navigation */}
-      <Header />
+      <Header lang={lang} setLang={setLang} />
 
       {/* Split-Screen Hero Section */}
       <section className="relative h-screen w-full flex flex-col md:flex-row overflow-hidden">

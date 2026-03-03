@@ -1,9 +1,9 @@
 import React from 'react';
 import './Header.css';
 
-const Header = () => (
+const Header = ({ lang, setLang }) => (
     <header className="header">
-        <div className="container">
+        <div className="container" style={{ justifyContent: 'space-between', width: '100%' }}>
             <div className="logo-area">
                 <a href={import.meta.env.BASE_URL} className="logo-link">
                     <div className="custom-logo">
@@ -39,8 +39,23 @@ const Header = () => (
                     </div>
                 </a>
             </div>
-            <nav className="navigation">
-                {/* Nav links */}
+            <nav className="navigation flex items-center gap-6">
+                <button
+                    onClick={() => {
+                        const aboutEl = document.getElementById('about');
+                        if (aboutEl) aboutEl.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                    className="text-[12px] font-black uppercase tracking-[0.2em] text-white hover:text-[#c29b40] transition-colors cursor-pointer"
+                >
+                    {lang === 'tr' ? 'Hakkımda' : 'About Me'}
+                </button>
+                <div className="w-[1px] h-4 bg-white/20"></div>
+                <button
+                    onClick={() => setLang(lang === 'tr' ? 'en' : 'tr')}
+                    className="text-[12px] font-black uppercase tracking-[0.2em] px-4 py-2 border border-white/20 hover:border-[#c29b40] hover:text-[#c29b40] transition-all text-white rounded-sm cursor-pointer"
+                >
+                    {lang === 'tr' ? 'EN' : 'TR'}
+                </button>
             </nav>
         </div>
     </header>
