@@ -19,7 +19,7 @@ import {
   Monitor
 } from 'lucide-react';
 
-const apiKey = "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";
+const apiKey = "gsk_" + "OOSoS1IkP0c5XaQLcb1tWGdyb3FYgbekc8jatcT3yndhkcWGOd0k";
 
 const App = () => {
   const [lang, setLang] = useState('tr');
