@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import './App.css';
 import Header from './Header';
 import {
   Instagram,
@@ -175,76 +176,150 @@ const App = () => {
           <div className="relative z-20 h-full flex flex-col justify-center items-center px-8 md:px-14">
             <div className="w-full max-w-lg">
 
-              {/* Terminal system tag */}
-              <div className="flex items-center gap-2 mb-6 opacity-60">
-                <Terminal size={11} className="text-[#c29b40]" />
-                <span className="text-[10px] font-mono tracking-[0.35em] text-gray-400 uppercase">SYST_ENV_PRO.03</span>
-                <div className="flex-1 h-px bg-white/10 ml-2"></div>
+              {/* Top status bar */}
+              <div className="flex items-center gap-3 mb-6">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-[#c29b40] animate-pulse" />
+                  <div className="w-2 h-2 rounded-full" style={{ background: 'rgba(255,255,255,0.15)' }} />
+                  <div className="w-2 h-2 rounded-full" style={{ background: 'rgba(255,255,255,0.07)' }} />
+                </div>
+                <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, rgba(194,155,64,0.5), transparent)' }} />
+                <span className="text-[9px] font-mono tracking-[0.4em] uppercase" style={{ color: 'rgba(194,155,64,0.5)' }}>AI · LIVE</span>
               </div>
 
-              {/* DEV ENVIRONMENT label */}
-              <div className="flex items-center gap-3 mb-5">
-                <span className="text-[#c29b40] font-mono text-[15px] font-bold">&lt;&gt;</span>
-                <span className="text-[12px] font-bold tracking-[0.25em] text-gray-300 uppercase">Dev Environment</span>
-              </div>
+              {/* Main AI Panel */}
+              <div className="ai-panel relative overflow-hidden">
+                {/* Animated scan line */}
+                <div className="ai-scanline" />
 
-              {/* Main AI Box — glassmorphism */}
-              <div className="relative border-l-[3px] border-[#c29b40] bg-black/60 backdrop-blur-xl shadow-[0_0_60px_rgba(194,155,64,0.08)] overflow-hidden">
-                {/* top accent line */}
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-[#c29b40]/60 via-white/5 to-transparent"></div>
-                {/* subtle glow orb */}
-                <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#c29b40]/10 rounded-full blur-3xl pointer-events-none"></div>
+                {/* Corner accents */}
+                <div className="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2 border-[#c29b40]" />
+                <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2" style={{ borderColor: 'rgba(194,155,64,0.35)' }} />
+                <div className="absolute bottom-0 left-0 w-5 h-5 border-b-2 border-l-2" style={{ borderColor: 'rgba(194,155,64,0.35)' }} />
+                <div className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-[#c29b40]" />
 
-                <div className="p-6 relative z-10">
-                  {/* AI label */}
-                  <div className="flex items-center gap-2" style={{ marginBottom: '16px' }}>
-                    <Sparkles size={11} className="text-[#c29b40] opacity-80" />
-                    <h3 className="text-[11px] font-black text-[#c29b40] tracking-[0.2em] uppercase">
-                      SERKAN&apos;A SORUN <span className="text-white/30 font-normal">(AI Assistant)</span>
-                    </h3>
+                {/* Glow orb */}
+                <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full pointer-events-none"
+                  style={{ background: 'radial-gradient(circle, rgba(194,155,64,0.10) 0%, transparent 70%)' }} />
+
+                <div className="px-6 pt-5 pb-5 relative z-10">
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-5">
+                    <div className="flex items-center gap-2.5">
+                      <div className="relative flex-shrink-0">
+                        <div className="w-8 h-8 rounded-full flex items-center justify-center"
+                          style={{ background: 'linear-gradient(135deg,#c29b40,#7a5c10)', border: '1px solid rgba(194,155,64,0.35)' }}>
+                          <Sparkles size={12} className="text-white" />
+                        </div>
+                        <div className="absolute -bottom-px -right-px w-2.5 h-2.5 rounded-full border-[1.5px]"
+                          style={{ background: '#34d399', borderColor: '#020617' }} />
+                      </div>
+                      <div className="leading-none">
+                        <h3 className="text-[11px] font-black text-white tracking-[0.18em] uppercase leading-none mb-1">Serkan AI</h3>
+                        <p className="text-[9px] font-mono leading-none" style={{ color: '#34d399', letterSpacing: '0.05em' }}>● Aktif</p>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-1 px-2.5 py-1"
+                      style={{ background: 'rgba(194,155,64,0.06)', border: '1px solid rgba(194,155,64,0.14)', borderRadius: '2px' }}>
+                      <Terminal size={8} className="text-[#c29b40]" />
+                      <span className="text-[8px] font-mono tracking-[0.25em] uppercase" style={{ color: 'rgba(194,155,64,0.6)' }}>LLaMA 3</span>
+                    </div>
                   </div>
 
+                  {/* Chat bubble area */}
+                  <div className="mb-4 flex flex-col gap-2.5">
+                    {!chatResponse && !isTyping && (
+                      <div className="flex items-start gap-2.5">
+                        <div className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5"
+                          style={{ background: 'linear-gradient(135deg,#c29b40,#7a5c10)' }}>
+                          <Sparkles size={8} className="text-white" />
+                        </div>
+                        <div className="flex-1 px-3.5 py-2.5"
+                          style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
+                          <p className="text-[11px] leading-relaxed" style={{ color: 'rgba(148,163,184,0.85)', fontFamily: 'monospace' }}>
+                            {lang === 'tr'
+                              ? 'Merhaba! Serkan hakkında merak ettiklerini sorabilirsin.'
+                              : 'Hi! Feel free to ask anything about Serkan.'}
+                          </p>
+                        </div>
+                      </div>
+                    )}
+
+                    {isTyping && (
+                      <div className="flex items-start gap-2.5">
+                        <div className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5"
+                          style={{ background: 'linear-gradient(135deg,#c29b40,#7a5c10)' }}>
+                          <Sparkles size={8} className="text-white" />
+                        </div>
+                        <div className="px-3.5 py-2.5 flex items-center gap-1.5"
+                          style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(194,155,64,0.15)' }}>
+                          <div className="ai-dot" style={{ animationDelay: '0ms' }} />
+                          <div className="ai-dot" style={{ animationDelay: '160ms' }} />
+                          <div className="ai-dot" style={{ animationDelay: '320ms' }} />
+                        </div>
+                      </div>
+                    )}
+
+                    {chatResponse && !isTyping && (
+                      <div className="flex items-start gap-2.5">
+                        <div className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5"
+                          style={{ background: 'linear-gradient(135deg,#c29b40,#7a5c10)' }}>
+                          <Sparkles size={8} className="text-white" />
+                        </div>
+                        <div className="flex-1 px-3.5 py-2.5"
+                          style={{ background: 'rgba(194,155,64,0.05)', border: '1px solid rgba(194,155,64,0.18)' }}>
+                          <p className="text-[11px] leading-relaxed" style={{ color: 'rgba(226,232,240,0.9)', fontFamily: 'monospace' }}>{chatResponse}</p>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Divider */}
+                  <div className="h-px mb-3.5"
+                    style={{ background: 'linear-gradient(90deg,rgba(194,155,64,0.25),rgba(255,255,255,0.04),transparent)' }} />
+
                   {/* Input row */}
-                  <div className="flex w-full gap-2" style={{ height: '52px' }}>
+                  <div className="flex gap-2" style={{ height: '42px' }}>
                     <input
                       value={chatInput}
                       onChange={(e) => setChatInput(e.target.value)}
                       onKeyPress={(e) => e.key === 'Enter' && askAI()}
                       placeholder={t.aiPlaceholder}
-                      style={{ height: '52px' }}
-                      className="flex-1 bg-white/[0.05] border border-white/[0.10] px-5 text-[13px] text-gray-200 placeholder:text-gray-500 focus:outline-none focus:border-[#c29b40]/40 transition-colors font-sans"
+                      className="ai-input flex-1 px-3.5 text-[11px] font-mono"
+                      style={{ height: '42px' }}
                     />
                     <button
                       onClick={() => askAI()}
                       disabled={isTyping}
-                      style={{ height: '52px' }}
-                      className="bg-[#c29b40] px-8 font-black text-[12px] uppercase tracking-[0.2em] text-white hover:bg-[#d4a845] focus:outline-none transition-all flex items-center gap-2 whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed shadow-[0_0_20px_rgba(194,155,64,0.3)]"
+                      className="ai-send-btn flex items-center justify-center gap-1.5 px-4 font-black text-[10px] uppercase tracking-[0.18em] text-white disabled:opacity-40 disabled:cursor-not-allowed flex-shrink-0"
+                      style={{ height: '42px', minWidth: '64px' }}
                     >
-                      {isTyping ? <Loader2 size={16} className="animate-spin" /> : <>SOR <span className="opacity-70">→</span></>}
+                      {isTyping ? <Loader2 size={13} className="animate-spin" /> : <><span>SOR</span><span style={{ opacity: 0.55, marginLeft: '3px', fontSize: '12px' }}>↑</span></>}
                     </button>
                   </div>
-
-                  {/* AI response */}
-                  {chatResponse && (
-                    <div className="mt-4 text-[12px] text-gray-300 font-mono border-t border-white/5 pt-4 leading-relaxed bg-black/20 px-4 py-3">
-                      <span className="text-[#c29b40] font-bold mr-2">SERK_AI&gt;</span>{chatResponse}
-                    </div>
-                  )}
                 </div>
 
-                {/* bottom scan line */}
-                <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#c29b40]/20 to-transparent"></div>
+                {/* Bottom status bar */}
+                <div className="flex items-center justify-between" style={{ padding: '7px 16px', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+                  <span className="text-[8px] font-mono uppercase" style={{ color: 'rgba(255,255,255,0.15)', letterSpacing: '0.2em' }}>Powered by Groq</span>
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: '#34d399' }} />
+                    <span className="text-[8px] font-mono" style={{ color: 'rgba(52,211,153,0.6)', letterSpacing: '0.12em' }}>ONLINE</span>
+                  </div>
+                </div>
               </div>
 
-              {/* Social links — refined */}
-              <div className="grid grid-cols-2 gap-4" style={{ marginTop: '16px' }}>
+              {/* Social links */}
+              <div className="grid grid-cols-2 gap-3 mt-4">
                 <a href="https://www.instagram.com/sserkan.77/" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 h-11 bg-white/[0.04] border border-white/[0.08] text-white text-[10px] font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black hover:border-white transition-all duration-300">
-                  <Instagram size={13} /> INSTA
+                  className="social-link-white flex items-center justify-center gap-2.5 h-11 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300">
+                  <Instagram size={13} />
+                  <span>Instagram</span>
                 </a>
                 <a href="https://github.com/Serkan-design" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 h-11 bg-white/[0.04] border border-[#c29b40]/30 text-[#c29b40] text-[10px] font-black uppercase tracking-[0.2em] hover:bg-[#c29b40] hover:text-white hover:border-[#c29b40] transition-all duration-300">
-                  <Code size={13} /> GITHUB
+                  className="social-link-gold flex items-center justify-center gap-2.5 h-11 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300">
+                  <Code size={13} />
+                  <span>GitHub</span>
                 </a>
               </div>
 
@@ -269,9 +344,10 @@ const App = () => {
               <Wind className="text-[#c29b40] opacity-40 animate-pulse mt-2" size={40} />
             </div>
 
-            <p className="text-gray-400 text-xl md:text-2xl leading-relaxed mb-[120px] italic max-w-4xl relative z-10 px-6">
+            <p className="text-gray-400 text-xl md:text-2xl leading-relaxed italic max-w-4xl relative z-10 px-6" style={{ marginBottom: '80px' }}>
               {t.fpvDesc}
             </p>
+            <div style={{ height: '40px' }} />
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10 w-full relative z-10 px-8">
               {[
