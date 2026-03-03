@@ -128,9 +128,7 @@ const App = () => {
       }
       setChatResponse(lang === 'tr' ? "Yapay zeka şu an meşgul veya API anahtarı hatalı." : "AI is busy or API key is invalid.");
     } finally {
-      if (retryCount >= 2 || !chatInput.trim()) {
-        setIsTyping(false);
-      }
+      setIsTyping(false);
     }
   };
 
