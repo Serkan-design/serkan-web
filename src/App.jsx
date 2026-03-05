@@ -109,38 +109,6 @@ const App = () => {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  // ── Typewriter Effect ──
-  useEffect(() => {
-    let cancelled = false;
-    setDisplayedName('');
-    setNameComplete(false);
-    const delay = preloaderDone ? 300 : 2700;
-    const outer = setTimeout(() => {
-      if (cancelled) return;
-      let i = 0;
-      const name = t.name;
-      const timer = setInterval(() => {
-        if (cancelled) { clearInterval(timer); return; }
-        i++;
-        setDisplayedName(name.slice(0, i));
-        if (i >= name.length) { setNameComplete(true); clearInterval(timer); }
-      }, 90);
-    }, delay);
-    return () => { cancelled = true; clearTimeout(outer); };
-  }, [t.name, preloaderDone]);
-
-  // ── Scroll Reveal ──
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach(e => {
-        if (e.isIntersecting) e.target.classList.add('revealed');
-      }),
-      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
-    );
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    return () => observer.disconnect();
-  }, [preloaderDone]);
-
   // ── Content ──
   const content = {
     tr: {
@@ -190,6 +158,39 @@ const App = () => {
   };
 
   const t = content[lang];
+
+  // ── Typewriter Effect (must be after const t) ──
+  useEffect(() => {
+    let cancelled = false;
+    setDisplayedName('');
+    setNameComplete(false);
+    const delay = preloaderDone ? 300 : 2700;
+    const outer = setTimeout(() => {
+      if (cancelled) return;
+      let i = 0;
+      const name = t.name;
+      const timer = setInterval(() => {
+        if (cancelled) { clearInterval(timer); return; }
+        i++;
+        setDisplayedName(name.slice(0, i));
+        if (i >= name.length) { setNameComplete(true); clearInterval(timer); }
+      }, 90);
+    }, delay);
+    return () => { cancelled = true; clearTimeout(outer); };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang, preloaderDone]);
+
+  // ── Scroll Reveal ──
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('revealed');
+      }),
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, [preloaderDone]);
 
   // ── AI Chat ──
   const askAI = async (retryCount = 0) => {
