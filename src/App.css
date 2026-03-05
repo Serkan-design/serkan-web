@@ -1,69 +1,3 @@
-/* ── Custom Cursor ────────────────────────────────────── */
-@media (hover: hover) {
-  * {
-    cursor: none !important;
-  }
-}
-
-.custom-cursor-ring {
-  position: fixed;
-  width: 34px;
-  height: 34px;
-  border: 1.5px solid rgba(194, 155, 64, 0.65);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99998;
-  transform: translate(-50%, -50%);
-  transition: width 0.28s ease, height 0.28s ease, border-color 0.28s ease, background 0.28s ease;
-  box-shadow: 0 0 12px rgba(194, 155, 64, 0.18), inset 0 0 8px rgba(194, 155, 64, 0.06);
-  will-change: left, top;
-}
-
-.custom-cursor-ring.cursor-hover {
-  width: 54px;
-  height: 54px;
-  border-color: rgba(194, 155, 64, 0.95);
-  background: rgba(194, 155, 64, 0.07);
-  box-shadow: 0 0 22px rgba(194, 155, 64, 0.4), inset 0 0 12px rgba(194, 155, 64, 0.1);
-}
-
-.custom-cursor-dot {
-  position: fixed;
-  width: 5px;
-  height: 5px;
-  background: #c29b40;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99999;
-  transform: translate(-50%, -50%);
-  box-shadow: 0 0 8px rgba(194, 155, 64, 0.9);
-  will-change: left, top;
-}
-
-@keyframes rippleOut {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0.8;
-  }
-
-  100% {
-    transform: translate(-50%, -50%) scale(4);
-    opacity: 0;
-  }
-}
-
-.cursor-ripple {
-  position: fixed;
-  width: 20px;
-  height: 20px;
-  border: 1.5px solid rgba(194, 155, 64, 0.8);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 99997;
-  transform: translate(-50%, -50%);
-  animation: rippleOut 0.65s ease-out forwards;
-}
-
 /* ── Preloader ────────────────────────────────────────── */
 .preloader {
   position: fixed;
@@ -412,54 +346,54 @@
   }
 
   100% {
-    transform: scale(1.18) translate(-2.5%, 1.5%);
+    transform: scale(1.08) translate(-1%, 0.5%);
   }
 }
 
 @keyframes kenBurns2 {
   0% {
-    transform: scale(1.16) translate(-2%, -1.5%);
+    transform: scale(1.08) translate(-1%, -0.5%);
   }
 
   100% {
-    transform: scale(1.02) translate(2%, 1.5%);
+    transform: scale(1.0) translate(1%, 0.5%);
   }
 }
 
 @keyframes kenBurns3 {
   0% {
-    transform: scale(1.05) translate(1.5%, 2%);
+    transform: scale(1.02) translate(0.5%, 1%);
   }
 
   100% {
-    transform: scale(1.2) translate(-1.5%, -2%);
+    transform: scale(1.09) translate(-0.5%, -1%);
   }
 }
 
 @keyframes kenBurns4 {
   0% {
-    transform: scale(1.14) translate(2%, 0.5%);
+    transform: scale(1.07) translate(1%, 0.2%);
   }
 
   100% {
-    transform: scale(1.0) translate(-1%, -1.5%);
+    transform: scale(1.0) translate(-0.5%, -0.5%);
   }
 }
 
 .ken-burns-1 {
-  animation: heroImgFadeIn 1.2s ease-out, kenBurns1 14s ease-in-out forwards;
+  animation: heroImgFadeIn 1.2s ease-out, kenBurns1 18s ease-in-out forwards;
 }
 
 .ken-burns-2 {
-  animation: heroImgFadeIn 1.2s ease-out, kenBurns2 14s ease-in-out forwards;
+  animation: heroImgFadeIn 1.2s ease-out, kenBurns2 18s ease-in-out forwards;
 }
 
 .ken-burns-3 {
-  animation: heroImgFadeIn 1.2s ease-out, kenBurns3 14s ease-in-out forwards;
+  animation: heroImgFadeIn 1.2s ease-out, kenBurns3 18s ease-in-out forwards;
 }
 
 .ken-burns-4 {
-  animation: heroImgFadeIn 1.2s ease-out, kenBurns4 14s ease-in-out forwards;
+  animation: heroImgFadeIn 1.2s ease-out, kenBurns4 18s ease-in-out forwards;
 }
 
 /* ── Glitch Transition Overlay ──────────────────────────── */

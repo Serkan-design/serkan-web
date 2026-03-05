@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import './App.css';
 import Header from './Header';
-import CustomCursor from './CustomCursor';
 import Preloader from './Preloader';
 import {
   Instagram, Mail, Cpu, Database, Wind, Terminal, User, Plane,
@@ -64,14 +63,14 @@ const App = () => {
 
   // Particles
   const particles = useMemo(() =>
-    Array.from({ length: 28 }, (_, i) => ({
+    Array.from({ length: 10 }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       y: Math.random() * 100,
-      size: Math.random() * 2.5 + 0.8,
+      size: Math.random() * 2 + 0.8,
       delay: Math.random() * 10,
-      duration: Math.random() * 8 + 8,
-      gold: i % 4 === 0,
+      duration: Math.random() * 8 + 9,
+      gold: i % 3 === 0,
     })), []);
 
   // ── Slider advance functions ──
@@ -248,8 +247,6 @@ const App = () => {
     <div className="min-h-screen bg-[#020617] text-[#f8fafc] font-sans relative overflow-x-hidden">
       {/* Preloader */}
       {!preloaderDone && <Preloader onDone={() => setPreloaderDone(true)} />}
-      {/* Custom Cursor */}
-      <CustomCursor />
 
       {/* Navigation */}
       <Header lang={lang} setLang={setLang} />
