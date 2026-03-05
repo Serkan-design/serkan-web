@@ -31,12 +31,12 @@ const tickerItems = [
   { label: "SQL", value: "VERİTABANI MİMARİSİ" },
   { label: "GROQ AI", value: "LLaMA 3 ENTEGRASYON" },
   { label: "LRS", value: "CROSSFIRE SİSTEM" },
+  { label: "KALI LINUX", value: "TAM KURULUM" },
   { label: "BTFA", value: "FLIGHT OPTIMIZATION" },
   { label: "PYTHON", value: "OTOMASYON & VERİ" },
   { label: "SHGM", value: "İHA-1 EHLİYET" },
   { label: "EMBEDDED", value: "MİKROKONTROLER" },
   { label: "C#", value: "ADO.NET" },
-  { label: "ANADOLU ÜNİ", value: "BİLGİSAYAR PROG." },
 ];
 
 const App = () => {
@@ -110,7 +110,7 @@ const App = () => {
       subtitle: "Anadolu Üniversitesi | Bilgisayar Programcılığı",
       focus: "Gömülü Sistemler ve Veritabanı Geliştirme Odaklı",
       aboutTitle: "Hakkında & Özgeçmiş",
-      aboutText: "21 yaşında, Anadolu Üniversitesi Bilgisayar Programcılığı öğrencisi olarak teknoloji dünyasında yer almaktayım. Gömülü sistemler ve veritabanı mimarileri üzerine yoğunlaşmış bir disiplin ile çalışmalarımı sürdürüyorum. Modern yazılım prensiplerini mühendislik etiği ile harmanlayarak kararlı ve ölçeklenebilir çözümler üretmeye odaklanıyorum. Aynı zamanda havacılık teknolojilerine duyduğum ilgiyle İHA-1 ticari ehliyetine sahip bir drone pilotuyum.",
+      aboutText: "21 yaşında; gömülü sistemler ve veritabanı mimarileri üzerine yoğunlaşmış bir yazılım geliştirici olarak teknoloji dünyasında yer almaktayım. Modern yazılım prensiplerini mühendislik etiği ile harmanlayarak kararlı ve ölçeklenebilir çözümler üretmeye odaklanıyorum. Kali Linux'u günlük işletim sistemi olarak tam kurulum şekilde yapılandırdım; sistem mimarisi ve araçlarına hâkim, güvenli ve verimli bir kullanıcı olarak aktif biçimde kullanıyorum. Aynı zamanda havacılık teknolojilerine duyduğum ilgiyle İHA-1 ticari ehliyetine sahip bir drone pilotuyum.",
       skillsTitle: "Teknik Yetkinlikler",
       fpvTitle: "Havacılık ve FPV Teknolojileri",
       fpvDesc: "FPV drone üretimi ve optimizasyonu gerçekleştirilmiştir. İHA-1 ehliyeti ile profesyonel uçuş yetkinliğine sahibim.",
@@ -132,7 +132,7 @@ const App = () => {
       subtitle: "Anadolu University | Computer Programming",
       focus: "Embedded Systems & Database Development",
       aboutTitle: "About & Resume",
-      aboutText: "21-year-old student at Anadolu University. Focused on embedded systems and database architectures. Licensed Commercial UAV-1 pilot.",
+      aboutText: "21-year-old software developer focused on embedded systems and database architectures. I blend modern software principles with engineering ethics to build robust, scalable solutions. I run Kali Linux as my daily OS with a full custom installation — deeply familiar with its system architecture and toolset for productive everyday use. Licensed Commercial UAV-1 pilot.",
       skillsTitle: "Skills",
       fpvTitle: "Aviation & FPV",
       fpvDesc: "FPV drone optimization. Commercial UAV-1 licensed pilot.",
