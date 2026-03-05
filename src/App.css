@@ -125,3 +125,199 @@
   border-color: rgba(194, 155, 64, 0.5);
   color: #c29b40;
 }
+
+/* ── Ken Burns Image Animations ────────────────────────── */
+@keyframes heroImgFadeIn {
+  0% {
+    opacity: 0;
+    filter: brightness(1.6) saturate(0.4) blur(4px);
+  }
+
+  100% {
+    opacity: 1;
+    filter: brightness(1) saturate(1) blur(0px);
+  }
+}
+
+@keyframes kenBurns1 {
+  0% {
+    transform: scale(1.0) translate(0%, 0%);
+  }
+
+  100% {
+    transform: scale(1.18) translate(-2.5%, 1.5%);
+  }
+}
+
+@keyframes kenBurns2 {
+  0% {
+    transform: scale(1.16) translate(-2%, -1.5%);
+  }
+
+  100% {
+    transform: scale(1.02) translate(2%, 1.5%);
+  }
+}
+
+@keyframes kenBurns3 {
+  0% {
+    transform: scale(1.05) translate(1.5%, 2%);
+  }
+
+  100% {
+    transform: scale(1.2) translate(-1.5%, -2%);
+  }
+}
+
+@keyframes kenBurns4 {
+  0% {
+    transform: scale(1.14) translate(2%, 0.5%);
+  }
+
+  100% {
+    transform: scale(1.0) translate(-1%, -1.5%);
+  }
+}
+
+.ken-burns-1 {
+  animation: heroImgFadeIn 1.2s ease-out, kenBurns1 14s ease-in-out forwards;
+}
+
+.ken-burns-2 {
+  animation: heroImgFadeIn 1.2s ease-out, kenBurns2 14s ease-in-out forwards;
+}
+
+.ken-burns-3 {
+  animation: heroImgFadeIn 1.2s ease-out, kenBurns3 14s ease-in-out forwards;
+}
+
+.ken-burns-4 {
+  animation: heroImgFadeIn 1.2s ease-out, kenBurns4 14s ease-in-out forwards;
+}
+
+/* ── Glitch Transition Overlay ──────────────────────────── */
+@keyframes heroGlitch {
+  0% {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+    transform: none;
+  }
+
+  10% {
+    opacity: 0.9;
+    clip-path: inset(0 0 0% 0);
+    transform: translateX(-6px) skewX(-4deg);
+    background: rgba(194, 155, 64, 0.1);
+  }
+
+  25% {
+    clip-path: inset(25% 0 45% 0);
+    transform: translateX(6px) skewX(2deg);
+    background: rgba(255, 50, 50, 0.07);
+  }
+
+  40% {
+    clip-path: inset(60% 0 5% 0);
+    transform: translateX(-4px);
+    background: rgba(50, 200, 255, 0.07);
+  }
+
+  55% {
+    clip-path: inset(10% 0 65% 0);
+    transform: translateX(3px) skewY(1deg);
+  }
+
+  70% {
+    clip-path: inset(45% 0 20% 0);
+    transform: translateX(-2px);
+  }
+
+  85% {
+    opacity: 0.3;
+    clip-path: inset(80% 0 0% 0);
+  }
+
+  100% {
+    opacity: 0;
+    transform: none;
+  }
+}
+
+.glitch-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 25;
+  pointer-events: none;
+  background: rgba(194, 155, 64, 0.04);
+  animation: heroGlitch 0.52s steps(2) forwards;
+}
+
+/* ── Particles ───────────────────────────────────────────── */
+@keyframes particleFloat {
+  0% {
+    transform: translateY(20px) translateX(0px);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 0.7;
+  }
+
+  85% {
+    opacity: 0.2;
+  }
+
+  100% {
+    transform: translateY(-90px) translateX(20px);
+    opacity: 0;
+  }
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: particleFloat linear infinite;
+  pointer-events: none;
+}
+
+/* ── Ticker ──────────────────────────────────────────────── */
+@keyframes tickerScroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: tickerScroll 32s linear infinite;
+  will-change: transform;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* ── Slider Dots ─────────────────────────────────────────── */
+.slider-dot {
+  width: 20px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  transition: all 0.4s ease;
+  border-radius: 1px;
+}
+
+.slider-dot.active {
+  width: 36px;
+  background: #c29b40;
+  box-shadow: 0 0 8px rgba(194, 155, 64, 0.7);
+}
+
+.slider-dot:hover:not(.active) {
+  background: rgba(255, 255, 255, 0.4);
+}

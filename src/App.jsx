@@ -1,25 +1,43 @@
-import { useState } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import './App.css';
 import Header from './Header';
 import {
-  Instagram,
-  Mail,
-  Cpu,
-  Database,
-  Wind,
-  Terminal,
-  User,
-  Plane,
-  Award,
-  Sparkles,
-  Loader2,
-  Box,
-  Code,
-  Globe,
-  Monitor
+  Instagram, Mail, Cpu, Database, Wind, Terminal, User, Plane,
+  Award, Sparkles, Loader2, Box, Code
 } from 'lucide-react';
 
 const apiKey = "gsk_" + "OOSoS1IkP0c5XaQLcb1tWGdyb3FYgbekc8jatcT3yndhkcWGOd0k";
+
+// ── Image Arrays ──────────────────────────────────────────
+const aviationImages = [
+  "https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&q=80&w=1400",
+  "https://images.unsplash.com/photo-1473968512647-3e447244af8f?auto=format&fit=crop&q=80&w=1400",
+  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&q=80&w=1400",
+  "https://images.unsplash.com/photo-1579829366248-204fe8413f31?auto=format&fit=crop&q=80&w=1400",
+];
+const techImages = [
+  "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1400",
+  "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1400",
+  "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80&w=1400",
+  "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=1400",
+];
+const kenBurnsClasses = ['ken-burns-1', 'ken-burns-2', 'ken-burns-3', 'ken-burns-4'];
+
+// ── Ticker Items ───────────────────────────────────────────
+const tickerItems = [
+  { label: "UAV-1", value: "LİSANSLI PİLOT" },
+  { label: "FPV", value: "DRONE ÜRETİMİ" },
+  { label: ".NET & C#", value: "GELİŞTİRİCİ" },
+  { label: "SQL", value: "VERİTABANI MİMARİSİ" },
+  { label: "GROQ AI", value: "LLaMA 3 ENTEGRASYON" },
+  { label: "LRS", value: "CROSSFIRE SİSTEM" },
+  { label: "BTFA", value: "FLIGHT OPTIMIZATION" },
+  { label: "PYTHON", value: "OTOMASYON & VERİ" },
+  { label: "SHGM", value: "İHA-1 EHLİYET" },
+  { label: "EMBEDDED", value: "MİKROKONTROLER" },
+  { label: "C#", value: "ADO.NET" },
+  { label: "ANADOLU ÜNİ", value: "BİLGİSAYAR PROG." },
+];
 
 const App = () => {
   const [lang, setLang] = useState('tr');
@@ -28,15 +46,63 @@ const App = () => {
   const [chatResponse, setChatResponse] = useState("");
   const [isTyping, setIsTyping] = useState(false);
 
-  const images = {
-    aviation: [
-      "https://images.unsplash.com/photo-1506947411487-a56738267384?auto=format&fit=crop&q=50&w=800",
-    ],
-    tech: [
-      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=50&w=800",
-    ]
-  };
+  // Slider state
+  const [aviationIdx, setAviationIdx] = useState(0);
+  const [techIdx, setTechIdx] = useState(0);
+  const [aviationGlitch, setAviationGlitch] = useState(false);
+  const [techGlitch, setTechGlitch] = useState(false);
 
+  // Parallax
+  const [scrollY, setScrollY] = useState(0);
+
+  // Particles
+  const particles = useMemo(() =>
+    Array.from({ length: 28 }, (_, i) => ({
+      id: i,
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      size: Math.random() * 2.5 + 0.8,
+      delay: Math.random() * 10,
+      duration: Math.random() * 8 + 8,
+      gold: i % 4 === 0,
+    })), []);
+
+  // ── Slider advance functions ──
+  const advanceAviation = useCallback(() => {
+    setAviationGlitch(true);
+    setTimeout(() => setAviationIdx(i => (i + 1) % aviationImages.length), 260);
+    setTimeout(() => setAviationGlitch(false), 560);
+  }, []);
+
+  const advanceTech = useCallback(() => {
+    setTechGlitch(true);
+    setTimeout(() => setTechIdx(i => (i + 1) % techImages.length), 260);
+    setTimeout(() => setTechGlitch(false), 560);
+  }, []);
+
+  // ── Auto-slider (staggered: tech starts 3s after aviation) ──
+  useEffect(() => {
+    const avTimer = setInterval(advanceAviation, 6000);
+    let techTimer;
+    const offsetTimer = setTimeout(() => {
+      advanceTech();
+      techTimer = setInterval(advanceTech, 6000);
+    }, 3000);
+    return () => {
+      clearInterval(avTimer);
+      clearTimeout(offsetTimer);
+      clearInterval(techTimer);
+    };
+  }, [advanceAviation, advanceTech]);
+
+  // ── Parallax on scroll ──
+  useEffect(() => {
+    const onScroll = () => setScrollY(window.scrollY);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  // ── Content ──
   const content = {
     tr: {
       title: "Resmî Portfolyo",
@@ -86,23 +152,19 @@ const App = () => {
 
   const t = content[lang];
 
+  // ── AI Chat ──
   const askAI = async (retryCount = 0) => {
     if (!chatInput.trim()) return;
     if (!apiKey) {
       setChatResponse(lang === 'tr' ? "Lütfen bir API anahtarı ekleyin." : "Please add an API key.");
       return;
     }
-
     setIsTyping(true);
     const systemPrompt = `User: Serkan Işık. Bio: 21, Anadolu University student. Skills: Embedded, SQL, FPV, UAV-1 Pilot. Response must be concise and professional in ${lang === 'tr' ? 'Turkish' : 'English'}.`;
-
     try {
       const response = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${apiKey}`
-        },
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` },
         body: JSON.stringify({
           model: "llama-3.3-70b-versatile",
           messages: [
@@ -113,11 +175,7 @@ const App = () => {
           max_tokens: 150
         })
       });
-
-      if (!response.ok) {
-        throw new Error(`API Error: ${response.status}`);
-      }
-
+      if (!response.ok) throw new Error(`API Error: ${response.status}`);
       const data = await response.json();
       setChatResponse(data.choices?.[0]?.message?.content || (lang === 'tr' ? "Yanıt alınamadı." : "No response from AI."));
     } catch (error) {
@@ -132,45 +190,147 @@ const App = () => {
     }
   };
 
+  // ── Slider dot click ──
+  const goToAviation = (i) => {
+    if (i === aviationIdx) return;
+    setAviationGlitch(true);
+    setTimeout(() => { setAviationIdx(i); }, 260);
+    setTimeout(() => setAviationGlitch(false), 560);
+  };
+  const goToTech = (i) => {
+    if (i === techIdx) return;
+    setTechGlitch(true);
+    setTimeout(() => { setTechIdx(i); }, 260);
+    setTimeout(() => setTechGlitch(false), 560);
+  };
+
   return (
     <div className="min-h-screen bg-[#020617] text-[#f8fafc] font-sans relative overflow-x-hidden">
 
       {/* Navigation */}
       <Header lang={lang} setLang={setLang} />
 
-      {/* Split-Screen Hero Section */}
+      {/* ── Hero Section ── */}
       <section className="relative h-screen w-full flex flex-col md:flex-row overflow-hidden">
 
-        {/* Left Panel: Aviation/FPV */}
-        <div className="relative w-full md:w-1/2 h-full group overflow-hidden border-r border-white/5">
-          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#020617] via-transparent to-transparent opacity-90 pointer-events-none"></div>
-          <div className="absolute inset-0 z-10 bg-[#020617]/20 group-hover:bg-transparent transition-colors duration-500 pointer-events-none"></div>
-          <img
-            src={images.aviation[0]}
-            className="absolute inset-0 w-full h-full object-cover transition-all duration-500 scale-100 group-hover:scale-110 opacity-100"
-            alt="Aviation Background"
-          />
-          <div className="relative z-20 h-full flex flex-col items-start" style={{ justifyContent: 'center', paddingLeft: '18%', paddingRight: '5%', marginTop: '8%' }}>
+        {/* Floating particles (full hero overlay) */}
+        <div className="absolute inset-0 z-[6] pointer-events-none overflow-hidden">
+          {particles.map(p => (
+            <div
+              key={p.id}
+              className="particle"
+              style={{
+                left: `${p.x}%`,
+                top: `${p.y}%`,
+                width: `${p.size}px`,
+                height: `${p.size}px`,
+                background: p.gold ? 'rgba(194,155,64,0.85)' : 'rgba(255,255,255,0.5)',
+                animationDelay: `${p.delay}s`,
+                animationDuration: `${p.duration}s`,
+              }}
+            />
+          ))}
+        </div>
+
+        {/* ── Left Panel: Aviation/FPV ── */}
+        <div className="relative w-full md:w-1/2 h-full overflow-hidden border-r border-white/5">
+          {/* Gradient overlays */}
+          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#020617] via-[#020617]/40 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#020617]/70 via-transparent to-transparent pointer-events-none" />
+
+          {/* Parallax image wrapper */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              top: '-10%',
+              bottom: '-10%',
+              transform: `translateY(${scrollY * 0.07}px)`,
+              willChange: 'transform',
+            }}
+          >
+            <img
+              key={`av-${aviationIdx}`}
+              src={aviationImages[aviationIdx]}
+              className={`w-full h-full object-cover ${kenBurnsClasses[aviationIdx % 4]}`}
+              alt="Aviation Background"
+            />
+          </div>
+
+          {/* Glitch overlay */}
+          {aviationGlitch && <div className="glitch-overlay" key={`av-glitch-${aviationIdx}`} />}
+
+          {/* Slider dots */}
+          <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-20 flex gap-2 items-center">
+            {aviationImages.map((_, i) => (
+              <div
+                key={i}
+                className={`slider-dot ${i === aviationIdx ? 'active' : ''}`}
+                onClick={() => goToAviation(i)}
+              />
+            ))}
+          </div>
+
+          {/* Text content */}
+          <div
+            className="relative z-20 h-full flex flex-col items-start"
+            style={{ justifyContent: 'center', paddingLeft: '18%', paddingRight: '5%', marginTop: '8%' }}
+          >
             <div className="inline-flex items-center gap-2 bg-[#c29b40] px-4 py-2 text-[10px] font-black tracking-[0.3em] uppercase mb-8 w-fit shadow-xl">
               <Plane size={14} className="text-white" />
-              <span>Aviation & FPV Expert</span>
+              <span>Aviation &amp; FPV Expert</span>
             </div>
             <h2 className="text-5xl md:text-7xl font-black tracking-tighter leading-tight">{t.name}</h2>
-            <div className="h-4 md:h-6"></div>
-            <p className="font-mono text-sm tracking-[0.4em] uppercase" style={{ color: 'rgba(255,255,255,0.9)', textShadow: '0 1px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)' }}>{lang === 'tr' ? 'Lisanslı İHA-1 Pilotu' : 'Licensed UAV-1 Pilot'}</p>
+            <div className="h-4 md:h-6" />
+            <p
+              className="font-mono text-sm tracking-[0.4em] uppercase"
+              style={{ color: 'rgba(255,255,255,0.9)', textShadow: '0 1px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)' }}
+            >
+              {lang === 'tr' ? 'Lisanslı İHA-1 Pilotu' : 'Licensed UAV-1 Pilot'}
+            </p>
           </div>
         </div>
 
-        {/* Right Panel: Software/DB */}
-        <div className="relative w-full md:w-1/2 h-full group overflow-hidden">
-          <div className="absolute inset-0 z-10 bg-gradient-to-l from-[#020617] via-transparent to-transparent opacity-90 pointer-events-none"></div>
-          <div className="absolute inset-0 z-10 bg-[#020617]/40 group-hover:bg-transparent transition-colors duration-500 pointer-events-none"></div>
-          <img
-            src={images.tech[0]}
-            className="absolute inset-0 w-full h-full object-cover transition-all duration-500 scale-100 group-hover:scale-110 opacity-100"
-            alt="Software Background"
-          />
+        {/* ── Right Panel: Tech/Software ── */}
+        <div className="relative w-full md:w-1/2 h-full overflow-hidden">
+          {/* Gradient overlays */}
+          <div className="absolute inset-0 z-10 bg-gradient-to-l from-[#020617] via-[#020617]/40 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#020617]/70 via-transparent to-transparent pointer-events-none" />
 
+          {/* Parallax image wrapper */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              top: '-10%',
+              bottom: '-10%',
+              transform: `translateY(${scrollY * 0.05}px)`,
+              willChange: 'transform',
+            }}
+          >
+            <img
+              key={`tech-${techIdx}`}
+              src={techImages[techIdx]}
+              className={`w-full h-full object-cover ${kenBurnsClasses[(techIdx + 2) % 4]}`}
+              alt="Software Background"
+            />
+          </div>
+
+          {/* Glitch overlay */}
+          {techGlitch && <div className="glitch-overlay" key={`tech-glitch-${techIdx}`} />}
+
+          {/* Slider dots */}
+          <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-20 flex gap-2 items-center">
+            {techImages.map((_, i) => (
+              <div
+                key={i}
+                className={`slider-dot ${i === techIdx ? 'active' : ''}`}
+                onClick={() => goToTech(i)}
+              />
+            ))}
+          </div>
+
+          {/* AI Panel content */}
           <div className="relative z-20 h-full flex flex-col justify-center items-center px-8 md:px-14">
             <div className="w-full max-w-lg">
 
@@ -187,16 +347,11 @@ const App = () => {
 
               {/* Main AI Panel */}
               <div className="ai-panel relative overflow-hidden">
-                {/* Animated scan line */}
                 <div className="ai-scanline" />
-
-                {/* Corner accents */}
                 <div className="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2 border-[#c29b40]" />
                 <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2" style={{ borderColor: 'rgba(194,155,64,0.35)' }} />
                 <div className="absolute bottom-0 left-0 w-5 h-5 border-b-2 border-l-2" style={{ borderColor: 'rgba(194,155,64,0.35)' }} />
                 <div className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-[#c29b40]" />
-
-                {/* Glow orb */}
                 <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full pointer-events-none"
                   style={{ background: 'radial-gradient(circle, rgba(194,155,64,0.10) 0%, transparent 70%)' }} />
 
@@ -235,14 +390,11 @@ const App = () => {
                         <div className="flex-1 px-3.5 py-2.5"
                           style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
                           <p className="text-[11px] leading-relaxed" style={{ color: 'rgba(148,163,184,0.85)', fontFamily: 'monospace' }}>
-                            {lang === 'tr'
-                              ? 'Merhaba! Serkan hakkında merak ettiklerini sorabilirsin.'
-                              : 'Hi! Feel free to ask anything about Serkan.'}
+                            {lang === 'tr' ? 'Merhaba! Serkan hakkında merak ettiklerini sorabilirsin.' : 'Hi! Feel free to ask anything about Serkan.'}
                           </p>
                         </div>
                       </div>
                     )}
-
                     {isTyping && (
                       <div className="flex items-start gap-2.5">
                         <div className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5"
@@ -257,7 +409,6 @@ const App = () => {
                         </div>
                       </div>
                     )}
-
                     {chatResponse && !isTyping && (
                       <div className="flex items-start gap-2.5">
                         <div className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5"
@@ -324,29 +475,46 @@ const App = () => {
             </div>
           </div>
         </div>
+
+        {/* ── Ticker Bar (bottom of hero) ── */}
+        <div
+          className="absolute bottom-0 left-0 right-0 z-30 overflow-hidden"
+          style={{ height: '44px', background: 'rgba(2,6,23,0.92)', borderTop: '1px solid rgba(194,155,64,0.18)', backdropFilter: 'blur(12px)' }}
+        >
+          <div className="ticker-track h-full flex items-center">
+            {[...tickerItems, ...tickerItems].map((item, i) => (
+              <div key={i} className="flex items-center flex-shrink-0 px-6" style={{ gap: '10px' }}>
+                <span className="text-[9px] font-mono uppercase tracking-[0.35em]" style={{ color: '#c29b40', opacity: 0.9 }}>
+                  {item.label}
+                </span>
+                <span style={{ color: 'rgba(194,155,64,0.2)', fontSize: '8px' }}>|</span>
+                <span className="text-[9px] font-mono uppercase tracking-[0.25em]" style={{ color: 'rgba(255,255,255,0.38)' }}>
+                  {item.value}
+                </span>
+                <span style={{ color: 'rgba(194,155,64,0.22)', marginLeft: '16px', fontSize: '8px' }}>◆</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </section>
 
-      {/* Main Content Sections - Centered & Optimized */}
+      {/* ── Main Content Sections ── */}
       <main className="w-full flex flex-col items-center gap-24 relative z-30 -mt-32">
 
-        {/* FPV Details - Symmetric Content */}
+        {/* FPV Details */}
         <div className="w-full max-w-[1500px] px-6 md:px-12">
           <div className="bg-[#1e293b]/10 backdrop-blur-3xl border border-white/5 p-12 md:p-24 relative overflow-visible transition-all duration-700 hover:border-[#c29b40]/20 flex flex-col items-center text-center">
-            <div className="absolute inset-0 bg-gradient-to-b from-[#c29b40]/5 to-transparent pointer-events-none"></div>
-
+            <div className="absolute inset-0 bg-gradient-to-b from-[#c29b40]/5 to-transparent pointer-events-none" />
             <div className="flex flex-col items-center justify-center gap-6 mb-24 relative z-10 w-full">
-              <div className="w-20 h-[3px] bg-[#c29b40] mb-4"></div>
-              <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">
-                {t.fpvTitle}
-              </h3>
+              <div className="w-20 h-[3px] bg-[#c29b40] mb-4" />
+              <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">{t.fpvTitle}</h3>
               <Wind className="text-[#c29b40] opacity-40 animate-pulse mt-2" size={40} />
             </div>
-
             <p className="text-gray-400 text-xl md:text-2xl leading-relaxed italic max-w-4xl relative z-10 px-6" style={{ marginBottom: '80px' }}>
               {t.fpvDesc}
             </p>
             <div style={{ height: '40px' }} />
-
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10 w-full relative z-10 px-8">
               {[
                 { icon: Award, label: "SHGM İHA-1", desc: "Commercial License" },
@@ -356,7 +524,7 @@ const App = () => {
                 <div key={i} className="bg-white/[0.02] p-12 border border-white/10 group/item hover:bg-white/[0.05] transition-all hover:translate-y-[-8px] flex flex-col items-center text-center">
                   <item.icon size={36} className="text-[#c29b40] mb-12 group-hover/item:scale-110 transition-transform" />
                   <p className="text-[13px] font-black uppercase tracking-[0.4em] mb-4">{item.label}</p>
-                  <div className="h-6"></div>
+                  <div className="h-6" />
                   <p className="text-[11px] text-gray-500 font-mono italic mt-4">{item.desc}</p>
                 </div>
               ))}
@@ -364,24 +532,19 @@ const App = () => {
           </div>
         </div>
 
-        {/* Technical Skills - Symmetric & Centered */}
+        {/* Technical Skills */}
         <div className="w-full max-w-[1500px] px-6 md:px-12">
           <div className="bg-white/[0.01] backdrop-blur-3xl p-12 md:p-24 border border-white/5 relative overflow-visible group transition-all duration-700 hover:border-[#c29b40]/20 flex flex-col items-center">
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#c29b40]/5 rounded-full blur-[200px] pointer-events-none opacity-40"></div>
-
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#c29b40]/5 rounded-full blur-[200px] pointer-events-none opacity-40" />
             <div className="flex flex-col items-center justify-center mb-28 relative z-10 w-full text-center">
               <Database size={40} className="text-[#c29b40] opacity-50 mb-8" />
-              <h3 className="text-[16px] font-black uppercase tracking-[0.8em] text-gray-400">
-                {t.skillsTitle}
-              </h3>
-              <div className="w-16 h-[1px] bg-white/20 mt-8"></div>
+              <h3 className="text-[16px] font-black uppercase tracking-[0.8em] text-gray-400">{t.skillsTitle}</h3>
+              <div className="w-16 h-[1px] bg-white/20 mt-8" />
             </div>
-
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-16 w-full relative z-10 px-12 mt-12">
               {t.skills.map((skill, index) => (
                 <div key={index} className="group/skill cursor-default flex flex-col items-center text-center p-8 bg-white/[0.02] border border-white/5 hover:border-[#c29b40]/30 transition-all duration-300">
                   <div className="flex flex-col items-center justify-center gap-6 mb-8 w-full">
-                    {/* Specialized Technical Icons */}
                     <div className="mb-4">
                       {skill.name.includes(".NET") && (
                         <svg viewBox="0 0 24 24" className="w-12 h-12 text-[#c29b40]" fill="currentColor">
@@ -396,11 +559,10 @@ const App = () => {
                       {skill.name.includes("Veritabanı") && <Database size={48} className="text-[#c29b40]" />}
                       {skill.name.includes("Gömülü") && <Cpu size={48} className="text-[#c29b40]" />}
                     </div>
-
                     <div className="flex items-center justify-center gap-4">
-                      <div className="w-6 h-[1px] bg-white/10 group-hover/skill:bg-[#c29b40]/30"></div>
+                      <div className="w-6 h-[1px] bg-white/10 group-hover/skill:bg-[#c29b40]/30" />
                       <span className="font-black text-xl md:text-2xl tracking-tighter uppercase group-hover/skill:text-[#c29b40] transition-colors">{skill.name}</span>
-                      <div className="w-6 h-[1px] bg-white/10 group-hover/skill:bg-[#c29b40]/30"></div>
+                      <div className="w-6 h-[1px] bg-white/10 group-hover/skill:bg-[#c29b40]/30" />
                     </div>
                   </div>
                   <p className="text-[13px] text-gray-500 uppercase tracking-[0.2em] italic leading-relaxed group-hover/skill:text-gray-300 transition-all max-w-sm">
@@ -411,16 +573,15 @@ const App = () => {
             </div>
           </div>
         </div>
-        {/* About Section at Bottom */}
+
+        {/* About Section */}
         <section id="about" className="relative z-30 w-full max-w-[1200px] mx-auto px-6 md:px-12 pt-12 text-center flex flex-col items-center">
           <div className="flex flex-col items-center justify-center mb-12 w-full">
             <User size={32} className="text-[#c29b40] mb-8 opacity-30" />
-            <h3 className="text-[16px] font-black uppercase tracking-[0.8em] text-gray-400">
-              {t.aboutTitle}
-            </h3>
-            <div className="w-24 h-[1px] bg-[#c29b40]/30 mt-8"></div>
+            <h3 className="text-[16px] font-black uppercase tracking-[0.8em] text-gray-400">{t.aboutTitle}</h3>
+            <div className="w-24 h-[1px] bg-[#c29b40]/30 mt-8" />
           </div>
-          <p className="text-[13px] text-gray-400 font-mono leading-relaxed italic tracking-widest max-w-4xl px-4 md:px-12 text-center decoration-white/5 opacity-80">
+          <p className="text-[13px] text-gray-400 font-mono leading-relaxed italic tracking-widest max-w-4xl px-4 md:px-12 text-center opacity-80">
             {t.aboutText}
           </p>
         </section>
@@ -429,9 +590,9 @@ const App = () => {
       {/* Contact Modal */}
       {showContact && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-6">
-          <div className="absolute inset-0 bg-[#020617]/95 backdrop-blur-xl" onClick={() => setShowContact(false)}></div>
+          <div className="absolute inset-0 bg-[#020617]/95 backdrop-blur-xl" onClick={() => setShowContact(false)} />
           <div className="relative bg-[#0f172a] border border-white/10 w-full max-w-md p-12 shadow-[0_0_100px_rgba(0,0,0,0.8)] overflow-hidden text-center flex flex-col items-center">
-            <div className="absolute top-0 left-0 w-full h-1 bg-[#c29b40]"></div>
+            <div className="absolute top-0 left-0 w-full h-1 bg-[#c29b40]" />
             <Mail size={48} className="text-[#c29b40] mb-6 animate-pulse" />
             <h3 className="text-2xl font-black uppercase tracking-widest mb-2 text-white">Email</h3>
             <p className="text-lg md:text-xl text-gray-300 font-mono bg-white/[0.05] border border-white/10 px-6 py-4 mt-6 w-full select-all">
@@ -447,33 +608,21 @@ const App = () => {
       {/* Footer */}
       <footer className="relative z-30 bg-[#020617] border-t border-white/5 py-16">
         <div className="w-full px-12 flex flex-col items-center justify-center text-center">
-          <div className="w-16 h-[1px] bg-[#c29b40]/30 mb-8"></div>
-
+          <div className="w-16 h-[1px] bg-[#c29b40]/30 mb-8" />
           <div className="flex flex-col items-center gap-4 mb-4">
             <a href={import.meta.env.BASE_URL} className="footer-logo transition-transform hover:scale-110">
               <div className="custom-logo scale-75">
                 <div className="badge-wrapper">
                   <svg viewBox="0 0 100 100" className="badge-svg w-12 h-12">
-                    <polygon
-                      points="50,15 85,32.5 85,67.5 50,85 15,67.5 15,32.5"
-                      fill="none"
-                      stroke="#c29b40"
-                      strokeWidth="3.5"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M30 45 L45 45 L48 35 L52 35 L55 45 L70 45 L70 50 L55 50 L52 60 L48 60 L45 50 L30 50 Z"
-                      fill="#c29b40"
-                    />
+                    <polygon points="50,15 85,32.5 85,67.5 50,85 15,67.5 15,32.5" fill="none" stroke="#c29b40" strokeWidth="3.5" strokeLinejoin="round" />
+                    <path d="M30 45 L45 45 L48 35 L52 35 L55 45 L70 45 L70 50 L55 50 L52 60 L48 60 L45 50 L30 50 Z" fill="#c29b40" />
                   </svg>
                 </div>
               </div>
             </a>
             <span className="font-black tracking-tighter text-xl">SI<span className="text-[#c29b40]">.</span>TECH</span>
           </div>
-
           <p className="text-[11px] text-gray-500 uppercase tracking-[0.8em] font-black mb-8 opacity-40">{t.footer}</p>
-
           <div className="flex space-x-12">
             <a href="https://www.instagram.com/sserkan.77/" className="text-gray-500 hover:text-[#c29b40] transition-all transform hover:scale-110 duration-300"><Instagram size={24} /></a>
             <a href="mailto:serkanisik67@gmail.com" className="text-gray-500 hover:text-[#c29b40] transition-all transform hover:scale-110 duration-300"><Mail size={24} /></a>
