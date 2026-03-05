@@ -1,6 +1,8 @@
 import { useState, useEffect, useMemo, useCallback } from 'react';
 import './App.css';
 import Header from './Header';
+import CustomCursor from './CustomCursor';
+import Preloader from './Preloader';
 import {
   Instagram, Mail, Cpu, Database, Wind, Terminal, User, Plane,
   Award, Sparkles, Loader2, Box, Code
@@ -55,6 +57,11 @@ const App = () => {
   // Parallax
   const [scrollY, setScrollY] = useState(0);
 
+  // Preloader + Typewriter
+  const [preloaderDone, setPreloaderDone] = useState(false);
+  const [displayedName, setDisplayedName] = useState('');
+  const [nameComplete, setNameComplete] = useState(false);
+
   // Particles
   const particles = useMemo(() =>
     Array.from({ length: 28 }, (_, i) => ({
@@ -101,6 +108,38 @@ const App = () => {
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
+
+  // ── Typewriter Effect ──
+  useEffect(() => {
+    let cancelled = false;
+    setDisplayedName('');
+    setNameComplete(false);
+    const delay = preloaderDone ? 300 : 2700;
+    const outer = setTimeout(() => {
+      if (cancelled) return;
+      let i = 0;
+      const name = t.name;
+      const timer = setInterval(() => {
+        if (cancelled) { clearInterval(timer); return; }
+        i++;
+        setDisplayedName(name.slice(0, i));
+        if (i >= name.length) { setNameComplete(true); clearInterval(timer); }
+      }, 90);
+    }, delay);
+    return () => { cancelled = true; clearTimeout(outer); };
+  }, [t.name, preloaderDone]);
+
+  // ── Scroll Reveal ──
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('revealed');
+      }),
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' }
+    );
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    return () => observer.disconnect();
+  }, [preloaderDone]);
 
   // ── Content ──
   const content = {
@@ -206,6 +245,10 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-[#020617] text-[#f8fafc] font-sans relative overflow-x-hidden">
+      {/* Preloader */}
+      {!preloaderDone && <Preloader onDone={() => setPreloaderDone(true)} />}
+      {/* Custom Cursor */}
+      <CustomCursor />
 
       {/* Navigation */}
       <Header lang={lang} setLang={setLang} />
@@ -280,7 +323,10 @@ const App = () => {
               <Plane size={14} className="text-white" />
               <span>Aviation &amp; FPV Expert</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-black tracking-tighter leading-tight">{t.name}</h2>
+            <h2 className="text-5xl md:text-7xl font-black tracking-tighter leading-tight">
+              {displayedName}
+              {!nameComplete && <span className="typewriter-cursor" />}
+            </h2>
             <div className="h-4 md:h-6" />
             <p
               className="font-mono text-sm tracking-[0.4em] uppercase"
@@ -503,7 +549,7 @@ const App = () => {
       <main className="w-full flex flex-col items-center gap-24 relative z-30 -mt-32">
 
         {/* FPV Details */}
-        <div className="w-full max-w-[1500px] px-6 md:px-12">
+        <div className="reveal w-full max-w-[1500px] px-6 md:px-12">
           <div className="bg-[#1e293b]/10 backdrop-blur-3xl border border-white/5 p-12 md:p-24 relative overflow-visible transition-all duration-700 hover:border-[#c29b40]/20 flex flex-col items-center text-center">
             <div className="absolute inset-0 bg-gradient-to-b from-[#c29b40]/5 to-transparent pointer-events-none" />
             <div className="flex flex-col items-center justify-center gap-6 mb-24 relative z-10 w-full">
@@ -521,7 +567,7 @@ const App = () => {
                 { icon: Cpu, label: "BTFA-FLIGHT", desc: "System Optimization" },
                 { icon: Box, label: "LRS/CROSSFIRE", desc: "Long Range Control" }
               ].map((item, i) => (
-                <div key={i} className="bg-white/[0.02] p-12 border border-white/10 group/item hover:bg-white/[0.05] transition-all hover:translate-y-[-8px] flex flex-col items-center text-center">
+                <div key={i} className="reveal bg-white/[0.02] p-12 border border-white/10 group/item hover:bg-white/[0.05] transition-all hover:translate-y-[-8px] flex flex-col items-center text-center" style={{ transitionDelay: `${i * 0.15}s` }}>
                   <item.icon size={36} className="text-[#c29b40] mb-12 group-hover/item:scale-110 transition-transform" />
                   <p className="text-[13px] font-black uppercase tracking-[0.4em] mb-4">{item.label}</p>
                   <div className="h-6" />
@@ -533,7 +579,7 @@ const App = () => {
         </div>
 
         {/* Technical Skills */}
-        <div className="w-full max-w-[1500px] px-6 md:px-12">
+        <div className="reveal from-right w-full max-w-[1500px] px-6 md:px-12">
           <div className="bg-white/[0.01] backdrop-blur-3xl p-12 md:p-24 border border-white/5 relative overflow-visible group transition-all duration-700 hover:border-[#c29b40]/20 flex flex-col items-center">
             <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#c29b40]/5 rounded-full blur-[200px] pointer-events-none opacity-40" />
             <div className="flex flex-col items-center justify-center mb-28 relative z-10 w-full text-center">
@@ -543,7 +589,7 @@ const App = () => {
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-16 w-full relative z-10 px-12 mt-12">
               {t.skills.map((skill, index) => (
-                <div key={index} className="group/skill cursor-default flex flex-col items-center text-center p-8 bg-white/[0.02] border border-white/5 hover:border-[#c29b40]/30 transition-all duration-300">
+                <div key={index} className="reveal group/skill cursor-default flex flex-col items-center text-center p-8 bg-white/[0.02] border border-white/5 hover:border-[#c29b40]/30 transition-all duration-300" style={{ transitionDelay: `${index * 0.13}s` }}>
                   <div className="flex flex-col items-center justify-center gap-6 mb-8 w-full">
                     <div className="mb-4">
                       {skill.name.includes(".NET") && (
@@ -575,7 +621,7 @@ const App = () => {
         </div>
 
         {/* About Section */}
-        <section id="about" className="relative z-30 w-full max-w-[1200px] mx-auto px-6 md:px-12 pt-12 text-center flex flex-col items-center">
+        <section id="about" className="reveal relative z-30 w-full max-w-[1200px] mx-auto px-6 md:px-12 pt-12 text-center flex flex-col items-center">
           <div className="flex flex-col items-center justify-center mb-12 w-full">
             <User size={32} className="text-[#c29b40] mb-8 opacity-30" />
             <h3 className="text-[16px] font-black uppercase tracking-[0.8em] text-gray-400">{t.aboutTitle}</h3>
