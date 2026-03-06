@@ -1,10 +1,11 @@
-import { useState, useEffect, useMemo, useCallback } from 'react';
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import './App.css';
 import Header from './Header';
 import Preloader from './Preloader';
 import {
   Instagram, Mail, Cpu, Database, Wind, Terminal, User, Plane,
-  Award, Sparkles, Loader2, Box, Code
+  Award, Sparkles, Loader2, Box, Code, Github, ExternalLink,
+  Send, CheckCircle, XCircle
 } from 'lucide-react';
 
 const apiKey = "gsk_" + "OOSoS1IkP0c5XaQLcb1tWGdyb3FYgbekc8jatcT3yndhkcWGOd0k";
@@ -40,12 +41,102 @@ const tickerItems = [
   { label: "C#", value: "ADO.NET" },
 ];
 
+// ── Tech Badge Components ─────────────────────────────────
+const TechBadge = ({ name, color, icon: Icon, bgColor }) => (
+  <span className="tech-badge" style={{ '--badge-color': color, '--badge-bg': bgColor }}>
+    {Icon && <Icon size={11} />}
+    {name}
+  </span>
+);
+
+// SVG badge icons for technologies without lucide equivalents
+const CSharpIcon = () => (
+  <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M11.5 15.97l.41 2.44c-.26.14-.68.27-1.24.39-.57.13-1.24.2-2.01.2-2.21-.04-3.87-.7-4.98-1.96C2.56 15.77 2 14.16 2 12.21c.05-2.31.72-4.08 2-5.32C5.32 5.64 6.96 5 8.94 5c.75 0 1.4.07 1.94.19s.94.25 1.2.4l-.58 2.49-1.96-.44c-.4-.01-.83.06-1.28.19-.31.09-.6.25-.87.49-.27.23-.49.54-.66.91-.17.38-.26.86-.26 1.45.01.58.1 1.09.28 1.51.18.42.41.77.69 1.04s.59.46.94.58c.35.12.72.18 1.1.17.42-.01.81-.05 1.17-.12.35-.08.64-.17.87-.29zm.92-10.45c.63 0 1.18.13 1.68.38.49.25.95.57 1.36.97l.93-.93c-.48-.54-1.04-.95-1.66-1.24-.62-.29-1.3-.43-2.04-.43-.62 0-1.2.11-1.72.32-.53.21-.99.5-1.38.88l.93.93c.63-.59 1.32-.88 1.9-.88zm0 3.29c.44 0 .84.1 1.2.29.37.19.68.44.94.75l.93-.93c-.41-.44-.89-.79-1.43-1.03-.54-.25-1.12-.37-1.73-.37-.33 0-.65.04-.95.12l.42 1.41c.21-.16.4-.24.62-.24zm5.47 3.19l-.71.71.71.71v1h-1v.71l-.71-.71-.71.71V13.5h-1v-1l.71-.71-.71-.71v-1h1V9.5l.71.71.71-.71v1h1v1zm3 0l-.71.71.71.71v1h-1v.71l-.71-.71-.71.71V13.5h-1v-1l.71-.71-.71-.71v-1h1V9.5l.71.71.71-.71v1h1v1z" />
+  </svg>
+);
+
+const DotNetIcon = () => (
+  <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M24 8.77h-2.468v7.565h-1.425V8.77h-2.462V7.53H24zm-6.852 7.565h-4.821V7.53h4.63v1.24h-3.205v2.494h2.953v1.234h-2.953v2.604h3.396zm-6.708 0H8.882L5.234 9.936c-.145-.222-.243-.413-.296-.573h-.041c.031.188.047.499.047.932v6.042H3.619V7.53h1.7l3.524 6.302c.19.335.313.572.369.71h.028c-.038-.24-.056-.584-.056-1.03V7.53h1.256v8.805z" />
+  </svg>
+);
+
+const PythonIcon = () => (
+  <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.752h5.814v.826H3.727S0 5.789 0 11.969c0 6.18 3.403 5.96 3.403 5.96h2.031v-2.867s-.109-3.402 3.35-3.402h5.766s3.24.052 3.24-3.13V3.19S18.28 0 11.914 0zM8.708 1.84a1.047 1.047 0 0 1 1.047 1.049 1.047 1.047 0 0 1-1.047 1.047A1.047 1.047 0 0 1 7.66 2.889 1.047 1.047 0 0 1 8.708 1.84zm3.596 10.326c-.187 0-.37.007-.55.019l-2.39.165c-.18.013-.35.019-.52.019-1.81 0-3.12-.88-3.12-2.5 0-1.62 1.31-2.5 3.12-2.5h5.77c.17 0 .34-.006.52-.019l2.39-.165c.18-.013.36-.019.55-.019 1.81 0 3.12.88 3.12 2.5 0 1.62-1.31 2.5-3.12 2.5h-5.77z" />
+  </svg>
+);
+
+const AdoIcon = () => (
+  <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 3a7 7 0 1 1-7 7 7 7 0 0 1 7-7zm-1 3v5l4 2.5-.75 1.23L9 13V8z" />
+  </svg>
+);
+
+// ── Projects Data ──────────────────────────────────────────
+const projects = [
+  {
+    id: 'proj1',
+    titleTr: 'Telefon Rehberi (.NET & C#)',
+    titleEn: 'Phone Book (.NET & C#)',
+    descTr: 'ADO.NET ve C# ile geliştirilmiş, SQL Server tabanlı tam kapsamlı CRUD telefon rehberi uygulaması.',
+    descEn: 'Full-featured CRUD phone book application built with ADO.NET and C# on SQL Server backend.',
+    github: 'https://github.com/Serkan-design/TelefonRehberi',
+    techs: [
+      { name: 'C#', color: '#9B4F96', bgColor: 'rgba(155,79,150,0.12)' },
+      { name: '.NET', color: '#512BD4', bgColor: 'rgba(81,43,212,0.12)' },
+      { name: 'ADO.NET', color: '#512BD4', bgColor: 'rgba(81,43,212,0.10)' },
+      { name: 'SQL', color: '#CC2927', bgColor: 'rgba(204,41,39,0.10)' },
+    ],
+    icon: Database,
+  },
+  {
+    id: 'proj2',
+    titleTr: 'ESP32 Blynk LED Kontrol',
+    titleEn: 'ESP32 Blynk LED Control',
+    descTr: 'ESP32 mikrodenetleyici ve Blynk IoT platformu kullanılarak Wi-Fi üzerinden uzaktan LED kontrolü.',
+    descEn: 'Remote LED control over Wi-Fi using ESP32 microcontroller and the Blynk IoT platform.',
+    github: 'https://github.com/Serkan-design/ESP32-Blynk-LED-Control',
+    techs: [
+      { name: 'C++', color: '#00599C', bgColor: 'rgba(0,89,156,0.12)' },
+      { name: 'ESP32', color: '#E7352B', bgColor: 'rgba(231,53,43,0.10)' },
+      { name: 'IoT', color: '#4EAA25', bgColor: 'rgba(78,170,37,0.10)' },
+    ],
+    icon: Cpu,
+  },
+  {
+    id: 'proj3',
+    titleTr: 'Finger Control — OpenCV',
+    titleEn: 'Finger Control — OpenCV',
+    descTr: 'Python ve OpenCV kullanarak el parmak hareketleriyle bilgisayarı kontrol eden gerçek zamanlı görüntü işleme uygulaması.',
+    descEn: 'Real-time computer vision app using Python & OpenCV to control the computer with finger gestures.',
+    github: 'https://github.com/Serkan-design/Finger-Control-OpenCV',
+    techs: [
+      { name: 'Python', color: '#3776AB', bgColor: 'rgba(55,118,171,0.12)' },
+      { name: 'OpenCV', color: '#5C3EE8', bgColor: 'rgba(92,62,232,0.10)' },
+      { name: 'MediaPipe', color: '#00BCD4', bgColor: 'rgba(0,188,212,0.10)' },
+    ],
+    icon: Terminal,
+  },
+];
+
 const App = () => {
   const [lang, setLang] = useState('tr');
   const [showContact, setShowContact] = useState(false);
   const [chatInput, setChatInput] = useState("");
   const [chatResponse, setChatResponse] = useState("");
   const [isTyping, setIsTyping] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem('darkMode');
+    return saved !== null ? saved === 'true' : true;
+  });
+  // Contact form state
+  const [formName, setFormName] = useState('');
+  const [formEmail, setFormEmail] = useState('');
+  const [formMsg, setFormMsg] = useState('');
+  const [formStatus, setFormStatus] = useState(null); // 'sending' | 'sent' | 'error'
+  const formRef = useRef(null);
 
   // Slider state
   const [aviationIdx, setAviationIdx] = useState(0);
@@ -100,6 +191,35 @@ const App = () => {
       clearInterval(techTimer);
     };
   }, [advanceAviation, advanceTech]);
+
+  // ── Dark Mode persistence + body class ──
+  useEffect(() => {
+    localStorage.setItem('darkMode', darkMode);
+    if (darkMode) {
+      document.documentElement.classList.add('dark');
+      document.documentElement.classList.remove('light');
+    } else {
+      document.documentElement.classList.add('light');
+      document.documentElement.classList.remove('dark');
+    }
+  }, [darkMode]);
+
+  // ── Contact form submit via mailto ──
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    if (!formName.trim() || !formEmail.trim() || !formMsg.trim()) return;
+    setFormStatus('sending');
+    const subject = encodeURIComponent(`Portfolio İletişim - ${formName}`);
+    const body = encodeURIComponent(`Ad: ${formName}\nEmail: ${formEmail}\n\nMesaj:\n${formMsg}`);
+    setTimeout(() => {
+      window.open(`mailto:serkanisik67@gmail.com?subject=${subject}&body=${body}`, '_blank');
+      setFormStatus('sent');
+      setFormName('');
+      setFormEmail('');
+      setFormMsg('');
+      setTimeout(() => setFormStatus(null), 4000);
+    }, 600);
+  };
 
   // ── Parallax on scroll ──
   useEffect(() => {
@@ -244,12 +364,12 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#020617] text-[#f8fafc] font-sans relative overflow-x-hidden">
+    <div className={`min-h-screen font-sans relative overflow-x-hidden ${darkMode ? 'bg-[#020617] text-[#f8fafc]' : 'bg-[#f0f4f8] text-[#0f172a]'}`} style={{ transition: 'background 0.4s ease, color 0.4s ease' }}>
       {/* Preloader */}
       {!preloaderDone && <Preloader onDone={() => setPreloaderDone(true)} />}
 
       {/* Navigation */}
-      <Header lang={lang} setLang={setLang} />
+      <Header lang={lang} setLang={setLang} darkMode={darkMode} setDarkMode={setDarkMode} />
 
       {/* ── Hero Section ── */}
       <section className="relative h-screen w-full flex flex-col md:flex-row overflow-hidden">
@@ -618,17 +738,176 @@ const App = () => {
           </div>
         </div>
 
-        {/* About Section */}
-        <section id="about" className="reveal relative z-30 w-full max-w-[1200px] mx-auto px-6 md:px-12 pt-12 text-center flex flex-col items-center">
-          <div className="flex flex-col items-center justify-center mb-12 w-full">
-            <User size={32} className="text-[#c29b40] mb-8 opacity-30" />
-            <h3 className="text-[16px] font-black uppercase tracking-[0.8em] text-gray-400">{t.aboutTitle}</h3>
-            <div className="w-24 h-[1px] bg-[#c29b40]/30 mt-8" />
+        {/* ── Projects Section ── */}
+        <section id="projects" className="reveal w-full max-w-[1500px] px-6 md:px-12">
+          <div className={`p-12 md:p-20 border relative overflow-hidden transition-all duration-700 ${darkMode ? 'bg-white/[0.01] border-white/5 backdrop-blur-3xl' : 'bg-white border-slate-200/80 shadow-lg'}`}>
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#c29b40] to-transparent opacity-50" />
+            <div className="flex flex-col items-center mb-16">
+              <Code size={32} className={`opacity-60 mb-6 text-[#c29b40]`} />
+              <h3 className={`text-[16px] font-black uppercase tracking-[0.8em] ${darkMode ? 'text-gray-400' : 'text-slate-500'}`}>{lang === 'tr' ? 'Projeler' : 'Projects'}</h3>
+              <div className={`w-16 h-[1px] mt-6 ${darkMode ? 'bg-white/20' : 'bg-slate-300'}`} />
+            </div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {projects.map((proj, i) => (
+                <div
+                  key={proj.id}
+                  className={`reveal project-card group relative flex flex-col p-8 border transition-all duration-500 hover:translate-y-[-6px] ${darkMode
+                      ? 'bg-white/[0.025] border-white/8 hover:border-[#c29b40]/40 hover:bg-white/[0.05]'
+                      : 'bg-slate-50 border-slate-200 hover:border-[#c29b40]/60 shadow-sm hover:shadow-xl'
+                    }`}
+                  style={{ transitionDelay: `${i * 0.1}s` }}
+                >
+                  {/* Card top accent */}
+                  <div className="absolute top-0 left-0 w-0 h-[2px] bg-[#c29b40] transition-all duration-500 group-hover:w-full" />
+
+                  {/* Icon + Title */}
+                  <div className="flex items-start gap-4 mb-5">
+                    <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(194,155,64,0.12)', border: '1px solid rgba(194,155,64,0.3)' }}>
+                      <proj.icon size={18} className="text-[#c29b40]" />
+                    </div>
+                    <h4 className={`font-black text-[14px] uppercase tracking-tight leading-tight mt-1 ${darkMode ? 'text-white' : 'text-slate-800'}`}>
+                      {lang === 'tr' ? proj.titleTr : proj.titleEn}
+                    </h4>
+                  </div>
+
+                  {/* Description */}
+                  <p className={`text-[12px] leading-relaxed font-mono flex-1 mb-6 ${darkMode ? 'text-gray-400' : 'text-slate-600'}`}>
+                    {lang === 'tr' ? proj.descTr : proj.descEn}
+                  </p>
+
+                  {/* Tech Badges */}
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {proj.techs.map((tech, ti) => (
+                      <TechBadge key={ti} name={tech.name} color={tech.color} bgColor={tech.bgColor} />
+                    ))}
+                  </div>
+
+                  {/* GitHub Button */}
+                  <a
+                    href={proj.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`github-repo-btn flex items-center justify-center gap-2.5 w-full py-2.5 text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-300 ${!darkMode ? 'light-github-btn' : ''}`}
+                  >
+                    <Github size={14} />
+                    <span>{lang === 'tr' ? 'GitHub Reposu' : 'GitHub Repo'}</span>
+                    <ExternalLink size={11} className="opacity-60" />
+                  </a>
+                </div>
+              ))}
+            </div>
           </div>
-          <p className="text-[13px] text-gray-400 font-mono leading-relaxed italic tracking-widest max-w-4xl px-4 md:px-12 text-center opacity-80">
-            {t.aboutText}
-          </p>
         </section>
+
+        {/* ── Contact Form Section ── */}
+        <section id="contact" className="reveal w-full max-w-[900px] px-6 md:px-12 pb-4">
+          <div className={`p-10 md:p-16 border relative overflow-hidden transition-all duration-700 ${darkMode
+              ? 'bg-white/[0.01] border-white/5 backdrop-blur-3xl'
+              : 'bg-white border-slate-200/80 shadow-lg'
+            }`}>
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-[#c29b40]" />
+            <div className="absolute top-[2px] left-0 w-full h-16 bg-gradient-to-b from-[#c29b40]/8 to-transparent pointer-events-none" />
+
+            {/* Header */}
+            <div className="flex flex-col items-center mb-10">
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ background: 'rgba(194,155,64,0.12)', border: '1px solid rgba(194,155,64,0.3)' }}>
+                <Mail size={22} className="text-[#c29b40]" />
+              </div>
+              <h3 className={`text-[15px] font-black uppercase tracking-[0.8em] ${darkMode ? 'text-gray-400' : 'text-slate-500'}`}>
+                {lang === 'tr' ? 'İletişim' : 'Contact'}
+              </h3>
+              <p className={`text-[12px] mt-3 font-mono text-center ${darkMode ? 'text-gray-500' : 'text-slate-500'}`}>
+                {lang === 'tr' ? 'Projeniz veya iş birliği hakkında bir mesaj bırakın.' : 'Leave a message about your project or collaboration.'}
+              </p>
+            </div>
+
+            {/* Form */}
+            <form ref={formRef} onSubmit={handleFormSubmit} className="flex flex-col gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex flex-col gap-1.5">
+                  <label className={`text-[10px] font-black uppercase tracking-[0.25em] ${darkMode ? 'text-gray-500' : 'text-slate-500'}`}>
+                    {lang === 'tr' ? 'Ad Soyad' : 'Full Name'}
+                  </label>
+                  <input
+                    id="contact-name"
+                    type="text"
+                    value={formName}
+                    onChange={e => setFormName(e.target.value)}
+                    required
+                    placeholder={lang === 'tr' ? 'Adınız...' : 'Your name...'}
+                    className={`contact-input px-4 py-3 text-[12px] font-mono outline-none transition-all duration-250 ${darkMode ? 'dark-input' : 'light-input'}`}
+                  />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className={`text-[10px] font-black uppercase tracking-[0.25em] ${darkMode ? 'text-gray-500' : 'text-slate-500'}`}>
+                    {lang === 'tr' ? 'E-Posta' : 'Email'}
+                  </label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    value={formEmail}
+                    onChange={e => setFormEmail(e.target.value)}
+                    required
+                    placeholder={lang === 'tr' ? 'email@ornek.com' : 'email@example.com'}
+                    className={`contact-input px-4 py-3 text-[12px] font-mono outline-none transition-all duration-250 ${darkMode ? 'dark-input' : 'light-input'}`}
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col gap-1.5">
+                <label className={`text-[10px] font-black uppercase tracking-[0.25em] ${darkMode ? 'text-gray-500' : 'text-slate-500'}`}>
+                  {lang === 'tr' ? 'Mesajınız' : 'Your Message'}
+                </label>
+                <textarea
+                  id="contact-message"
+                  value={formMsg}
+                  onChange={e => setFormMsg(e.target.value)}
+                  required
+                  rows={5}
+                  placeholder={lang === 'tr' ? 'Mesajınızı buraya yazın...' : 'Write your message here...'}
+                  className={`contact-input px-4 py-3 text-[12px] font-mono outline-none transition-all duration-250 resize-none ${darkMode ? 'dark-input' : 'light-input'}`}
+                />
+              </div>
+
+              {/* Submit */}
+              <button
+                id="contact-submit"
+                type="submit"
+                disabled={formStatus === 'sending' || formStatus === 'sent'}
+                className="contact-submit-btn flex items-center justify-center gap-2.5 py-3.5 w-full text-[11px] font-black uppercase tracking-[0.25em] text-white transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed mt-2"
+              >
+                {formStatus === 'sending' && <Loader2 size={14} className="animate-spin" />}
+                {formStatus === 'sent' && <CheckCircle size={14} />}
+                {formStatus === 'error' && <XCircle size={14} />}
+                {!formStatus && <Send size={14} />}
+                <span>
+                  {formStatus === 'sending' ? (lang === 'tr' ? 'GÖNDERİLİYOR...' : 'SENDING...') :
+                    formStatus === 'sent' ? (lang === 'tr' ? 'GÖNDERİLDİ ✓' : 'SENT ✓') :
+                      lang === 'tr' ? 'MESAJ GÖNDER' : 'SEND MESSAGE'}
+                </span>
+              </button>
+            </form>
+          </div>
+        </section>
+
+        {/* ── About Section (EN ALTA) ── */}
+        <section id="about" className="reveal relative z-30 w-full max-w-[1000px] mx-auto px-6 md:px-12 pb-8">
+          <div className={`p-10 md:p-16 border relative overflow-hidden transition-all duration-700 ${darkMode
+              ? 'bg-white/[0.01] border-white/5 backdrop-blur-3xl'
+              : 'bg-white border-slate-200/80 shadow-lg'
+            }`}>
+            <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(194,155,64,0.06) 0%, transparent 70%)' }} />
+            <div className="flex flex-col items-center mb-10">
+              <User size={28} className="text-[#c29b40] mb-6 opacity-50" />
+              <h3 className={`text-[16px] font-black uppercase tracking-[0.8em] ${darkMode ? 'text-gray-400' : 'text-slate-500'}`}>{t.aboutTitle}</h3>
+              <div className={`w-24 h-[1px] mt-8 ${darkMode ? 'bg-[#c29b40]/30' : 'bg-[#c29b40]/40'}`} />
+            </div>
+            <p className={`text-[13px] font-mono leading-[2] tracking-wide max-w-3xl mx-auto text-center ${darkMode ? 'text-gray-400 opacity-85' : 'text-slate-600'
+              }`}>
+              {t.aboutText}
+            </p>
+          </div>
+        </section>
+
       </main>
 
       {/* Contact Modal */}

@@ -522,3 +522,256 @@
 .slider-dot:hover:not(.active) {
   background: rgba(255, 255, 255, 0.4);
 }
+
+/* ── Tech Badges ───────────────────────────────────────────── */
+.tech-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  font-family: monospace;
+  color: var(--badge-color);
+  background: var(--badge-bg);
+  border: 1px solid color-mix(in srgb, var(--badge-color) 55%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--badge-color) 12%, transparent);
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.tech-badge:hover {
+  background: color-mix(in srgb, var(--badge-color) 22%, transparent);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--badge-color) 35%, transparent);
+}
+
+/* ── GitHub Repo Button ────────────────────────────────────── */
+.github-repo-btn {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.55);
+  border-radius: 4px;
+}
+
+.github-repo-btn:hover {
+  background: rgba(194, 155, 64, 0.10);
+  border-color: rgba(194, 155, 64, 0.55);
+  color: #c29b40;
+  box-shadow: 0 0 18px rgba(194, 155, 64, 0.18);
+  transform: translateY(-1px);
+}
+
+/* ── Contact Form Inputs ───────────────────────────────────── */
+.contact-input {
+  width: 100%;
+  border-radius: 3px;
+  transition: border-color 0.25s, background 0.25s, box-shadow 0.25s;
+}
+
+.contact-input.dark-input {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #e2e8f0;
+  caret-color: #c29b40;
+}
+
+.contact-input.dark-input::placeholder {
+  color: rgba(148, 163, 184, 0.35);
+}
+
+.contact-input.dark-input:focus {
+  border-color: rgba(194, 155, 64, 0.45);
+  background: rgba(194, 155, 64, 0.03);
+  box-shadow: 0 0 0 2px rgba(194, 155, 64, 0.08);
+}
+
+.contact-input.light-input {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #1e293b;
+  caret-color: #c29b40;
+}
+
+.contact-input.light-input::placeholder {
+  color: #94a3b8;
+}
+
+.contact-input.light-input:focus {
+  border-color: rgba(194, 155, 64, 0.6);
+  background: #fff;
+  box-shadow: 0 0 0 2px rgba(194, 155, 64, 0.12);
+}
+
+/* ── Contact Submit Button ─────────────────────────────────── */
+.contact-submit-btn {
+  background: linear-gradient(135deg, #c29b40 0%, #8b6914 100%);
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 4px 24px rgba(194, 155, 64, 0.3);
+  transition: box-shadow 0.25s, transform 0.2s;
+}
+
+.contact-submit-btn:hover:not(:disabled) {
+  box-shadow: 0 4px 40px rgba(194, 155, 64, 0.55);
+  transform: translateY(-1px);
+}
+
+.contact-submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* ── Project Card ──────────────────────────────────────────── */
+.project-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at top left, rgba(194, 155, 64, 0.04), transparent 60%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+/* ── Light Mode Overrides ──────────────────────────────────── */
+
+/* Section card backgrounds */
+:root.light .bg-white\/\[0\.01\],
+:root.light .bg-white\/\[0\.025\] {
+  background: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* FPV/Skills/About sections */
+:root.light .bg-\[#1e293b\]\/10 {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(203, 213, 225, 0.7) !important;
+}
+
+:root.light .border-white\/5 {
+  border-color: rgba(203, 213, 225, 0.6) !important;
+}
+
+:root.light .border-white\/10 {
+  border-color: rgba(203, 213, 225, 0.8) !important;
+}
+
+/* Text color fixes for light mode */
+:root.light .text-gray-400 {
+  color: #475569 !important;
+}
+
+:root.light .text-gray-500 {
+  color: #64748b !important;
+}
+
+:root.light .text-gray-300 {
+  color: #334155 !important;
+}
+
+:root.light .text-white {
+  color: #0f172a;
+}
+
+/* Keep gold accents as-is */
+:root.light .text-\[#c29b40\] {
+  color: #c29b40 !important;
+}
+
+/* Card hover backgrounds */
+:root.light .bg-white\/\[0\.02\] {
+  background: rgba(248, 250, 252, 0.9) !important;
+  border-color: rgba(203, 213, 225, 0.6) !important;
+}
+
+:root.light .hover\:bg-white\/\[0\.05\]:hover {
+  background: rgba(241, 245, 249, 1) !important;
+}
+
+/* Divider lines */
+:root.light .bg-white\/20 {
+  background: rgba(148, 163, 184, 0.4) !important;
+}
+
+:root.light .bg-white\/10 {
+  background: rgba(148, 163, 184, 0.25) !important;
+}
+
+/* GitHub button in light mode */
+.light-github-btn {
+  background: rgba(15, 23, 42, 0.04) !important;
+  border: 1px solid rgba(15, 23, 42, 0.15) !important;
+  color: #475569 !important;
+}
+
+.light-github-btn:hover {
+  background: rgba(194, 155, 64, 0.10) !important;
+  border-color: rgba(194, 155, 64, 0.55) !important;
+  color: #c29b40 !important;
+  box-shadow: 0 0 18px rgba(194, 155, 64, 0.18) !important;
+}
+
+:root.light .github-repo-btn {
+  background: rgba(15, 23, 42, 0.04);
+  border-color: rgba(15, 23, 42, 0.14);
+  color: rgba(15, 23, 42, 0.55);
+}
+
+:root.light .github-repo-btn:hover {
+  background: rgba(194, 155, 64, 0.10);
+  border-color: rgba(194, 155, 64, 0.55);
+  color: #c29b40;
+}
+
+:root.light .ticker-track {
+  background: rgba(240, 244, 248, 0.92);
+}
+
+:root.light .ai-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.98) 100%);
+  border-color: rgba(194, 155, 64, 0.3);
+  box-shadow: 0 8px 48px rgba(0, 0, 0, 0.10);
+}
+
+:root.light .ai-input {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.1);
+  color: #1e293b;
+}
+
+:root.light .ai-input:focus {
+  border-color: rgba(194, 155, 64, 0.5);
+  background: rgba(194, 155, 64, 0.03);
+}
+
+/* Skills section text */
+:root.light .group\/skill span {
+  color: #0f172a;
+}
+
+:root.light .group\/skill p {
+  color: #64748b !important;
+}
+
+/* Footer in light mode */
+:root.light footer {
+  background: #f1f5f9 !important;
+  border-top-color: rgba(203, 213, 225, 0.7) !important;
+}
+
+:root.light footer .text-gray-500 {
+  color: #94a3b8 !important;
+}
+
+/* Preloader stays dark always */
+.preloader {
+  background: #020617 !important;
+}
