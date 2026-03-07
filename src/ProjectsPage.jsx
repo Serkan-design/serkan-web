@@ -49,6 +49,22 @@ const projects = [
     icon: Terminal,
     accent: '#5C3EE8',
   },
+  {
+    id: 'proj4',
+    titleTr: 'SITech Nutrition API',
+    titleEn: 'SITech Nutrition API',
+    descTr: 'Modern beslenme ve diyet takip sistemleri için geliştirilmiş, yüksek performanslı ve ölçeklenebilir RESTful API projesi.',
+    descEn: 'A high-performance, scalable RESTful API project developed for modern nutrition and diet tracking systems.',
+    github: 'https://github.com/Serkan-design/SITech.NutritionApi',
+    techs: [
+      { name: 'C#', color: '#9B4F96' },
+      { name: '.NET 8', color: '#512BD4' },
+      { name: 'Entity Framework', color: '#512BD4' },
+      { name: 'REST API', color: '#00BCD4' }
+    ],
+    icon: Code,
+    accent: '#512BD4',
+  },
 ];
 
 // ── Tech icons ───────────────────────────────────────────
