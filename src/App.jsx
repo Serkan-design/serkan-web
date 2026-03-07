@@ -364,7 +364,30 @@ const App = () => {
   };
 
   return (
-    <div className={`min-h-screen font-sans relative overflow-x-hidden ${darkMode ? 'bg-[#020617] text-[#f8fafc]' : 'bg-[#f0f4f8] text-[#0f172a]'}`} style={{ transition: 'background 0.4s ease, color 0.4s ease' }}>
+    <div className={`min-h-screen font-sans relative overflow-x-hidden ${darkMode ? 'bg-[#0a0a0f] text-[#f1f5f9]' : 'bg-[#f0f4f8] text-[#0f172a]'}`} style={{ transition: 'background 0.4s ease, color 0.4s ease' }}>
+
+      {/* Geometric Network Background */}
+      <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={{ opacity: darkMode ? 1 : 0.4 }}>
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style={{ position: 'absolute', inset: 0 }}>
+          <defs>
+            <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(239,68,68,0.06)" strokeWidth="0.5"/>
+            </pattern>
+            <radialGradient id="fadeOut" cx="50%" cy="50%" r="50%">
+              <stop offset="0%" stopColor="white" stopOpacity="1"/>
+              <stop offset="100%" stopColor="white" stopOpacity="0"/>
+            </radialGradient>
+            <mask id="gridMask">
+              <rect width="100%" height="100%" fill="url(#fadeOut)"/>
+            </mask>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)" mask="url(#gridMask)"/>
+          {/* Diagonal accent lines */}
+          <line x1="0" y1="30%" x2="40%" y2="0" stroke="rgba(239,68,68,0.04)" strokeWidth="1"/>
+          <line x1="60%" y1="100%" x2="100%" y2="60%" stroke="rgba(239,68,68,0.04)" strokeWidth="1"/>
+          <line x1="0" y1="70%" x2="30%" y2="100%" stroke="rgba(239,68,68,0.03)" strokeWidth="0.8"/>
+        </svg>
+      </div>
       {/* Preloader */}
       {!preloaderDone && <Preloader onDone={() => setPreloaderDone(true)} />}
 
@@ -385,7 +408,7 @@ const App = () => {
                 top: `${p.y}%`,
                 width: `${p.size}px`,
                 height: `${p.size}px`,
-                background: p.gold ? 'rgba(194,155,64,0.85)' : 'rgba(255,255,255,0.5)',
+                background: p.gold ? 'rgba(239,68,68,0.85)' : 'rgba(255,255,255,0.5)',
                 animationDelay: `${p.delay}s`,
                 animationDuration: `${p.duration}s`,
               }}
@@ -396,8 +419,8 @@ const App = () => {
         {/* ── Left Panel: Aviation/FPV ── */}
         <div className="relative w-full md:w-1/2 h-full overflow-hidden border-r border-white/5">
           {/* Gradient overlays */}
-          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#020617] via-[#020617]/40 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#020617]/70 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#0a0a0f] via-[#0a0a0f]/40 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0a0a0f]/70 via-transparent to-transparent pointer-events-none" />
 
           {/* Parallax image wrapper */}
           <div
@@ -437,8 +460,8 @@ const App = () => {
             className="relative z-20 h-full flex flex-col items-start"
             style={{ justifyContent: 'center', paddingLeft: '18%', paddingRight: '5%', marginTop: '8%' }}
           >
-            <div className="inline-flex items-center gap-2 bg-[#c29b40] px-4 py-2 text-[10px] font-black tracking-[0.3em] uppercase mb-8 w-fit shadow-xl">
-              <Plane size={14} className="text-white" />
+            <div className="hero-label">
+              <Plane size={13} className="text-white" />
               <span>Aviation &amp; FPV Expert</span>
             </div>
             <h2 className="text-5xl md:text-7xl font-black tracking-tighter leading-tight">
@@ -458,8 +481,8 @@ const App = () => {
         {/* ── Right Panel: Tech/Software ── */}
         <div className="relative w-full md:w-1/2 h-full overflow-hidden">
           {/* Gradient overlays */}
-          <div className="absolute inset-0 z-10 bg-gradient-to-l from-[#020617] via-[#020617]/40 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#020617]/70 via-transparent to-transparent pointer-events-none" />
+          <div className="absolute inset-0 z-10 bg-gradient-to-l from-[#0a0a0f] via-[#0a0a0f]/40 to-transparent pointer-events-none" />
+          <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0a0a0f]/70 via-transparent to-transparent pointer-events-none" />
 
           {/* Parallax image wrapper */}
           <div
@@ -501,23 +524,23 @@ const App = () => {
               {/* Top status bar */}
               <div className="flex items-center gap-3 mb-6">
                 <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-[#c29b40] animate-pulse" />
+                  <div className="w-2 h-2 rounded-full bg-[#ef4444] animate-pulse" />
                   <div className="w-2 h-2 rounded-full" style={{ background: 'rgba(255,255,255,0.15)' }} />
                   <div className="w-2 h-2 rounded-full" style={{ background: 'rgba(255,255,255,0.07)' }} />
                 </div>
-                <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, rgba(194,155,64,0.5), transparent)' }} />
-                <span className="text-[9px] font-mono tracking-[0.4em] uppercase" style={{ color: 'rgba(194,155,64,0.5)' }}>AI · LIVE</span>
+                <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, rgba(239,68,68,0.5), transparent)' }} />
+                <span className="text-[9px] font-mono tracking-[0.4em] uppercase" style={{ color: 'rgba(239,68,68,0.5)' }}>AI · LIVE</span>
               </div>
 
               {/* Main AI Panel */}
               <div className="ai-panel relative overflow-hidden">
                 <div className="ai-scanline" />
-                <div className="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2 border-[#c29b40]" />
-                <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2" style={{ borderColor: 'rgba(194,155,64,0.35)' }} />
-                <div className="absolute bottom-0 left-0 w-5 h-5 border-b-2 border-l-2" style={{ borderColor: 'rgba(194,155,64,0.35)' }} />
-                <div className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-[#c29b40]" />
+                <div className="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2 border-[#ef4444]" />
+                <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2" style={{ borderColor: 'rgba(239,68,68,0.35)' }} />
+                <div className="absolute bottom-0 left-0 w-5 h-5 border-b-2 border-l-2" style={{ borderColor: 'rgba(239,68,68,0.35)' }} />
+                <div className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-[#ef4444]" />
                 <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full pointer-events-none"
-                  style={{ background: 'radial-gradient(circle, rgba(194,155,64,0.10) 0%, transparent 70%)' }} />
+                  style={{ background: 'radial-gradient(circle, rgba(239,68,68,0.10) 0%, transparent 70%)' }} />
 
                 <div className="px-6 pt-5 pb-5 relative z-10">
                   {/* Header */}
@@ -525,11 +548,11 @@ const App = () => {
                     <div className="flex items-center gap-2.5">
                       <div className="relative flex-shrink-0">
                         <div className="w-8 h-8 rounded-full flex items-center justify-center"
-                          style={{ background: 'linear-gradient(135deg,#c29b40,#7a5c10)', border: '1px solid rgba(194,155,64,0.35)' }}>
+                          style={{ background: 'linear-gradient(135deg,#ef4444,#b91c1c)', border: '1px solid rgba(239,68,68,0.35)' }}>
                           <Sparkles size={12} className="text-white" />
                         </div>
                         <div className="absolute -bottom-px -right-px w-2.5 h-2.5 rounded-full border-[1.5px]"
-                          style={{ background: '#34d399', borderColor: '#020617' }} />
+                          style={{ background: '#34d399', borderColor: '#0a0a0f' }} />
                       </div>
                       <div className="leading-none">
                         <h3 className="text-[11px] font-black text-white tracking-[0.18em] uppercase leading-none mb-1">Serkan AI</h3>
@@ -537,9 +560,9 @@ const App = () => {
                       </div>
                     </div>
                     <div className="flex items-center gap-1 px-2.5 py-1"
-                      style={{ background: 'rgba(194,155,64,0.06)', border: '1px solid rgba(194,155,64,0.14)', borderRadius: '2px' }}>
-                      <Terminal size={8} className="text-[#c29b40]" />
-                      <span className="text-[8px] font-mono tracking-[0.25em] uppercase" style={{ color: 'rgba(194,155,64,0.6)' }}>LLaMA 3</span>
+                      style={{ background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.14)', borderRadius: '6px' }}>
+                      <Terminal size={8} className="text-[#ef4444]" />
+                      <span className="text-[8px] font-mono tracking-[0.25em] uppercase" style={{ color: 'rgba(239,68,68,0.6)' }}>LLaMA 3</span>
                     </div>
                   </div>
 
@@ -548,7 +571,7 @@ const App = () => {
                     {!chatResponse && !isTyping && (
                       <div className="flex items-start gap-2.5">
                         <div className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5"
-                          style={{ background: 'linear-gradient(135deg,#c29b40,#7a5c10)' }}>
+                          style={{ background: 'linear-gradient(135deg,#ef4444,#b91c1c)' }}>
                           <Sparkles size={8} className="text-white" />
                         </div>
                         <div className="flex-1 px-3.5 py-2.5"
@@ -562,11 +585,11 @@ const App = () => {
                     {isTyping && (
                       <div className="flex items-start gap-2.5">
                         <div className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5"
-                          style={{ background: 'linear-gradient(135deg,#c29b40,#7a5c10)' }}>
+                          style={{ background: 'linear-gradient(135deg,#ef4444,#b91c1c)' }}>
                           <Sparkles size={8} className="text-white" />
                         </div>
                         <div className="px-3.5 py-2.5 flex items-center gap-1.5"
-                          style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(194,155,64,0.15)' }}>
+                          style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(239,68,68,0.15)' }}>
                           <div className="ai-dot" style={{ animationDelay: '0ms' }} />
                           <div className="ai-dot" style={{ animationDelay: '160ms' }} />
                           <div className="ai-dot" style={{ animationDelay: '320ms' }} />
@@ -576,11 +599,11 @@ const App = () => {
                     {chatResponse && !isTyping && (
                       <div className="flex items-start gap-2.5">
                         <div className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5"
-                          style={{ background: 'linear-gradient(135deg,#c29b40,#7a5c10)' }}>
+                          style={{ background: 'linear-gradient(135deg,#ef4444,#b91c1c)' }}>
                           <Sparkles size={8} className="text-white" />
                         </div>
                         <div className="flex-1 px-3.5 py-2.5"
-                          style={{ background: 'rgba(194,155,64,0.05)', border: '1px solid rgba(194,155,64,0.18)' }}>
+                          style={{ background: 'rgba(239,68,68,0.05)', border: '1px solid rgba(239,68,68,0.18)' }}>
                           <p className="text-[11px] leading-relaxed" style={{ color: 'rgba(226,232,240,0.9)', fontFamily: 'monospace' }}>{chatResponse}</p>
                         </div>
                       </div>
@@ -589,7 +612,7 @@ const App = () => {
 
                   {/* Divider */}
                   <div className="h-px mb-3.5"
-                    style={{ background: 'linear-gradient(90deg,rgba(194,155,64,0.25),rgba(255,255,255,0.04),transparent)' }} />
+                    style={{ background: 'linear-gradient(90deg,rgba(239,68,68,0.25),rgba(255,255,255,0.04),transparent)' }} />
 
                   {/* Input row */}
                   <div className="flex gap-2" style={{ height: '42px' }}>
@@ -630,7 +653,7 @@ const App = () => {
                   <span>Instagram</span>
                 </a>
                 <a href="https://github.com/Serkan-design" target="_blank" rel="noopener noreferrer"
-                  className="social-link-gold flex items-center justify-center gap-2.5 h-11 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300">
+                  className="social-link-red flex items-center justify-center gap-2.5 h-11 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300">
                   <Code size={13} />
                   <span>GitHub</span>
                 </a>
@@ -643,19 +666,19 @@ const App = () => {
         {/* ── Ticker Bar (bottom of hero) ── */}
         <div
           className="absolute bottom-0 left-0 right-0 z-30 overflow-hidden"
-          style={{ height: '44px', background: 'rgba(2,6,23,0.92)', borderTop: '1px solid rgba(194,155,64,0.18)', backdropFilter: 'blur(12px)' }}
+          style={{ height: '44px', background: 'rgba(10,10,15,0.95)', borderTop: '1px solid rgba(239,68,68,0.18)', backdropFilter: 'blur(12px)' }}
         >
           <div className="ticker-track h-full flex items-center">
             {[...tickerItems, ...tickerItems].map((item, i) => (
               <div key={i} className="flex items-center flex-shrink-0 px-6" style={{ gap: '10px' }}>
-                <span className="text-[9px] font-mono uppercase tracking-[0.35em]" style={{ color: '#c29b40', opacity: 0.9 }}>
+                <span className="text-[9px] font-mono uppercase tracking-[0.35em]" style={{ color: '#ef4444', opacity: 0.9 }}>
                   {item.label}
                 </span>
-                <span style={{ color: 'rgba(194,155,64,0.2)', fontSize: '8px' }}>|</span>
+                <span style={{ color: 'rgba(239,68,68,0.25)', fontSize: '8px' }}>|</span>
                 <span className="text-[9px] font-mono uppercase tracking-[0.25em]" style={{ color: 'rgba(255,255,255,0.38)' }}>
                   {item.value}
                 </span>
-                <span style={{ color: 'rgba(194,155,64,0.22)', marginLeft: '16px', fontSize: '8px' }}>◆</span>
+                <span style={{ color: 'rgba(239,68,68,0.25)', marginLeft: '16px', fontSize: '8px' }}>◆</span>
               </div>
             ))}
           </div>
@@ -664,32 +687,31 @@ const App = () => {
       </section>
 
       {/* ── Main Content Sections ── */}
-      <main className="w-full flex flex-col items-center gap-24 relative z-30 -mt-32">
+      <main className="w-full flex flex-col items-center gap-24 relative z-10 -mt-32">
 
         {/* FPV Details */}
         <div className="reveal w-full max-w-[1500px] px-6 md:px-12">
-          <div className="bg-[#1e293b]/10 backdrop-blur-3xl border border-white/5 p-12 md:p-24 relative overflow-visible transition-all duration-700 hover:border-[#c29b40]/20 flex flex-col items-center text-center">
-            <div className="absolute inset-0 bg-gradient-to-b from-[#c29b40]/5 to-transparent pointer-events-none" />
-            <div className="flex flex-col items-center justify-center gap-6 mb-24 relative z-10 w-full">
-              <div className="w-20 h-[3px] bg-[#c29b40] mb-4" />
+          <div className="section-card p-12 md:p-24 relative overflow-visible flex flex-col items-center text-center">
+            <div className="absolute inset-0 bg-gradient-to-b from-[#ef4444]/5 to-transparent pointer-events-none rounded-[20px]" />
+            <div className="flex flex-col items-center justify-center gap-6 mb-16 relative z-10 w-full">
+              <div className="accent-pill mb-2"><Wind size={13}/>{t.fpvTitle}</div>
               <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">{t.fpvTitle}</h3>
-              <Wind className="text-[#c29b40] opacity-40 animate-pulse mt-2" size={40} />
             </div>
-            <p className="text-gray-400 text-xl md:text-2xl leading-relaxed italic max-w-4xl relative z-10 px-6" style={{ marginBottom: '80px' }}>
+            <p className="text-gray-400 text-xl md:text-2xl leading-relaxed italic max-w-4xl relative z-10 px-6" style={{ marginBottom: '60px' }}>
               {t.fpvDesc}
             </p>
-            <div style={{ height: '40px' }} />
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 w-full relative z-10 px-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full relative z-10 px-4">
               {[
                 { icon: Award, label: "SHGM İHA-1", desc: "Commercial License" },
                 { icon: Cpu, label: "BTFA-FLIGHT", desc: "System Optimization" },
                 { icon: Box, label: "LRS/CROSSFIRE", desc: "Long Range Control" }
               ].map((item, i) => (
-                <div key={i} className="reveal bg-white/[0.02] p-12 border border-white/10 group/item hover:bg-white/[0.05] transition-all hover:translate-y-[-8px] flex flex-col items-center text-center" style={{ transitionDelay: `${i * 0.15}s` }}>
-                  <item.icon size={36} className="text-[#c29b40] mb-12 group-hover/item:scale-110 transition-transform" />
-                  <p className="text-[13px] font-black uppercase tracking-[0.4em] mb-4">{item.label}</p>
-                  <div className="h-6" />
-                  <p className="text-[11px] text-gray-500 font-mono italic mt-4">{item.desc}</p>
+                <div key={i} className="reveal group/item p-10 border border-white/8 rounded-2xl hover:border-[#ef4444]/40 hover:bg-white/[0.04] transition-all hover:translate-y-[-6px] flex flex-col items-center text-center" style={{ transitionDelay: `${i * 0.15}s`, background: 'rgba(255,255,255,0.02)' }}>
+                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-8" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.25)' }}>
+                    <item.icon size={26} className="text-[#ef4444] group-hover/item:scale-110 transition-transform" />
+                  </div>
+                  <p className="text-[13px] font-black uppercase tracking-[0.4em] mb-3">{item.label}</p>
+                  <p className="text-[11px] text-gray-500 font-mono italic">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -698,85 +720,111 @@ const App = () => {
 
         {/* Technical Skills */}
         <div className="reveal from-right w-full max-w-[1500px] px-6 md:px-12">
-          <div className="bg-white/[0.01] backdrop-blur-3xl p-12 md:p-24 border border-white/5 relative overflow-visible group transition-all duration-700 hover:border-[#c29b40]/20 flex flex-col items-center">
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#c29b40]/5 rounded-full blur-[200px] pointer-events-none opacity-40" />
-            <div className="flex flex-col items-center justify-center mb-28 relative z-10 w-full text-center">
-              <Database size={40} className="text-[#c29b40] opacity-50 mb-8" />
-              <h3 className="text-[16px] font-black uppercase tracking-[0.8em] text-gray-400">{t.skillsTitle}</h3>
-              <div className="w-16 h-[1px] bg-white/20 mt-8" />
+          <div className="section-card p-12 md:p-20 relative overflow-visible flex flex-col items-center">
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#ef4444]/4 rounded-full blur-[200px] pointer-events-none opacity-40" />
+            <div className="flex flex-col items-center justify-center mb-16 relative z-10 w-full text-center">
+              <div className="accent-pill mb-6"><Database size={13}/>{t.skillsTitle}</div>
+              <h3 className="text-3xl md:text-5xl font-black tracking-tighter">{t.skillsTitle}</h3>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-24 gap-y-16 w-full relative z-10 px-12 mt-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full relative z-10">
               {t.skills.map((skill, index) => (
-                <div key={index} className="reveal group/skill cursor-default flex flex-col items-center text-center p-8 bg-white/[0.02] border border-white/5 hover:border-[#c29b40]/30 transition-all duration-300" style={{ transitionDelay: `${index * 0.13}s` }}>
-                  <div className="flex flex-col items-center justify-center gap-6 mb-8 w-full">
-                    <div className="mb-4">
-                      {skill.name.includes(".NET") && (
-                        <svg viewBox="0 0 24 24" className="w-12 h-12 text-[#c29b40]" fill="currentColor">
-                          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                        </svg>
-                      )}
-                      {skill.name.includes("Python") && (
-                        <svg viewBox="0 0 24 24" className="w-12 h-12 text-[#c29b40]" fill="currentColor">
-                          <path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm1 14h-2v2h2v-2zm-1-10c-2.206 0-4 1.794-4 4h2c0-1.103.897-2 2-2s2 .897 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.206-1.794-4-4-4z" />
-                        </svg>
-                      )}
-                      {skill.name.includes("Veritabanı") && <Database size={48} className="text-[#c29b40]" />}
-                      {skill.name.includes("Gömülü") && <Cpu size={48} className="text-[#c29b40]" />}
-                    </div>
-                    <div className="flex items-center justify-center gap-4">
-                      <div className="w-6 h-[1px] bg-white/10 group-hover/skill:bg-[#c29b40]/30" />
-                      <span className="font-black text-xl md:text-2xl tracking-tighter uppercase group-hover/skill:text-[#c29b40] transition-colors">{skill.name}</span>
-                      <div className="w-6 h-[1px] bg-white/10 group-hover/skill:bg-[#c29b40]/30" />
-                    </div>
+                <div key={index} className="reveal group/skill cursor-default flex items-center gap-6 p-8 rounded-2xl border border-white/5 hover:border-[#ef4444]/30 hover:bg-white/[0.04] transition-all duration-300" style={{ transitionDelay: `${index * 0.13}s`, background: 'rgba(255,255,255,0.02)' }}>
+                  <div className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(239,68,68,0.10)', border: '1px solid rgba(239,68,68,0.22)' }}>
+                    {skill.name.includes(".NET") && <svg viewBox="0 0 24 24" className="w-7 h-7 text-[#ef4444]" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>}
+                    {skill.name.includes("Python") && <svg viewBox="0 0 24 24" className="w-7 h-7 text-[#ef4444]" fill="currentColor"><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm1 14h-2v2h2v-2zm-1-10c-2.206 0-4 1.794-4 4h2c0-1.103.897-2 2-2s2 .897 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.206-1.794-4-4-4z" /></svg>}
+                    {skill.name.includes("Veritabanı") && <Database size={24} className="text-[#ef4444]" />}
+                    {skill.name.includes("Gömülü") && <Cpu size={24} className="text-[#ef4444]" />}
+                    {skill.name.includes("Database") && <Database size={24} className="text-[#ef4444]" />}
+                    {skill.name.includes("Embedded") && <Cpu size={24} className="text-[#ef4444]" />}
                   </div>
-                  <p className="text-[13px] text-gray-500 uppercase tracking-[0.2em] italic leading-relaxed group-hover/skill:text-gray-300 transition-all max-w-sm">
-                    {skill.desc}
-                  </p>
+                  <div className="flex flex-col gap-2">
+                    <span className="font-black text-[15px] tracking-tight uppercase group-hover/skill:text-[#ef4444] transition-colors leading-none">{skill.name}</span>
+                    <p className="text-[12px] text-gray-500 leading-relaxed group-hover/skill:text-gray-300 transition-all">{skill.desc}</p>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </div>
 
-        {/* ── Projects Section ── */}
+        {/* ── Tech Stack Grid ── */}
+        <div className="reveal w-full max-w-[1500px] px-6 md:px-12">
+          <div className="section-card p-12 md:p-16 relative overflow-hidden flex flex-col items-center">
+            <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[160px] pointer-events-none" style={{ background: 'rgba(239,68,68,0.04)' }} />
+            <div className="flex flex-col items-center mb-12 relative z-10 w-full text-center">
+              <div className="accent-pill mb-6"><Cpu size={13}/>{lang === 'tr' ? 'Teknoloji Yığını' : 'Tech Stack'}</div>
+              <h3 className="text-3xl md:text-5xl font-black tracking-tighter">
+                {lang === 'tr' ? 'Kullandığım Teknolojiler' : 'Technologies I Use'}
+              </h3>
+            </div>
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-4 w-full relative z-10">
+              {[
+                { name: 'C#',      color: '#9B4F96', path: 'M11.5 15.97l.41 2.44c-.26.14-.68.27-1.24.39-.57.13-1.24.2-2.01.2-2.21-.04-3.87-.7-4.98-1.96C2.56 15.77 2 14.16 2 12.21c.05-2.31.72-4.08 2-5.32C5.32 5.64 6.96 5 8.94 5c.75 0 1.4.07 1.94.19s.94.25 1.2.4l-.58 2.49-1.96-.44c-.4-.01-.83.06-1.28.19-.31.09-.6.25-.87.49-.27.23-.49.54-.66.91-.17.38-.26.86-.26 1.45.01.58.1 1.09.28 1.51.18.42.41.77.69 1.04s.59.46.94.58.72.18 1.1.17c.42-.01.81-.05 1.17-.12.35-.08.64-.17.87-.29zm5.47 3.19l-.71.71.71.71v1h-1v.71l-.71-.71-.71.71V13.5h-1v-1l.71-.71-.71-.71v-1h1V9.5l.71.71.71-.71v1h1v1zm3 0l-.71.71.71.71v1h-1v.71l-.71-.71-.71.71V13.5h-1v-1l.71-.71-.71-.71v-1h1V9.5l.71.71.71-.71v1h1v1z' },
+                { name: '.NET',    color: '#512BD4', path: 'M24 8.77h-2.468v7.565h-1.425V8.77h-2.462V7.53H24zm-6.852 7.565h-4.821V7.53h4.63v1.24h-3.205v2.494h2.953v1.234h-2.953v2.604h3.396zm-6.708 0H8.882L5.234 9.936c-.145-.222-.243-.413-.296-.573h-.041c.031.188.047.499.047.932v6.042H3.619V7.53h1.7l3.524 6.302c.19.335.313.572.369.71h.028c-.038-.24-.056-.584-.056-1.03V7.53h1.256v8.805z' },
+                { name: 'Python',  color: '#3776AB', path: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z' },
+                { name: 'SQL',     color: '#CC2927', path: 'M12 3C7.58 3 4 4.79 4 7s3.58 4 8 4 8-1.79 8-4-3.58-4-8-4m0 6c-3.87 0-6-.9-6-2s2.13-2 6-2 6 .9 6 2-2.13 2-6 2m8 2c0 2.21-3.58 4-8 4s-8-1.79-8-4V9.78C5.61 11.1 8.67 12 12 12s6.39-.9 8-2.22zm0 4c0 2.21-3.58 4-8 4s-8-1.79-8-4v-2.22C5.61 15.1 8.67 16 12 16s6.39-.9 8-2.22z' },
+                { name: 'ESP32',   color: '#E7352B', path: 'M7 2v2H5v2H3v8h2v2h2v2h10v-2h2v-2h2V6h-2V4h-2V2zm0 2h10v2h2v8h-2v2H7v-2H5V6h2zm3 2H8v2H6v4h2v2h8v-2h2v-4h-2V6h-2v1h-2zm0 1h4v1h2v4h-2v1H9v-1H7V9h2z' },
+                { name: 'C++',     color: '#00599C', path: 'M10.5 15.97l.41 2.44c-.26.14-.68.27-1.24.39-.57.13-1.24.2-2.01.2-2.21-.04-3.87-.7-4.98-1.96C1.56 15.77 1 14.16 1 12.21c.05-2.31.72-4.08 2-5.32C4.32 5.64 5.96 5 7.94 5c.75 0 1.4.07 1.94.19s.94.25 1.2.4l-.58 2.49-1.96-.44c-.4-.01-.83.06-1.28.19-.31.09-.6.25-.87.49-.27.23-.49.54-.66.91-.17.38-.26.86-.26 1.45.01.58.1 1.09.28 1.51.18.42.41.77.69 1.04s.59.46.94.58.72.18 1.1.17c.42-.01.81-.05 1.17-.12.35-.08.64-.17.87-.29zM23 11h-2V9h-2v2h-2v2h2v2h2v-2h2z' },
+                { name: 'Git',     color: '#F05032', path: 'M23.546 10.93L13.067.452a1.55 1.55 0 0 0-2.188 0L8.708 2.627l2.76 2.76a1.838 1.838 0 0 1 2.327 2.341l2.658 2.66a1.838 1.838 0 0 1 1.9 3.039 1.837 1.837 0 0 1-2.596 0 1.846 1.846 0 0 1-.404-1.996L12.86 8.955v6.525c.176.086.342.203.48.346a1.846 1.846 0 0 1 0 2.6 1.838 1.838 0 0 1-2.6 0 1.846 1.846 0 0 1 0-2.6c.15-.154.33-.277.536-.361V8.904a1.847 1.847 0 0 1-.997-2.416L7.559 3.782.454 10.887a1.55 1.55 0 0 0 0 2.188l10.48 10.478a1.55 1.55 0 0 0 2.187 0l10.425-10.424a1.55 1.55 0 0 0 0-2.199' },
+                { name: 'GitHub',  color: '#aaa',    path: 'M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z' },
+                { name: 'VS Code', color: '#007ACC', path: 'M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 19.5v-15a1.5 1.5 0 0 0-.85-1.413zm-5.406 16.329l-6.078-5.581L16.5 10.7v6.9l1.244.916z' },
+                { name: 'OpenCV',  color: '#5C3EE8', path: 'M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z' },
+                { name: 'Blynk',   color: '#00E5FF', path: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z' },
+                { name: 'Kali',    color: '#268BEE', path: 'M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z' },
+                { name: 'ADO.NET', color: '#7B2FBE', path: 'M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8m-1 3h2v5.5l3.9 2.3-.9 1.7-4-2.4V7z' },
+                { name: 'Crossfire', color: '#FF6B35', path: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5' },
+              ].map((tech, i) => (
+                <div key={i} className="tech-icon-card group flex flex-col items-center gap-3 p-4 rounded-2xl cursor-default" style={{ '--tech-color': tech.color }}>
+                  <div className="tech-icon-wrap">
+                    <svg viewBox="0 0 24 24" fill={tech.color} className="w-8 h-8 transition-transform duration-300 group-hover:scale-110">
+                      <path d={tech.path} />
+                    </svg>
+                  </div>
+                  <span className="tech-icon-label">{tech.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+
         <section id="projects" className="reveal w-full max-w-[1500px] px-6 md:px-12">
-          <div className={`p-12 md:p-20 border relative overflow-hidden transition-all duration-700 ${darkMode ? 'bg-white/[0.01] border-white/5 backdrop-blur-3xl' : 'bg-white border-slate-200/80 shadow-lg'}`}>
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#c29b40] to-transparent opacity-50" />
+          <div className={`section-card p-12 md:p-20 relative overflow-visible ${!darkMode ? 'bg-white border-slate-200/80' : ''}`}>
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#ef4444] to-transparent opacity-70" />
             <div className="flex flex-col items-center mb-16">
-              <Code size={32} className={`opacity-60 mb-6 text-[#c29b40]`} />
-              <h3 className={`text-[16px] font-black uppercase tracking-[0.8em] ${darkMode ? 'text-gray-400' : 'text-slate-500'}`}>{lang === 'tr' ? 'Projeler' : 'Projects'}</h3>
-              <div className={`w-16 h-[1px] mt-6 ${darkMode ? 'bg-white/20' : 'bg-slate-300'}`} />
+              <div className="accent-pill mb-6"><Code size={13}/>{lang === 'tr' ? 'Projeler' : 'Projects'}</div>
+              <h3 className="text-3xl md:text-5xl font-black tracking-tighter">{lang === 'tr' ? 'Projelerim' : 'My Projects'}</h3>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {projects.map((proj, i) => (
                 <div
                   key={proj.id}
-                  className={`reveal project-card group relative flex flex-col p-8 border transition-all duration-500 hover:translate-y-[-6px] ${darkMode
-                      ? 'bg-white/[0.025] border-white/8 hover:border-[#c29b40]/40 hover:bg-white/[0.05]'
-                      : 'bg-slate-50 border-slate-200 hover:border-[#c29b40]/60 shadow-sm hover:shadow-xl'
+                  className={`reveal project-card group flex flex-col p-10 border transition-colors duration-300 ${darkMode
+                      ? 'bg-white/[0.025] border-white/8'
+                      : 'bg-slate-50 border-slate-200 shadow-sm'
                     }`}
                   style={{ transitionDelay: `${i * 0.1}s` }}
                 >
                   {/* Card top accent */}
-                  <div className="absolute top-0 left-0 w-0 h-[2px] bg-[#c29b40] transition-all duration-500 group-hover:w-full" />
+                  <div className="absolute top-0 left-0 w-0 h-[2px] bg-[#ef4444] transition-all duration-500 group-hover:w-full" />
 
                   {/* Icon + Title */}
-                  <div className="flex items-start gap-4 mb-5">
-                    <div className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(194,155,64,0.12)', border: '1px solid rgba(194,155,64,0.3)' }}>
-                      <proj.icon size={18} className="text-[#c29b40]" />
+                  <div className="flex items-start gap-4 mb-8">
+                    <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.3)' }}>
+                      <proj.icon size={20} className="text-[#ef4444]" />
                     </div>
-                    <h4 className={`font-black text-[14px] uppercase tracking-tight leading-tight mt-1 ${darkMode ? 'text-white' : 'text-slate-800'}`}>
+                    <h4 className={`font-black text-[15px] uppercase tracking-tight leading-snug mt-1 ${darkMode ? 'text-white' : 'text-slate-800'}`}>
                       {lang === 'tr' ? proj.titleTr : proj.titleEn}
                     </h4>
                   </div>
 
                   {/* Description */}
-                  <p className={`text-[12px] leading-relaxed font-mono flex-1 mb-6 ${darkMode ? 'text-gray-400' : 'text-slate-600'}`}>
+                  <p className={`text-[13px] leading-[1.9] font-mono flex-1 mb-8 ${darkMode ? 'text-gray-400' : 'text-slate-600'}`}>
                     {lang === 'tr' ? proj.descTr : proj.descEn}
                   </p>
 
                   {/* Tech Badges */}
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  <div className="flex flex-wrap gap-2 mb-8">
                     {proj.techs.map((tech, ti) => (
                       <TechBadge key={ti} name={tech.name} color={tech.color} bgColor={tech.bgColor} />
                     ))}
@@ -787,7 +835,7 @@ const App = () => {
                     href={proj.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`github-repo-btn flex items-center justify-center gap-2.5 w-full py-2.5 text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-300 ${!darkMode ? 'light-github-btn' : ''}`}
+                    className={`github-repo-btn flex items-center justify-center gap-2.5 w-full py-3 text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-300 ${!darkMode ? 'light-github-btn' : ''}`}
                   >
                     <Github size={14} />
                     <span>{lang === 'tr' ? 'GitHub Reposu' : 'GitHub Repo'}</span>
@@ -801,20 +849,18 @@ const App = () => {
 
         {/* ── Contact Form Section ── */}
         <section id="contact" className="reveal w-full max-w-[900px] px-6 md:px-12 pb-4">
-          <div className={`p-10 md:p-16 border relative overflow-hidden transition-all duration-700 ${darkMode
-              ? 'bg-white/[0.01] border-white/5 backdrop-blur-3xl'
-              : 'bg-white border-slate-200/80 shadow-lg'
-            }`}>
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-[#c29b40]" />
-            <div className="absolute top-[2px] left-0 w-full h-16 bg-gradient-to-b from-[#c29b40]/8 to-transparent pointer-events-none" />
+          <div className={`section-card p-10 md:p-16 relative overflow-hidden ${!darkMode ? 'bg-white border-slate-200/80' : ''}`}>
+            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#ef4444] to-transparent" />
+            <div className="absolute top-[2px] left-0 w-full h-16 bg-gradient-to-b from-[#ef4444]/8 to-transparent pointer-events-none" />
 
             {/* Header */}
             <div className="flex flex-col items-center mb-10">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ background: 'rgba(194,155,64,0.12)', border: '1px solid rgba(194,155,64,0.3)' }}>
-                <Mail size={22} className="text-[#c29b40]" />
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style={{ background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.3)' }}>
+                <Mail size={22} className="text-[#ef4444]" />
               </div>
-              <h3 className={`text-[15px] font-black uppercase tracking-[0.8em] ${darkMode ? 'text-gray-400' : 'text-slate-500'}`}>
-                {lang === 'tr' ? 'İletişim' : 'Contact'}
+              <div className="accent-pill mb-4">{lang === 'tr' ? 'İletişim' : 'Contact'}</div>
+              <h3 className="text-3xl md:text-4xl font-black tracking-tighter">
+                {lang === 'tr' ? 'Benimle İletişime Geç' : 'Get In Touch'}
               </h3>
               <p className={`text-[12px] mt-3 font-mono text-center ${darkMode ? 'text-gray-500' : 'text-slate-500'}`}>
                 {lang === 'tr' ? 'Projeniz veya iş birliği hakkında bir mesaj bırakın.' : 'Leave a message about your project or collaboration.'}
@@ -890,19 +936,15 @@ const App = () => {
         </section>
 
         {/* ── About Section (EN ALTA) ── */}
-        <section id="about" className="reveal relative z-30 w-full max-w-[1000px] mx-auto px-6 md:px-12 pb-8">
-          <div className={`p-10 md:p-16 border relative overflow-hidden transition-all duration-700 ${darkMode
-              ? 'bg-white/[0.01] border-white/5 backdrop-blur-3xl'
-              : 'bg-white border-slate-200/80 shadow-lg'
-            }`}>
-            <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(194,155,64,0.06) 0%, transparent 70%)' }} />
-            <div className="flex flex-col items-center mb-10">
-              <User size={28} className="text-[#c29b40] mb-6 opacity-50" />
-              <h3 className={`text-[16px] font-black uppercase tracking-[0.8em] ${darkMode ? 'text-gray-400' : 'text-slate-500'}`}>{t.aboutTitle}</h3>
-              <div className={`w-24 h-[1px] mt-8 ${darkMode ? 'bg-[#c29b40]/30' : 'bg-[#c29b40]/40'}`} />
+        <section id="about" className="reveal relative z-10 w-full max-w-[1000px] mx-auto px-6 md:px-12 pb-8">
+          <div className={`section-card p-10 md:p-16 relative overflow-hidden flex flex-col items-center text-center ${!darkMode ? 'bg-white border-slate-200/80' : ''}`}>
+            <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(239,68,68,0.06) 0%, transparent 70%)' }} />
+            <div className="flex flex-col items-center mb-10 w-full">
+              <div className="accent-pill mb-6"><User size={13}/>{t.aboutTitle}</div>
+              <h3 className="text-3xl md:text-4xl font-black tracking-tighter">{t.aboutTitle}</h3>
+              <div className="w-24 h-[1px] mt-8 bg-[#ef4444]/30" />
             </div>
-            <p className={`text-[13px] font-mono leading-[2] tracking-wide max-w-3xl mx-auto text-center ${darkMode ? 'text-gray-400 opacity-85' : 'text-slate-600'
-              }`}>
+            <p className={`text-[13px] font-mono leading-[2.2] tracking-wide max-w-2xl text-center ${darkMode ? 'text-gray-400 opacity-85' : 'text-slate-600'}`}>
               {t.aboutText}
             </p>
           </div>
@@ -913,15 +955,15 @@ const App = () => {
       {/* Contact Modal */}
       {showContact && (
         <div className="fixed inset-0 z-[200] flex items-center justify-center p-6">
-          <div className="absolute inset-0 bg-[#020617]/95 backdrop-blur-xl" onClick={() => setShowContact(false)} />
-          <div className="relative bg-[#0f172a] border border-white/10 w-full max-w-md p-12 shadow-[0_0_100px_rgba(0,0,0,0.8)] overflow-hidden text-center flex flex-col items-center">
-            <div className="absolute top-0 left-0 w-full h-1 bg-[#c29b40]" />
-            <Mail size={48} className="text-[#c29b40] mb-6 animate-pulse" />
+          <div className="absolute inset-0 bg-[#0a0a0f]/95 backdrop-blur-xl" onClick={() => setShowContact(false)} />
+          <div className="relative bg-[#0f0a0a] border border-white/10 rounded-2xl w-full max-w-md p-12 shadow-[0_0_100px_rgba(0,0,0,0.8)] overflow-hidden text-center flex flex-col items-center">
+            <div className="absolute top-0 left-0 w-full h-1 rounded-t-2xl bg-gradient-to-r from-transparent via-[#ef4444] to-transparent" />
+            <Mail size={48} className="text-[#ef4444] mb-6 animate-pulse" />
             <h3 className="text-2xl font-black uppercase tracking-widest mb-2 text-white">Email</h3>
-            <p className="text-lg md:text-xl text-gray-300 font-mono bg-white/[0.05] border border-white/10 px-6 py-4 mt-6 w-full select-all">
+            <p className="text-lg md:text-xl text-gray-300 font-mono bg-white/[0.05] border border-white/10 rounded-lg px-6 py-4 mt-6 w-full select-all">
               serkanisik67@gmail.com
             </p>
-            <button onClick={() => setShowContact(false)} className="mt-8 px-8 py-3 bg-[#c29b40] text-white text-[11px] font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all w-full md:w-auto">
+            <button onClick={() => setShowContact(false)} className="mt-8 px-8 py-3 bg-[#ef4444] hover:bg-[#dc2626] text-white text-[11px] font-black uppercase tracking-[0.2em] transition-all w-full md:w-auto rounded-lg">
               {lang === 'tr' ? 'KAPAT' : 'CLOSE'}
             </button>
           </div>
@@ -929,27 +971,27 @@ const App = () => {
       )}
 
       {/* Footer */}
-      <footer className="relative z-30 bg-[#020617] border-t border-white/5 py-16">
+      <footer className="relative z-10 bg-[#0a0a0f] border-t border-white/5 py-16">
         <div className="w-full px-12 flex flex-col items-center justify-center text-center">
-          <div className="w-16 h-[1px] bg-[#c29b40]/30 mb-8" />
+          <div className="w-16 h-[1px] bg-[#ef4444]/30 mb-8" />
           <div className="flex flex-col items-center gap-4 mb-4">
             <a href={import.meta.env.BASE_URL} className="footer-logo transition-transform hover:scale-110">
               <div className="custom-logo scale-75">
                 <div className="badge-wrapper">
                   <svg viewBox="0 0 100 100" className="badge-svg w-12 h-12">
-                    <polygon points="50,15 85,32.5 85,67.5 50,85 15,67.5 15,32.5" fill="none" stroke="#c29b40" strokeWidth="3.5" strokeLinejoin="round" />
-                    <path d="M30 45 L45 45 L48 35 L52 35 L55 45 L70 45 L70 50 L55 50 L52 60 L48 60 L45 50 L30 50 Z" fill="#c29b40" />
+                    <polygon points="50,15 85,32.5 85,67.5 50,85 15,67.5 15,32.5" fill="none" stroke="#ef4444" strokeWidth="3.5" strokeLinejoin="round" />
+                    <path d="M30 45 L45 45 L48 35 L52 35 L55 45 L70 45 L70 50 L55 50 L52 60 L48 60 L45 50 L30 50 Z" fill="#ef4444" />
                   </svg>
                 </div>
               </div>
             </a>
-            <span className="font-black tracking-tighter text-xl">SI<span className="text-[#c29b40]">.</span>TECH</span>
+            <span className="font-black tracking-tighter text-xl">SI<span className="text-[#ef4444]">.</span>TECH</span>
           </div>
           <p className="text-[11px] text-gray-500 uppercase tracking-[0.8em] font-black mb-8 opacity-40">{t.footer}</p>
           <div className="flex space-x-12">
-            <a href="https://www.instagram.com/sserkan.77/" className="text-gray-500 hover:text-[#c29b40] transition-all transform hover:scale-110 duration-300"><Instagram size={24} /></a>
-            <a href="mailto:serkanisik67@gmail.com" className="text-gray-500 hover:text-[#c29b40] transition-all transform hover:scale-110 duration-300"><Mail size={24} /></a>
-            <a href="https://github.com/Serkan-design" className="text-gray-500 hover:text-[#c29b40] transition-all transform hover:scale-110 duration-300"><Code size={24} /></a>
+            <a href="https://www.instagram.com/sserkan.77/" className="text-gray-500 hover:text-[#ef4444] transition-all transform hover:scale-110 duration-300"><Instagram size={24} /></a>
+            <a href="mailto:serkanisik67@gmail.com" className="text-gray-500 hover:text-[#ef4444] transition-all transform hover:scale-110 duration-300"><Mail size={24} /></a>
+            <a href="https://github.com/Serkan-design" className="text-gray-500 hover:text-[#ef4444] transition-all transform hover:scale-110 duration-300"><Code size={24} /></a>
           </div>
         </div>
       </footer>

@@ -1,89 +1,202 @@
-/* Header Styles */
+/* ══════════════════════════════════════════════════════════
+   HEADER – Premium Navbar
+══════════════════════════════════════════════════════════ */
 .header {
-    background-color: #0c1a2e;
-    /* Dark navy header color */
-    padding: 15px 0;
-    /* Top and bottom spacing */
     position: fixed;
-    /* Fix header at the top */
-    width: 100%;
-    top: 0;
+    top: 0; left: 0; right: 0;
     z-index: 1000;
-    /* Ensure it stays above other elements */
+    padding: 0;
+    transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+    background: rgba(10, 10, 15, 0.0);
+    border-bottom: 1px solid transparent;
 }
 
-.header .container {
-    max-width: 100%;
-    margin: 0;
+.header-scrolled {
+    background: rgba(10, 10, 15, 0.88);
+    border-bottom-color: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+}
+
+.header-inner {
+    max-width: 1400px;
+    margin: 0 auto;
     padding: 0 40px;
+    height: 64px;
     display: flex;
-    justify-content: flex-start;
     align-items: center;
+    justify-content: space-between;
+    gap: 24px;
 }
 
-/* Custom Logo Styled Badge Design */
+/* ── Logo ── */
 .custom-logo {
     display: flex;
     align-items: center;
     gap: 10px;
-    height: 48px;
+    height: 44px;
 }
 
 .badge-wrapper {
-    height: 100%;
-    width: 48px;
+    height: 44px;
+    width: 44px;
     display: flex;
     align-items: center;
-    position: relative;
     overflow: visible;
 }
 
 .badge-svg {
     height: 100%;
     width: 100%;
-    filter: drop-shadow(0 0 5px rgba(194, 155, 64, 0.2));
+    filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.25));
+    transition: filter 0.3s ease, transform 0.3s ease;
 }
 
 .logo-text {
-    font-family: 'Arial Black', 'Inter', sans-serif;
+    font-family: 'Inter', sans-serif;
     font-weight: 900;
-    font-size: 20px;
-    color: #ffffff;
+    font-size: 19px;
+    color: #fff;
     letter-spacing: 1.5px;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    transition: color 0.25s ease;
 }
-
-.logo-text .dot {
-    color: #c29b40;
-}
-
-.logo-link:hover .badge-svg {
-    transform: scale(1.1) rotate(-2deg);
-    filter: drop-shadow(0 0 15px rgba(194, 155, 64, 0.5));
-}
-
-.logo-link:hover .logo-text {
-    color: #c29b40;
-    transition: color 0.3s ease;
-}
+.logo-text .dot { color: #ef4444; }
 
 .logo-link {
     text-decoration: none;
-    transition: all 0.4s ease;
+    transition: all 0.3s ease;
+}
+.logo-link:hover .badge-svg {
+    transform: scale(1.1) rotate(-3deg);
+    filter: drop-shadow(0 0 18px rgba(239, 68, 68, 0.6));
+}
+.logo-link:hover .logo-text { color: #ef4444; }
+
+/* ── Nav Links ── */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex: 1;
+    justify-content: center;
 }
 
-/* Mobile adjustments */
+.nav-btn {
+    position: relative;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.55);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: color 0.25s ease, background 0.25s ease;
+    overflow: hidden;
+}
+
+.nav-btn:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-btn-active {
+    color: #ef4444 !important;
+    background: rgba(239, 68, 68, 0.08) !important;
+}
+
+/* Animated underline */
+.nav-underline {
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 60%;
+    height: 2px;
+    background: #ef4444;
+    border-radius: 1px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: center;
+}
+.nav-btn:hover .nav-underline,
+.nav-btn-active .nav-underline {
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* ── Right Controls ── */
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+}
+
+.ctrl-divider {
+    width: 1px;
+    height: 20px;
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Language button */
+.lang-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: 0.15em;
+    padding: 6px 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+.lang-btn:hover {
+    border-color: #ef4444;
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.08);
+}
+
+/* Theme toggle */
+.theme-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.55);
+    cursor: pointer;
+    transition: all 0.25s ease;
+    flex-shrink: 0;
+}
+.theme-btn:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+}
+.theme-btn-dark {
+    border-color: rgba(239, 68, 68, 0.45);
+    background: rgba(239, 68, 68, 0.10);
+    color: #ef4444;
+}
+.theme-btn-dark:hover {
+    border-color: #ef4444;
+    background: rgba(239, 68, 68, 0.18);
+    color: #ef4444;
+}
+
+/* ── Mobile ── */
 @media (max-width: 768px) {
-    .custom-logo {
-        height: 45px;
-        gap: 8px;
-    }
-
-    .badge-wrapper {
-        width: 45px;
-    }
-
-    .logo-text {
-        font-size: 18px;
-    }
+    .header-inner { padding: 0 20px; }
+    .nav-links { display: none; }
+    .custom-logo { height: 38px; gap: 8px; }
+    .badge-wrapper { width: 38px; height: 38px; }
+    .logo-text { font-size: 16px; }
 }
