@@ -83,14 +83,6 @@ const AboutPage = ({ lang, darkMode, onBack }) => {
     },
   ];
 
-  const skills = [
-    { label: 'C# / .NET', level: 88 },
-    { label: 'SQL / ADO.NET', level: 82 },
-    { label: 'Python', level: 75 },
-    { label: 'Embedded / C++', level: 72 },
-    { label: 'FPV / UAV', level: 90 },
-    { label: 'Kali Linux', level: 78 },
-  ];
 
   return (
     <div
@@ -228,30 +220,67 @@ const AboutPage = ({ lang, darkMode, onBack }) => {
             ))}
           </div>
 
-          {/* Skills */}
+          {/* Technical Toolkit */}
           <div className="about-page-section-heading" style={{ marginTop: '32px' }}>
-            <Sparkles size={14} style={{ color: '#ef4444', flexShrink: 0 }} />
-            <span>{t.skillsLabel}</span>
+            <Database size={14} style={{ color: '#ef4444', flexShrink: 0 }} />
+            <span>{lang === 'tr' ? 'Teknik Araç Kutusu' : 'Technical Toolkit'}</span>
           </div>
 
-          <div className="about-pg-skills">
-            {skills.map((sk, i) => (
-              <div key={i} className="about-pg-skill-row">
-                <div className="about-pg-skill-header">
-                  <span className="about-pg-skill-name">{sk.label}</span>
-                  <span className="about-pg-skill-pct">{sk.level}%</span>
-                </div>
-                <div className="about-pg-skill-bg">
-                  <div
-                    className="about-pg-skill-fill"
-                    style={{
-                      '--pct': `${sk.level}%`,
-                      animationDelay: `${0.3 + i * 0.1}s`,
-                    }}
-                  />
-                </div>
-              </div>
-            ))}
+          <div className="about-toolkit-container">
+            <table className="about-toolkit-table">
+              <thead>
+                <tr>
+                  <th>{lang === 'tr' ? 'Kategori' : 'Category'}</th>
+                  <th>{lang === 'tr' ? 'Teknolojiler' : 'Technologies'}</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td className="toolkit-category">{lang === 'tr' ? 'Diller' : 'Languages'}</td>
+                  <td className="toolkit-badges">
+                    <span className="tk-badge tk-csharp">C#</span>
+                    <span className="tk-badge tk-cpp">C++</span>
+                    <span className="tk-badge tk-python">Python</span>
+                    <span className="tk-badge tk-js">JavaScript</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="toolkit-category">Embedded/IoT</td>
+                  <td className="toolkit-badges">
+                    <span className="tk-badge tk-esp32">ESP32</span>
+                    <span className="tk-badge tk-arduino">Arduino</span>
+                    <span className="tk-badge tk-blynk">Blynk</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="toolkit-category">Frameworks & DB</td>
+                  <td className="toolkit-badges">
+                    <span className="tk-badge tk-dotnet">.NET</span>
+                    <span className="tk-badge tk-sql">SQL</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td className="toolkit-category">FPV & Hardware</td>
+                  <td className="toolkit-badges">
+                    <span className="tk-badge tk-soldering">Soldering</span>
+                    <span className="tk-badge tk-betaflight">Betaflight</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          {/* GitHub Stats */}
+          <div className="about-page-section-heading" style={{ marginTop: '24px' }}>
+            <Github size={14} style={{ color: '#ef4444', flexShrink: 0 }} />
+            <span>GitHub Stats</span>
+          </div>
+          <div className="about-github-stats">
+            <img 
+              src={`https://github-readme-streak-stats.herokuapp.com/?user=Serkan-design&theme=dark&hide_border=true&background=141419&ring=ef4444&fire=ef4444&currStreakNum=fff&sideNums=fff&currStreakLabel=888&sideLabels=888&dates=aaa&locale=${lang === 'tr' ? 'tr' : 'en'}`} 
+              alt="Serkan's GitHub stats" 
+              className="github-stats-img"
+            />
           </div>
 
         </div>

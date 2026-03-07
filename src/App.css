@@ -1783,42 +1783,79 @@
   line-height: 1.5;
 }
 
-/* ── Skills ── */
-.about-pg-skills {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.about-pg-skill-header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 6px;
-}
-.about-pg-skill-name {
-  font-size: 11px;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: white;
-}
-.about-pg-skill-pct {
-  font-size: 10px;
-  font-family: monospace;
-  color: #ef4444;
-}
-.about-pg-skill-bg {
-  height: 5px;
-  background: rgba(255,255,255,0.06);
-  border-radius: 3px;
+/* ── Technical Toolkit ── */
+.about-toolkit-container {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 12px;
   overflow: hidden;
 }
-.about-pg-skill-fill {
-  height: 100%;
-  width: 0;
-  border-radius: 3px;
-  background: linear-gradient(90deg, #ef4444, #b91c1c);
-  box-shadow: 0 0 8px rgba(239,68,68,0.4);
-  animation: apSkillGrow 1s cubic-bezier(0.4,0,0.2,1) forwards;
+.about-toolkit-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+}
+.about-toolkit-table th, .about-toolkit-table td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.about-toolkit-table th {
+  background: rgba(255,255,255,0.01);
+  font-weight: 700;
+  color: #ccc;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.about-toolkit-table tr:last-child td {
+  border-bottom: none;
+}
+.toolkit-category {
+  color: #fff;
+  font-weight: 700;
+  width: 140px;
+}
+.toolkit-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tk-badge {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 10px;
+  display: inline-flex;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.tk-csharp { background: #22c55e; color: #fff; }
+.tk-cpp { background: #0284c7; color: #fff; }
+.tk-python { background: #4e8bbc; color: #fff; }
+.tk-js { background: #facc15; color: #000; }
+.tk-esp32 { background: #ef4444; color: #fff; }
+.tk-arduino { background: #06b6d4; color: #fff; }
+.tk-blynk { background: #38bdf8; color: #fff; }
+.tk-dotnet { background: #7c3aed; color: #fff; }
+.tk-sql { background: #dc2626; color: #fff; }
+.tk-soldering { background: #f59e0b; color: #000; }
+.tk-betaflight { background: #27272a; color: #fff; border: 1px solid #3f3f46; box-shadow: none; }
+
+/* ── GitHub Stats ── */
+.about-github-stats {
+  display: flex;
+  justify-content: center;
+}
+.github-stats-img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  border: 1px solid rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.01);
 }
 
 /* Responsive: stack columns on small screens */
