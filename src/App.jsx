@@ -795,11 +795,11 @@ const App = () => {
               <div className="accent-pill mb-6"><Code size={13}/>{lang === 'tr' ? 'Projeler' : 'Projects'}</div>
               <h3 className="text-3xl md:text-5xl font-black tracking-tighter">{lang === 'tr' ? 'Projelerim' : 'My Projects'}</h3>
             </div>
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
               {projects.map((proj, i) => (
                 <div
                   key={proj.id}
-                  className={`reveal project-card group flex flex-col p-10 border transition-colors duration-300 ${darkMode
+                  className={`reveal project-card group flex flex-col p-12 border transition-colors duration-300 ${darkMode
                       ? 'bg-white/[0.025] border-white/8'
                       : 'bg-slate-50 border-slate-200 shadow-sm'
                     }`}
@@ -809,22 +809,22 @@ const App = () => {
                   <div className="absolute top-0 left-0 w-0 h-[2px] bg-[#ef4444] transition-all duration-500 group-hover:w-full" />
 
                   {/* Icon + Title */}
-                  <div className="flex items-start gap-4 mb-8">
-                    <div className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.3)' }}>
-                      <proj.icon size={20} className="text-[#ef4444]" />
+                  <div className="flex items-start gap-5 mb-10">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.3)' }}>
+                      <proj.icon size={22} className="text-[#ef4444]" />
                     </div>
-                    <h4 className={`font-black text-[15px] uppercase tracking-tight leading-snug mt-1 ${darkMode ? 'text-white' : 'text-slate-800'}`}>
+                    <h4 className={`font-black text-[16px] uppercase tracking-tight leading-snug mt-1 ${darkMode ? 'text-white' : 'text-slate-800'}`}>
                       {lang === 'tr' ? proj.titleTr : proj.titleEn}
                     </h4>
                   </div>
 
                   {/* Description */}
-                  <p className={`text-[13px] leading-[1.9] font-mono flex-1 mb-8 ${darkMode ? 'text-gray-400' : 'text-slate-600'}`}>
+                  <p className={`text-[13px] leading-[2] font-mono flex-1 mb-10 ${darkMode ? 'text-gray-400' : 'text-slate-600'}`}>
                     {lang === 'tr' ? proj.descTr : proj.descEn}
                   </p>
 
                   {/* Tech Badges */}
-                  <div className="flex flex-wrap gap-2 mb-8">
+                  <div className="flex flex-wrap gap-2.5 mb-10">
                     {proj.techs.map((tech, ti) => (
                       <TechBadge key={ti} name={tech.name} color={tech.color} bgColor={tech.bgColor} />
                     ))}
@@ -991,7 +991,7 @@ const App = () => {
           <div className="flex space-x-12">
             <a href="https://www.instagram.com/sserkan.77/" className="text-gray-500 hover:text-[#ef4444] transition-all transform hover:scale-110 duration-300"><Instagram size={24} /></a>
             <a href="mailto:serkanisik67@gmail.com" className="text-gray-500 hover:text-[#ef4444] transition-all transform hover:scale-110 duration-300"><Mail size={24} /></a>
-            <a href="https://github.com/Serkan-design" className="text-gray-500 hover:text-[#ef4444] transition-all transform hover:scale-110 duration-300"><Code size={24} /></a>
+            <a href="https://github.com/Serkan-design" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#ef4444] transition-all transform hover:scale-110 duration-300"><Github size={24} /></a>
           </div>
         </div>
       </footer>
