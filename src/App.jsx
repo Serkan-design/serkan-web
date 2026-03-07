@@ -3,6 +3,8 @@ import './App.css';
 import Header from './Header';
 import Preloader from './Preloader';
 import AboutPage from './AboutPage';
+import ProjectsPage from './ProjectsPage';
+import ContactPage from './ContactPage';
 import {
   Instagram, Mail, Cpu, Database, Wind, Terminal, User, Plane,
   Award, Sparkles, Loader2, Box, Code, Github, ExternalLink,
@@ -128,6 +130,7 @@ const App = () => {
   const [lang, setLang] = useState('tr');
   const [showContact, setShowContact] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
+  const [showProjects, setShowProjects] = useState(false);
   const [chatInput, setChatInput] = useState("");
   const [chatResponse, setChatResponse] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -367,10 +370,10 @@ const App = () => {
     setTimeout(() => setTechGlitch(false), 560);
   };
 
-  // ── If About page is open, render it FULLSCREEN instead of main app ──
-  if (showAbout) {
-    return <AboutPage lang={lang} darkMode={darkMode} onBack={() => setShowAbout(false)} />;
-  }
+  // ── Page routing ── 
+  if (showAbout)    return <AboutPage    lang={lang} darkMode={darkMode} onBack={() => setShowAbout(false)} />;
+  if (showProjects) return <ProjectsPage lang={lang} onBack={() => setShowProjects(false)} />;
+  if (showContact)  return <ContactPage  lang={lang} onBack={() => setShowContact(false)} />;
 
   return (
     <div className={`min-h-screen font-sans relative overflow-x-hidden ${darkMode ? 'bg-[#0a0a0f] text-[#f1f5f9]' : 'bg-[#f0f4f8] text-[#0f172a]'}`} style={{ transition: 'background 0.4s ease, color 0.4s ease' }}>
@@ -401,7 +404,12 @@ const App = () => {
       {!preloaderDone && <Preloader onDone={() => setPreloaderDone(true)} />}
 
       {/* Navigation */}
-      <Header lang={lang} setLang={setLang} darkMode={darkMode} setDarkMode={setDarkMode} onAboutOpen={() => setShowAbout(true)} />
+      <Header
+        lang={lang} setLang={setLang} darkMode={darkMode} setDarkMode={setDarkMode}
+        onAboutOpen={() => setShowAbout(true)}
+        onProjectsOpen={() => setShowProjects(true)}
+        onContactOpen={() => setShowContact(true)}
+      />
 
       {/* ── Hero Section ── */}
       <section className="relative h-screen w-full flex flex-col md:flex-row overflow-hidden">
@@ -694,276 +702,6 @@ const App = () => {
         </div>
 
       </section>
-
-      {/* ── Main Content Sections ── */}
-      <main className="w-full flex flex-col items-center gap-24 relative z-10 -mt-32">
-
-        {/* FPV Details */}
-        <div className="reveal w-full max-w-[1500px] px-6 md:px-12">
-          <div className="section-card p-12 md:p-24 relative overflow-visible flex flex-col items-center text-center">
-            <div className="absolute inset-0 bg-gradient-to-b from-[#ef4444]/5 to-transparent pointer-events-none rounded-[20px]" />
-            <div className="flex flex-col items-center justify-center gap-6 mb-16 relative z-10 w-full">
-              <div className="accent-pill mb-2"><Wind size={13} />{t.fpvTitle}</div>
-              <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">{t.fpvTitle}</h3>
-            </div>
-            <p className="text-gray-400 text-xl md:text-2xl leading-relaxed italic max-w-4xl relative z-10 px-6" style={{ marginBottom: '60px' }}>
-              {t.fpvDesc}
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full relative z-10 px-4">
-              {[
-                { icon: Award, label: "SHGM İHA-1", desc: "Commercial License" },
-                { icon: Cpu, label: "BTFA-FLIGHT", desc: "System Optimization" },
-                { icon: Box, label: "LRS/CROSSFIRE", desc: "Long Range Control" }
-              ].map((item, i) => (
-                <div key={i} className="reveal group/item p-10 border border-white/8 rounded-2xl hover:border-[#ef4444]/40 hover:bg-white/[0.04] transition-all hover:translate-y-[-6px] flex flex-col items-center text-center" style={{ transitionDelay: `${i * 0.15}s`, background: 'rgba(255,255,255,0.02)' }}>
-                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-8" style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.25)' }}>
-                    <item.icon size={26} className="text-[#ef4444] group-hover/item:scale-110 transition-transform" />
-                  </div>
-                  <p className="text-[13px] font-black uppercase tracking-[0.4em] mb-3">{item.label}</p>
-                  <p className="text-[11px] text-gray-500 font-mono italic">{item.desc}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Technical Skills */}
-        <div className="reveal from-right w-full max-w-[1500px] px-6 md:px-12">
-          <div className="section-card p-12 md:p-20 relative overflow-visible flex flex-col items-center">
-            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#ef4444]/4 rounded-full blur-[200px] pointer-events-none opacity-40" />
-            <div className="flex flex-col items-center justify-center mb-16 relative z-10 w-full text-center">
-              <div className="accent-pill mb-6"><Database size={13} />{t.skillsTitle}</div>
-              <h3 className="text-3xl md:text-5xl font-black tracking-tighter">{t.skillsTitle}</h3>
-            </div>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full relative z-10">
-              {t.skills.map((skill, index) => (
-                <div key={index} className="reveal group/skill cursor-default flex items-center gap-6 p-8 rounded-2xl border border-white/5 hover:border-[#ef4444]/30 hover:bg-white/[0.04] transition-all duration-300" style={{ transitionDelay: `${index * 0.13}s`, background: 'rgba(255,255,255,0.02)' }}>
-                  <div className="w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(239,68,68,0.10)', border: '1px solid rgba(239,68,68,0.22)' }}>
-                    {skill.name.includes(".NET") && <svg viewBox="0 0 24 24" className="w-7 h-7 text-[#ef4444]" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" /></svg>}
-                    {skill.name.includes("Python") && <svg viewBox="0 0 24 24" className="w-7 h-7 text-[#ef4444]" fill="currentColor"><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm1 14h-2v2h2v-2zm-1-10c-2.206 0-4 1.794-4 4h2c0-1.103.897-2 2-2s2 .897 2 2c0 2-3 1.75-3 5h2c0-2.25 3-2.5 3-5 0-2.206-1.794-4-4-4z" /></svg>}
-                    {skill.name.includes("Veritabanı") && <Database size={24} className="text-[#ef4444]" />}
-                    {skill.name.includes("Gömülü") && <Cpu size={24} className="text-[#ef4444]" />}
-                    {skill.name.includes("Database") && <Database size={24} className="text-[#ef4444]" />}
-                    {skill.name.includes("Embedded") && <Cpu size={24} className="text-[#ef4444]" />}
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <span className="font-black text-[15px] tracking-tight uppercase group-hover/skill:text-[#ef4444] transition-colors leading-none">{skill.name}</span>
-                    <p className="text-[12px] text-gray-500 leading-relaxed group-hover/skill:text-gray-300 transition-all">{skill.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* ── Tech Stack Grid ── */}
-        <div className="reveal w-full max-w-[1500px] px-6 md:px-12">
-          <div className="section-card p-12 md:p-16 relative overflow-hidden flex flex-col items-center">
-            <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[160px] pointer-events-none" style={{ background: 'rgba(239,68,68,0.04)' }} />
-            <div className="flex flex-col items-center mb-12 relative z-10 w-full text-center">
-              <div className="accent-pill mb-6"><Cpu size={13} />{lang === 'tr' ? 'Teknoloji Yığını' : 'Tech Stack'}</div>
-              <h3 className="text-3xl md:text-5xl font-black tracking-tighter">
-                {lang === 'tr' ? 'Kullandığım Teknolojiler' : 'Technologies I Use'}
-              </h3>
-            </div>
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-4 w-full relative z-10">
-              {[
-                { name: 'C#', color: '#9B4F96', path: 'M11.5 15.97l.41 2.44c-.26.14-.68.27-1.24.39-.57.13-1.24.2-2.01.2-2.21-.04-3.87-.7-4.98-1.96C2.56 15.77 2 14.16 2 12.21c.05-2.31.72-4.08 2-5.32C5.32 5.64 6.96 5 8.94 5c.75 0 1.4.07 1.94.19s.94.25 1.2.4l-.58 2.49-1.96-.44c-.4-.01-.83.06-1.28.19-.31.09-.6.25-.87.49-.27.23-.49.54-.66.91-.17.38-.26.86-.26 1.45.01.58.1 1.09.28 1.51.18.42.41.77.69 1.04s.59.46.94.58.72.18 1.1.17c.42-.01.81-.05 1.17-.12.35-.08.64-.17.87-.29zm5.47 3.19l-.71.71.71.71v1h-1v.71l-.71-.71-.71.71V13.5h-1v-1l.71-.71-.71-.71v-1h1V9.5l.71.71.71-.71v1h1v1zm3 0l-.71.71.71.71v1h-1v.71l-.71-.71-.71.71V13.5h-1v-1l.71-.71-.71-.71v-1h1V9.5l.71.71.71-.71v1h1v1z' },
-                { name: '.NET', color: '#512BD4', path: 'M24 8.77h-2.468v7.565h-1.425V8.77h-2.462V7.53H24zm-6.852 7.565h-4.821V7.53h4.63v1.24h-3.205v2.494h2.953v1.234h-2.953v2.604h3.396zm-6.708 0H8.882L5.234 9.936c-.145-.222-.243-.413-.296-.573h-.041c.031.188.047.499.047.932v6.042H3.619V7.53h1.7l3.524 6.302c.19.335.313.572.369.71h.028c-.038-.24-.056-.584-.056-1.03V7.53h1.256v8.805z' },
-                { name: 'Python', color: '#3776AB', path: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z' },
-                { name: 'SQL', color: '#CC2927', path: 'M12 3C7.58 3 4 4.79 4 7s3.58 4 8 4 8-1.79 8-4-3.58-4-8-4m0 6c-3.87 0-6-.9-6-2s2.13-2 6-2 6 .9 6 2-2.13 2-6 2m8 2c0 2.21-3.58 4-8 4s-8-1.79-8-4V9.78C5.61 11.1 8.67 12 12 12s6.39-.9 8-2.22zm0 4c0 2.21-3.58 4-8 4s-8-1.79-8-4v-2.22C5.61 15.1 8.67 16 12 16s6.39-.9 8-2.22z' },
-                { name: 'ESP32', color: '#E7352B', path: 'M7 2v2H5v2H3v8h2v2h2v2h10v-2h2v-2h2V6h-2V4h-2V2zm0 2h10v2h2v8h-2v2H7v-2H5V6h2zm3 2H8v2H6v4h2v2h8v-2h2v-4h-2V6h-2v1h-2zm0 1h4v1h2v4h-2v1H9v-1H7V9h2z' },
-                { name: 'C++', color: '#00599C', path: 'M10.5 15.97l.41 2.44c-.26.14-.68.27-1.24.39-.57.13-1.24.2-2.01.2-2.21-.04-3.87-.7-4.98-1.96C1.56 15.77 1 14.16 1 12.21c.05-2.31.72-4.08 2-5.32C4.32 5.64 5.96 5 7.94 5c.75 0 1.4.07 1.94.19s.94.25 1.2.4l-.58 2.49-1.96-.44c-.4-.01-.83.06-1.28.19-.31.09-.6.25-.87.49-.27.23-.49.54-.66.91-.17.38-.26.86-.26 1.45.01.58.1 1.09.28 1.51.18.42.41.77.69 1.04s.59.46.94.58.72.18 1.1.17c.42-.01.81-.05 1.17-.12.35-.08.64-.17.87-.29zM23 11h-2V9h-2v2h-2v2h2v2h2v-2h2z' },
-                { name: 'Git', color: '#F05032', path: 'M23.546 10.93L13.067.452a1.55 1.55 0 0 0-2.188 0L8.708 2.627l2.76 2.76a1.838 1.838 0 0 1 2.327 2.341l2.658 2.66a1.838 1.838 0 0 1 1.9 3.039 1.837 1.837 0 0 1-2.596 0 1.846 1.846 0 0 1-.404-1.996L12.86 8.955v6.525c.176.086.342.203.48.346a1.846 1.846 0 0 1 0 2.6 1.838 1.838 0 0 1-2.6 0 1.846 1.846 0 0 1 0-2.6c.15-.154.33-.277.536-.361V8.904a1.847 1.847 0 0 1-.997-2.416L7.559 3.782.454 10.887a1.55 1.55 0 0 0 0 2.188l10.48 10.478a1.55 1.55 0 0 0 2.187 0l10.425-10.424a1.55 1.55 0 0 0 0-2.199' },
-                { name: 'GitHub', color: '#aaa', path: 'M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z' },
-                { name: 'VS Code', color: '#007ACC', path: 'M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 19.5v-15a1.5 1.5 0 0 0-.85-1.413zm-5.406 16.329l-6.078-5.581L16.5 10.7v6.9l1.244.916z' },
-                { name: 'OpenCV', color: '#5C3EE8', path: 'M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z' },
-                { name: 'Blynk', color: '#00E5FF', path: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z' },
-                { name: 'Kali', color: '#268BEE', path: 'M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z' },
-                { name: 'ADO.NET', color: '#7B2FBE', path: 'M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8m-1 3h2v5.5l3.9 2.3-.9 1.7-4-2.4V7z' },
-                { name: 'Crossfire', color: '#FF6B35', path: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5' },
-              ].map((tech, i) => (
-                <div key={i} className="tech-icon-card group flex flex-col items-center gap-3 p-4 rounded-2xl cursor-default" style={{ '--tech-color': tech.color }}>
-                  <div className="tech-icon-wrap">
-                    <svg viewBox="0 0 24 24" fill={tech.color} className="w-8 h-8 transition-transform duration-300 group-hover:scale-110">
-                      <path d={tech.path} />
-                    </svg>
-                  </div>
-                  <span className="tech-icon-label">{tech.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
-
-        <section id="projects" className="reveal w-full max-w-[1500px] px-6 md:px-12">
-          <div className={`section-card p-12 md:p-20 relative overflow-visible ${!darkMode ? 'bg-white border-slate-200/80' : ''}`}>
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#ef4444] to-transparent opacity-70" />
-            <div className="flex flex-col items-center mb-16">
-              <div className="accent-pill mb-6"><Code size={13} />{lang === 'tr' ? 'Projeler' : 'Projects'}</div>
-              <h3 className="text-3xl md:text-5xl font-black tracking-tighter">{lang === 'tr' ? 'Projelerim' : 'My Projects'}</h3>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
-              {projects.map((proj, i) => (
-                <div
-                  key={proj.id}
-                  className={`reveal project-card group flex flex-col p-12 border transition-colors duration-300 ${darkMode
-                    ? 'bg-white/[0.025] border-white/8'
-                    : 'bg-slate-50 border-slate-200 shadow-sm'
-                    }`}
-                  style={{ transitionDelay: `${i * 0.1}s` }}
-                >
-                  {/* Card top accent */}
-                  <div className="absolute top-0 left-0 w-0 h-[2px] bg-[#ef4444] transition-all duration-500 group-hover:w-full" />
-
-                  {/* Icon + Title */}
-                  <div className="flex items-start gap-5 mb-10">
-                    <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.3)' }}>
-                      <proj.icon size={22} className="text-[#ef4444]" />
-                    </div>
-                    <h4 className={`font-black text-[16px] uppercase tracking-tight leading-snug mt-1 ${darkMode ? 'text-white' : 'text-slate-800'}`}>
-                      {lang === 'tr' ? proj.titleTr : proj.titleEn}
-                    </h4>
-                  </div>
-
-                  {/* Description */}
-                  <p className={`text-[13px] leading-[2] font-mono flex-1 mb-10 ${darkMode ? 'text-gray-400' : 'text-slate-600'}`}>
-                    {lang === 'tr' ? proj.descTr : proj.descEn}
-                  </p>
-
-                  {/* Tech Badges */}
-                  <div className="flex flex-wrap gap-2.5 mb-10">
-                    {proj.techs.map((tech, ti) => (
-                      <TechBadge key={ti} name={tech.name} color={tech.color} bgColor={tech.bgColor} />
-                    ))}
-                  </div>
-
-                  {/* GitHub Button */}
-                  <a
-                    href={proj.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`github-repo-btn flex items-center justify-center gap-2.5 w-full py-3 text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-300 ${!darkMode ? 'light-github-btn' : ''}`}
-                  >
-                    <Github size={14} />
-                    <span>{lang === 'tr' ? 'GitHub Reposu' : 'GitHub Repo'}</span>
-                    <ExternalLink size={11} className="opacity-60" />
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ── Contact Form Section ── */}
-        <section id="contact" className="reveal w-full max-w-[900px] px-6 md:px-12 pb-4">
-          <div className={`section-card p-10 md:p-16 relative overflow-hidden ${!darkMode ? 'bg-white border-slate-200/80' : ''}`}>
-            <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#ef4444] to-transparent" />
-            <div className="absolute top-[2px] left-0 w-full h-16 bg-gradient-to-b from-[#ef4444]/8 to-transparent pointer-events-none" />
-
-            {/* Header */}
-            <div className="flex flex-col items-center mb-10">
-              <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-5" style={{ background: 'rgba(239,68,68,0.12)', border: '1px solid rgba(239,68,68,0.3)' }}>
-                <Mail size={22} className="text-[#ef4444]" />
-              </div>
-              <div className="accent-pill mb-4">{lang === 'tr' ? 'İletişim' : 'Contact'}</div>
-              <h3 className="text-3xl md:text-4xl font-black tracking-tighter">
-                {lang === 'tr' ? 'Benimle İletişime Geç' : 'Get In Touch'}
-              </h3>
-              <p className={`text-[12px] mt-3 font-mono text-center ${darkMode ? 'text-gray-500' : 'text-slate-500'}`}>
-                {lang === 'tr' ? 'Projeniz veya iş birliği hakkında bir mesaj bırakın.' : 'Leave a message about your project or collaboration.'}
-              </p>
-            </div>
-
-            {/* Form */}
-            <form ref={formRef} onSubmit={handleFormSubmit} className="flex flex-col gap-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="flex flex-col gap-1.5">
-                  <label className={`text-[10px] font-black uppercase tracking-[0.25em] ${darkMode ? 'text-gray-500' : 'text-slate-500'}`}>
-                    {lang === 'tr' ? 'Ad Soyad' : 'Full Name'}
-                  </label>
-                  <input
-                    id="contact-name"
-                    type="text"
-                    value={formName}
-                    onChange={e => setFormName(e.target.value)}
-                    required
-                    placeholder={lang === 'tr' ? 'Adınız...' : 'Your name...'}
-                    className={`contact-input px-4 py-3 text-[12px] font-mono outline-none transition-all duration-250 ${darkMode ? 'dark-input' : 'light-input'}`}
-                  />
-                </div>
-                <div className="flex flex-col gap-1.5">
-                  <label className={`text-[10px] font-black uppercase tracking-[0.25em] ${darkMode ? 'text-gray-500' : 'text-slate-500'}`}>
-                    {lang === 'tr' ? 'E-Posta' : 'Email'}
-                  </label>
-                  <input
-                    id="contact-email"
-                    type="email"
-                    value={formEmail}
-                    onChange={e => setFormEmail(e.target.value)}
-                    required
-                    placeholder={lang === 'tr' ? 'email@ornek.com' : 'email@example.com'}
-                    className={`contact-input px-4 py-3 text-[12px] font-mono outline-none transition-all duration-250 ${darkMode ? 'dark-input' : 'light-input'}`}
-                  />
-                </div>
-              </div>
-              <div className="flex flex-col gap-1.5">
-                <label className={`text-[10px] font-black uppercase tracking-[0.25em] ${darkMode ? 'text-gray-500' : 'text-slate-500'}`}>
-                  {lang === 'tr' ? 'Mesajınız' : 'Your Message'}
-                </label>
-                <textarea
-                  id="contact-message"
-                  value={formMsg}
-                  onChange={e => setFormMsg(e.target.value)}
-                  required
-                  rows={5}
-                  placeholder={lang === 'tr' ? 'Mesajınızı buraya yazın...' : 'Write your message here...'}
-                  className={`contact-input px-4 py-3 text-[12px] font-mono outline-none transition-all duration-250 resize-none ${darkMode ? 'dark-input' : 'light-input'}`}
-                />
-              </div>
-
-              {/* Submit */}
-              <button
-                id="contact-submit"
-                type="submit"
-                disabled={formStatus === 'sending' || formStatus === 'sent'}
-                className="contact-submit-btn flex items-center justify-center gap-2.5 py-3.5 w-full text-[11px] font-black uppercase tracking-[0.25em] text-white transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed mt-2"
-              >
-                {formStatus === 'sending' && <Loader2 size={14} className="animate-spin" />}
-                {formStatus === 'sent' && <CheckCircle size={14} />}
-                {formStatus === 'error' && <XCircle size={14} />}
-                {!formStatus && <Send size={14} />}
-                <span>
-                  {formStatus === 'sending' ? (lang === 'tr' ? 'GÖNDERİLİYOR...' : 'SENDING...') :
-                    formStatus === 'sent' ? (lang === 'tr' ? 'GÖNDERİLDİ ✓' : 'SENT ✓') :
-                      lang === 'tr' ? 'MESAJ GÖNDER' : 'SEND MESSAGE'}
-                </span>
-              </button>
-            </form>
-          </div>
-        </section>
-
-      </main>
-
-
-      {/* Contact Modal */}
-      {showContact && (
-        <div className="fixed inset-0 z-[200] flex items-center justify-center p-6">
-          <div className="absolute inset-0 bg-[#0a0a0f]/95 backdrop-blur-xl" onClick={() => setShowContact(false)} />
-          <div className="relative bg-[#0f0a0a] border border-white/10 rounded-2xl w-full max-w-md p-12 shadow-[0_0_100px_rgba(0,0,0,0.8)] overflow-hidden text-center flex flex-col items-center">
-            <div className="absolute top-0 left-0 w-full h-1 rounded-t-2xl bg-gradient-to-r from-transparent via-[#ef4444] to-transparent" />
-            <Mail size={48} className="text-[#ef4444] mb-6 animate-pulse" />
-            <h3 className="text-2xl font-black uppercase tracking-widest mb-2 text-white">Email</h3>
-            <p className="text-lg md:text-xl text-gray-300 font-mono bg-white/[0.05] border border-white/10 rounded-lg px-6 py-4 mt-6 w-full select-all">
-              serkanisik67@gmail.com
-            </p>
-            <button onClick={() => setShowContact(false)} className="mt-8 px-8 py-3 bg-[#ef4444] hover:bg-[#dc2626] text-white text-[11px] font-black uppercase tracking-[0.2em] transition-all w-full md:w-auto rounded-lg">
-              {lang === 'tr' ? 'KAPAT' : 'CLOSE'}
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* Footer */}
       <footer className="relative z-10 bg-[#0a0a0f] border-t border-white/5 py-16">

@@ -21,25 +21,14 @@ const MoonIcon = () => (
     </svg>
 );
 
-const navLinks = [
-    { id: 'projects', labelTr: 'Projeler',  labelEn: 'Projects', modal: false },
-    { id: 'contact',  labelTr: 'İletişim',  labelEn: 'Contact',  modal: false },
-];
-
-const Header = ({ lang, setLang, darkMode, setDarkMode, onAboutOpen }) => {
+const Header = ({ lang, setLang, darkMode, setDarkMode, onAboutOpen, onProjectsOpen, onContactOpen }) => {
     const [scrolled, setScrolled] = useState(false);
-    const [active, setActive] = useState('');
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 40);
         window.addEventListener('scroll', onScroll, { passive: true });
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
-
-    const scrollTo = (id) => {
-        const el = document.getElementById(id);
-        if (el) { el.scrollIntoView({ behavior: 'smooth' }); setActive(id); }
-    };
 
     return (
         <header className={`header${scrolled ? ' header-scrolled' : ''}`}>
@@ -67,24 +56,18 @@ const Header = ({ lang, setLang, darkMode, setDarkMode, onAboutOpen }) => {
 
                 {/* Nav links */}
                 <nav className="nav-links">
-                    {/* Hakkımda - modal açar */}
-                    <button
-                        onClick={() => onAboutOpen && onAboutOpen()}
-                        className="nav-btn"
-                    >
+                    <button onClick={onAboutOpen} className="nav-btn">
                         {lang === 'tr' ? 'Hakkımda' : 'About Me'}
                         <span className="nav-underline" />
                     </button>
-                    {navLinks.map(link => (
-                        <button
-                            key={link.id}
-                            onClick={() => scrollTo(link.id)}
-                            className={`nav-btn${active === link.id ? ' nav-btn-active' : ''}`}
-                        >
-                            {lang === 'tr' ? link.labelTr : link.labelEn}
-                            <span className="nav-underline" />
-                        </button>
-                    ))}
+                    <button onClick={onProjectsOpen} className="nav-btn">
+                        {lang === 'tr' ? 'Projeler' : 'Projects'}
+                        <span className="nav-underline" />
+                    </button>
+                    <button onClick={onContactOpen} className="nav-btn">
+                        {lang === 'tr' ? 'İletişim' : 'Contact'}
+                        <span className="nav-underline" />
+                    </button>
                 </nav>
 
                 {/* Right controls */}
