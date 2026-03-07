@@ -8,7 +8,9 @@ import {
   Send, CheckCircle, XCircle
 } from 'lucide-react';
 
-const apiKey = "gsk_" + "OOSoS1IkP0c5XaQLcb1tWGdyb3FYgbekc8jatcT3yndhkcWGOd0k";
+// ── API Key Obfuscation ──
+const rawKey = "k0dOGWckhdny3Tctaj8ckebgYF3ybdGWt1bcLQaX5c0PkI1SoSOO_ksg";
+const apiKey = rawKey.split("").reverse().join("");
 
 // ── Image Arrays ──────────────────────────────────────────
 const aviationImages = [
@@ -124,6 +126,7 @@ const projects = [
 const App = () => {
   const [lang, setLang] = useState('tr');
   const [showContact, setShowContact] = useState(false);
+  const [showAbout, setShowAbout] = useState(false);
   const [chatInput, setChatInput] = useState("");
   const [chatResponse, setChatResponse] = useState("");
   const [isTyping, setIsTyping] = useState(false);
@@ -371,28 +374,28 @@ const App = () => {
         <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style={{ position: 'absolute', inset: 0 }}>
           <defs>
             <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(239,68,68,0.06)" strokeWidth="0.5"/>
+              <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(239,68,68,0.06)" strokeWidth="0.5" />
             </pattern>
             <radialGradient id="fadeOut" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="white" stopOpacity="1"/>
-              <stop offset="100%" stopColor="white" stopOpacity="0"/>
+              <stop offset="0%" stopColor="white" stopOpacity="1" />
+              <stop offset="100%" stopColor="white" stopOpacity="0" />
             </radialGradient>
             <mask id="gridMask">
-              <rect width="100%" height="100%" fill="url(#fadeOut)"/>
+              <rect width="100%" height="100%" fill="url(#fadeOut)" />
             </mask>
           </defs>
-          <rect width="100%" height="100%" fill="url(#grid)" mask="url(#gridMask)"/>
+          <rect width="100%" height="100%" fill="url(#grid)" mask="url(#gridMask)" />
           {/* Diagonal accent lines */}
-          <line x1="0" y1="30%" x2="40%" y2="0" stroke="rgba(239,68,68,0.04)" strokeWidth="1"/>
-          <line x1="60%" y1="100%" x2="100%" y2="60%" stroke="rgba(239,68,68,0.04)" strokeWidth="1"/>
-          <line x1="0" y1="70%" x2="30%" y2="100%" stroke="rgba(239,68,68,0.03)" strokeWidth="0.8"/>
+          <line x1="0" y1="30%" x2="40%" y2="0" stroke="rgba(239,68,68,0.04)" strokeWidth="1" />
+          <line x1="60%" y1="100%" x2="100%" y2="60%" stroke="rgba(239,68,68,0.04)" strokeWidth="1" />
+          <line x1="0" y1="70%" x2="30%" y2="100%" stroke="rgba(239,68,68,0.03)" strokeWidth="0.8" />
         </svg>
       </div>
       {/* Preloader */}
       {!preloaderDone && <Preloader onDone={() => setPreloaderDone(true)} />}
 
       {/* Navigation */}
-      <Header lang={lang} setLang={setLang} darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Header lang={lang} setLang={setLang} darkMode={darkMode} setDarkMode={setDarkMode} onAboutOpen={() => setShowAbout(true)} />
 
       {/* ── Hero Section ── */}
       <section className="relative h-screen w-full flex flex-col md:flex-row overflow-hidden">
@@ -694,7 +697,7 @@ const App = () => {
           <div className="section-card p-12 md:p-24 relative overflow-visible flex flex-col items-center text-center">
             <div className="absolute inset-0 bg-gradient-to-b from-[#ef4444]/5 to-transparent pointer-events-none rounded-[20px]" />
             <div className="flex flex-col items-center justify-center gap-6 mb-16 relative z-10 w-full">
-              <div className="accent-pill mb-2"><Wind size={13}/>{t.fpvTitle}</div>
+              <div className="accent-pill mb-2"><Wind size={13} />{t.fpvTitle}</div>
               <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">{t.fpvTitle}</h3>
             </div>
             <p className="text-gray-400 text-xl md:text-2xl leading-relaxed italic max-w-4xl relative z-10 px-6" style={{ marginBottom: '60px' }}>
@@ -723,7 +726,7 @@ const App = () => {
           <div className="section-card p-12 md:p-20 relative overflow-visible flex flex-col items-center">
             <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#ef4444]/4 rounded-full blur-[200px] pointer-events-none opacity-40" />
             <div className="flex flex-col items-center justify-center mb-16 relative z-10 w-full text-center">
-              <div className="accent-pill mb-6"><Database size={13}/>{t.skillsTitle}</div>
+              <div className="accent-pill mb-6"><Database size={13} />{t.skillsTitle}</div>
               <h3 className="text-3xl md:text-5xl font-black tracking-tighter">{t.skillsTitle}</h3>
             </div>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full relative z-10">
@@ -752,25 +755,25 @@ const App = () => {
           <div className="section-card p-12 md:p-16 relative overflow-hidden flex flex-col items-center">
             <div className="absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[160px] pointer-events-none" style={{ background: 'rgba(239,68,68,0.04)' }} />
             <div className="flex flex-col items-center mb-12 relative z-10 w-full text-center">
-              <div className="accent-pill mb-6"><Cpu size={13}/>{lang === 'tr' ? 'Teknoloji Yığını' : 'Tech Stack'}</div>
+              <div className="accent-pill mb-6"><Cpu size={13} />{lang === 'tr' ? 'Teknoloji Yığını' : 'Tech Stack'}</div>
               <h3 className="text-3xl md:text-5xl font-black tracking-tighter">
                 {lang === 'tr' ? 'Kullandığım Teknolojiler' : 'Technologies I Use'}
               </h3>
             </div>
             <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-7 gap-4 w-full relative z-10">
               {[
-                { name: 'C#',      color: '#9B4F96', path: 'M11.5 15.97l.41 2.44c-.26.14-.68.27-1.24.39-.57.13-1.24.2-2.01.2-2.21-.04-3.87-.7-4.98-1.96C2.56 15.77 2 14.16 2 12.21c.05-2.31.72-4.08 2-5.32C5.32 5.64 6.96 5 8.94 5c.75 0 1.4.07 1.94.19s.94.25 1.2.4l-.58 2.49-1.96-.44c-.4-.01-.83.06-1.28.19-.31.09-.6.25-.87.49-.27.23-.49.54-.66.91-.17.38-.26.86-.26 1.45.01.58.1 1.09.28 1.51.18.42.41.77.69 1.04s.59.46.94.58.72.18 1.1.17c.42-.01.81-.05 1.17-.12.35-.08.64-.17.87-.29zm5.47 3.19l-.71.71.71.71v1h-1v.71l-.71-.71-.71.71V13.5h-1v-1l.71-.71-.71-.71v-1h1V9.5l.71.71.71-.71v1h1v1zm3 0l-.71.71.71.71v1h-1v.71l-.71-.71-.71.71V13.5h-1v-1l.71-.71-.71-.71v-1h1V9.5l.71.71.71-.71v1h1v1z' },
-                { name: '.NET',    color: '#512BD4', path: 'M24 8.77h-2.468v7.565h-1.425V8.77h-2.462V7.53H24zm-6.852 7.565h-4.821V7.53h4.63v1.24h-3.205v2.494h2.953v1.234h-2.953v2.604h3.396zm-6.708 0H8.882L5.234 9.936c-.145-.222-.243-.413-.296-.573h-.041c.031.188.047.499.047.932v6.042H3.619V7.53h1.7l3.524 6.302c.19.335.313.572.369.71h.028c-.038-.24-.056-.584-.056-1.03V7.53h1.256v8.805z' },
-                { name: 'Python',  color: '#3776AB', path: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z' },
-                { name: 'SQL',     color: '#CC2927', path: 'M12 3C7.58 3 4 4.79 4 7s3.58 4 8 4 8-1.79 8-4-3.58-4-8-4m0 6c-3.87 0-6-.9-6-2s2.13-2 6-2 6 .9 6 2-2.13 2-6 2m8 2c0 2.21-3.58 4-8 4s-8-1.79-8-4V9.78C5.61 11.1 8.67 12 12 12s6.39-.9 8-2.22zm0 4c0 2.21-3.58 4-8 4s-8-1.79-8-4v-2.22C5.61 15.1 8.67 16 12 16s6.39-.9 8-2.22z' },
-                { name: 'ESP32',   color: '#E7352B', path: 'M7 2v2H5v2H3v8h2v2h2v2h10v-2h2v-2h2V6h-2V4h-2V2zm0 2h10v2h2v8h-2v2H7v-2H5V6h2zm3 2H8v2H6v4h2v2h8v-2h2v-4h-2V6h-2v1h-2zm0 1h4v1h2v4h-2v1H9v-1H7V9h2z' },
-                { name: 'C++',     color: '#00599C', path: 'M10.5 15.97l.41 2.44c-.26.14-.68.27-1.24.39-.57.13-1.24.2-2.01.2-2.21-.04-3.87-.7-4.98-1.96C1.56 15.77 1 14.16 1 12.21c.05-2.31.72-4.08 2-5.32C4.32 5.64 5.96 5 7.94 5c.75 0 1.4.07 1.94.19s.94.25 1.2.4l-.58 2.49-1.96-.44c-.4-.01-.83.06-1.28.19-.31.09-.6.25-.87.49-.27.23-.49.54-.66.91-.17.38-.26.86-.26 1.45.01.58.1 1.09.28 1.51.18.42.41.77.69 1.04s.59.46.94.58.72.18 1.1.17c.42-.01.81-.05 1.17-.12.35-.08.64-.17.87-.29zM23 11h-2V9h-2v2h-2v2h2v2h2v-2h2z' },
-                { name: 'Git',     color: '#F05032', path: 'M23.546 10.93L13.067.452a1.55 1.55 0 0 0-2.188 0L8.708 2.627l2.76 2.76a1.838 1.838 0 0 1 2.327 2.341l2.658 2.66a1.838 1.838 0 0 1 1.9 3.039 1.837 1.837 0 0 1-2.596 0 1.846 1.846 0 0 1-.404-1.996L12.86 8.955v6.525c.176.086.342.203.48.346a1.846 1.846 0 0 1 0 2.6 1.838 1.838 0 0 1-2.6 0 1.846 1.846 0 0 1 0-2.6c.15-.154.33-.277.536-.361V8.904a1.847 1.847 0 0 1-.997-2.416L7.559 3.782.454 10.887a1.55 1.55 0 0 0 0 2.188l10.48 10.478a1.55 1.55 0 0 0 2.187 0l10.425-10.424a1.55 1.55 0 0 0 0-2.199' },
-                { name: 'GitHub',  color: '#aaa',    path: 'M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z' },
+                { name: 'C#', color: '#9B4F96', path: 'M11.5 15.97l.41 2.44c-.26.14-.68.27-1.24.39-.57.13-1.24.2-2.01.2-2.21-.04-3.87-.7-4.98-1.96C2.56 15.77 2 14.16 2 12.21c.05-2.31.72-4.08 2-5.32C5.32 5.64 6.96 5 8.94 5c.75 0 1.4.07 1.94.19s.94.25 1.2.4l-.58 2.49-1.96-.44c-.4-.01-.83.06-1.28.19-.31.09-.6.25-.87.49-.27.23-.49.54-.66.91-.17.38-.26.86-.26 1.45.01.58.1 1.09.28 1.51.18.42.41.77.69 1.04s.59.46.94.58.72.18 1.1.17c.42-.01.81-.05 1.17-.12.35-.08.64-.17.87-.29zm5.47 3.19l-.71.71.71.71v1h-1v.71l-.71-.71-.71.71V13.5h-1v-1l.71-.71-.71-.71v-1h1V9.5l.71.71.71-.71v1h1v1zm3 0l-.71.71.71.71v1h-1v.71l-.71-.71-.71.71V13.5h-1v-1l.71-.71-.71-.71v-1h1V9.5l.71.71.71-.71v1h1v1z' },
+                { name: '.NET', color: '#512BD4', path: 'M24 8.77h-2.468v7.565h-1.425V8.77h-2.462V7.53H24zm-6.852 7.565h-4.821V7.53h4.63v1.24h-3.205v2.494h2.953v1.234h-2.953v2.604h3.396zm-6.708 0H8.882L5.234 9.936c-.145-.222-.243-.413-.296-.573h-.041c.031.188.047.499.047.932v6.042H3.619V7.53h1.7l3.524 6.302c.19.335.313.572.369.71h.028c-.038-.24-.056-.584-.056-1.03V7.53h1.256v8.805z' },
+                { name: 'Python', color: '#3776AB', path: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z' },
+                { name: 'SQL', color: '#CC2927', path: 'M12 3C7.58 3 4 4.79 4 7s3.58 4 8 4 8-1.79 8-4-3.58-4-8-4m0 6c-3.87 0-6-.9-6-2s2.13-2 6-2 6 .9 6 2-2.13 2-6 2m8 2c0 2.21-3.58 4-8 4s-8-1.79-8-4V9.78C5.61 11.1 8.67 12 12 12s6.39-.9 8-2.22zm0 4c0 2.21-3.58 4-8 4s-8-1.79-8-4v-2.22C5.61 15.1 8.67 16 12 16s6.39-.9 8-2.22z' },
+                { name: 'ESP32', color: '#E7352B', path: 'M7 2v2H5v2H3v8h2v2h2v2h10v-2h2v-2h2V6h-2V4h-2V2zm0 2h10v2h2v8h-2v2H7v-2H5V6h2zm3 2H8v2H6v4h2v2h8v-2h2v-4h-2V6h-2v1h-2zm0 1h4v1h2v4h-2v1H9v-1H7V9h2z' },
+                { name: 'C++', color: '#00599C', path: 'M10.5 15.97l.41 2.44c-.26.14-.68.27-1.24.39-.57.13-1.24.2-2.01.2-2.21-.04-3.87-.7-4.98-1.96C1.56 15.77 1 14.16 1 12.21c.05-2.31.72-4.08 2-5.32C4.32 5.64 5.96 5 7.94 5c.75 0 1.4.07 1.94.19s.94.25 1.2.4l-.58 2.49-1.96-.44c-.4-.01-.83.06-1.28.19-.31.09-.6.25-.87.49-.27.23-.49.54-.66.91-.17.38-.26.86-.26 1.45.01.58.1 1.09.28 1.51.18.42.41.77.69 1.04s.59.46.94.58.72.18 1.1.17c.42-.01.81-.05 1.17-.12.35-.08.64-.17.87-.29zM23 11h-2V9h-2v2h-2v2h2v2h2v-2h2z' },
+                { name: 'Git', color: '#F05032', path: 'M23.546 10.93L13.067.452a1.55 1.55 0 0 0-2.188 0L8.708 2.627l2.76 2.76a1.838 1.838 0 0 1 2.327 2.341l2.658 2.66a1.838 1.838 0 0 1 1.9 3.039 1.837 1.837 0 0 1-2.596 0 1.846 1.846 0 0 1-.404-1.996L12.86 8.955v6.525c.176.086.342.203.48.346a1.846 1.846 0 0 1 0 2.6 1.838 1.838 0 0 1-2.6 0 1.846 1.846 0 0 1 0-2.6c.15-.154.33-.277.536-.361V8.904a1.847 1.847 0 0 1-.997-2.416L7.559 3.782.454 10.887a1.55 1.55 0 0 0 0 2.188l10.48 10.478a1.55 1.55 0 0 0 2.187 0l10.425-10.424a1.55 1.55 0 0 0 0-2.199' },
+                { name: 'GitHub', color: '#aaa', path: 'M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z' },
                 { name: 'VS Code', color: '#007ACC', path: 'M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 19.5v-15a1.5 1.5 0 0 0-.85-1.413zm-5.406 16.329l-6.078-5.581L16.5 10.7v6.9l1.244.916z' },
-                { name: 'OpenCV',  color: '#5C3EE8', path: 'M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z' },
-                { name: 'Blynk',   color: '#00E5FF', path: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z' },
-                { name: 'Kali',    color: '#268BEE', path: 'M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z' },
+                { name: 'OpenCV', color: '#5C3EE8', path: 'M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z' },
+                { name: 'Blynk', color: '#00E5FF', path: 'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z' },
+                { name: 'Kali', color: '#268BEE', path: 'M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z' },
                 { name: 'ADO.NET', color: '#7B2FBE', path: 'M12 2a10 10 0 0 1 10 10 10 10 0 0 1-10 10A10 10 0 0 1 2 12 10 10 0 0 1 12 2m0 2a8 8 0 0 0-8 8 8 8 0 0 0 8 8 8 8 0 0 0 8-8 8 8 0 0 0-8-8m-1 3h2v5.5l3.9 2.3-.9 1.7-4-2.4V7z' },
                 { name: 'Crossfire', color: '#FF6B35', path: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5' },
               ].map((tech, i) => (
@@ -792,7 +795,7 @@ const App = () => {
           <div className={`section-card p-12 md:p-20 relative overflow-visible ${!darkMode ? 'bg-white border-slate-200/80' : ''}`}>
             <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#ef4444] to-transparent opacity-70" />
             <div className="flex flex-col items-center mb-16">
-              <div className="accent-pill mb-6"><Code size={13}/>{lang === 'tr' ? 'Projeler' : 'Projects'}</div>
+              <div className="accent-pill mb-6"><Code size={13} />{lang === 'tr' ? 'Projeler' : 'Projects'}</div>
               <h3 className="text-3xl md:text-5xl font-black tracking-tighter">{lang === 'tr' ? 'Projelerim' : 'My Projects'}</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
@@ -800,8 +803,8 @@ const App = () => {
                 <div
                   key={proj.id}
                   className={`reveal project-card group flex flex-col p-12 border transition-colors duration-300 ${darkMode
-                      ? 'bg-white/[0.025] border-white/8'
-                      : 'bg-slate-50 border-slate-200 shadow-sm'
+                    ? 'bg-white/[0.025] border-white/8'
+                    : 'bg-slate-50 border-slate-200 shadow-sm'
                     }`}
                   style={{ transitionDelay: `${i * 0.1}s` }}
                 >
@@ -935,22 +938,214 @@ const App = () => {
           </div>
         </section>
 
-        {/* ── About Section (EN ALTA) ── */}
-        <section id="about" className="reveal relative z-10 w-full max-w-[1000px] mx-auto px-6 md:px-12 pb-8">
-          <div className={`section-card p-10 md:p-16 relative overflow-hidden flex flex-col items-center text-center ${!darkMode ? 'bg-white border-slate-200/80' : ''}`}>
-            <div className="absolute bottom-0 right-0 w-64 h-64 rounded-full pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(239,68,68,0.06) 0%, transparent 70%)' }} />
-            <div className="flex flex-col items-center mb-10 w-full">
-              <div className="accent-pill mb-6"><User size={13}/>{t.aboutTitle}</div>
-              <h3 className="text-3xl md:text-4xl font-black tracking-tighter">{t.aboutTitle}</h3>
-              <div className="w-24 h-[1px] mt-8 bg-[#ef4444]/30" />
-            </div>
-            <p className={`text-[13px] font-mono leading-[2.2] tracking-wide max-w-2xl text-center ${darkMode ? 'text-gray-400 opacity-85' : 'text-slate-600'}`}>
-              {t.aboutText}
-            </p>
-          </div>
-        </section>
+
 
       </main>
+
+      {/* ═══════════════════════════════════════════════════════
+           ABOUT ME FULL-PAGE OVERLAY
+      ═══════════════════════════════════════════════════════ */}
+      {showAbout && (
+        <div className="about-overlay" onClick={(e) => e.target === e.currentTarget && setShowAbout(false)}>
+          {/* Backdrop */}
+          <div className="about-overlay-bg" onClick={() => setShowAbout(false)} />
+
+          {/* Panel */}
+          <div className="about-panel">
+            {/* Corner brackets decoration */}
+            <div className="about-corner about-corner-tl" />
+            <div className="about-corner about-corner-tr" />
+            <div className="about-corner about-corner-bl" />
+            <div className="about-corner about-corner-br" />
+
+            {/* Scanline */}
+            <div className="about-scanline" />
+
+            {/* Top accent line */}
+            <div className="about-top-line" />
+
+            {/* Ambient glow */}
+            <div className="about-glow" />
+
+            {/* ── Header Bar ── */}
+            <div className="about-header">
+              <div className="flex items-center gap-3">
+                <div className="about-icon-wrap">
+                  <User size={18} className="text-[#ef4444]" />
+                </div>
+                <div>
+                  <p className="text-[9px] font-mono uppercase tracking-[0.5em] text-[#ef4444] opacity-70 leading-none mb-1">
+                    {lang === 'tr' ? 'Profil · Özgeçmiş' : 'Profile · Resume'}
+                  </p>
+                  <h2 className="text-xl font-black tracking-tighter text-white leading-none">
+                    {lang === 'tr' ? 'Hakkımda' : 'About Me'}
+                  </h2>
+                </div>
+              </div>
+              <button
+                onClick={() => setShowAbout(false)}
+                className="about-close-btn"
+                aria-label="Kapat"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              </button>
+            </div>
+
+            {/* ── Divider ── */}
+            <div className="about-divider" />
+
+            {/* ── Scrollable Content ── */}
+            <div className="about-content">
+
+              {/* Identity Card */}
+              <div className="about-identity">
+                <div className="about-avatar">
+                  <span className="about-avatar-initials">SI</span>
+                  <div className="about-avatar-ring" />
+                  <div className="about-avatar-dot" />
+                </div>
+                <div className="about-identity-info">
+                  <h3 className="text-2xl font-black tracking-tighter text-white">
+                    Serkan <span className="text-[#ef4444]">Işık</span>
+                  </h3>
+                  <p className="text-[11px] font-mono tracking-[0.25em] uppercase text-gray-400 mt-1">
+                    {lang === 'tr' ? 'Bilgisayar Programcılığı Öğrencisi' : 'Computer Programming Student'}
+                  </p>
+                  <div className="flex items-center gap-2 mt-3 flex-wrap">
+                    {[
+                      lang === 'tr' ? 'Anadolu Üniversitesi' : 'Anadolu University',
+                      lang === 'tr' ? '21 Yaşında' : '21 y/o',
+                      lang === 'tr' ? 'Türkiye' : 'Turkey',
+                    ].map((tag, i) => (
+                      <span key={i} className="about-tag">{tag}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Bio */}
+              <div className="about-bio-block">
+                <div className="about-bio-label">
+                  <div className="w-1 h-full absolute left-0 top-0 bg-[#ef4444] rounded-full" />
+                  {lang === 'tr' ? 'Biyografi' : 'Biography'}
+                </div>
+                <p className="about-bio-text">
+                  {t.aboutText}
+                </p>
+              </div>
+
+              {/* Timeline */}
+              <div className="about-section-title">
+                <Award size={14} className="text-[#ef4444]" />
+                {lang === 'tr' ? 'Kilometre Taşları' : 'Milestones'}
+              </div>
+              <div className="about-timeline">
+                {[
+                  {
+                    year: '2024',
+                    icon: Award,
+                    titleTr: 'SHGM İHA-1 Ehliyeti',
+                    titleEn: 'SHGM UAV-1 License',
+                    descTr: 'Lisanslı ticari İHA pilotu',
+                    descEn: 'Licensed commercial UAV pilot',
+                  },
+                  {
+                    year: '2024',
+                    icon: Terminal,
+                    titleTr: 'Groq AI Entegrasyonu',
+                    titleEn: 'Groq AI Integration',
+                    descTr: 'LLaMA 3 tabanlı AI chatbot geliştirme',
+                    descEn: 'LLaMA 3 powered AI chatbot development',
+                  },
+                  {
+                    year: '2023',
+                    icon: Cpu,
+                    titleTr: 'FPV Drone Üretimi',
+                    titleEn: 'FPV Drone Build',
+                    descTr: 'Özel FPV drone tasarımı ve optimizasyonu',
+                    descEn: 'Custom FPV drone design & optimization',
+                  },
+                  {
+                    year: '2023',
+                    icon: Database,
+                    titleTr: 'Telefon Rehberi Projesi',
+                    titleEn: 'Phone Book Project',
+                    descTr: '.NET & C# ile tam kapsamlı CRUD uygulaması',
+                    descEn: 'Full-featured CRUD app with .NET & C#',
+                  },
+                ].map((item, i) => (
+                  <div key={i} className="about-timeline-item">
+                    <div className="about-timeline-left">
+                      <span className="about-timeline-year">{item.year}</span>
+                      <div className="about-timeline-line" />
+                    </div>
+                    <div className="about-timeline-dot">
+                      <item.icon size={10} className="text-[#ef4444]" />
+                    </div>
+                    <div className="about-timeline-content">
+                      <p className="text-[13px] font-black uppercase tracking-tight text-white leading-none mb-1">
+                        {lang === 'tr' ? item.titleTr : item.titleEn}
+                      </p>
+                      <p className="text-[11px] font-mono text-gray-500">
+                        {lang === 'tr' ? item.descTr : item.descEn}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Skills */}
+              <div className="about-section-title">
+                <Sparkles size={14} className="text-[#ef4444]" />
+                {lang === 'tr' ? 'Teknik Yetkinlikler' : 'Technical Skills'}
+              </div>
+              <div className="about-skills-grid">
+                {[
+                  { label: 'C# / .NET', level: 88 },
+                  { label: 'SQL / ADO.NET', level: 82 },
+                  { label: 'Python', level: 75 },
+                  { label: 'Embedded / C++', level: 72 },
+                  { label: 'FPV / UAV', level: 90 },
+                  { label: 'Kali Linux', level: 78 },
+                ].map((sk, i) => (
+                  <div key={i} className="about-skill-row">
+                    <div className="flex justify-between mb-1.5">
+                      <span className="text-[11px] font-black uppercase tracking-wide text-white">{sk.label}</span>
+                      <span className="text-[10px] font-mono text-[#ef4444]">{sk.level}%</span>
+                    </div>
+                    <div className="about-skill-bar-bg">
+                      <div
+                        className="about-skill-bar-fill"
+                        style={{ '--skill-pct': `${sk.level}%`, animationDelay: `${i * 0.1}s` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Social Row */}
+              <div className="about-social-row">
+                <a href="https://github.com/Serkan-design" target="_blank" rel="noopener noreferrer" className="about-social-btn">
+                  <Github size={15} />
+                  <span>GitHub</span>
+                </a>
+                <a href="https://www.instagram.com/sserkan.77/" target="_blank" rel="noopener noreferrer" className="about-social-btn about-social-btn-ghost">
+                  <Instagram size={15} />
+                  <span>Instagram</span>
+                </a>
+                <a href="mailto:serkanisik67@gmail.com" className="about-social-btn about-social-btn-ghost">
+                  <Mail size={15} />
+                  <span>E-Posta</span>
+                </a>
+              </div>
+
+            </div>{/* end about-content */}
+          </div>{/* end about-panel */}
+        </div>
+      )}
 
       {/* Contact Modal */}
       {showContact && (

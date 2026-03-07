@@ -22,12 +22,11 @@ const MoonIcon = () => (
 );
 
 const navLinks = [
-    { id: 'about',    labelTr: 'Hakkımda',  labelEn: 'About'    },
-    { id: 'projects', labelTr: 'Projeler',  labelEn: 'Projects' },
-    { id: 'contact',  labelTr: 'İletişim',  labelEn: 'Contact'  },
+    { id: 'projects', labelTr: 'Projeler',  labelEn: 'Projects', modal: false },
+    { id: 'contact',  labelTr: 'İletişim',  labelEn: 'Contact',  modal: false },
 ];
 
-const Header = ({ lang, setLang, darkMode, setDarkMode }) => {
+const Header = ({ lang, setLang, darkMode, setDarkMode, onAboutOpen }) => {
     const [scrolled, setScrolled] = useState(false);
     const [active, setActive] = useState('');
 
@@ -68,6 +67,14 @@ const Header = ({ lang, setLang, darkMode, setDarkMode }) => {
 
                 {/* Nav links */}
                 <nav className="nav-links">
+                    {/* Hakkımda - modal açar */}
+                    <button
+                        onClick={() => onAboutOpen && onAboutOpen()}
+                        className="nav-btn"
+                    >
+                        {lang === 'tr' ? 'Hakkımda' : 'About Me'}
+                        <span className="nav-underline" />
+                    </button>
                     {navLinks.map(link => (
                         <button
                             key={link.id}
