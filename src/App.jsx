@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import './App.css';
 import Header from './Header';
 import Preloader from './Preloader';
+import AboutPage from './AboutPage';
 import {
   Instagram, Mail, Cpu, Database, Wind, Terminal, User, Plane,
   Award, Sparkles, Loader2, Box, Code, Github, ExternalLink,
@@ -365,6 +366,11 @@ const App = () => {
     setTimeout(() => { setTechIdx(i); }, 260);
     setTimeout(() => setTechGlitch(false), 560);
   };
+
+  // ── If About page is open, render it FULLSCREEN instead of main app ──
+  if (showAbout) {
+    return <AboutPage lang={lang} darkMode={darkMode} onBack={() => setShowAbout(false)} />;
+  }
 
   return (
     <div className={`min-h-screen font-sans relative overflow-x-hidden ${darkMode ? 'bg-[#0a0a0f] text-[#f1f5f9]' : 'bg-[#f0f4f8] text-[#0f172a]'}`} style={{ transition: 'background 0.4s ease, color 0.4s ease' }}>
@@ -938,214 +944,8 @@ const App = () => {
           </div>
         </section>
 
-
-
       </main>
 
-      {/* ═══════════════════════════════════════════════════════
-           ABOUT ME FULL-PAGE OVERLAY
-      ═══════════════════════════════════════════════════════ */}
-      {showAbout && (
-        <div className="about-overlay" onClick={(e) => e.target === e.currentTarget && setShowAbout(false)}>
-          {/* Backdrop */}
-          <div className="about-overlay-bg" onClick={() => setShowAbout(false)} />
-
-          {/* Panel */}
-          <div className="about-panel">
-            {/* Corner brackets decoration */}
-            <div className="about-corner about-corner-tl" />
-            <div className="about-corner about-corner-tr" />
-            <div className="about-corner about-corner-bl" />
-            <div className="about-corner about-corner-br" />
-
-            {/* Scanline */}
-            <div className="about-scanline" />
-
-            {/* Top accent line */}
-            <div className="about-top-line" />
-
-            {/* Ambient glow */}
-            <div className="about-glow" />
-
-            {/* ── Header Bar ── */}
-            <div className="about-header">
-              <div className="flex items-center gap-3">
-                <div className="about-icon-wrap">
-                  <User size={18} className="text-[#ef4444]" />
-                </div>
-                <div>
-                  <p className="text-[9px] font-mono uppercase tracking-[0.5em] text-[#ef4444] opacity-70 leading-none mb-1">
-                    {lang === 'tr' ? 'Profil · Özgeçmiş' : 'Profile · Resume'}
-                  </p>
-                  <h2 className="text-xl font-black tracking-tighter text-white leading-none">
-                    {lang === 'tr' ? 'Hakkımda' : 'About Me'}
-                  </h2>
-                </div>
-              </div>
-              <button
-                onClick={() => setShowAbout(false)}
-                className="about-close-btn"
-                aria-label="Kapat"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                  <line x1="18" y1="6" x2="6" y2="18" />
-                  <line x1="6" y1="6" x2="18" y2="18" />
-                </svg>
-              </button>
-            </div>
-
-            {/* ── Divider ── */}
-            <div className="about-divider" />
-
-            {/* ── Scrollable Content ── */}
-            <div className="about-content">
-
-              {/* Identity Card */}
-              <div className="about-identity">
-                <div className="about-avatar">
-                  <span className="about-avatar-initials">SI</span>
-                  <div className="about-avatar-ring" />
-                  <div className="about-avatar-dot" />
-                </div>
-                <div className="about-identity-info">
-                  <h3 className="text-2xl font-black tracking-tighter text-white">
-                    Serkan <span className="text-[#ef4444]">Işık</span>
-                  </h3>
-                  <p className="text-[11px] font-mono tracking-[0.25em] uppercase text-gray-400 mt-1">
-                    {lang === 'tr' ? 'Bilgisayar Programcılığı Öğrencisi' : 'Computer Programming Student'}
-                  </p>
-                  <div className="flex items-center gap-2 mt-3 flex-wrap">
-                    {[
-                      lang === 'tr' ? 'Anadolu Üniversitesi' : 'Anadolu University',
-                      lang === 'tr' ? '21 Yaşında' : '21 y/o',
-                      lang === 'tr' ? 'Türkiye' : 'Turkey',
-                    ].map((tag, i) => (
-                      <span key={i} className="about-tag">{tag}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Bio */}
-              <div className="about-bio-block">
-                <div className="about-bio-label">
-                  <div className="w-1 h-full absolute left-0 top-0 bg-[#ef4444] rounded-full" />
-                  {lang === 'tr' ? 'Biyografi' : 'Biography'}
-                </div>
-                <p className="about-bio-text">
-                  {t.aboutText}
-                </p>
-              </div>
-
-              {/* Timeline */}
-              <div className="about-section-title">
-                <Award size={14} className="text-[#ef4444]" />
-                {lang === 'tr' ? 'Kilometre Taşları' : 'Milestones'}
-              </div>
-              <div className="about-timeline">
-                {[
-                  {
-                    year: '2024',
-                    icon: Award,
-                    titleTr: 'SHGM İHA-1 Ehliyeti',
-                    titleEn: 'SHGM UAV-1 License',
-                    descTr: 'Lisanslı ticari İHA pilotu',
-                    descEn: 'Licensed commercial UAV pilot',
-                  },
-                  {
-                    year: '2024',
-                    icon: Terminal,
-                    titleTr: 'Groq AI Entegrasyonu',
-                    titleEn: 'Groq AI Integration',
-                    descTr: 'LLaMA 3 tabanlı AI chatbot geliştirme',
-                    descEn: 'LLaMA 3 powered AI chatbot development',
-                  },
-                  {
-                    year: '2023',
-                    icon: Cpu,
-                    titleTr: 'FPV Drone Üretimi',
-                    titleEn: 'FPV Drone Build',
-                    descTr: 'Özel FPV drone tasarımı ve optimizasyonu',
-                    descEn: 'Custom FPV drone design & optimization',
-                  },
-                  {
-                    year: '2023',
-                    icon: Database,
-                    titleTr: 'Telefon Rehberi Projesi',
-                    titleEn: 'Phone Book Project',
-                    descTr: '.NET & C# ile tam kapsamlı CRUD uygulaması',
-                    descEn: 'Full-featured CRUD app with .NET & C#',
-                  },
-                ].map((item, i) => (
-                  <div key={i} className="about-timeline-item">
-                    <div className="about-timeline-left">
-                      <span className="about-timeline-year">{item.year}</span>
-                      <div className="about-timeline-line" />
-                    </div>
-                    <div className="about-timeline-dot">
-                      <item.icon size={10} className="text-[#ef4444]" />
-                    </div>
-                    <div className="about-timeline-content">
-                      <p className="text-[13px] font-black uppercase tracking-tight text-white leading-none mb-1">
-                        {lang === 'tr' ? item.titleTr : item.titleEn}
-                      </p>
-                      <p className="text-[11px] font-mono text-gray-500">
-                        {lang === 'tr' ? item.descTr : item.descEn}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Skills */}
-              <div className="about-section-title">
-                <Sparkles size={14} className="text-[#ef4444]" />
-                {lang === 'tr' ? 'Teknik Yetkinlikler' : 'Technical Skills'}
-              </div>
-              <div className="about-skills-grid">
-                {[
-                  { label: 'C# / .NET', level: 88 },
-                  { label: 'SQL / ADO.NET', level: 82 },
-                  { label: 'Python', level: 75 },
-                  { label: 'Embedded / C++', level: 72 },
-                  { label: 'FPV / UAV', level: 90 },
-                  { label: 'Kali Linux', level: 78 },
-                ].map((sk, i) => (
-                  <div key={i} className="about-skill-row">
-                    <div className="flex justify-between mb-1.5">
-                      <span className="text-[11px] font-black uppercase tracking-wide text-white">{sk.label}</span>
-                      <span className="text-[10px] font-mono text-[#ef4444]">{sk.level}%</span>
-                    </div>
-                    <div className="about-skill-bar-bg">
-                      <div
-                        className="about-skill-bar-fill"
-                        style={{ '--skill-pct': `${sk.level}%`, animationDelay: `${i * 0.1}s` }}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Social Row */}
-              <div className="about-social-row">
-                <a href="https://github.com/Serkan-design" target="_blank" rel="noopener noreferrer" className="about-social-btn">
-                  <Github size={15} />
-                  <span>GitHub</span>
-                </a>
-                <a href="https://www.instagram.com/sserkan.77/" target="_blank" rel="noopener noreferrer" className="about-social-btn about-social-btn-ghost">
-                  <Instagram size={15} />
-                  <span>Instagram</span>
-                </a>
-                <a href="mailto:serkanisik67@gmail.com" className="about-social-btn about-social-btn-ghost">
-                  <Mail size={15} />
-                  <span>E-Posta</span>
-                </a>
-              </div>
-
-            </div>{/* end about-content */}
-          </div>{/* end about-panel */}
-        </div>
-      )}
 
       {/* Contact Modal */}
       {showContact && (
