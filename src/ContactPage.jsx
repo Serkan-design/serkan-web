@@ -34,7 +34,10 @@ const ContactPage = ({ lang, onBack }) => {
   const tr = lang === 'tr';
 
   const infos = [
-    { icon: Mail, label: 'Email', value: 'serkanisik67@gmail.com', link: 'mailto:serkanisik67@gmail.com' },
+    { 
+      icon: Mail, label: 'Email', value: 'serkanisik67@gmail.com', 
+      link: `mailto:serkanisik67@gmail.com?subject=${tr ? 'Portfolyo Üzerinden İletişim' : 'Contact from Portfolio'}` 
+    },
     { icon: MapPin, label: tr ? 'Konum' : 'Location', value: tr ? 'Türkiye' : 'Turkey', link: null },
     { icon: Clock, label: tr ? 'Yanıt Süresi' : 'Response Time', value: tr ? '24 saat içinde' : 'Within 24 hours', link: null },
   ];
@@ -114,20 +117,33 @@ const ContactPage = ({ lang, onBack }) => {
 
           {/* Info cards */}
           <div className="ct-info-list">
-            {infos.map((info, i) => (
-              <div key={i} className="ct-info-card">
-                <div className="ct-info-icon">
-                  <info.icon size={16} style={{ color: '#ef4444' }} />
+            {infos.map((info, i) => {
+              const Content = (
+                <>
+                  <div className="ct-info-icon">
+                    <info.icon size={16} style={{ color: '#ef4444' }} />
+                  </div>
+                  <div>
+                    <p className="ct-info-label">{info.label}</p>
+                    <p className={`ct-info-value ${info.link ? 'ct-info-link' : ''}`}>{info.value}</p>
+                  </div>
+                </>
+              );
+
+              if (info.link) {
+                return (
+                  <a key={i} href={info.link} className="ct-info-card ct-info-card-clickable">
+                    {Content}
+                  </a>
+                );
+              }
+
+              return (
+                <div key={i} className="ct-info-card">
+                  {Content}
                 </div>
-                <div>
-                  <p className="ct-info-label">{info.label}</p>
-                  {info.link
-                    ? <a href={info.link} className="ct-info-value ct-info-link">{info.value}</a>
-                    : <p className="ct-info-value">{info.value}</p>
-                  }
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* Social */}

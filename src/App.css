@@ -1989,6 +1989,9 @@
 .ct-info-value { font-size: 14px; font-weight: 600; color: #ccc; }
 .ct-info-link { color: #fff; text-decoration: none; transition: 0.2s; }
 .ct-info-link:hover { color: #ef4444; }
+.ct-info-card-clickable { cursor: pointer; transition: all 0.2s ease; text-decoration: none; }
+.ct-info-card-clickable:hover { background: rgba(255, 255, 255, 0.05); border-color: rgba(239,68,68,0.3); transform: translateY(-2px); }
+.ct-info-card-clickable:hover .ct-info-value { color: #ef4444; }
 .ct-social-row { display: flex; gap: 12px; }
 .ct-social-btn { display: flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 8px; font-family: 'Space Mono', monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; text-decoration: none; transition: 0.2s; font-weight: 600; }
 .ct-social-red { background: #ef4444; color: #fff; box-shadow: 0 4px 14px rgba(239,68,68,0.3); }
