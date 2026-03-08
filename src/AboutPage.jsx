@@ -57,7 +57,7 @@ const AboutPage = ({ lang, onBack }) => {
       en: ['SHGM UAV-1 License', 'Licensed commercial UAV pilot'],
     },
     {
-      icon: Terminal,
+      logo: 'https://cdn.simpleicons.org/groq/ef4444',
       tr: ['Groq AI Entegrasyonu', 'LLaMA 3 tabanlı AI chatbot geliştirme'],
       en: ['Groq AI Integration', 'LLaMA 3 powered AI chatbot development'],
     },
@@ -207,9 +207,9 @@ const AboutPage = ({ lang, onBack }) => {
               <div key={i} className="about-pg-timeline-item">
                 <div className="about-pg-tl-dot">
                   {m.logo ? (
-                    <img src={m.logo} alt="" style={{ width: '16px', height: '16px' }} />
+                    <img src={m.logo} alt="" style={{ width: '22px', height: '22px', objectFit: 'contain' }} />
                   ) : (
-                    <m.icon size={11} style={{ color: '#ef4444' }} />
+                    <m.icon size={20} style={{ color: '#ef4444' }} />
                   )}
                 </div>
                 <div className="about-pg-tl-content">
