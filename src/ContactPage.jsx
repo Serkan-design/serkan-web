@@ -24,8 +24,8 @@ const ContactPage = ({ lang, onBack }) => {
     const subject = encodeURIComponent(`Portfolio İletişim - ${formName}`);
     const body = encodeURIComponent(`Ad: ${formName}\nEmail: ${formEmail}\n\nMesaj:\n${formMsg}`);
     setTimeout(() => {
-      const mailtoLink = `mailto:serkanisik67@gmail.com?subject=${subject}&body=${body}`;
-      window.location.href = mailtoLink;
+      const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=serkanisik67@gmail.com&su=${subject}&body=${body}`;
+      window.open(gmailLink, '_blank');
       setFormStatus('sent');
       setFormName(''); setFormEmail(''); setFormMsg('');
       setTimeout(() => setFormStatus(null), 4000);
@@ -37,7 +37,7 @@ const ContactPage = ({ lang, onBack }) => {
   const infos = [
     { 
       icon: Mail, label: 'Email', value: 'serkanisik67@gmail.com', 
-      link: `mailto:serkanisik67@gmail.com?subject=${encodeURIComponent(tr ? 'Portfolyo Üzerinden İletişim' : 'Contact from Portfolio')}` 
+      link: `https://mail.google.com/mail/?view=cm&fs=1&to=serkanisik67@gmail.com&su=${encodeURIComponent(tr ? 'Portfolyo Üzerinden İletişim' : 'Contact from Portfolio')}` 
     },
     { icon: MapPin, label: tr ? 'Konum' : 'Location', value: tr ? 'Türkiye' : 'Turkey', link: null },
     { icon: Clock, label: tr ? 'Yanıt Süresi' : 'Response Time', value: tr ? '24 saat içinde' : 'Within 24 hours', link: null },
@@ -155,7 +155,7 @@ const ContactPage = ({ lang, onBack }) => {
             <a href="https://www.instagram.com/sserkan.77/" target="_blank" rel="noopener noreferrer" className="ct-social-btn ct-social-ghost">
               <Instagram size={15} /><span>Instagram</span>
             </a>
-            <a href={`mailto:serkanisik67@gmail.com?subject=${encodeURIComponent(tr ? 'Portfolyo Üzerinden İletişim' : 'Contact from Portfolio')}`} className="ct-social-btn ct-social-ghost">
+            <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=serkanisik67@gmail.com&su=${encodeURIComponent(tr ? 'Portfolyo Üzerinden İletişim' : 'Contact from Portfolio')}`} target="_blank" rel="noopener noreferrer" className="ct-social-btn ct-social-ghost">
               <Mail size={15} /><span>Mail</span>
             </a>
           </div>

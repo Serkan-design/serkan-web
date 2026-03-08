@@ -187,7 +187,7 @@ const AboutPage = ({ lang, onBack }) => {
             <a href="https://www.instagram.com/sserkan.77/" target="_blank" rel="noopener noreferrer" className="about-pg-social-btn about-pg-social-ghost">
               <Instagram size={15} /><span>Instagram</span>
             </a>
-            <a href={`mailto:serkanisik67@gmail.com?subject=${encodeURIComponent(lang === 'tr' ? 'Portfolyo Üzerinden İletişim' : 'Contact from Portfolio')}`} className="about-pg-social-btn about-pg-social-ghost">
+            <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=serkanisik67@gmail.com&su=${encodeURIComponent(lang === 'tr' ? 'Portfolyo Üzerinden İletişim' : 'Contact from Portfolio')}`} target="_blank" rel="noopener noreferrer" className="about-pg-social-btn about-pg-social-ghost">
               <Mail size={15} /><span>Mail</span>
             </a>
           </div>
