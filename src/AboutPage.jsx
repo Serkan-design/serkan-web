@@ -4,7 +4,7 @@ import {
   Github, Instagram, Mail, ArrowLeft, Plane, Code
 } from 'lucide-react';
 
-const AboutPage = ({ lang, darkMode, onBack }) => {
+const AboutPage = ({ lang, onBack }) => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {

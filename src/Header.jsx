@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
 import './Header.css';
 
 const SunIcon = () => (
@@ -23,6 +24,7 @@ const MoonIcon = () => (
 
 const Header = ({ lang, setLang, darkMode, setDarkMode, onAboutOpen, onProjectsOpen, onContactOpen }) => {
     const [scrolled, setScrolled] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 40);
@@ -30,8 +32,14 @@ const Header = ({ lang, setLang, darkMode, setDarkMode, onAboutOpen, onProjectsO
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
+    // Close menu when a link is clicked
+    const handleNavClick = (action) => {
+        action();
+        setIsMenuOpen(false);
+    };
+
     return (
-        <header className={`header${scrolled ? ' header-scrolled' : ''}`}>
+        <header className={`header${scrolled ? ' header-scrolled' : ''}${isMenuOpen ? ' header-menu-open' : ''}`}>
             <div className="header-inner">
                 {/* Logo */}
                 <a href={import.meta.env.BASE_URL} className="logo-link">
@@ -55,16 +63,16 @@ const Header = ({ lang, setLang, darkMode, setDarkMode, onAboutOpen, onProjectsO
                 </a>
 
                 {/* Nav links */}
-                <nav className="nav-links">
-                    <button onClick={onAboutOpen} className="nav-btn">
+                <nav className={`nav-links ${isMenuOpen ? 'nav-links-open' : ''}`}>
+                    <button onClick={() => handleNavClick(onAboutOpen)} className="nav-btn">
                         {lang === 'tr' ? 'Hakkımda' : 'About Me'}
                         <span className="nav-underline" />
                     </button>
-                    <button onClick={onProjectsOpen} className="nav-btn">
+                    <button onClick={() => handleNavClick(onProjectsOpen)} className="nav-btn">
                         {lang === 'tr' ? 'Projeler' : 'Projects'}
                         <span className="nav-underline" />
                     </button>
-                    <button onClick={onContactOpen} className="nav-btn">
+                    <button onClick={() => handleNavClick(onContactOpen)} className="nav-btn">
                         {lang === 'tr' ? 'İletişim' : 'Contact'}
                         <span className="nav-underline" />
                     </button>
@@ -88,6 +96,15 @@ const Header = ({ lang, setLang, darkMode, setDarkMode, onAboutOpen, onProjectsO
                         className={`theme-btn${darkMode ? ' theme-btn-dark' : ''}`}
                     >
                         {darkMode ? <SunIcon /> : <MoonIcon />}
+                    </button>
+
+                    {/* Mobile menu toggle */}
+                    <button 
+                        className="mobile-menu-btn" 
+                        onClick={() => setIsMenuOpen(!isMenuOpen)}
+                        aria-label="Toggle Menu"
+                    >
+                        {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
                     </button>
                 </div>
             </div>

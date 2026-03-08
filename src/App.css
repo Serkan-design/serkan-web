@@ -2023,4 +2023,18 @@
   .ct-header-right { align-self: center; }
   .ct-form-row { grid-template-columns: 1fr; }
   .ct-form-card { padding: 24px; }
+
+  /* Hero Mobile Optimization */
+  .section-hero {
+    height: auto !important;
+    min-height: 100vh;
+    overflow: visible !important;
+  }
+  .hero-panel {
+    height: 90vh !important;
+    min-height: 500px;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
 }
+

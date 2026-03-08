@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import { useState, useEffect, useMemo, useCallback } from 'react';
 import './App.css';
 import Header from './Header';
 import Preloader from './Preloader';
@@ -6,9 +6,8 @@ import AboutPage from './AboutPage';
 import ProjectsPage from './ProjectsPage';
 import ContactPage from './ContactPage';
 import {
-  Instagram, Mail, Cpu, Database, Wind, Terminal, User, Plane,
-  Award, Sparkles, Loader2, Box, Code, Github, ExternalLink,
-  Send, CheckCircle, XCircle
+  Instagram, Mail, Terminal, User, Plane,
+  Award, Sparkles, Loader2, Code, Github
 } from 'lucide-react';
 
 // ── API Key Obfuscation ──
@@ -46,86 +45,6 @@ const tickerItems = [
   { label: "C#", value: "ADO.NET" },
 ];
 
-// ── Tech Badge Components ─────────────────────────────────
-const TechBadge = ({ name, color, icon: Icon, bgColor }) => (
-  <span className="tech-badge" style={{ '--badge-color': color, '--badge-bg': bgColor }}>
-    {Icon && <Icon size={11} />}
-    {name}
-  </span>
-);
-
-// SVG badge icons for technologies without lucide equivalents
-const CSharpIcon = () => (
-  <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M11.5 15.97l.41 2.44c-.26.14-.68.27-1.24.39-.57.13-1.24.2-2.01.2-2.21-.04-3.87-.7-4.98-1.96C2.56 15.77 2 14.16 2 12.21c.05-2.31.72-4.08 2-5.32C5.32 5.64 6.96 5 8.94 5c.75 0 1.4.07 1.94.19s.94.25 1.2.4l-.58 2.49-1.96-.44c-.4-.01-.83.06-1.28.19-.31.09-.6.25-.87.49-.27.23-.49.54-.66.91-.17.38-.26.86-.26 1.45.01.58.1 1.09.28 1.51.18.42.41.77.69 1.04s.59.46.94.58c.35.12.72.18 1.1.17.42-.01.81-.05 1.17-.12.35-.08.64-.17.87-.29zm.92-10.45c.63 0 1.18.13 1.68.38.49.25.95.57 1.36.97l.93-.93c-.48-.54-1.04-.95-1.66-1.24-.62-.29-1.3-.43-2.04-.43-.62 0-1.2.11-1.72.32-.53.21-.99.5-1.38.88l.93.93c.63-.59 1.32-.88 1.9-.88zm0 3.29c.44 0 .84.1 1.2.29.37.19.68.44.94.75l.93-.93c-.41-.44-.89-.79-1.43-1.03-.54-.25-1.12-.37-1.73-.37-.33 0-.65.04-.95.12l.42 1.41c.21-.16.4-.24.62-.24zm5.47 3.19l-.71.71.71.71v1h-1v.71l-.71-.71-.71.71V13.5h-1v-1l.71-.71-.71-.71v-1h1V9.5l.71.71.71-.71v1h1v1zm3 0l-.71.71.71.71v1h-1v.71l-.71-.71-.71.71V13.5h-1v-1l.71-.71-.71-.71v-1h1V9.5l.71.71.71-.71v1h1v1z" />
-  </svg>
-);
-
-const DotNetIcon = () => (
-  <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M24 8.77h-2.468v7.565h-1.425V8.77h-2.462V7.53H24zm-6.852 7.565h-4.821V7.53h4.63v1.24h-3.205v2.494h2.953v1.234h-2.953v2.604h3.396zm-6.708 0H8.882L5.234 9.936c-.145-.222-.243-.413-.296-.573h-.041c.031.188.047.499.047.932v6.042H3.619V7.53h1.7l3.524 6.302c.19.335.313.572.369.71h.028c-.038-.24-.056-.584-.056-1.03V7.53h1.256v8.805z" />
-  </svg>
-);
-
-const PythonIcon = () => (
-  <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M11.914 0C5.82 0 6.2 2.656 6.2 2.656l.007 2.752h5.814v.826H3.727S0 5.789 0 11.969c0 6.18 3.403 5.96 3.403 5.96h2.031v-2.867s-.109-3.402 3.35-3.402h5.766s3.24.052 3.24-3.13V3.19S18.28 0 11.914 0zM8.708 1.84a1.047 1.047 0 0 1 1.047 1.049 1.047 1.047 0 0 1-1.047 1.047A1.047 1.047 0 0 1 7.66 2.889 1.047 1.047 0 0 1 8.708 1.84zm3.596 10.326c-.187 0-.37.007-.55.019l-2.39.165c-.18.013-.35.019-.52.019-1.81 0-3.12-.88-3.12-2.5 0-1.62 1.31-2.5 3.12-2.5h5.77c.17 0 .34-.006.52-.019l2.39-.165c.18-.013.36-.019.55-.019 1.81 0 3.12.88 3.12 2.5 0 1.62-1.31 2.5-3.12 2.5h-5.77z" />
-  </svg>
-);
-
-const AdoIcon = () => (
-  <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 3a7 7 0 1 1-7 7 7 7 0 0 1 7-7zm-1 3v5l4 2.5-.75 1.23L9 13V8z" />
-  </svg>
-);
-
-// ── Projects Data ──────────────────────────────────────────
-const projects = [
-  {
-    id: 'proj1',
-    titleTr: 'Telefon Rehberi (.NET & C#)',
-    titleEn: 'Phone Book (.NET & C#)',
-    descTr: 'ADO.NET ve C# ile geliştirilmiş, SQL Server tabanlı tam kapsamlı CRUD telefon rehberi uygulaması.',
-    descEn: 'Full-featured CRUD phone book application built with ADO.NET and C# on SQL Server backend.',
-    github: 'https://github.com/Serkan-design/TelefonRehberi',
-    techs: [
-      { name: 'C#', color: '#9B4F96', bgColor: 'rgba(155,79,150,0.12)' },
-      { name: '.NET', color: '#512BD4', bgColor: 'rgba(81,43,212,0.12)' },
-      { name: 'ADO.NET', color: '#512BD4', bgColor: 'rgba(81,43,212,0.10)' },
-      { name: 'SQL', color: '#CC2927', bgColor: 'rgba(204,41,39,0.10)' },
-    ],
-    icon: Database,
-  },
-  {
-    id: 'proj2',
-    titleTr: 'ESP32 Blynk LED Kontrol',
-    titleEn: 'ESP32 Blynk LED Control',
-    descTr: 'ESP32 mikrodenetleyici ve Blynk IoT platformu kullanılarak Wi-Fi üzerinden uzaktan LED kontrolü.',
-    descEn: 'Remote LED control over Wi-Fi using ESP32 microcontroller and the Blynk IoT platform.',
-    github: 'https://github.com/Serkan-design/ESP32-Blynk-LED-Control',
-    techs: [
-      { name: 'C++', color: '#00599C', bgColor: 'rgba(0,89,156,0.12)' },
-      { name: 'ESP32', color: '#E7352B', bgColor: 'rgba(231,53,43,0.10)' },
-      { name: 'IoT', color: '#4EAA25', bgColor: 'rgba(78,170,37,0.10)' },
-    ],
-    icon: Cpu,
-  },
-  {
-    id: 'proj3',
-    titleTr: 'Finger Control — OpenCV',
-    titleEn: 'Finger Control — OpenCV',
-    descTr: 'Python ve OpenCV kullanarak el parmak hareketleriyle bilgisayarı kontrol eden gerçek zamanlı görüntü işleme uygulaması.',
-    descEn: 'Real-time computer vision app using Python & OpenCV to control the computer with finger gestures.',
-    github: 'https://github.com/Serkan-design/Finger-Control-OpenCV',
-    techs: [
-      { name: 'Python', color: '#3776AB', bgColor: 'rgba(55,118,171,0.12)' },
-      { name: 'OpenCV', color: '#5C3EE8', bgColor: 'rgba(92,62,232,0.10)' },
-      { name: 'MediaPipe', color: '#00BCD4', bgColor: 'rgba(0,188,212,0.10)' },
-    ],
-    icon: Terminal,
-  },
-];
-
 const App = () => {
   const [lang, setLang] = useState('tr');
   const [showContact, setShowContact] = useState(false);
@@ -138,12 +57,6 @@ const App = () => {
     const saved = localStorage.getItem('darkMode');
     return saved !== null ? saved === 'true' : true;
   });
-  // Contact form state
-  const [formName, setFormName] = useState('');
-  const [formEmail, setFormEmail] = useState('');
-  const [formMsg, setFormMsg] = useState('');
-  const [formStatus, setFormStatus] = useState(null); // 'sending' | 'sent' | 'error'
-  const formRef = useRef(null);
 
   // Slider state
   const [aviationIdx, setAviationIdx] = useState(0);
@@ -210,23 +123,6 @@ const App = () => {
       document.documentElement.classList.remove('dark');
     }
   }, [darkMode]);
-
-  // ── Contact form submit via mailto ──
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    if (!formName.trim() || !formEmail.trim() || !formMsg.trim()) return;
-    setFormStatus('sending');
-    const subject = encodeURIComponent(`Portfolio İletişim - ${formName}`);
-    const body = encodeURIComponent(`Ad: ${formName}\nEmail: ${formEmail}\n\nMesaj:\n${formMsg}`);
-    setTimeout(() => {
-      window.open(`mailto:serkanisik67@gmail.com?subject=${subject}&body=${body}`, '_blank');
-      setFormStatus('sent');
-      setFormName('');
-      setFormEmail('');
-      setFormMsg('');
-      setTimeout(() => setFormStatus(null), 4000);
-    }, 600);
-  };
 
   // ── Parallax on scroll ──
   useEffect(() => {
@@ -371,7 +267,7 @@ const App = () => {
   };
 
   // ── Page routing ── 
-  if (showAbout)    return <AboutPage    lang={lang} darkMode={darkMode} onBack={() => setShowAbout(false)} />;
+  if (showAbout)    return <AboutPage    lang={lang} onBack={() => setShowAbout(false)} />;
   if (showProjects) return <ProjectsPage lang={lang} onBack={() => setShowProjects(false)} />;
   if (showContact)  return <ContactPage  lang={lang} onBack={() => setShowContact(false)} />;
 
@@ -412,7 +308,7 @@ const App = () => {
       />
 
       {/* ── Hero Section ── */}
-      <section className="relative h-screen w-full flex flex-col md:flex-row overflow-hidden">
+      <section className="section-hero relative h-screen w-full flex flex-col md:flex-row overflow-hidden">
 
         {/* Floating particles (full hero overlay) */}
         <div className="absolute inset-0 z-[6] pointer-events-none overflow-hidden">
@@ -434,7 +330,7 @@ const App = () => {
         </div>
 
         {/* ── Left Panel: Aviation/FPV ── */}
-        <div className="relative w-full md:w-1/2 h-full overflow-hidden border-r border-white/5">
+        <div className="hero-panel relative w-full md:w-1/2 h-full overflow-hidden border-r border-white/5">
           {/* Gradient overlays */}
           <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#0a0a0f] via-[#0a0a0f]/40 to-transparent pointer-events-none" />
           <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0a0a0f]/70 via-transparent to-transparent pointer-events-none" />
@@ -496,7 +392,7 @@ const App = () => {
         </div>
 
         {/* ── Right Panel: Tech/Software ── */}
-        <div className="relative w-full md:w-1/2 h-full overflow-hidden">
+        <div className="hero-panel relative w-full md:w-1/2 h-full overflow-hidden">
           {/* Gradient overlays */}
           <div className="absolute inset-0 z-10 bg-gradient-to-l from-[#0a0a0f] via-[#0a0a0f]/40 to-transparent pointer-events-none" />
           <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0a0a0f]/70 via-transparent to-transparent pointer-events-none" />
