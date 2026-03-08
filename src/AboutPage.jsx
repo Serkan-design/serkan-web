@@ -57,7 +57,7 @@ const AboutPage = ({ lang, onBack }) => {
       en: ['SHGM UAV-1 License', 'Licensed commercial UAV pilot'],
     },
     {
-      logo: 'https://cdn.simpleicons.org/groq/ef4444',
+      icon: Sparkles,
       tr: ['Groq AI Entegrasyonu', 'LLaMA 3 tabanlı AI chatbot geliştirme'],
       en: ['Groq AI Integration', 'LLaMA 3 powered AI chatbot development'],
     },
