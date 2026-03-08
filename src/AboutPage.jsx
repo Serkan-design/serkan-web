@@ -52,32 +52,32 @@ const AboutPage = ({ lang, onBack }) => {
 
   const milestones = [
     {
-      year: '2024', icon: Award,
+      icon: Award,
       tr: ['SHGM İHA-1 Ehliyeti', 'Lisanslı ticari İHA pilotu'],
       en: ['SHGM UAV-1 License', 'Licensed commercial UAV pilot'],
     },
     {
-      year: '2024', icon: Terminal,
+      icon: Terminal,
       tr: ['Groq AI Entegrasyonu', 'LLaMA 3 tabanlı AI chatbot geliştirme'],
       en: ['Groq AI Integration', 'LLaMA 3 powered AI chatbot development'],
     },
     {
-      year: '2023', icon: Plane,
+      icon: Plane,
       tr: ['FPV Drone Üretimi', 'Özel FPV drone tasarımı ve optimizasyonu'],
       en: ['FPV Drone Build', 'Custom FPV drone design & optimization'],
     },
     {
-      year: '2023', icon: Database,
+      logo: 'https://cdn.simpleicons.org/dotnet/ef4444',
       tr: ['Telefon Rehberi Projesi', '.NET & C# ile tam kapsamlı CRUD uygulaması'],
       en: ['Phone Book Project', 'Full-featured CRUD app with .NET & C#'],
     },
     {
-      year: '2022', icon: Cpu,
+      logo: 'https://cdn.simpleicons.org/arduino/ef4444',
       tr: ['ESP32 IoT Projesi', 'Blynk platformu ile uzaktan LED kontrolü'],
       en: ['ESP32 IoT Project', 'Remote LED control via Blynk platform'],
     },
     {
-      year: '2022', icon: Code,
+      logo: 'https://cdn.simpleicons.org/kalilinux/ef4444',
       tr: ['Kali Linux Tam Kurulum', 'Günlük kullanım için özelleştirilmiş sistem'],
       en: ['Kali Linux Full Setup', 'Custom configured daily driver system'],
     },
@@ -187,7 +187,7 @@ const AboutPage = ({ lang, onBack }) => {
             <a href="https://www.instagram.com/sserkan.77/" target="_blank" rel="noopener noreferrer" className="about-pg-social-btn about-pg-social-ghost">
               <Instagram size={15} /><span>Instagram</span>
             </a>
-            <a href={`mailto:serkanisik67@gmail.com?subject=${lang === 'tr' ? 'Portfolyo Üzerinden İletişim' : 'Contact from Portfolio'}`} className="about-pg-social-btn about-pg-social-ghost">
+            <a href={`mailto:serkanisik67@gmail.com?subject=${encodeURIComponent(lang === 'tr' ? 'Portfolyo Üzerinden İletişim' : 'Contact from Portfolio')}`} className="about-pg-social-btn about-pg-social-ghost">
               <Mail size={15} /><span>Mail</span>
             </a>
           </div>
@@ -205,12 +205,12 @@ const AboutPage = ({ lang, onBack }) => {
           <div className="about-page-timeline">
             {milestones.map((m, i) => (
               <div key={i} className="about-pg-timeline-item">
-                <div className="about-pg-tl-left">
-                  <span className="about-pg-tl-year">{m.year}</span>
-                  {i < milestones.length - 1 && <div className="about-pg-tl-line" />}
-                </div>
                 <div className="about-pg-tl-dot">
-                  <m.icon size={11} style={{ color: '#ef4444' }} />
+                  {m.logo ? (
+                    <img src={m.logo} alt="" style={{ width: '16px', height: '16px' }} />
+                  ) : (
+                    <m.icon size={11} style={{ color: '#ef4444' }} />
+                  )}
                 </div>
                 <div className="about-pg-tl-content">
                   <p className="about-pg-tl-title">{lang === 'tr' ? m.tr[0] : m.en[0]}</p>
@@ -270,18 +270,6 @@ const AboutPage = ({ lang, onBack }) => {
             </table>
           </div>
 
-          {/* GitHub Stats */}
-          <div className="about-page-section-heading" style={{ marginTop: '24px' }}>
-            <Github size={14} style={{ color: '#ef4444', flexShrink: 0 }} />
-            <span>GitHub Stats</span>
-          </div>
-          <div className="about-github-stats">
-            <img 
-              src={`https://github-readme-streak-stats.herokuapp.com/?user=Serkan-design&theme=dark&hide_border=true&background=141419&ring=ef4444&fire=ef4444&currStreakNum=fff&sideNums=fff&currStreakLabel=888&sideLabels=888&dates=aaa&locale=${lang === 'tr' ? 'tr' : 'en'}`} 
-              alt="Serkan's GitHub stats" 
-              className="github-stats-img"
-            />
-          </div>
 
         </div>
       </main>

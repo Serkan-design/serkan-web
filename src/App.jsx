@@ -619,7 +619,7 @@ const App = () => {
           <p className="text-[11px] text-gray-500 uppercase tracking-[0.8em] font-black mb-8 opacity-40">{t.footer}</p>
           <div className="flex space-x-12">
             <a href="https://www.instagram.com/sserkan.77/" className="text-gray-500 hover:text-[#ef4444] transition-all transform hover:scale-110 duration-300"><Instagram size={24} /></a>
-            <a href={`mailto:serkanisik67@gmail.com?subject=${lang === 'tr' ? 'Portfolyo Üzerinden İletişim' : 'Contact from Portfolio'}`} className="text-gray-500 hover:text-[#ef4444] transition-all transform hover:scale-110 duration-300"><Mail size={24} /></a>
+            <a href={`mailto:serkanisik67@gmail.com?subject=${encodeURIComponent(lang === 'tr' ? 'Portfolyo Üzerinden İletişim' : 'Contact from Portfolio')}`} className="text-gray-500 hover:text-[#ef4444] transition-all transform hover:scale-110 duration-300"><Mail size={24} /></a>
             <a href="https://github.com/Serkan-design" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#ef4444] transition-all transform hover:scale-110 duration-300"><Github size={24} /></a>
           </div>
         </div>
