@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ArrowLeft, Github, ExternalLink, Cpu, Database, Terminal, Code, Box } from 'lucide-react';
+import { ArrowLeft, Github, ExternalLink, Cpu, Database, Terminal, Code, Box, Calendar } from 'lucide-react';
 
 // ── Projects Data ───────────────────────────────────────
 const projects = [
@@ -64,6 +64,22 @@ const projects = [
     ],
     icon: Code,
     accent: '#512BD4',
+  },
+  {
+    id: 'proj5',
+    titleTr: 'Exam Study Planner',
+    titleEn: 'Exam Study Planner',
+    descTr: 'Üniversite sınavları için modüler çalışma planlayıcı. Akıllı zamanlama, ilerleme takibi ve interaktif vize hazırlık testleri sunar.',
+    descEn: 'Modular study planner for university exams. Features intelligent scheduling, progress tracking, and interactive prep quizzes.',
+    github: 'https://github.com/Serkan-design/exam-study-planner',
+    techs: [
+      { name: 'React', color: '#61DAFB' },
+      { name: 'Tailwind', color: '#06B6D4' },
+      { name: 'Framer Motion', color: '#E911E2' },
+      { name: 'Lucide', color: '#F97316' },
+    ],
+    icon: Calendar,
+    accent: '#3B82F6',
   },
 ];
 

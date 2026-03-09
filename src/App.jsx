@@ -34,6 +34,7 @@ const tickerItems = [
   { label: "UAV-1", value: "LİSANSLI PİLOT" },
   { label: "FPV", value: "DRONE ÜRETİMİ" },
   { label: ".NET & C#", value: "GELİŞTİRİCİ" },
+  { label: "STUDY PLANNER", value: "EXAM MANAGEMENT" },
   { label: "SQL", value: "VERİTABANI MİMARİSİ" },
   { label: "GROQ AI", value: "LLaMA 3 ENTEGRASYON" },
   { label: "LRS", value: "CROSSFIRE SİSTEM" },
@@ -222,7 +223,7 @@ const App = () => {
       return;
     }
     setIsTyping(true);
-    const systemPrompt = `User: Serkan Işık. Bio: 21, Anadolu University student. Skills: Embedded, SQL, FPV, UAV-1 Pilot. Response must be concise and professional in ${lang === 'tr' ? 'Turkish' : 'English'}.`;
+    const systemPrompt = `User: Serkan Işık. Bio: 21, Anadolu University student. Skills: Embedded, SQL, FPV, UAV-1 Pilot, Exam Study Planner Developer. Response must be concise and professional in ${lang === 'tr' ? 'Turkish' : 'English'}.`;
     try {
       const response = await fetch(`https://api.groq.com/openai/v1/chat/completions`, {
         method: "POST",
