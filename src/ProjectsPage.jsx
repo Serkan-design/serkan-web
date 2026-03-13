@@ -155,269 +155,278 @@ const ProjectsPage = ({ lang, onBack }) => {
     return () => { clearTimeout(t); document.body.style.overflow = ''; };
   }, []);
 
+  useEffect(() => {
+    if (selectedCert) {
+      setTimeout(() => {
+        const overlay = document.querySelector('.pg-modal-overlay');
+        if (overlay) overlay.scrollTop = 0;
+      }, 10);
+    }
+  }, [selectedCert]);
+
   const handleBack = () => { setVisible(false); setTimeout(onBack, 380); };
 
   const tr = lang === 'tr';
 
   return (
-    <div
-      className="pg-root"
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(28px)',
-        transition: 'opacity 0.38s ease, transform 0.38s cubic-bezier(0.34,1.26,0.64,1)',
-        backgroundColor: 'var(--bg-dark)',
-        color: 'var(--text-primary)'
-      }}
-    >
-      {/* ── Animated circuit background ── */}
-      <div className="pg-bg">
-        <svg className="pg-bg-svg" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="pc-grid" width="80" height="80" patternUnits="userSpaceOnUse">
-              <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(239,68,68,0.05)" strokeWidth="0.6" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#pc-grid)" />
-          {/* Circuit traces */}
-          <line x1="10%" y1="0" x2="10%" y2="100%" stroke="rgba(239,68,68,0.04)" strokeWidth="1" />
-          <line x1="30%" y1="0" x2="30%" y2="100%" stroke="rgba(239,68,68,0.03)" strokeWidth="1" />
-          <line x1="70%" y1="0" x2="70%" y2="100%" stroke="rgba(239,68,68,0.03)" strokeWidth="1" />
-          <line x1="90%" y1="0" x2="90%" y2="100%" stroke="rgba(239,68,68,0.04)" strokeWidth="1" />
-          <line x1="0" y1="25%" x2="100%" y2="25%" stroke="rgba(239,68,68,0.03)" strokeWidth="1" />
-          <line x1="0" y1="75%" x2="100%" y2="75%" stroke="rgba(239,68,68,0.03)" strokeWidth="1" />
-          {/* Diagonal */}
-          <line x1="0" y1="0" x2="40%" y2="60%" stroke="rgba(239,68,68,0.03)" strokeWidth="1.5" />
-          <line x1="100%" y1="0" x2="60%" y2="80%" stroke="rgba(239,68,68,0.03)" strokeWidth="1.5" />
-        </svg>
-        <div className="pg-glow-tr" />
-        <div className="pg-glow-bl" />
+    <>
+      <div
+        className="pg-root"
+        style={{
+          opacity: visible ? 1 : 0,
+          transform: visible ? 'translateY(0)' : 'translateY(28px)',
+          transition: 'opacity 0.4s ease, transform 0.4s cubic-bezier(0.34,1.26,0.64,1)',
+          backgroundColor: 'var(--bg-dark)',
+          color: 'var(--text-primary)'
+        }}
+      >
+        {/* ── Animated circuit background ── */}
+        <div className="pg-bg">
+          <svg className="pg-bg-svg" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="pc-grid" width="80" height="80" patternUnits="userSpaceOnUse">
+                <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(239,68,68,0.05)" strokeWidth="0.6" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#pc-grid)" />
+            {/* Circuit traces */}
+            <line x1="10%" y1="0" x2="10%" y2="100%" stroke="rgba(239,68,68,0.04)" strokeWidth="1" />
+            <line x1="30%" y1="0" x2="30%" y2="100%" stroke="rgba(239,68,68,0.03)" strokeWidth="1" />
+            <line x1="70%" y1="0" x2="70%" y2="100%" stroke="rgba(239,68,68,0.03)" strokeWidth="1" />
+            <line x1="90%" y1="0" x2="90%" y2="100%" stroke="rgba(239,68,68,0.04)" strokeWidth="1" />
+            <line x1="0" y1="25%" x2="100%" y2="25%" stroke="rgba(239,68,68,0.03)" strokeWidth="1" />
+            <line x1="0" y1="75%" x2="100%" y2="75%" stroke="rgba(239,68,68,0.03)" strokeWidth="1" />
+            {/* Diagonal */}
+            <line x1="0" y1="0" x2="40%" y2="60%" stroke="rgba(239,68,68,0.03)" strokeWidth="1.5" />
+            <line x1="100%" y1="0" x2="60%" y2="80%" stroke="rgba(239,68,68,0.03)" strokeWidth="1.5" />
+          </svg>
+          <div className="pg-glow-tr" />
+          <div className="pg-glow-bl" />
+        </div>
+
+        {/* ── Top accent line ── */}
+        <div className="pg-topline" />
+
+        {/* ── Header ── */}
+        <header className="pg-header">
+          <button className="pg-backbtn" onClick={handleBack}>
+            <ArrowLeft size={15} />
+            <span>{tr ? 'Geri Dön' : 'Go Back'}</span>
+          </button>
+
+          {/* Tab switcher */}
+          <div className="pg-tabs">
+            <button
+              className={`pg-tab${activeTab === 'projects' ? ' pg-tab-active' : ''}`}
+              onClick={() => setActiveTab('projects')}
+            >
+              <Code size={13} />
+              {tr ? 'Projelerim' : 'My Projects'}
+            </button>
+            <button
+              className={`pg-tab${activeTab === 'tech' ? ' pg-tab-active' : ''}`}
+              onClick={() => setActiveTab('tech')}
+            >
+              <Box size={13} />
+              {tr ? 'Teknolojiler' : 'Tech Stack'}
+            </button>
+            <button
+              className={`pg-tab${activeTab === 'certs' ? ' pg-tab-active' : ''}`}
+              onClick={() => setActiveTab('certs')}
+            >
+              <Award size={13} />
+              {tr ? 'Sertifikalar' : 'Certificates'}
+            </button>
+          </div>
+
+          <div className="pg-header-right">
+            <span className="pg-live-dot" />
+            <span className="pg-live-text">PORTFOLIO</span>
+          </div>
+        </header>
+
+        {/* ── Divider ── */}
+        <div className="pg-divider" />
+
+        {/* ═══ PROJECTS TAB ═══ */}
+        {activeTab === 'projects' && (
+          <div className="pg-content">
+            <div className="pg-section-intro">
+              <div className="pg-pill">
+                <Code size={11} />
+                {tr ? 'Projeler' : 'Projects'}
+              </div>
+              <h1 className="pg-section-title">{tr ? 'Projelerim' : 'My Projects'}</h1>
+              <p className="pg-section-sub">{tr ? 'Geliştirdiğim açık kaynak projeler' : 'Open-source projects I built'}</p>
+            </div>
+
+            <div className="pg-proj-grid">
+              {projects.map((proj, i) => (
+                <div
+                  key={proj.id}
+                  className="pg-proj-card-premium"
+                  style={{ '--accent': proj.accent, animationDelay: `${i * 0.12}s` }}
+                >
+                  <div className="pg-proj-visual">
+                    <div className="pg-proj-glow-premium" style={{ background: `radial-gradient(circle at 30% 30%, ${proj.accent}44 0%, transparent 70%)` }} />
+                    <div className="pg-proj-pattern" />
+                    <div className="pg-proj-icon-premium" style={{ background: `${proj.accent}15`, borderColor: `${proj.accent}40` }}>
+                      <proj.icon size={28} style={{ color: proj.accent }} />
+                    </div>
+                  </div>
+
+                  <div className="pg-proj-info-premium">
+                    <div className="pg-proj-header-premium">
+                      <h3 className="pg-proj-title">{lang === 'tr' ? proj.titleTr : proj.titleEn}</h3>
+                      <div className="pg-proj-status">
+                        <div className="pg-proj-status-dot" style={{ background: proj.accent }} />
+                        <span>LIVE</span>
+                      </div>
+                    </div>
+
+                    <p className="pg-proj-desc">{lang === 'tr' ? proj.descTr : proj.descEn}</p>
+
+                    <div className="pg-proj-techs-premium">
+                      {proj.techs.map((t, ti) => (
+                        <div key={ti} className="pg-proj-tech-item" title={t.name}>
+                          <div className="pg-proj-tech-dot" style={{ background: t.color }} />
+                          <span>{t.name}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <a href={proj.github} target="_blank" rel="noopener noreferrer" className="pg-proj-link-premium">
+                      <div className="pg-proj-link-bg" style={{ background: proj.accent }} />
+                      <Github size={16} />
+                      <span>{tr ? 'Kodu İncele' : 'View Code'}</span>
+                      <ArrowLeft size={14} style={{ transform: 'rotate(180deg)', marginLeft: 'auto' }} />
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ═══ TECH STACK TAB ═══ */}
+        {activeTab === 'tech' && (
+          <div className="pg-content">
+            <div className="pg-section-intro">
+              <div className="pg-pill">
+                <Box size={11} />
+                {tr ? 'Teknoloji Yığını' : 'Tech Stack'}
+              </div>
+              <h1 className="pg-section-title">{tr ? 'Kullandığım Teknolojiler' : 'Technologies I Use'}</h1>
+              <p className="pg-section-sub">{tr ? 'Aktif olarak kullandığım araçlar ve platformlar' : 'Tools and platforms I actively use'}</p>
+            </div>
+
+            <div className="pg-tech-grid-premium">
+              {techs.map((tech, i) => (
+                <div
+                  key={i}
+                  className="pg-tech-card-premium"
+                  style={{ '--tc': tech.color, animationDelay: `${i * 0.04}s` }}
+                >
+                  <div className="pg-tech-body">
+                    <div className="pg-tech-icon-box">
+                      <svg viewBox="0 0 24 24" fill={tech.color} className="pg-tech-svg-premium">
+                        <path d={tech.path} />
+                      </svg>
+                      <div className="pg-tech-glow" style={{ backgroundColor: tech.color }} />
+                    </div>
+                    <div className="pg-tech-info-box">
+                      <span className="pg-tech-name-premium">{tech.name}</span>
+                      <div className="pg-tech-progress">
+                        <div className="pg-tech-progress-bar" style={{ backgroundColor: tech.color, width: '100%' }} />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="pg-tech-decoration" style={{ borderColor: `${tech.color}40` }} />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ═══ CERTIFICATES TAB ═══ */}
+        {activeTab === 'certs' && (
+          <div className="pg-content">
+            <div className="pg-section-intro">
+              <div className="pg-pill">
+                <Award size={11} />
+                {tr ? 'Sertifikalar' : 'Certificates'}
+              </div>
+              <h1 className="pg-section-title">{tr ? 'Sertifikalarım' : 'My Certificates'}</h1>
+              <p className="pg-section-sub">{tr ? 'Kazandığım resmi sertifikalar ve eğitimler' : 'Official certificates and trainings I have earned'}</p>
+            </div>
+
+            <div className="pg-cert-grid">
+              {certificates.map((cert, i) => (
+                <div
+                  key={cert.id}
+                  className="pg-cert-card"
+                  style={{ animationDelay: `${i * 0.1}s` }}
+                  onClick={() => setSelectedCert(cert)}
+                >
+                  <div className="pg-cert-img-wrap">
+                    <img src={cert.image} alt={tr ? cert.titleTr : cert.titleEn} className="pg-cert-img" />
+                    <div className="pg-cert-overlay">
+                      <ExternalLink size={20} />
+                      <span>{tr ? 'Görüntüle' : 'View'}</span>
+                    </div>
+                  </div>
+                  <div className="pg-cert-info">
+                    <h3 className="pg-cert-title">{tr ? cert.titleTr : cert.titleEn}</h3>
+                    <p className="pg-cert-issuer">{cert.issuer}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* QR Scan Section */}
+            <div className="pg-cert-qr-wrap" style={{ 
+              marginTop: '60px', 
+              textAlign: 'center', 
+              display: 'flex', 
+              flexDirection: 'column', 
+              alignItems: 'center',
+              gap: '15px',
+              opacity: 0,
+              animation: 'fadeUp 0.8s ease forwards 0.4s'
+            }}>
+              <div style={{ 
+                width: '120px', 
+                height: '120px', 
+                padding: '10px', 
+                background: 'rgba(255,255,255,0.03)', 
+                border: '1px solid rgba(239, 68, 68, 0.2)',
+                borderRadius: '12px',
+                position: 'relative'
+              }}>
+                <img 
+                  src={`${import.meta.env.BASE_URL}qrcode_globallycheck.com.png`} 
+                  alt="QR Scan" 
+                  style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'brightness(1.2) contrast(1.1)' }} 
+                />
+                <div className="pg-qr-corner pg-qr-tl" />
+                <div className="pg-qr-corner pg-qr-tr" />
+                <div className="pg-qr-corner pg-qr-bl" />
+                <div className="pg-qr-corner pg-qr-br" />
+              </div>
+              <p style={{ 
+                fontFamily: 'Space Mono, monospace', 
+                fontSize: '11px', 
+                color: '#888', 
+                letterSpacing: '0.1em' 
+              }}>
+                {tr ? '[ TALENTCODERS DOĞRULAMAK İÇİN TARA ]' : '[ SCAN TO VERIFY TALENTCODERS ]'}
+              </p>
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* ── Top accent line ── */}
-      <div className="pg-topline" />
-
-      {/* ── Header ── */}
-      <header className="pg-header">
-        <button className="pg-backbtn" onClick={handleBack}>
-          <ArrowLeft size={15} />
-          <span>{tr ? 'Geri Dön' : 'Go Back'}</span>
-        </button>
-
-        {/* Tab switcher */}
-        <div className="pg-tabs">
-          <button
-            className={`pg-tab${activeTab === 'projects' ? ' pg-tab-active' : ''}`}
-            onClick={() => setActiveTab('projects')}
-          >
-            <Code size={13} />
-            {tr ? 'Projelerim' : 'My Projects'}
-          </button>
-          <button
-            className={`pg-tab${activeTab === 'tech' ? ' pg-tab-active' : ''}`}
-            onClick={() => setActiveTab('tech')}
-          >
-            <Box size={13} />
-            {tr ? 'Teknolojiler' : 'Tech Stack'}
-          </button>
-          <button
-            className={`pg-tab${activeTab === 'certs' ? ' pg-tab-active' : ''}`}
-            onClick={() => setActiveTab('certs')}
-          >
-            <Award size={13} />
-            {tr ? 'Sertifikalar' : 'Certificates'}
-          </button>
-        </div>
-
-        <div className="pg-header-right">
-          <span className="pg-live-dot" />
-          <span className="pg-live-text">PORTFOLIO</span>
-        </div>
-      </header>
-
-      {/* ── Divider ── */}
-      <div className="pg-divider" />
-
-      {/* ═══ PROJECTS TAB ═══ */}
-      {activeTab === 'projects' && (
-        <div className="pg-content">
-          {/* Section heading */}
-          <div className="pg-section-intro">
-            <div className="pg-pill">
-              <Code size={11} />
-              {tr ? 'Projeler' : 'Projects'}
-            </div>
-            <h1 className="pg-section-title">{tr ? 'Projelerim' : 'My Projects'}</h1>
-            <p className="pg-section-sub">{tr ? 'Geliştirdiğim açık kaynak projeler' : 'Open-source projects I built'}</p>
-          </div>
-
-          <div className="pg-proj-grid">
-            {projects.map((proj, i) => (
-              <div
-                key={proj.id}
-                className="pg-proj-card-premium"
-                style={{ '--accent': proj.accent, animationDelay: `${i * 0.12}s` }}
-              >
-                {/* Visual Backdrop */}
-                <div className="pg-proj-visual">
-                  <div className="pg-proj-glow-premium" style={{ background: `radial-gradient(circle at 30% 30%, ${proj.accent}44 0%, transparent 70%)` }} />
-                  <div className="pg-proj-pattern" />
-                  <div className="pg-proj-icon-premium" style={{ background: `${proj.accent}15`, borderColor: `${proj.accent}40` }}>
-                    <proj.icon size={28} style={{ color: proj.accent }} />
-                  </div>
-                </div>
-
-                <div className="pg-proj-info-premium">
-                  <div className="pg-proj-header-premium">
-                    <h3 className="pg-proj-title">{lang === 'tr' ? proj.titleTr : proj.titleEn}</h3>
-                    <div className="pg-proj-status">
-                      <div className="pg-proj-status-dot" style={{ background: proj.accent }} />
-                      <span>LIVE</span>
-                    </div>
-                  </div>
-
-                  <p className="pg-proj-desc">{lang === 'tr' ? proj.descTr : proj.descEn}</p>
-
-                  <div className="pg-proj-techs-premium">
-                    {proj.techs.map((t, ti) => (
-                      <div key={ti} className="pg-proj-tech-item" title={t.name}>
-                        <div className="pg-proj-tech-dot" style={{ background: t.color }} />
-                        <span>{t.name}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <a href={proj.github} target="_blank" rel="noopener noreferrer" className="pg-proj-link-premium">
-                    <div className="pg-proj-link-bg" style={{ background: proj.accent }} />
-                    <Github size={16} />
-                    <span>{tr ? 'Kodu İncele' : 'View Code'}</span>
-                    <ArrowLeft size={14} style={{ transform: 'rotate(180deg)', marginLeft: 'auto' }} />
-                  </a>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* ═══ TECH STACK TAB ═══ */}
-      {activeTab === 'tech' && (
-        <div className="pg-content">
-          <div className="pg-section-intro">
-            <div className="pg-pill">
-              <Box size={11} />
-              {tr ? 'Teknoloji Yığını' : 'Tech Stack'}
-            </div>
-            <h1 className="pg-section-title">{tr ? 'Kullandığım Teknolojiler' : 'Technologies I Use'}</h1>
-            <p className="pg-section-sub">{tr ? 'Aktif olarak kullandığım araçlar ve platformlar' : 'Tools and platforms I actively use'}</p>
-          </div>
-
-          <div className="pg-tech-grid-premium">
-            {techs.map((tech, i) => (
-              <div
-                key={i}
-                className="pg-tech-card-premium"
-                style={{ '--tc': tech.color, animationDelay: `${i * 0.04}s` }}
-              >
-                <div className="pg-tech-body">
-                  <div className="pg-tech-icon-box">
-                    <svg viewBox="0 0 24 24" fill={tech.color} className="pg-tech-svg-premium">
-                      <path d={tech.path} />
-                    </svg>
-                    <div className="pg-tech-glow" style={{ backgroundColor: tech.color }} />
-                  </div>
-                  <div className="pg-tech-info-box">
-                    <span className="pg-tech-name-premium">{tech.name}</span>
-                    <div className="pg-tech-progress">
-                      <div className="pg-tech-progress-bar" style={{ backgroundColor: tech.color, width: '100%' }} />
-                    </div>
-                  </div>
-                </div>
-                <div className="pg-tech-decoration" style={{ borderColor: `${tech.color}40` }} />
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* ═══ CERTIFICATES TAB ═══ */}
-      {activeTab === 'certs' && (
-        <div className="pg-content">
-          <div className="pg-section-intro">
-            <div className="pg-pill">
-              <Award size={11} />
-              {tr ? 'Sertifikalar' : 'Certificates'}
-            </div>
-            <h1 className="pg-section-title">{tr ? 'Sertifikalarım' : 'My Certificates'}</h1>
-            <p className="pg-section-sub">{tr ? 'Kazandığım resmi sertifikalar ve eğitimler' : 'Official certificates and trainings I have earned'}</p>
-          </div>
-
-          <div className="pg-cert-grid">
-            {certificates.map((cert, i) => (
-              <div
-                key={cert.id}
-                className="pg-cert-card"
-                style={{ animationDelay: `${i * 0.1}s` }}
-                onClick={() => setSelectedCert(cert)}
-              >
-                <div className="pg-cert-img-wrap">
-                  <img src={cert.image} alt={tr ? cert.titleTr : cert.titleEn} className="pg-cert-img" />
-                  <div className="pg-cert-overlay">
-                    <ExternalLink size={20} />
-                    <span>{tr ? 'Görüntüle' : 'View'}</span>
-                  </div>
-                </div>
-                <div className="pg-cert-info">
-                  <h3 className="pg-cert-title">{tr ? cert.titleTr : cert.titleEn}</h3>
-                  <p className="pg-cert-issuer">{cert.issuer}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* QR Scan Section */}
-          <div className="pg-cert-qr-wrap" style={{ 
-            marginTop: '60px', 
-            textAlign: 'center', 
-            display: 'flex', 
-            flexDirection: 'column', 
-            alignItems: 'center',
-            gap: '15px',
-            opacity: 0,
-            animation: 'fadeUp 0.8s ease forwards 0.4s'
-          }}>
-            <div style={{ 
-              width: '120px', 
-              height: '120px', 
-              padding: '10px', 
-              background: 'rgba(255,255,255,0.03)', 
-              border: '1px solid rgba(239, 68, 68, 0.2)',
-              borderRadius: '12px',
-              position: 'relative'
-            }}>
-              <img 
-                src={`${import.meta.env.BASE_URL}qrcode_globallycheck.com.png`} 
-                alt="QR Scan" 
-                style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'brightness(1.2) contrast(1.1)' }} 
-              />
-              <div className="pg-qr-corner pg-qr-tl" />
-              <div className="pg-qr-corner pg-qr-tr" />
-              <div className="pg-qr-corner pg-qr-bl" />
-              <div className="pg-qr-corner pg-qr-br" />
-            </div>
-            <p style={{ 
-              fontFamily: 'Space Mono, monospace', 
-              fontSize: '11px', 
-              color: '#888', 
-              letterSpacing: '0.1em' 
-            }}>
-              {tr ? '[ TALENTCODERS DOĞRULAMAK İÇİN TARA ]' : '[ SCAN TO VERIFY TALENTCODERS ]'}
-            </p>
-          </div>
-        </div>
-      )}
-
-      {/* ═══ LIGHTBOX MODAL ═══ */}
+      {/* ═══ LIGHTBOX MODAL (Moved Outside pg-root to fix fixed positioning) ═══ */}
       {selectedCert && (
         <div className="pg-modal-overlay" onClick={() => setSelectedCert(null)}>
           <button className="pg-modal-close" onClick={() => setSelectedCert(null)}>
@@ -462,7 +471,7 @@ const ProjectsPage = ({ lang, onBack }) => {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 
