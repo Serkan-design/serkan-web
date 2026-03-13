@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ArrowLeft, Github, ExternalLink, Cpu, Database, Terminal, Code, Box, Calendar } from 'lucide-react';
+import { ArrowLeft, Github, ExternalLink, Cpu, Database, Terminal, Code, Box, Calendar, Award, X } from 'lucide-react';
 
 // ── Projects Data ───────────────────────────────────────
 const projects = [
@@ -83,6 +83,49 @@ const projects = [
   },
 ];
 
+// ── Certificates Data ─────────────────────────────────────
+const certificates = [
+  {
+    id: 'fibon',
+    category: 'award',
+    titleTr: 'Fibonacci International Robot Olympiad',
+    titleEn: 'Fibonacci International Robot Olympiad',
+    issuer: 'International Robot Olympiad Committee',
+    date: '2024 - 2025',
+    image: 'https://images.unsplash.com/photo-1579829366248-204fe8413f31?auto=format&fit=crop&q=80&w=1400',
+    subItems: [
+      { labelTr: 'Dünya Şampiyonası (Roma, İtalya) - Drone Rally (Birincilik)', labelEn: 'World Championship (Rome, Italy) - Drone Rally (1st Place)', pdf: 'DRONE RALLY ÜNİVERSİTE.pdf' },
+      { labelTr: 'Dünya Şampiyonası (Roma, İtalya) - MBOT Line Following (Birincilik)', labelEn: 'World Championship (Rome, Italy) - MBOT Line Following (1st Place)', pdf: 'Certificates_Selected_20251128_103104.pdf' },
+      { labelTr: 'Dünya Şampiyonası (Roma, İtalya) - Maze Solving (Üçüncülük)', labelEn: 'World Championship (Rome, Italy) - Maze Solving (3rd Place)', pdf: 'MAZE SOLVİNG ÜNİVERSİTE.pdf' },
+      { labelTr: 'Dünya Şampiyonası (Roma, İtalya) - Katılım Belgesi', labelEn: 'World Championship (Rome, Italy) - Participation', pdf: 'Certificates_Selected_20251128_075846.pdf' },
+      { labelTr: 'Marmara Turnuvası (İstanbul, Türkiye) - Maze Solving (Jüri Özel Ödülü)', labelEn: 'Marmara Tournament (Istanbul, Turkey) - Maze Solving (Jury Award)', pdf: 'Maze Üniversite Sertifika.pdf' },
+      { labelTr: 'Avrasya Şampiyonası (Antalya, Türkiye) - Maze Solving (İkincilik)', labelEn: 'Eurasian Championship (Antalya, Turkey) - Maze Solving (2nd Place)', pdf: 'günel sertifika.pdf' },
+      { labelTr: 'Avrasya Şampiyonası (Antalya, Türkiye) - Katılım Belgesi', labelEn: 'Eurasian Championship (Antalya, Turkey) - Participation', pdf: '1589.pdf' },
+      { labelTr: 'Fibonacci Değişim Hakkı Sertifikası', labelEn: 'Fibonacci Exchange Right Certificate', pdf: '33_OZEL YALOVA TEKNOAKADEMI BILGISAYAR VE ROBOTIK KODLAMA KURSU.pdf' }
+    ]
+  },
+  {
+    id: 'cert5',
+    category: 'cert',
+    titleTr: 'C# Eğitim Sertifikası',
+    titleEn: 'C# Programming Certificate',
+    issuer: 'Udemy',
+    date: '2023',
+    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=800',
+    pdf: 'UDEMY SERTİFİKA.pdf'
+  },
+  {
+    id: 'cert3',
+    category: 'cert',
+    titleTr: 'Python Programlama Sertifikası',
+    titleEn: 'Python Programming Certificate',
+    issuer: 'Bilgeİş',
+    date: '2023',
+    image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800',
+    pdf: 'Yeni_Başlayanlar_için_Python_Programlama_Sertifika.pdf'
+  }
+];
+
 // ── Tech icons ───────────────────────────────────────────
 const techs = [
   { name: 'C#',      color: '#9B4F96', path: 'M11.5 15.97l.41 2.44c-.26.14-.68.27-1.24.39-.57.13-1.24.2-2.01.2-2.21-.04-3.87-.7-4.98-1.96C2.56 15.77 2 14.16 2 12.21c.05-2.31.72-4.08 2-5.32C5.32 5.64 6.96 5 8.94 5c.75 0 1.4.07 1.94.19s.94.25 1.2.4l-.58 2.49-1.96-.44c-.4-.01-.83.06-1.28.19-.31.09-.6.25-.87.49-.27.23-.49.54-.66.91-.17.38-.26.86-.26 1.45.01.58.1 1.09.28 1.51.18.42.41.77.69 1.04s.59.46.94.58.72.18 1.1.17c.42-.01.81-.05 1.17-.12.35-.08.64-.17.87-.29zm5.47 3.19l-.71.71.71.71v1h-1v.71l-.71-.71-.71.71V13.5h-1v-1l.71-.71-.71-.71v-1h1V9.5l.71.71.71-.71v1h1v1zm3 0l-.71.71.71.71v1h-1v.71l-.71-.71-.71.71V13.5h-1v-1l.71-.71-.71-.71v-1h1V9.5l.71.71.71-.71v1h1v1z' },
@@ -103,7 +146,8 @@ const techs = [
 
 const ProjectsPage = ({ lang, onBack }) => {
   const [visible, setVisible] = useState(false);
-  const [activeTab, setActiveTab] = useState('projects'); // 'projects' | 'tech'
+  const [activeTab, setActiveTab] = useState('projects'); // 'projects' | 'tech' | 'certs'
+  const [selectedCert, setSelectedCert] = useState(null);
 
   useEffect(() => {
     const t = setTimeout(() => setVisible(true), 30);
@@ -173,6 +217,13 @@ const ProjectsPage = ({ lang, onBack }) => {
           >
             <Box size={13} />
             {tr ? 'Teknolojiler' : 'Tech Stack'}
+          </button>
+          <button
+            className={`pg-tab${activeTab === 'certs' ? ' pg-tab-active' : ''}`}
+            onClick={() => setActiveTab('certs')}
+          >
+            <Award size={13} />
+            {tr ? 'Sertifikalar' : 'Certificates'}
           </button>
         </div>
 
@@ -275,6 +326,128 @@ const ProjectsPage = ({ lang, onBack }) => {
                 <span className="pg-tech-name">{tech.name}</span>
               </div>
             ))}
+          </div>
+        </div>
+      )}
+
+      {/* ═══ CERTIFICATES TAB ═══ */}
+      {activeTab === 'certs' && (
+        <div className="pg-content">
+          <div className="pg-section-intro">
+            <div className="pg-pill">
+              <Award size={11} />
+              {tr ? 'Sertifikalar' : 'Certificates'}
+            </div>
+            <h1 className="pg-section-title">{tr ? 'Sertifikalarım' : 'My Certificates'}</h1>
+            <p className="pg-section-sub">{tr ? 'Kazandığım resmi sertifikalar ve eğitimler' : 'Official certificates and trainings I have earned'}</p>
+          </div>
+
+          <div className="pg-cert-grid">
+            {certificates.map((cert, i) => (
+              <div
+                key={cert.id}
+                className="pg-cert-card"
+                style={{ animationDelay: `${i * 0.1}s` }}
+                onClick={() => setSelectedCert(cert)}
+              >
+                <div className="pg-cert-img-wrap">
+                  <img src={cert.image} alt={tr ? cert.titleTr : cert.titleEn} className="pg-cert-img" />
+                  <div className="pg-cert-overlay">
+                    <ExternalLink size={20} />
+                    <span>{tr ? 'Görüntüle' : 'View'}</span>
+                  </div>
+                </div>
+                <div className="pg-cert-info">
+                  <h3 className="pg-cert-title">{tr ? cert.titleTr : cert.titleEn}</h3>
+                  <p className="pg-cert-issuer">{cert.issuer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* QR Scan Section */}
+          <div className="pg-cert-qr-wrap" style={{ 
+            marginTop: '60px', 
+            textAlign: 'center', 
+            display: 'flex', 
+            flexDirection: 'column', 
+            alignItems: 'center',
+            gap: '15px',
+            opacity: 0,
+            animation: 'fadeUp 0.8s ease forwards 0.4s'
+          }}>
+            <div style={{ 
+              width: '120px', 
+              height: '120px', 
+              padding: '10px', 
+              background: 'rgba(255,255,255,0.03)', 
+              border: '1px solid rgba(239, 68, 68, 0.2)',
+              borderRadius: '12px',
+              position: 'relative'
+            }}>
+              <img 
+                src={`${import.meta.env.BASE_URL}qrcode_globallycheck.com.png`} 
+                alt="QR Scan" 
+                style={{ width: '100%', height: '100%', objectFit: 'contain', filter: 'brightness(1.2) contrast(1.1)' }} 
+              />
+              <div className="pg-qr-corner pg-qr-tl" />
+              <div className="pg-qr-corner pg-qr-tr" />
+              <div className="pg-qr-corner pg-qr-bl" />
+              <div className="pg-qr-corner pg-qr-br" />
+            </div>
+            <p style={{ 
+              fontFamily: 'Space Mono, monospace', 
+              fontSize: '11px', 
+              color: '#888', 
+              letterSpacing: '0.1em' 
+            }}>
+              {tr ? '[ TALENTCODERS DOĞRULAMAK İÇİN TARA ]' : '[ SCAN TO VERIFY TALENTCODERS ]'}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* ═══ LIGHTBOX MODAL ═══ */}
+      {selectedCert && (
+        <div className="pg-modal-overlay" onClick={() => setSelectedCert(null)}>
+          <div className="pg-modal-content" onClick={e => e.stopPropagation()}>
+            <button className="pg-modal-close" onClick={() => setSelectedCert(null)}>
+              <X size={24} />
+            </button>
+            <div className="pg-modal-img-container">
+              <img src={selectedCert.image} alt={tr ? selectedCert.titleTr : selectedCert.titleEn} className="pg-modal-img" />
+            </div>
+            <div className="pg-modal-info">
+              <h2 className="pg-modal-title">{tr ? selectedCert.titleTr : selectedCert.titleEn}</h2>
+              <p className="pg-modal-text">{selectedCert.issuer} — {selectedCert.date}</p>
+              
+              <div className="pg-modal-actions" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+                {selectedCert.subItems ? (
+                  selectedCert.subItems.map((sub, si) => (
+                    <a 
+                      key={si}
+                      href={`${import.meta.env.BASE_URL}${sub.pdf}`} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="pg-modal-btn"
+                    >
+                      <ExternalLink size={14} />
+                      <span>{tr ? sub.labelTr : sub.labelEn}</span>
+                    </a>
+                  ))
+                ) : (
+                  <a 
+                    href={`${import.meta.env.BASE_URL}${selectedCert.pdf || selectedCert.image}`} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="pg-modal-btn"
+                  >
+                    <ExternalLink size={14} />
+                    <span>{tr ? 'Tam Boyut PDF / Resim' : 'Full Size PDF / Image'}</span>
+                  </a>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       )}

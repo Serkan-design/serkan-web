@@ -328,6 +328,9 @@ const App = () => {
               }}
             />
           ))}
+          <div className="absolute bottom-4 right-4 z-50 text-[8px] font-mono tracking-[0.2em] uppercase text-white/30">
+            {lang === 'tr' ? '[ TALENTCODERS DOĞRULAMAK İÇİN TARA ]' : '[ SCAN TO VERIFY TALENTCODERS ]'}
+          </div>
         </div>
 
         {/* ── Left Panel: Aviation/FPV ── */}
@@ -387,7 +390,17 @@ const App = () => {
               className="font-mono text-sm tracking-[0.4em] uppercase"
               style={{ color: 'rgba(255,255,255,0.9)', textShadow: '0 1px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)' }}
             >
-              {lang === 'tr' ? 'Lisanslı İHA-1 Pilotu' : 'Licensed UAV-1 Pilot'}
+              {lang === 'tr' ? (
+                <>
+                  Lisanslı İHA-1 Pilotu <br />
+                  <span className="text-[10px] opacity-70 tracking-[0.2em] mt-1 block">Lisans Numarası : TR-IHA1T12719403</span>
+                </>
+              ) : (
+                <>
+                  Licensed UAV-1 Pilot <br />
+                  <span className="text-[10px] opacity-70 tracking-[0.2em] mt-1 block">License Number: TR-IHA1T12719403</span>
+                </>
+              )}
             </p>
           </div>
         </div>
