@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ArrowLeft, Github, ExternalLink, Cpu, Database, Terminal, Code, Box, Calendar, Award, X } from 'lucide-react';
+import { createPortal } from 'react-dom';
 
 // ── Projects Data ───────────────────────────────────────
 const projects = [
@@ -427,50 +428,51 @@ const ProjectsPage = ({ lang, onBack }) => {
       </div>
 
       {/* ═══ LIGHTBOX MODAL (Moved Outside pg-root to fix fixed positioning) ═══ */}
-      {selectedCert && (
-        <div className="pg-modal-overlay" onClick={() => setSelectedCert(null)}>
-          <button className="pg-modal-close" onClick={() => setSelectedCert(null)}>
-            <X size={24} />
-          </button>
-          
-          <div className="pg-modal-content" onClick={e => e.stopPropagation()}>
-            <div className="pg-modal-img-container">
-              <img src={selectedCert.image} alt={tr ? selectedCert.titleTr : selectedCert.titleEn} className="pg-modal-img" />
-            </div>
-            <div className="pg-modal-info">
-              <h2 className="pg-modal-title">{tr ? selectedCert.titleTr : selectedCert.titleEn}</h2>
-              <p className="pg-modal-text">{selectedCert.issuer} — {selectedCert.date}</p>
-              
-              <div className="pg-modal-actions" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                {selectedCert.subItems ? (
-                  selectedCert.subItems.map((sub, si) => (
-                    <a 
-                      key={si}
-                      href={`${import.meta.env.BASE_URL}${sub.pdf}`} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="pg-modal-btn"
-                    >
-                      <ExternalLink size={14} />
-                      <span>{tr ? sub.labelTr : sub.labelEn}</span>
-                    </a>
-                  ))
-                ) : (
+    {selectedCert && createPortal(
+      <div className="pg-modal-overlay" onClick={() => setSelectedCert(null)}>
+        <button className="pg-modal-close" onClick={() => setSelectedCert(null)}>
+          <X size={24} />
+        </button>
+        
+        <div className="pg-modal-content" onClick={e => e.stopPropagation()}>
+          <div className="pg-modal-img-container">
+            <img src={selectedCert.image} alt={tr ? selectedCert.titleTr : selectedCert.titleEn} className="pg-modal-img" />
+          </div>
+          <div className="pg-modal-info">
+            <h2 className="pg-modal-title">{tr ? selectedCert.titleTr : selectedCert.titleEn}</h2>
+            <p className="pg-modal-text">{selectedCert.issuer} — {selectedCert.date}</p>
+            
+            <div className="pg-modal-actions" style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {selectedCert.subItems ? (
+                selectedCert.subItems.map((sub, si) => (
                   <a 
-                    href={`${import.meta.env.BASE_URL}${selectedCert.pdf || selectedCert.image}`} 
+                    key={si}
+                    href={`${import.meta.env.BASE_URL}${sub.pdf}`} 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="pg-modal-btn"
                   >
                     <ExternalLink size={14} />
-                    <span>{tr ? 'Tam Boyut PDF / Resim' : 'Full Size PDF / Image'}</span>
+                    <span>{tr ? sub.labelTr : sub.labelEn}</span>
                   </a>
-                )}
-              </div>
+                ))
+              ) : (
+                <a 
+                  href={`${import.meta.env.BASE_URL}${selectedCert.pdf || selectedCert.image}`} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="pg-modal-btn"
+                >
+                  <ExternalLink size={14} />
+                  <span>{tr ? 'Tam Boyut PDF / Resim' : 'Full Size PDF / Image'}</span>
+                </a>
+              )}
             </div>
           </div>
         </div>
-      )}
+      </div>,
+      document.body
+    )}
     </>
   );
 };
