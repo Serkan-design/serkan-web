@@ -91,6 +91,8 @@ const AboutPage = ({ lang, onBack }) => {
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(30px)',
         transition: 'opacity 0.4s ease, transform 0.4s cubic-bezier(0.34,1.26,0.64,1)',
+        backgroundColor: 'var(--bg-dark)',
+        color: 'var(--text-primary)'
       }}
     >
       {/* Background grid */}
@@ -238,32 +240,34 @@ const AboutPage = ({ lang, onBack }) => {
                 <tr>
                   <td className="toolkit-category">{lang === 'tr' ? 'Diller' : 'Languages'}</td>
                   <td className="toolkit-badges">
-                    <span className="tk-badge tk-csharp">C#</span>
-                    <span className="tk-badge tk-cpp">C++</span>
-                    <span className="tk-badge tk-python">Python</span>
-                    <span className="tk-badge tk-js">JavaScript</span>
+                    <span className="tech-badge-premium" style={{"--bg": "#9B4F9615", "--color": "#9B4F96"}}>C#</span>
+                    <span className="tech-badge-premium" style={{"--bg": "#00599C15", "--color": "#00599C"}}>C++</span>
+                    <span className="tech-badge-premium" style={{"--bg": "#3776AB15", "--color": "#3776AB"}}>Python</span>
+                    <span className="tech-badge-premium" style={{"--bg": "#f7df1e15", "--color": "#f7df1e"}}>JavaScript</span>
                   </td>
                 </tr>
                 <tr>
                   <td className="toolkit-category">Embedded/IoT</td>
                   <td className="toolkit-badges">
-                    <span className="tk-badge tk-esp32">ESP32</span>
-                    <span className="tk-badge tk-arduino">Arduino</span>
-                    <span className="tk-badge tk-blynk">Blynk</span>
+                    <span className="tech-badge-premium" style={{"--bg": "#E7352B15", "--color": "#E7352B"}}>ESP32</span>
+                    <span className="tech-badge-premium" style={{"--bg": "#00979D15", "--color": "#00979D"}}>Arduino</span>
+                    <span className="tech-badge-premium" style={{"--bg": "#00E5FF15", "--color": "#00E5FF"}}>Blynk</span>
                   </td>
                 </tr>
                 <tr>
                   <td className="toolkit-category">Frameworks & DB</td>
                   <td className="toolkit-badges">
-                    <span className="tk-badge tk-dotnet">.NET</span>
-                    <span className="tk-badge tk-sql">SQL</span>
+                    <span className="tech-badge-premium" style={{"--bg": "#512BD415", "--color": "#512BD4"}}>.NET</span>
+                    <span className="tech-badge-premium" style={{"--bg": "#CC292715", "--color": "#CC2927"}}>SQL</span>
+                    <span className="tech-badge-premium" style={{"--bg": "#311B9215", "--color": "#311B92"}}>ADO.NET</span>
                   </td>
                 </tr>
                 <tr>
                   <td className="toolkit-category">FPV & Hardware</td>
                   <td className="toolkit-badges">
-                    <span className="tk-badge tk-soldering">Soldering</span>
-                    <span className="tk-badge tk-betaflight">Betaflight</span>
+                    <span className="tech-badge-premium" style={{"--bg": "#ff910015", "--color": "#ff9100"}}>Soldering</span>
+                    <span className="tech-badge-premium" style={{"--bg": "#27272a15", "--color": "#fff"}}>Betaflight</span>
+                    <span className="tech-badge-premium" style={{"--bg": "#F0503215", "--color": "#F05032"}}>Git</span>
                   </td>
                 </tr>
               </tbody>

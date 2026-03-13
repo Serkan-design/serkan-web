@@ -50,6 +50,8 @@ const ContactPage = ({ lang, onBack }) => {
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(28px)',
         transition: 'opacity 0.38s ease, transform 0.38s cubic-bezier(0.34,1.26,0.64,1)',
+        backgroundColor: 'var(--bg-dark)',
+        color: 'var(--text-primary)'
       }}
     >
       {/* ── Particle-wave background ── */}

@@ -273,7 +273,7 @@ const App = () => {
   if (showContact)  return <ContactPage  lang={lang} onBack={() => setShowContact(false)} />;
 
   return (
-    <div className={`min-h-screen font-sans relative overflow-x-hidden ${darkMode ? 'bg-[#0a0a0f] text-[#f1f5f9]' : 'bg-[#f0f4f8] text-[#0f172a]'}`} style={{ transition: 'background 0.4s ease, color 0.4s ease' }}>
+    <div className="min-h-screen font-sans relative overflow-x-hidden" style={{ backgroundColor: 'var(--bg-dark)', color: 'var(--text-primary)', transition: 'background 0.4s ease, color 0.4s ease' }}>
 
       {/* Geometric Network Background */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={{ opacity: darkMode ? 1 : 0.4 }}>

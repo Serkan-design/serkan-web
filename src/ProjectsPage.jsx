@@ -166,6 +166,8 @@ const ProjectsPage = ({ lang, onBack }) => {
         opacity: visible ? 1 : 0,
         transform: visible ? 'translateY(0)' : 'translateY(28px)',
         transition: 'opacity 0.38s ease, transform 0.38s cubic-bezier(0.34,1.26,0.64,1)',
+        backgroundColor: 'var(--bg-dark)',
+        color: 'var(--text-primary)'
       }}
     >
       {/* ── Animated circuit background ── */}
@@ -253,45 +255,45 @@ const ProjectsPage = ({ lang, onBack }) => {
             {projects.map((proj, i) => (
               <div
                 key={proj.id}
-                className="pg-proj-card"
+                className="pg-proj-card-premium"
                 style={{ '--accent': proj.accent, animationDelay: `${i * 0.12}s` }}
               >
-                {/* Top accent line */}
-                <div className="pg-proj-topline" />
-
-                {/* Corner deco */}
-                <div className="pg-proj-corner-tl" style={{ borderColor: `${proj.accent}55` }} />
-                <div className="pg-proj-corner-br" style={{ borderColor: `${proj.accent}33` }} />
-
-                {/* Glow blob */}
-                <div className="pg-proj-glow" style={{ background: `radial-gradient(circle, ${proj.accent}18 0%, transparent 70%)` }} />
-
-                {/* Icon + Title */}
-                <div className="pg-proj-header">
-                  <div className="pg-proj-icon" style={{ background: `${proj.accent}18`, borderColor: `${proj.accent}44` }}>
-                    <proj.icon size={22} style={{ color: proj.accent }} />
+                {/* Visual Backdrop */}
+                <div className="pg-proj-visual">
+                  <div className="pg-proj-glow-premium" style={{ background: `radial-gradient(circle at 30% 30%, ${proj.accent}44 0%, transparent 70%)` }} />
+                  <div className="pg-proj-pattern" />
+                  <div className="pg-proj-icon-premium" style={{ background: `${proj.accent}15`, borderColor: `${proj.accent}40` }}>
+                    <proj.icon size={28} style={{ color: proj.accent }} />
                   </div>
-                  <h3 className="pg-proj-title">{lang === 'tr' ? proj.titleTr : proj.titleEn}</h3>
                 </div>
 
-                {/* Description */}
-                <p className="pg-proj-desc">{lang === 'tr' ? proj.descTr : proj.descEn}</p>
+                <div className="pg-proj-info-premium">
+                  <div className="pg-proj-header-premium">
+                    <h3 className="pg-proj-title">{lang === 'tr' ? proj.titleTr : proj.titleEn}</h3>
+                    <div className="pg-proj-status">
+                      <div className="pg-proj-status-dot" style={{ background: proj.accent }} />
+                      <span>LIVE</span>
+                    </div>
+                  </div>
 
-                {/* Techs */}
-                <div className="pg-proj-techs">
-                  {proj.techs.map((t, ti) => (
-                    <span key={ti} className="pg-proj-tech" style={{ color: t.color, borderColor: `${t.color}44`, background: `${t.color}12` }}>
-                      {t.name}
-                    </span>
-                  ))}
+                  <p className="pg-proj-desc">{lang === 'tr' ? proj.descTr : proj.descEn}</p>
+
+                  <div className="pg-proj-techs-premium">
+                    {proj.techs.map((t, ti) => (
+                      <div key={ti} className="pg-proj-tech-item" title={t.name}>
+                        <div className="pg-proj-tech-dot" style={{ background: t.color }} />
+                        <span>{t.name}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <a href={proj.github} target="_blank" rel="noopener noreferrer" className="pg-proj-link-premium">
+                    <div className="pg-proj-link-bg" style={{ background: proj.accent }} />
+                    <Github size={16} />
+                    <span>{tr ? 'Kodu İncele' : 'View Code'}</span>
+                    <ArrowLeft size={14} style={{ transform: 'rotate(180deg)', marginLeft: 'auto' }} />
+                  </a>
                 </div>
-
-                {/* GitHub */}
-                <a href={proj.github} target="_blank" rel="noopener noreferrer" className="pg-proj-github" style={{ '--accent': proj.accent }}>
-                  <Github size={13} />
-                  <span>{tr ? 'GitHub Reposu' : 'GitHub Repo'}</span>
-                  <ExternalLink size={11} style={{ opacity: 0.5, marginLeft: 'auto' }} />
-                </a>
               </div>
             ))}
           </div>
@@ -310,20 +312,28 @@ const ProjectsPage = ({ lang, onBack }) => {
             <p className="pg-section-sub">{tr ? 'Aktif olarak kullandığım araçlar ve platformlar' : 'Tools and platforms I actively use'}</p>
           </div>
 
-          <div className="pg-tech-grid">
+          <div className="pg-tech-grid-premium">
             {techs.map((tech, i) => (
               <div
                 key={i}
-                className="pg-tech-card"
-                style={{ '--tc': tech.color, animationDelay: `${i * 0.06}s` }}
+                className="pg-tech-card-premium"
+                style={{ '--tc': tech.color, animationDelay: `${i * 0.04}s` }}
               >
-                <div className="pg-tech-icon-ring" />
-                <div className="pg-tech-icon-wrap">
-                  <svg viewBox="0 0 24 24" fill={tech.color} className="pg-tech-svg">
-                    <path d={tech.path} />
-                  </svg>
+                <div className="pg-tech-body">
+                  <div className="pg-tech-icon-box">
+                    <svg viewBox="0 0 24 24" fill={tech.color} className="pg-tech-svg-premium">
+                      <path d={tech.path} />
+                    </svg>
+                    <div className="pg-tech-glow" style={{ backgroundColor: tech.color }} />
+                  </div>
+                  <div className="pg-tech-info-box">
+                    <span className="pg-tech-name-premium">{tech.name}</span>
+                    <div className="pg-tech-progress">
+                      <div className="pg-tech-progress-bar" style={{ backgroundColor: tech.color, width: '100%' }} />
+                    </div>
+                  </div>
                 </div>
-                <span className="pg-tech-name">{tech.name}</span>
+                <div className="pg-tech-decoration" style={{ borderColor: `${tech.color}40` }} />
               </div>
             ))}
           </div>
