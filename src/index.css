@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 :root {
-  --accent: #ef4444;
-  --accent-bright: #ff3b3b;
-  --accent-dim: rgba(239, 68, 68, 0.18);
-  --accent-glow: rgba(239, 68, 68, 0.35);
+  --accent: #10b981;
+  --accent-bright: #34d399;
+  --accent-dim: rgba(16, 185, 129, 0.12);
+  --accent-glow: rgba(16, 185, 129, 0.35);
   
   /* Dark Theme (Default) */
   --bg-dark: #0a0a0f;

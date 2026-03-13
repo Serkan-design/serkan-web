@@ -18,14 +18,14 @@ const Preloader = ({ onDone }) => {
                         <polygon
                             points="50,12 88,32 88,68 50,88 12,68 12,32"
                             fill="none"
-                            stroke="#ef4444"
+                            stroke="#10b981"
                             strokeWidth="3"
                             strokeLinejoin="round"
                             className="preloader-hex"
                         />
                         <path
                             d="M30 45 L45 45 L48 35 L52 35 L55 45 L70 45 L70 50 L55 50 L52 60 L48 60 L45 50 L30 50 Z"
-                            fill="#ef4444"
+                            fill="#10b981"
                             className="preloader-mark"
                         />
                     </svg>

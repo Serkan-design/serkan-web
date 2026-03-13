@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ArrowRight } from 'lucide-react';
 import './Header.css';
 
 const SunIcon = () => (
@@ -46,10 +46,10 @@ const Header = ({ lang, setLang, darkMode, setDarkMode, onAboutOpen, onProjectsO
                     <div className="custom-logo">
                         <div className="badge-wrapper">
                             <svg viewBox="0 0 100 100" className="badge-svg">
-                                <polygon points="50,10 90,30 90,70 50,90 10,70 10,30" fill="rgba(239,68,68,0.05)" />
+                                <polygon points="50,10 90,30 90,70 50,90 10,70 10,30" fill="var(--accent-dim)" />
                                 <polygon points="50,15 85,32.5 85,67.5 50,85 15,67.5 15,32.5"
-                                    fill="none" stroke="#ef4444" strokeWidth="3" strokeLinejoin="round" />
-                                <g transform="translate(25,35) scale(1.1)" fill="#ef4444">
+                                    fill="none" stroke="var(--accent)" strokeWidth="3" strokeLinejoin="round" />
+                                <g transform="translate(25,35) scale(1.1)" fill="var(--accent)">
                                     <path d="M0 8 L15 8 L18 2 L32 2 L35 8 L46 8 L46 12 L35 12 L32 18 L18 18 L15 12 L0 12 Z" />
                                     <circle cx="20" cy="1" r="1.5" />
                                     <circle cx="30" cy="1" r="1.5" />
@@ -64,17 +64,17 @@ const Header = ({ lang, setLang, darkMode, setDarkMode, onAboutOpen, onProjectsO
 
                 {/* Nav links */}
                 <nav className={`nav-links ${isMenuOpen ? 'nav-links-open' : ''}`}>
-                    <button onClick={() => handleNavClick(onAboutOpen)} className="nav-btn">
-                        {lang === 'tr' ? 'Hakkımda' : 'About Me'}
-                        <span className="nav-underline" />
-                    </button>
                     <button onClick={() => handleNavClick(onProjectsOpen)} className="nav-btn">
                         {lang === 'tr' ? 'Projeler' : 'Projects'}
                         <span className="nav-underline" />
                     </button>
-                    <button onClick={() => handleNavClick(onContactOpen)} className="nav-btn">
-                        {lang === 'tr' ? 'İletişim' : 'Contact'}
+                    <button onClick={() => handleNavClick(onAboutOpen)} className="nav-btn">
+                        {lang === 'tr' ? 'Hakkımda' : 'About Me'}
                         <span className="nav-underline" />
+                    </button>
+                    <button onClick={() => handleNavClick(onContactOpen)} className="nav-btn nav-btn-special">
+                        {lang === 'tr' ? 'Mesaj Gönder' : 'Join Chat'}
+                        <ArrowRight size={14} className="ml-2" />
                     </button>
                 </nav>
 

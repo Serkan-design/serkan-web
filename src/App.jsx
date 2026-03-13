@@ -7,7 +7,8 @@ import ProjectsPage from './ProjectsPage';
 import ContactPage from './ContactPage';
 import {
   Instagram, Mail, Terminal, User, Plane,
-  Award, Sparkles, Loader2, Code, Github
+  Award, Sparkles, Loader2, Code, Github,
+  Cpu, Database, Globe, Send, ArrowRight
 } from 'lucide-react';
 
 // ── API Key Obfuscation ──
@@ -308,333 +309,172 @@ const App = () => {
         onContactOpen={() => setShowContact(true)}
       />
 
-      {/* ── Hero Section ── */}
-      <section className="section-hero relative h-screen w-full flex flex-col md:flex-row overflow-hidden">
-
-        {/* Floating particles (full hero overlay) */}
-        <div className="absolute inset-0 z-[6] pointer-events-none overflow-hidden">
-          {particles.map(p => (
-            <div
-              key={p.id}
-              className="particle"
-              style={{
-                left: `${p.x}%`,
-                top: `${p.y}%`,
-                width: `${p.size}px`,
-                height: `${p.size}px`,
-                background: p.gold ? 'rgba(239,68,68,0.85)' : 'rgba(255,255,255,0.5)',
-                animationDelay: `${p.delay}s`,
-                animationDuration: `${p.duration}s`,
-              }}
-            />
-          ))}
-          <div className="absolute bottom-4 right-4 z-50 text-[8px] font-mono tracking-[0.2em] uppercase text-white/30">
-            {lang === 'tr' ? '[ TALENTCODERS DOĞRULAMAK İÇİN TARA ]' : '[ SCAN TO VERIFY TALENTCODERS ]'}
-          </div>
+      {/* ── New Unified Hero Section ── */}
+      <section className="section-hero-premium">
+        {/* Dedicated Background Overlay for better control */}
+        <div 
+          className="hero-bg-visual-overlay" 
+          style={{ 
+            backgroundImage: `url(${import.meta.env.BASE_URL}hero-bg.png)`
+          }} 
+        />
+        
+        <div className="hero-geometric-bg">
+          <svg viewBox="0 0 100 100" preserveAspectRatio="none">
+            <defs>
+              <pattern id="grid-p" width="10" height="10" patternUnits="userSpaceOnUse">
+                <path d="M 10 0 L 0 0 0 10" fill="none" stroke="var(--accent-glow)" strokeWidth="0.1" />
+              </pattern>
+            </defs>
+            <rect width="100" height="100" fill="url(#grid-p)" />
+          </svg>
         </div>
 
-        {/* ── Left Panel: Aviation/FPV ── */}
-        <div className="hero-panel relative w-full md:w-1/2 h-full overflow-hidden border-r border-white/5">
-          {/* Gradient overlays */}
-          <div className="absolute inset-0 z-10 bg-gradient-to-r from-[#0a0a0f] via-[#0a0a0f]/40 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0a0a0f]/70 via-transparent to-transparent pointer-events-none" />
-
-          {/* Parallax image wrapper */}
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              top: '-10%',
-              bottom: '-10%',
-              transform: `translateY(${scrollY * 0.07}px)`,
-              willChange: 'transform',
-            }}
-          >
-            <img
-              key={`av-${aviationIdx}`}
-              src={aviationImages[aviationIdx]}
-              className={`w-full h-full object-cover ${kenBurnsClasses[aviationIdx % 4]}`}
-              alt="Aviation Background"
-            />
-          </div>
-
-          {/* Glitch overlay */}
-          {aviationGlitch && <div className="glitch-overlay" key={`av-glitch-${aviationIdx}`} />}
-
-          {/* Slider dots */}
-          <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-20 flex gap-2 items-center">
-            {aviationImages.map((_, i) => (
-              <div
-                key={i}
-                className={`slider-dot ${i === aviationIdx ? 'active' : ''}`}
-                onClick={() => goToAviation(i)}
-              />
-            ))}
-          </div>
-
-          {/* Text content */}
-          <div
-            className="relative z-20 h-full flex flex-col items-start"
-            style={{ justifyContent: 'center', paddingLeft: '18%', paddingRight: '5%', marginTop: '8%' }}
-          >
-            <div className="hero-label">
-              <Plane size={13} className="text-white" />
-              <span>Aviation &amp; FPV Expert</span>
+        <div className="hero-main-container">
+          <div className="hero-content-left">
+            <div className="hero-badge-top">
+              <Sparkles size={14} />
+              <span>{lang === 'tr' ? 'Dijital Çözümler · 2024' : 'Digital Solutions · 2024'}</span>
             </div>
-            <h2 className="text-5xl md:text-7xl font-black tracking-tighter leading-tight">
-              {displayedName}
-              {!nameComplete && <span className="typewriter-cursor" />}
-            </h2>
-            <div className="h-4 md:h-6" />
-            <p
-              className="font-mono text-sm tracking-[0.4em] uppercase"
-              style={{ color: 'rgba(255,255,255,0.9)', textShadow: '0 1px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.6)' }}
-            >
-              {lang === 'tr' ? (
-                <>
-                  Lisanslı İHA-1 Pilotu <br />
-                  <span className="text-[10px] opacity-70 tracking-[0.2em] mt-1 block">Lisans Numarası : TR-IHA1T12719403</span>
-                </>
-              ) : (
-                <>
-                  Licensed UAV-1 Pilot <br />
-                  <span className="text-[10px] opacity-70 tracking-[0.2em] mt-1 block">License Number: TR-IHA1T12719403</span>
-                </>
-              )}
-            </p>
-          </div>
-        </div>
 
-        {/* ── Right Panel: Tech/Software ── */}
-        <div className="hero-panel relative w-full md:w-1/2 h-full overflow-hidden">
-          {/* Gradient overlays */}
-          <div className="absolute inset-0 z-10 bg-gradient-to-l from-[#0a0a0f] via-[#0a0a0f]/40 to-transparent pointer-events-none" />
-          <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#0a0a0f]/70 via-transparent to-transparent pointer-events-none" />
+            <h1 className="hero-headline-premium" style={{ marginBottom: '30px' }}>
+              Serkan<br />
+              <span style={{ color: 'var(--accent)', fontSize: '0.55em', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+                Software Developer
+              </span>
+            </h1>
 
-          {/* Parallax image wrapper */}
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-              top: '-10%',
-              bottom: '-10%',
-              transform: `translateY(${scrollY * 0.05}px)`,
-              willChange: 'transform',
-            }}
-          >
-            <img
-              key={`tech-${techIdx}`}
-              src={techImages[techIdx]}
-              className={`w-full h-full object-cover ${kenBurnsClasses[(techIdx + 2) % 4]}`}
-              alt="Software Background"
-            />
+            <div style={{ marginBottom: '40px' }}>
+              <p className="text-[var(--text-primary)] font-bold text-2xl tracking-tight opacity-90 mb-4">
+                Turning Ideas Into Code.
+              </p>
+              
+              <div style={{ marginBottom: '40px' }}>
+                <p className="text-[var(--text-dimmer)] text-base font-mono opacity-60 mb-3">
+                  {lang === 'tr' ? 'Modern Web ve Masaüstü Yazılımları' : 'Modern Web & Desktop Applications'}
+                </p>
+                <div className="flex items-center gap-4">
+                  <div className="h-px w-12 bg-[var(--accent)]" />
+                  <p className="text-[var(--accent)] font-black tracking-widest text-[12px] uppercase">
+                    C# • .NET • ADO.NET • SQL SERVER • JS
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ marginBottom: '50px' }}>
+              <a href="#contact" onClick={() => setShowContact(true)} className="hero-hire-btn">
+                <span>{lang === 'tr' ? 'BİRLİKTE ÇALIŞALIM' : 'HIRE ME NOW'}</span>
+                <ArrowRight size={18} />
+              </a>
+            </div>
+
+            <div className="hero-stats-row border-t border-white/5 pt-10">
+              <div className="hero-stat-item">
+                <span className="hero-stat-value">5+</span>
+                <span className="hero-stat-label">{lang === 'tr' ? 'Tamamlanan Proje' : 'Projects Completed'}</span>
+              </div>
+              <div className="hero-stat-item">
+                <span className="hero-stat-value">3+</span>
+                <span className="hero-stat-label">{lang === 'tr' ? 'Yıllık Deneyim' : 'Years Experience'}</span>
+              </div>
+            </div>
           </div>
 
-          {/* Glitch overlay */}
-          {techGlitch && <div className="glitch-overlay" key={`tech-glitch-${techIdx}`} />}
-
-          {/* Slider dots */}
-          <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-20 flex gap-2 items-center">
-            {techImages.map((_, i) => (
-              <div
-                key={i}
-                className={`slider-dot ${i === techIdx ? 'active' : ''}`}
-                onClick={() => goToTech(i)}
+          <div className="hero-portrait-right">
+            <div className="hero-portrait-wrapper-mini">
+              <div className="hero-special-glow" />
+              <img 
+                src={`${import.meta.env.BASE_URL}serkan-pro.png`} 
+                className="hero-portrait-img-mini" 
+                alt="Serkan Isik Portrait"
+                onError={(e) => {
+                  e.target.src = 'https://via.placeholder.com/800x1200?text=Profile+Photo';
+                }}
               />
-            ))}
-          </div>
-
-          {/* AI Panel content */}
-          <div className="relative z-20 h-full flex flex-col justify-center items-center px-8 md:px-14">
-            <div className="w-full max-w-lg">
-
-              {/* Top status bar */}
-              <div className="flex items-center gap-3 mb-6">
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-[#ef4444] animate-pulse" />
-                  <div className="w-2 h-2 rounded-full" style={{ background: 'rgba(255,255,255,0.15)' }} />
-                  <div className="w-2 h-2 rounded-full" style={{ background: 'rgba(255,255,255,0.07)' }} />
-                </div>
-                <div className="flex-1 h-px" style={{ background: 'linear-gradient(90deg, rgba(239,68,68,0.5), transparent)' }} />
-                <span className="text-[9px] font-mono tracking-[0.4em] uppercase" style={{ color: 'rgba(239,68,68,0.5)' }}>AI · LIVE</span>
-              </div>
-
-              {/* Main AI Panel */}
-              <div className="ai-panel relative overflow-hidden">
-                <div className="ai-scanline" />
-                <div className="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2 border-[#ef4444]" />
-                <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2" style={{ borderColor: 'rgba(239,68,68,0.35)' }} />
-                <div className="absolute bottom-0 left-0 w-5 h-5 border-b-2 border-l-2" style={{ borderColor: 'rgba(239,68,68,0.35)' }} />
-                <div className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-[#ef4444]" />
-                <div className="absolute -top-20 -right-20 w-64 h-64 rounded-full pointer-events-none"
-                  style={{ background: 'radial-gradient(circle, rgba(239,68,68,0.10) 0%, transparent 70%)' }} />
-
-                <div className="px-6 pt-5 pb-5 relative z-10">
-                  {/* Header */}
-                  <div className="flex items-center justify-between mb-5">
-                    <div className="flex items-center gap-2.5">
-                      <div className="relative flex-shrink-0">
-                        <div className="w-8 h-8 rounded-full flex items-center justify-center"
-                          style={{ background: 'linear-gradient(135deg,#ef4444,#b91c1c)', border: '1px solid rgba(239,68,68,0.35)' }}>
-                          <Sparkles size={12} className="text-white" />
-                        </div>
-                        <div className="absolute -bottom-px -right-px w-2.5 h-2.5 rounded-full border-[1.5px]"
-                          style={{ background: '#34d399', borderColor: '#0a0a0f' }} />
-                      </div>
-                      <div className="leading-none">
-                        <h3 className="text-[11px] font-black text-white tracking-[0.18em] uppercase leading-none mb-1">Serkan AI</h3>
-                        <p className="text-[9px] font-mono leading-none" style={{ color: '#34d399', letterSpacing: '0.05em' }}>● Aktif</p>
-                      </div>
-                    </div>
-                    <div className="flex items-center gap-1 px-2.5 py-1"
-                      style={{ background: 'rgba(239,68,68,0.06)', border: '1px solid rgba(239,68,68,0.14)', borderRadius: '6px' }}>
-                      <Terminal size={8} className="text-[#ef4444]" />
-                      <span className="text-[8px] font-mono tracking-[0.25em] uppercase" style={{ color: 'rgba(239,68,68,0.6)' }}>LLaMA 3</span>
-                    </div>
-                  </div>
-
-                  {/* Chat bubble area */}
-                  <div className="mb-4 flex flex-col gap-2.5">
-                    {!chatResponse && !isTyping && (
-                      <div className="flex items-start gap-2.5">
-                        <div className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5"
-                          style={{ background: 'linear-gradient(135deg,#ef4444,#b91c1c)' }}>
-                          <Sparkles size={8} className="text-white" />
-                        </div>
-                        <div className="flex-1 px-3.5 py-2.5"
-                          style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}>
-                          <p className="text-[11px] leading-relaxed" style={{ color: 'rgba(148,163,184,0.85)', fontFamily: 'monospace' }}>
-                            {lang === 'tr' ? 'Merhaba! Serkan hakkında merak ettiklerini sorabilirsin.' : 'Hi! Feel free to ask anything about Serkan.'}
-                          </p>
-                        </div>
-                      </div>
-                    )}
-                    {isTyping && (
-                      <div className="flex items-start gap-2.5">
-                        <div className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5"
-                          style={{ background: 'linear-gradient(135deg,#ef4444,#b91c1c)' }}>
-                          <Sparkles size={8} className="text-white" />
-                        </div>
-                        <div className="px-3.5 py-2.5 flex items-center gap-1.5"
-                          style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(239,68,68,0.15)' }}>
-                          <div className="ai-dot" style={{ animationDelay: '0ms' }} />
-                          <div className="ai-dot" style={{ animationDelay: '160ms' }} />
-                          <div className="ai-dot" style={{ animationDelay: '320ms' }} />
-                        </div>
-                      </div>
-                    )}
-                    {chatResponse && !isTyping && (
-                      <div className="flex items-start gap-2.5">
-                        <div className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5"
-                          style={{ background: 'linear-gradient(135deg,#ef4444,#b91c1c)' }}>
-                          <Sparkles size={8} className="text-white" />
-                        </div>
-                        <div className="flex-1 px-3.5 py-2.5"
-                          style={{ background: 'rgba(239,68,68,0.05)', border: '1px solid rgba(239,68,68,0.18)' }}>
-                          <p className="text-[11px] leading-relaxed" style={{ color: 'rgba(226,232,240,0.9)', fontFamily: 'monospace' }}>{chatResponse}</p>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Divider */}
-                  <div className="h-px mb-3.5"
-                    style={{ background: 'linear-gradient(90deg,rgba(239,68,68,0.25),rgba(255,255,255,0.04),transparent)' }} />
-
-                  {/* Input row */}
-                  <div className="flex gap-2" style={{ height: '42px' }}>
-                    <input
-                      value={chatInput}
-                      onChange={(e) => setChatInput(e.target.value)}
-                      onKeyPress={(e) => e.key === 'Enter' && askAI()}
-                      placeholder={t.aiPlaceholder}
-                      className="ai-input flex-1 px-3.5 text-[11px] font-mono"
-                      style={{ height: '42px' }}
-                    />
-                    <button
-                      onClick={() => askAI()}
-                      disabled={isTyping}
-                      className="ai-send-btn flex items-center justify-center gap-1.5 px-4 font-black text-[10px] uppercase tracking-[0.18em] text-white disabled:opacity-40 disabled:cursor-not-allowed flex-shrink-0"
-                      style={{ height: '42px', minWidth: '64px' }}
-                    >
-                      {isTyping ? <Loader2 size={13} className="animate-spin" /> : <><span>SOR</span><span style={{ opacity: 0.55, marginLeft: '3px', fontSize: '12px' }}>↑</span></>}
-                    </button>
-                  </div>
-                </div>
-
-                {/* Bottom status bar */}
-                <div className="flex items-center justify-between" style={{ padding: '7px 16px', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-                  <span className="text-[8px] font-mono uppercase" style={{ color: 'rgba(255,255,255,0.15)', letterSpacing: '0.2em' }}>Powered by Groq</span>
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: '#34d399' }} />
-                    <span className="text-[8px] font-mono" style={{ color: 'rgba(52,211,153,0.6)', letterSpacing: '0.12em' }}>ONLINE</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Social links */}
-              <div className="grid grid-cols-2 gap-3 mt-4">
-                <a href="https://www.instagram.com/sserkan.77/" target="_blank" rel="noopener noreferrer"
-                  className="social-link-white flex items-center justify-center gap-2.5 h-11 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300">
-                  <Instagram size={13} />
-                  <span>Instagram</span>
-                </a>
-                <a href="https://github.com/Serkan-design" target="_blank" rel="noopener noreferrer"
-                  className="social-link-red flex items-center justify-center gap-2.5 h-11 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300">
-                  <Code size={13} />
-                  <span>GitHub</span>
-                </a>
-              </div>
-
+            </div>
+            
+            {/* About Me moved here, under the portrait */}
+            {/* About Me enlarged and moved here */}
+            <div className="hero-about-mini">
+               <div className="text-[var(--accent)] text-[11px] font-black uppercase tracking-[0.25em] mb-3">About Me</div>
+               <p className="text-[15px] text-[var(--text-primary)] opacity-80 leading-relaxed max-w-full">
+                 {lang === 'tr' 
+                   ? '21 yaşında Bilgisayar Programcılığı öğrencisiyim. .NET ekosistemi ve ADO.NET ile güçlü veritabanı mimarileri geliştiriyorum. Ayrıca Gömülü sistemler ve İHA teknolojileri üzerine yoğunlaşıyorum.'
+                   : '21-year-old developer specializing in the .NET ecosystem, ADO.NET, and robust database architectures. Focusing on embedded systems and UAV technologies.'
+                 }
+               </p>
+               
+               <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-6 pt-6 border-t border-[var(--border-dim)]">
+                 <div className="flex flex-wrap gap-2">
+                    <span className="px-2 py-1 bg-[var(--bg-surface)] border border-[var(--border-dim)] rounded text-[9px] font-mono text-[var(--text-muted)] uppercase">ASP.NET CORE</span>
+                    <span className="px-2 py-1 bg-[var(--bg-surface)] border border-[var(--border-dim)] rounded text-[9px] font-mono text-[var(--text-muted)] uppercase">ADO.NET</span>
+                    <span className="px-2 py-1 bg-[var(--bg-surface)] border border-[var(--border-dim)] rounded text-[9px] font-mono text-[var(--text-muted)] uppercase">SQL Arch</span>
+                 </div>
+                 
+                 <div className="flex flex-col gap-1">
+                   <div className="flex items-center gap-2 text-[10px] font-mono text-[var(--accent)] font-bold">
+                     <div className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
+                     {lang === 'tr' ? 'TİCARİ İHA-1 PİLOTU' : 'UAV-1 PILOT'}
+                   </div>
+                   <div className="text-[9px] text-[var(--text-dimmer)] font-mono">
+                     TR-IHA1T12719403
+                   </div>
+                 </div>
+               </div>
+               
+               <a href="#about" onClick={() => setShowAbout(true)} className="mt-8 inline-flex items-center gap-2 text-[var(--accent)] text-[11px] font-bold hover:gap-3 transition-all tracking-widest">
+                 {lang === 'tr' ? 'BİYOGRAFİYİ GÖR' : 'VIEW FULL BIO'} <ArrowRight size={14} />
+               </a>
             </div>
           </div>
         </div>
 
-        {/* ── Ticker Bar (bottom of hero) ── */}
+        {/* ── Ticker Bar ── */}
         <div
           className="absolute bottom-0 left-0 right-0 z-30 overflow-hidden"
-          style={{ height: '44px', background: 'rgba(10,10,15,0.95)', borderTop: '1px solid rgba(239,68,68,0.18)', backdropFilter: 'blur(12px)' }}
+          style={{ height: '44px', background: 'rgba(10,10,15,0.95)', borderTop: '1px solid var(--accent-dim)', backdropFilter: 'blur(12px)' }}
         >
           <div className="ticker-track h-full flex items-center">
             {[...tickerItems, ...tickerItems].map((item, i) => (
               <div key={i} className="flex items-center flex-shrink-0 px-6" style={{ gap: '10px' }}>
-                <span className="text-[9px] font-mono uppercase tracking-[0.35em]" style={{ color: '#ef4444', opacity: 0.9 }}>
+                <span className="text-[9px] font-mono uppercase tracking-[0.35em]" style={{ color: 'var(--accent)', opacity: 0.9 }}>
                   {item.label}
                 </span>
-                <span style={{ color: 'rgba(239,68,68,0.25)', fontSize: '8px' }}>|</span>
+                <span style={{ color: 'var(--accent-glow)', fontSize: '8px' }}>|</span>
                 <span className="text-[9px] font-mono uppercase tracking-[0.25em]" style={{ color: 'rgba(255,255,255,0.38)' }}>
                   {item.value}
                 </span>
-                <span style={{ color: 'rgba(239,68,68,0.25)', marginLeft: '16px', fontSize: '8px' }}>◆</span>
+                <span style={{ color: 'var(--accent-glow)', marginLeft: '16px', fontSize: '8px' }}>◆</span>
               </div>
             ))}
           </div>
         </div>
-
       </section>
+
 
       {/* Footer */}
       <footer className="relative z-10 bg-[#0a0a0f] border-t border-white/5 py-16">
         <div className="w-full px-12 flex flex-col items-center justify-center text-center">
-          <div className="w-16 h-[1px] bg-[#ef4444]/30 mb-8" />
+          <div className="w-16 h-[1px] bg-[var(--accent)]/30 mb-8" />
           <div className="flex flex-col items-center gap-4 mb-4">
             <a href={import.meta.env.BASE_URL} className="footer-logo transition-transform hover:scale-110">
               <div className="custom-logo scale-75">
                 <div className="badge-wrapper">
                   <svg viewBox="0 0 100 100" className="badge-svg w-12 h-12">
-                    <polygon points="50,15 85,32.5 85,67.5 50,85 15,67.5 15,32.5" fill="none" stroke="#ef4444" strokeWidth="3.5" strokeLinejoin="round" />
-                    <path d="M30 45 L45 45 L48 35 L52 35 L55 45 L70 45 L70 50 L55 50 L52 60 L48 60 L45 50 L30 50 Z" fill="#ef4444" />
+                    <polygon points="50,15 85,32.5 85,67.5 50,85 15,67.5 15,32.5" fill="none" stroke="var(--accent)" strokeWidth="3.5" strokeLinejoin="round" />
+                    <path d="M30 45 L45 45 L48 35 L52 35 L55 45 L70 45 L70 50 L55 50 L52 60 L48 60 L45 50 L30 50 Z" fill="var(--accent)" />
                   </svg>
                 </div>
               </div>
             </a>
-            <span className="font-black tracking-tighter text-xl">SI<span className="text-[#ef4444]">.</span>TECH</span>
+            <span className="font-black tracking-tighter text-xl">SI<span className="text-[var(--accent)]">.</span>TECH</span>
           </div>
           <p className="text-[11px] text-gray-500 uppercase tracking-[0.8em] font-black mb-8 opacity-40">{t.footer}</p>
           <div className="flex space-x-12">
-            <a href="https://www.instagram.com/sserkan.77/" className="text-gray-500 hover:text-[#ef4444] transition-all transform hover:scale-110 duration-300"><Instagram size={24} /></a>
-            <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=serkanisik67@gmail.com&su=${encodeURIComponent(lang === 'tr' ? 'Portfolyo Üzerinden İletişim' : 'Contact from Portfolio')}`} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#ef4444] transition-all transform hover:scale-110 duration-300"><Mail size={24} /></a>
-            <a href="https://github.com/Serkan-design" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[#ef4444] transition-all transform hover:scale-110 duration-300"><Github size={24} /></a>
+            <a href="https://www.instagram.com/sserkan.77/" className="text-gray-500 hover:text-[var(--accent)] transition-all transform hover:scale-110 duration-300"><Instagram size={24} /></a>
+            <a href={`https://mail.google.com/mail/?view=cm&fs=1&to=serkanisik67@gmail.com&su=${encodeURIComponent(lang === 'tr' ? 'Portfolyo Üzerinden İletişim' : 'Contact from Portfolio')}`} target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[var(--accent)] transition-all transform hover:scale-110 duration-300"><Mail size={24} /></a>
+            <a href="https://github.com/Serkan-design" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-[var(--accent)] transition-all transform hover:scale-110 duration-300"><Github size={24} /></a>
           </div>
         </div>
       </footer>
