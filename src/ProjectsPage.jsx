@@ -420,10 +420,11 @@ const ProjectsPage = ({ lang, onBack }) => {
       {/* ═══ LIGHTBOX MODAL ═══ */}
       {selectedCert && (
         <div className="pg-modal-overlay" onClick={() => setSelectedCert(null)}>
+          <button className="pg-modal-close" onClick={() => setSelectedCert(null)}>
+            <X size={24} />
+          </button>
+          
           <div className="pg-modal-content" onClick={e => e.stopPropagation()}>
-            <button className="pg-modal-close" onClick={() => setSelectedCert(null)}>
-              <X size={24} />
-            </button>
             <div className="pg-modal-img-container">
               <img src={selectedCert.image} alt={tr ? selectedCert.titleTr : selectedCert.titleEn} className="pg-modal-img" />
             </div>

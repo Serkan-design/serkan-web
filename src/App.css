@@ -2437,9 +2437,10 @@
   background: rgba(5, 5, 8, 0.95);
   backdrop-filter: blur(12px);
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Better for long content */
   justify-content: center;
-  padding: 40px;
+  padding: 80px 40px 40px; /* Top padding for the fixed close button */
+  overflow-y: auto; /* Allow scrolling the overlay itself */
   animation: modalFadeIn 0.3s ease;
 }
 
@@ -2468,15 +2469,15 @@
 }
 
 .pg-modal-close {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  z-index: 10;
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: fixed;
+  top: 25px;
+  right: 25px;
+  z-index: 2010;
+  background: rgba(239, 68, 68, 0.8); /* Red tint to make it visible */
+  border: 1px solid rgba(255, 255, 255, 0.2);
   color: #fff;
-  width: 44px;
-  height: 44px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -2550,7 +2551,16 @@
 }
 
 @media (max-width: 768px) {
-  .pg-modal-overlay { padding: 16px; }
+  .pg-modal-overlay { 
+    padding: 70px 16px 24px; 
+    align-items: flex-start;
+  }
+  .pg-modal-close {
+    top: 15px;
+    right: 15px;
+    width: 40px;
+    height: 40px;
+  }
   .pg-modal-info { padding: 24px; }
   .pg-modal-title { font-size: 18px; }
   .pg-cert-grid { grid-template-columns: 1fr; }
