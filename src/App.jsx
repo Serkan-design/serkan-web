@@ -141,7 +141,7 @@ const App = () => {
       subtitle: "Bilgisayar Programcılığı Öğrencisi",
       focus: "Gömülü Sistemler ve Veritabanı Geliştirme Odaklı",
       aboutTitle: "Hakkında & Özgeçmiş",
-      aboutText: "21 yaşında, Bilgisayar Programcılığı öğrencisi olarak teknoloji dünyasında yer almaktayım. Gömülü sistemler ve veritabanı mimarileri üzerine yoğunlaşmış bir disiplinle çalışmalarımı sürdürüyorum. Modern yazılım prensiplerini mühendislik etiğiyle harmanlayarak kararlı ve ölçeklenebilir çözümler üretmeye odaklanıyorum. Kali Linux'u günlük işletim sistemi olarak tam kurulum şekliyle yapılandırdım; sistem mimarisi ve araçlarına hâkim, güvenli ve verimli bir kullanıcı olarak aktif biçimde kullanıyorum. Aynı zamanda havacılık teknolojilerine duyduğum ilgiyle İHA-1 ticari ehliyetine sahip bir drone pilotuyum.",
+      aboutText: "21 yaşında, Bilgisayar Programcılığı öğrencisi olarak teknoloji dünyasında aktif şekilde yer almaktayım. Gömülü sistemler ve veritabanı mimarileri üzerine yoğunlaşarak disiplinli bir şekilde çalışmalarımı sürdürüyorum.\n\n.NET ekosistemi ve SQL tabanlı veri yapıları ile ölçeklenebilir backend sistemler geliştirirken, aynı zamanda Docker, Linux ve Cloudflare Tunnel gibi teknolojiler kullanarak kendi self-hosted sunucu altyapımı kuruyor ve yönetiyorum.\n\nModern yazılım prensiplerini mühendislik yaklaşımıyla birleştirerek kararlı, sürdürülebilir ve gerçek dünya problemlerine çözüm üreten sistemler geliştirmeye odaklanıyorum.\n\nKali Linux'u günlük işletim sistemi olarak tam kurulum şeklinde aktif olarak kullanıyorum. Ayrıca havacılık teknolojilerine olan ilgim doğrultusunda İHA-1 ticari ehliyetine sahip bir drone pilotuyum.",
       skillsTitle: "Teknik Yetkinlikler",
       fpvTitle: "Havacılık ve FPV Teknolojileri",
       fpvDesc: "FPV drone üretimi ve optimizasyonu gerçekleştirilmiştir. İHA-1 ehliyeti ile profesyonel uçuş yetkinliğine sahibim.",
@@ -163,7 +163,7 @@ const App = () => {
       subtitle: "Computer Programming Student",
       focus: "Embedded Systems & Database Development",
       aboutTitle: "About & Resume",
-      aboutText: "21-year-old Computer Programming student with a focus on embedded systems and database architectures. I blend modern software principles with engineering ethics to build robust, scalable solutions. I run Kali Linux as my daily OS with a full custom installation — deeply familiar with its system architecture and toolset for productive everyday use. Licensed Commercial UAV-1 pilot.",
+      aboutText: "As a 21-year-old Computer Programming student, I am actively involved in the technology world. I continue my studies in a disciplined manner, focusing on embedded systems and database architectures.\n\nWhile developing scalable backend systems with the .NET ecosystem and SQL-based data structures, I also build and manage my own self-hosted server infrastructure using technologies such as Docker, Linux, and Cloudflare Tunnel.\n\nI focus on developing stable, sustainable systems that provide solutions to real-world problems by combining modern software principles with an engineering approach.\n\nI actively use Kali Linux as my daily operating system in a full installation. Additionally, in line with my interest in aviation technologies, I am a drone pilot with a commercial UAV-1 license.",
       skillsTitle: "Skills",
       fpvTitle: "Aviation & FPV",
       fpvDesc: "FPV drone optimization. Commercial UAV-1 licensed pilot.",
@@ -337,48 +337,47 @@ const App = () => {
               <span>{lang === 'tr' ? 'Dijital Çözümler · 2024' : 'Digital Solutions · 2024'}</span>
             </div>
 
-            <h1 className="hero-headline-premium" style={{ marginBottom: '30px' }}>
-              Serkan<br />
-              <span style={{ color: 'var(--accent)', fontSize: '0.55em', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-                Software Developer
-              </span>
+            <h1 className="hero-headline-premium">
+              {lang === 'tr' 
+                ? <>Full-stack development,<br/>AI-powered tools<br/>&amp; IoT systems.</>
+                : <>Full-stack development,<br/>AI-powered tools<br/>&amp; IoT systems.</>
+              }
             </h1>
 
-            <div style={{ marginBottom: '40px' }}>
-              <p className="text-[var(--text-primary)] font-bold text-2xl tracking-tight opacity-90 mb-4">
-                Turning Ideas Into Code.
-              </p>
-              
-              <div style={{ marginBottom: '40px' }}>
-                <p className="text-[var(--text-dimmer)] text-base font-mono opacity-60 mb-3">
-                  {lang === 'tr' ? 'Modern Web ve Masaüstü Yazılımları' : 'Modern Web & Desktop Applications'}
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="h-px w-12 bg-[var(--accent)]" />
-                  <p className="text-[var(--accent)] font-black tracking-widest text-[12px] uppercase">
-                    C# • .NET • ADO.NET • SQL SERVER • JS
-                  </p>
-                </div>
-              </div>
+            <p className="hero-sub-desc">
+              {lang === 'tr'
+                ? 'Ölçeklenebilir backend sistemleri, AI destekli uygulamalar ve self-hosted altyapılar geliştiriyorum.'
+                : 'I build scalable backend systems, AI-powered applications, and self-hosted infrastructures.'}
+            </p>
+
+            <ul className="hero-skill-list">
+              <li><span className="skill-icon">⚡</span> Backend Development (.NET)</li>
+              <li><span className="skill-icon">🔮</span> Database Design (SQL Server)</li>
+              <li><span className="skill-icon">🔄</span> AI &amp; Computer Vision</li>
+              <li><span className="skill-icon">🔮</span> IoT Systems</li>
+              <li><span className="skill-icon">🔄</span> Server &amp; DevOps (Docker, Cloudflare)</li>
+            </ul>
+
+            <div className="hero-tech-pills">
+              <span className="tech-pill">C#</span>
+              <span className="tech-pill">.NET</span>
+              <span className="tech-pill">SQL</span>
+              <span className="tech-pill"><span className="pill-icon">🐳</span> Docker</span>
+              <span className="tech-pill"><span className="pill-icon">🐍</span> Python  OpenCV</span>
+              <span className="tech-pill"><span className="pill-icon">📡</span> ESP32</span>
             </div>
 
-            <div style={{ marginBottom: '50px' }}>
-              <a href="#contact" onClick={() => setShowContact(true)} className="hero-hire-btn">
-                <span>{lang === 'tr' ? 'BİRLİKTE ÇALIŞALIM' : 'HIRE ME NOW'}</span>
-                <ArrowRight size={18} />
+            <div className="hero-cta-row">
+              <a href="#projects" onClick={() => setShowProjects(true)} className="hero-cta-primary">
+                <span>{lang === 'tr' ? 'Projelerimi İncele' : 'View Projects'}</span>
+                <ArrowRight size={16} />
+              </a>
+              <a href={`${import.meta.env.BASE_URL}cv.pdf`} target="_blank" rel="noopener noreferrer" className="hero-cta-secondary">
+                <span>{lang === 'tr' ? 'CV İndir' : 'Download CV'}</span>
+                <ArrowRight size={14} />
               </a>
             </div>
 
-            <div className="hero-stats-row border-t border-white/5 pt-10">
-              <div className="hero-stat-item">
-                <span className="hero-stat-value">5+</span>
-                <span className="hero-stat-label">{lang === 'tr' ? 'Tamamlanan Proje' : 'Projects Completed'}</span>
-              </div>
-              <div className="hero-stat-item">
-                <span className="hero-stat-value">3+</span>
-                <span className="hero-stat-label">{lang === 'tr' ? 'Yıllık Deneyim' : 'Years Experience'}</span>
-              </div>
-            </div>
           </div>
 
           <div className="hero-portrait-right">
@@ -397,35 +396,24 @@ const App = () => {
             {/* About Me moved here, under the portrait */}
             {/* About Me enlarged and moved here */}
             <div className="hero-about-mini">
-               <div className="text-[var(--accent)] text-[11px] font-black uppercase tracking-[0.25em] mb-3">About Me</div>
-               <p className="text-[15px] text-[var(--text-primary)] opacity-80 leading-relaxed max-w-full">
-                 {lang === 'tr' 
-                   ? '21 yaşında Bilgisayar Programcılığı öğrencisiyim. .NET ekosistemi ve ADO.NET ile güçlü veritabanı mimarileri geliştiriyorum. Ayrıca Gömülü sistemler ve İHA teknolojileri üzerine yoğunlaşıyorum.'
-                   : '21-year-old developer specializing in the .NET ecosystem, ADO.NET, and robust database architectures. Focusing on embedded systems and UAV technologies.'
-                 }
-               </p>
+               <div className="whatido-heading">{lang === 'tr' ? 'NE YAPIYORUM' : 'WHAT I DO'}</div>
                
-               <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-6 pt-6 border-t border-[var(--border-dim)]">
-                 <div className="flex flex-wrap gap-2">
-                    <span className="px-2 py-1 bg-[var(--bg-surface)] border border-[var(--border-dim)] rounded text-[9px] font-mono text-[var(--text-muted)] uppercase">ASP.NET CORE</span>
-                    <span className="px-2 py-1 bg-[var(--bg-surface)] border border-[var(--border-dim)] rounded text-[9px] font-mono text-[var(--text-muted)] uppercase">ADO.NET</span>
-                    <span className="px-2 py-1 bg-[var(--bg-surface)] border border-[var(--border-dim)] rounded text-[9px] font-mono text-[var(--text-muted)] uppercase">SQL Arch</span>
-                 </div>
-                 
-                 <div className="flex flex-col gap-1">
-                   <div className="flex items-center gap-2 text-[10px] font-mono text-[var(--accent)] font-bold">
-                     <div className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
-                     {lang === 'tr' ? 'TİCARİ İHA-1 PİLOTU' : 'UAV-1 PILOT'}
-                   </div>
-                   <div className="text-[9px] text-[var(--text-dimmer)] font-mono">
-                     TR-IHA1T12719403
-                   </div>
-                 </div>
+               <ul className="whatido-list">
+                 <li><span className="skill-icon">⚡</span> Backend Development (.NET)</li>
+                 <li><span className="skill-icon">🔮</span> Database Design (SQL Server)</li>
+                 <li><span className="skill-icon">🔄</span> AI &amp; Computer Vision</li>
+                 <li><span className="skill-icon">🔮</span> IoT Systems</li>
+                 <li><span className="skill-icon">🔄</span> Server &amp; DevOps (Docker, Cloudflare)</li>
+               </ul>
+
+               <div className="whatido-pills">
+                 <span className="tech-pill-sm">C#</span>
+                 <span className="tech-pill-sm">.NET</span>
+                 <span className="tech-pill-sm">SQL</span>
+                 <span className="tech-pill-sm"><span className="pill-icon">🐳</span> Docker</span>
+                 <span className="tech-pill-sm"><span className="pill-icon">🐍</span> Python</span>
+                 <span className="tech-pill-sm"><span className="pill-icon">📡</span> ESP32</span>
                </div>
-               
-               <a href="#about" onClick={() => setShowAbout(true)} className="mt-8 inline-flex items-center gap-2 text-[var(--accent)] text-[11px] font-bold hover:gap-3 transition-all tracking-widest">
-                 {lang === 'tr' ? 'BİYOGRAFİYİ GÖR' : 'VIEW FULL BIO'} <ArrowRight size={14} />
-               </a>
             </div>
           </div>
         </div>
