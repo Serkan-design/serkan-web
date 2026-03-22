@@ -2871,7 +2871,8 @@
   
   .hero-content-left {
     align-items: center;
-    margin-bottom: 60px;
+    margin-bottom: 30px;
+    padding-right: 0;
   }
   
   .hero-portrait-right {
@@ -3183,19 +3184,64 @@
 /* ───── MOBILE RESPONSIVENESS (GENERAL) ───── */
 @media (max-width: 768px) {
   .hero-portrait-right {
-    display: none; /* Hide portrait section on mobile to keep hero clean */
+    display: flex; /* Show portrait section on mobile */
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 2rem;
   }
-  
+
+  .hero-portrait-wrapper-mini {
+    width: 200px;
+    height: 300px;
+    transform: translateY(0);
+    margin-bottom: 1rem;
+  }
+
+  .hero-portrait-img-mini {
+    border-radius: 16px;
+  }
+
+  .hero-special-glow {
+    width: 250px;
+    height: 250px;
+    filter: blur(40px);
+    opacity: 0.4;
+  }
+
+  .hero-about-mini {
+    margin-top: 0;
+    max-width: 100%;
+    text-align: left;
+    padding: 18px;
+  }
+
+  .whatido-heading {
+    text-align: center;
+  }
+
+  .whatido-list li {
+    font-size: 0.82rem;
+  }
+
+  .whatido-pills {
+    justify-content: center;
+  }
+
   .hero-main-container {
-    padding: 120px 20px 40px !important;
+    padding: 100px 20px 60px !important;
     text-align: center;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   .hero-content-left {
     align-items: center;
     display: flex;
     flex-direction: column;
+    padding-right: 0;
+    margin-bottom: 0;
   }
 
   .hero-sub-desc {
@@ -3215,7 +3261,13 @@
   }
   
   .hero-headline-premium {
-    font-size: clamp(24px, 8vw, 38px);
+    font-size: clamp(22px, 7vw, 34px);
     text-align: center;
+  }
+
+  .section-hero-premium {
+    min-height: auto;
+    height: auto;
+    overflow-y: visible;
   }
 }
