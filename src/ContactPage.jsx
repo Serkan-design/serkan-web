@@ -48,7 +48,6 @@ const ContactPage = () => {
     <div
       className="ct-root"
       style={{
-        backgroundColor: 'var(--bg-dark)',
         color: 'var(--text-primary)'
       }}
     >

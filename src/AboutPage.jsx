@@ -76,7 +76,7 @@ const AboutPage = () => {
   ];
 
   return (
-    <div className="about-page-root" style={{ backgroundColor: 'var(--bg-dark)', color: 'var(--text-primary)', minHeight: '100vh', overflowY: 'auto' }}>
+    <div className="about-page-root" style={{ color: 'var(--text-primary)', position: 'relative' }}>
 
       {/* Background */}
       <div className="about-page-bg">

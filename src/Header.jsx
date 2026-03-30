@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import './Header.css';
 
@@ -26,6 +26,7 @@ const MoonIcon = () => (
 const Header = ({ lang, setLang, darkMode, setDarkMode }) => {
     const [scrolled, setScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const { pathname } = useLocation();
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 40);
@@ -33,8 +34,12 @@ const Header = ({ lang, setLang, darkMode, setDarkMode }) => {
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
+    // Force visible background on sub-pages
+    const isSubPage = pathname !== '/';
+    const headerClass = `header${(scrolled || isSubPage) ? ' header-scrolled' : ''}${isMenuOpen ? ' header-menu-open' : ''}`;
+
     return (
-        <header className={`header${scrolled ? ' header-scrolled' : ''}${isMenuOpen ? ' header-menu-open' : ''}`}>
+        <header className={headerClass}>
             <div className="header-inner">
                 {/* Logo */}
                 <Link to="/" className="logo-link" onClick={() => setIsMenuOpen(false)}>

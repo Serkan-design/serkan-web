@@ -182,7 +182,6 @@ const ProjectsPage = () => {
       <div
         className="pg-root"
         style={{
-          backgroundColor: 'var(--bg-dark)',
           color: 'var(--text-primary)'
         }}
       >
