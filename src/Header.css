@@ -104,7 +104,7 @@
     background: var(--bg-surface-hover);
 }
 
-.nav-btn-active {
+.nav-btn.active {
     color: var(--accent) !important;
     background: var(--accent-dim) !important;
 }
@@ -138,7 +138,7 @@
     transform-origin: center;
 }
 .nav-btn:hover .nav-underline,
-.nav-btn-active .nav-underline {
+.nav-btn.active .nav-underline {
     transform: translateX(-50%) scaleX(1);
 }
 

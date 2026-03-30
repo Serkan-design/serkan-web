@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { NavLink, Link } from 'react-router-dom';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import './Header.css';
 
@@ -22,7 +23,7 @@ const MoonIcon = () => (
     </svg>
 );
 
-const Header = ({ lang, setLang, darkMode, setDarkMode, onAboutOpen, onProjectsOpen, onContactOpen }) => {
+const Header = ({ lang, setLang, darkMode, setDarkMode }) => {
     const [scrolled, setScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -32,17 +33,11 @@ const Header = ({ lang, setLang, darkMode, setDarkMode, onAboutOpen, onProjectsO
         return () => window.removeEventListener('scroll', onScroll);
     }, []);
 
-    // Close menu when a link is clicked
-    const handleNavClick = (action) => {
-        action();
-        setIsMenuOpen(false);
-    };
-
     return (
         <header className={`header${scrolled ? ' header-scrolled' : ''}${isMenuOpen ? ' header-menu-open' : ''}`}>
             <div className="header-inner">
                 {/* Logo */}
-                <a href={import.meta.env.BASE_URL} className="logo-link">
+                <Link to="/" className="logo-link" onClick={() => setIsMenuOpen(false)}>
                     <div className="custom-logo">
                         <div className="badge-wrapper">
                             <svg viewBox="0 0 100 100" className="badge-svg">
@@ -60,22 +55,22 @@ const Header = ({ lang, setLang, darkMode, setDarkMode, onAboutOpen, onProjectsO
                         </div>
                         <div className="logo-text">SI<span className="dot">.</span>TECH</div>
                     </div>
-                </a>
+                </Link>
 
                 {/* Nav links */}
                 <nav className={`nav-links ${isMenuOpen ? 'nav-links-open' : ''}`}>
-                    <button onClick={() => handleNavClick(onProjectsOpen)} className="nav-btn">
+                    <NavLink to="/projects" className="nav-btn" onClick={() => setIsMenuOpen(false)}>
                         {lang === 'tr' ? 'Projeler' : 'Projects'}
                         <span className="nav-underline" />
-                    </button>
-                    <button onClick={() => handleNavClick(onAboutOpen)} className="nav-btn">
+                    </NavLink>
+                    <NavLink to="/about" className="nav-btn" onClick={() => setIsMenuOpen(false)}>
                         {lang === 'tr' ? 'Hakkımda' : 'About Me'}
                         <span className="nav-underline" />
-                    </button>
-                    <button onClick={() => handleNavClick(onContactOpen)} className="nav-btn nav-btn-special">
+                    </NavLink>
+                    <NavLink to="/contact" className="nav-btn nav-btn-special" onClick={() => setIsMenuOpen(false)}>
                         {lang === 'tr' ? 'Mesaj Gönder' : 'Join Chat'}
                         <ArrowRight size={14} className="ml-2" />
-                    </button>
+                    </NavLink>
                 </nav>
 
                 {/* Right controls */}

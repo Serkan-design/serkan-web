@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useAppContext } from './AppContext';
 import { ArrowLeft, Github, ExternalLink, Cpu, Database, Terminal, Code, Box, Calendar, Award, X } from 'lucide-react';
 import { createPortal } from 'react-dom';
+
+// ... (projects and certificates data stays the same)
 
 // ── Projects Data ───────────────────────────────────────
 const projects = [
@@ -145,16 +149,22 @@ const techs = [
   { name: 'Crossfire', color: '#FF6B35', path: 'M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5' },
 ];
 
-const ProjectsPage = ({ lang, onBack }) => {
-  const [visible, setVisible] = useState(false);
-  const [activeTab, setActiveTab] = useState('projects'); // 'projects' | 'tech' | 'certs'
+const ProjectsPage = () => {
+  const { lang } = useAppContext();
+  const navigate = useNavigate();
+  const { activeTab: pathTab } = useParams();
+  const activeTab = pathTab || 'projects';
   const [selectedCert, setSelectedCert] = useState(null);
 
   useEffect(() => {
-    const t = setTimeout(() => setVisible(true), 30);
-    document.body.style.overflow = 'hidden';
-    return () => { clearTimeout(t); document.body.style.overflow = ''; };
+    window.scrollTo(0, 0);
+    document.body.style.overflow = '';
+    return () => { document.body.style.overflow = ''; };
   }, []);
+
+  const setActiveTab = (tab) => {
+    navigate(`/projects/${tab}`);
+  };
 
   useEffect(() => {
     if (selectedCert) {
@@ -165,8 +175,6 @@ const ProjectsPage = ({ lang, onBack }) => {
     }
   }, [selectedCert]);
 
-  const handleBack = () => { setVisible(false); setTimeout(onBack, 380); };
-
   const tr = lang === 'tr';
 
   return (
@@ -174,9 +182,6 @@ const ProjectsPage = ({ lang, onBack }) => {
       <div
         className="pg-root"
         style={{
-          opacity: visible ? 1 : 0,
-          transform: visible ? 'translateY(0)' : 'translateY(28px)',
-          transition: 'opacity 0.4s ease, transform 0.4s cubic-bezier(0.34,1.26,0.64,1)',
           backgroundColor: 'var(--bg-dark)',
           color: 'var(--text-primary)'
         }}
@@ -208,14 +213,14 @@ const ProjectsPage = ({ lang, onBack }) => {
         {/* ── Top accent line ── */}
         <div className="pg-topline" />
 
+
         {/* ── Header ── */}
         <header className="pg-header">
-          <button className="pg-backbtn" onClick={handleBack}>
+          <button className="pg-backbtn" onClick={() => navigate('/')}>
             <ArrowLeft size={15} />
             <span>{tr ? 'Geri Dön' : 'Go Back'}</span>
           </button>
 
-          {/* Tab switcher */}
           <div className="pg-tabs">
             <button
               className={`pg-tab${activeTab === 'projects' ? ' pg-tab-active' : ''}`}

@@ -1,8 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAppContext } from './AppContext';
 import { ArrowLeft, Mail, Send, Instagram, Github, CheckCircle, XCircle, Loader2, MapPin, Clock } from 'lucide-react';
 
-const ContactPage = ({ lang, onBack }) => {
-  const [visible, setVisible] = useState(false);
+const ContactPage = () => {
+  const { lang } = useAppContext();
+  const navigate = useNavigate();
   const [formName, setFormName] = useState('');
   const [formEmail, setFormEmail] = useState('');
   const [formMsg, setFormMsg] = useState('');
@@ -10,12 +13,10 @@ const ContactPage = ({ lang, onBack }) => {
   const formRef = useRef(null);
 
   useEffect(() => {
-    const t = setTimeout(() => setVisible(true), 30);
-    document.body.style.overflow = 'hidden';
-    return () => { clearTimeout(t); document.body.style.overflow = ''; };
+    window.scrollTo(0, 0);
+    document.body.style.overflow = '';
+    return () => { document.body.style.overflow = ''; };
   }, []);
-
-  const handleBack = () => { setVisible(false); setTimeout(onBack, 380); };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,9 +48,6 @@ const ContactPage = ({ lang, onBack }) => {
     <div
       className="ct-root"
       style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? 'translateY(0)' : 'translateY(28px)',
-        transition: 'opacity 0.38s ease, transform 0.38s cubic-bezier(0.34,1.26,0.64,1)',
         backgroundColor: 'var(--bg-dark)',
         color: 'var(--text-primary)'
       }}
@@ -85,7 +83,7 @@ const ContactPage = ({ lang, onBack }) => {
 
       {/* ── Header ── */}
       <header className="ct-header">
-        <button className="ct-backbtn" onClick={handleBack}>
+        <button className="ct-backbtn" onClick={() => navigate('/')}>
           <ArrowLeft size={15} />
           <span>{tr ? 'Geri Dön' : 'Go Back'}</span>
         </button>
