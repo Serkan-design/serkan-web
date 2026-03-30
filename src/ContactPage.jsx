@@ -81,23 +81,7 @@ const ContactPage = () => {
 
       <div className="ct-topline" />
 
-      {/* ── Header ── */}
-      <header className="ct-header">
-        <button className="ct-backbtn" onClick={() => navigate('/')}>
-          <ArrowLeft size={15} />
-          <span>{tr ? 'Geri Dön' : 'Go Back'}</span>
-        </button>
-        <div className="ct-header-center">
-          <p className="ct-header-label">{tr ? 'İletişim · Mesaj' : 'Contact · Message'}</p>
-          <h1 className="ct-header-title">{tr ? 'İletişim' : 'Contact'}</h1>
-        </div>
-        <div className="ct-header-right">
-          <span className="ct-live-dot" />
-          <span className="ct-live-text">LIVE</span>
-        </div>
-      </header>
-
-      <div className="ct-divider" />
+      <div style={{ height: '20px' }} />
 
       {/* ── Main ── */}
       <main className="ct-main">

@@ -95,23 +95,7 @@ const AboutPage = () => {
       {/* Top accent line */}
       <div className="about-page-topline" />
 
-      {/* ── HEADER ── */}
-      <header className="about-page-header">
-        <button className="about-page-backbtn" onClick={() => navigate('/')}>
-          <ArrowLeft size={16} />
-          <span>{t.backBtn}</span>
-        </button>
-        <div className="about-page-header-center">
-          <p className="about-page-label">{t.label}</p>
-          <h1 className="about-page-title">{t.title}</h1>
-        </div>
-        <div className="about-page-header-right">
-          <span className="about-page-live-dot" />
-          <span className="about-page-live-text">LIVE</span>
-        </div>
-      </header>
-
-      <div className="about-page-divider" />
+      <div style={{ height: '20px' }} />
 
       {/* ── CONTENT (original card-based layout) ── */}
       <div className="about-page-content">

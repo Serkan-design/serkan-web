@@ -265,10 +265,10 @@ const App = () => {
     <Layout>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/projects" element={<ProjectsPage />} />
-        <Route path="/projects/:activeTab" element={<ProjectsPage />} />
-        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/about" element={<div className="pt-20"><AboutPage /></div>} />
+        <Route path="/projects" element={<div className="pt-20"><ProjectsPage /></div>} />
+        <Route path="/projects/:activeTab" element={<div className="pt-20"><ProjectsPage /></div>} />
+        <Route path="/contact" element={<div className="pt-20"><ContactPage /></div>} />
       </Routes>
     </Layout>
   );
