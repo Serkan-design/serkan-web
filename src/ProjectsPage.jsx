@@ -213,7 +213,13 @@ const ProjectsPage = () => {
         <div className="pg-topline" />
 
 
-        <div className="flex justify-center mb-8">
+        {/* ── Header ── */}
+        <header className="pg-header">
+          <button className="pg-backbtn" onClick={() => navigate('/')}>
+            <ArrowLeft size={15} />
+            <span>{tr ? 'Geri Dön' : 'Go Back'}</span>
+          </button>
+
           <div className="pg-tabs">
             <button
               className={`pg-tab${activeTab === 'projects' ? ' pg-tab-active' : ''}`}
@@ -237,7 +243,15 @@ const ProjectsPage = () => {
               {tr ? 'Sertifikalar' : 'Certificates'}
             </button>
           </div>
-        </div>
+
+          <div className="pg-header-right">
+            <span className="pg-live-dot" />
+            <span className="pg-live-text">PORTFOLIO</span>
+          </div>
+        </header>
+
+        {/* ── Divider ── */}
+        <div className="pg-divider" />
 
         {/* ═══ PROJECTS TAB ═══ */}
         {activeTab === 'projects' && (
