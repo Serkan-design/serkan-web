@@ -2,8 +2,8 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from './AppContext';
 import {
-  User, Award, Cpu, Database, Sparkles,
-  Github, Instagram, Mail, ArrowLeft, Plane, Code
+  User, Cpu, Database,
+  Github, Instagram, Mail, ArrowLeft, Code
 } from 'lucide-react';
 
 const AboutPage = () => {
@@ -24,8 +24,7 @@ const AboutPage = () => {
       role: 'Bilgisayar Programcılığı Öğrencisi',
       tags: ['Anadolu Üniversitesi', '21 Yaşında', 'Türkiye'],
       bioLabel: 'Biyografi',
-      bio: "21 yaşında, Bilgisayar Programcılığı öğrencisi olarak teknoloji dünyasında aktif şekilde yer almaktayım. Gömülü sistemler ve veritabanı mimarileri üzerine yoğunlaşarak disiplinli bir şekilde çalışmalarımı sürdürüyorum.\n\n.NET ekosistemi ve SQL tabanlı veri yapıları ile ölçeklenebilir backend sistemler geliştirirken, aynı zamanda Docker, Linux ve Cloudflare Tunnel gibi teknolojiler kullanarak kendi self-hosted sunucu altyapımı kuruyor ve yönetiyorum.\n\nModern yazılım prensiplerini mühendislik yaklaşımıyla birleştirerek kararlı, sürdürülebilir ve gerçek dünya problemlerine çözüm üreten sistemler geliştirmeye odaklanıyorum.\n\nKali Linux'u günlük işletim sistemi olarak tam kurulum şeklinde aktif olarak kullanıyorum. Ayrıca havacılık teknolojilerine olan ilgim doğrultusunda İHA-1 ticari ehliyetine sahip bir drone pilotuyum.",
-      milestonesLabel: 'Kilometre Taşları',
+      bio: "21 yaşında Bilgisayar Programcılığı öğrencisi olarak teknoloji dünyasında aktif şekilde yer almakta, özellikle gömülü sistemler, backend geliştirme ve sistem mimarileri üzerine odaklanmaktayım.\n\n.NET ekosistemi ve SQL tabanlı veri yapılarıyla ölçeklenebilir ve sürdürülebilir backend sistemler geliştirirken; Docker, Linux ve Cloudflare Tunnel gibi teknolojiler kullanarak kendi self-hosted sunucu altyapımı kurmakta ve yönetmekteyim. Aynı zamanda CasaOS ve benzeri platformlarla medya ve servis otomasyonları üzerine çalışmalar yürütmekteyim.\n\nYapay zeka ve görüntü işleme alanında geliştirdiğim projeler arasında el hareketleri ile kontrol edilen sistemler ve API tabanlı veri takip uygulamaları yer almakta olup, gerçek zamanlı veri işleme ve otomasyon sistemleri konusunda deneyim kazanmaktayım.\n\nDonanım tarafında ise FPV drone sistemleri, çok eksenli robot projeleri ve gömülü sistem uygulamaları geliştirerek yazılım ile donanımı entegre eden çözümler üretmekteyim.\n\nKali Linux'u günlük işletim sistemi olarak aktif şekilde kullanmakta olup, sistem yönetimi ve siber güvenlik konularına da ilgi duymaktayım. Ayrıca havacılık teknolojilerine olan ilgim doğrultusunda İHA-1 ticari pilot lisansına sahibim.\n\nTeknolojiyi sadece tüketen değil, üreten ve geliştiren bir mühendis adayı olarak; sürekli öğrenmeyi, yeni teknolojilere hızlı adapte olmayı ve gerçek dünya problemlerine çözüm üretmeyi temel motivasyonum olarak görmekteyim.",
       toolkitLabel: 'Teknik Araç Kutusu',
       backBtn: 'Geri Dön',
     },
@@ -35,45 +34,13 @@ const AboutPage = () => {
       role: 'Computer Programming Student',
       tags: ['Anadolu University', '21 y/o', 'Turkey'],
       bioLabel: 'Biography',
-      bio: "As a 21-year-old Computer Programming student, I am actively involved in the technology world. I continue my studies in a disciplined manner, focusing on embedded systems and database architectures.\n\nWhile developing scalable backend systems with the .NET ecosystem and SQL-based data structures, I also build and manage my own self-hosted server infrastructure using technologies such as Docker, Linux, and Cloudflare Tunnel.\n\nI focus on developing stable, sustainable systems that provide solutions to real-world problems by combining modern software principles with an engineering approach.\n\nI actively use Kali Linux as my daily operating system in a full installation. Additionally, in line with my interest in aviation technologies, I am a drone pilot with a commercial UAV-1 license.",
-      milestonesLabel: 'Milestones',
+      bio: "As a 21-year-old Computer Programming student, I am actively engaged in the technology world, with a focus on embedded systems, backend development, and system architecture.\n\nI develop scalable and sustainable backend systems using the .NET ecosystem and SQL-based data structures, while also building and managing my own self-hosted server infrastructure with technologies like Docker, Linux, and Cloudflare Tunnel. I also work on media and service automation using platforms such as CasaOS.\n\nMy projects in AI and computer vision include gesture-controlled systems and API-based data tracking applications, through which I am gaining hands-on experience in real-time data processing and automation.\n\nOn the hardware side, I develop FPV drone systems, multi-axis robot projects, and embedded system applications that integrate software with hardware.\n\nI actively use Kali Linux as my daily operating system and have a strong interest in system administration and cybersecurity. My passion for aviation technologies has also led me to obtain an UAV-1 commercial pilot license.\n\nAs an aspiring engineer who not only consumes but creates and develops technology, I see continuous learning, rapid adaptation to new technologies, and solving real-world problems as my core motivation.",
       toolkitLabel: 'Technical Toolkit',
       backBtn: 'Go Back',
     },
   }[lang];
 
-  const milestones = [
-    {
-      icon: Award,
-      tr: ['SHGM İHA-1 Ehliyeti', 'Lisanslı ticari İHA pilotu'],
-      en: ['SHGM UAV-1 License', 'Licensed commercial UAV pilot'],
-    },
-    {
-      icon: Sparkles,
-      tr: ['Groq AI Entegrasyonu', 'LLaMA 3 tabanlı AI chatbot geliştirme'],
-      en: ['Groq AI Integration', 'LLaMA 3 powered AI chatbot development'],
-    },
-    {
-      icon: Plane,
-      tr: ['FPV Drone Üretimi', 'Özel FPV drone tasarımı ve optimizasyonu'],
-      en: ['FPV Drone Build', 'Custom FPV drone design & optimization'],
-    },
-    {
-      logo: 'https://cdn.simpleicons.org/dotnet/ef4444',
-      tr: ['Telefon Rehberi Projesi', '.NET & C# ile tam kapsamlı CRUD uygulaması'],
-      en: ['Phone Book Project', 'Full-featured CRUD app with .NET & C#'],
-    },
-    {
-      logo: 'https://cdn.simpleicons.org/arduino/ef4444',
-      tr: ['ESP32 IoT Projesi', 'Blynk platformu ile uzaktan LED kontrolü'],
-      en: ['ESP32 IoT Project', 'Remote LED control via Blynk platform'],
-    },
-    {
-      logo: 'https://cdn.simpleicons.org/kalilinux/ef4444',
-      tr: ['Kali Linux Tam Kurulum', 'Günlük kullanım için özelleştirilmiş sistem'],
-      en: ['Kali Linux Full Setup', 'Custom configured daily driver system'],
-    },
-  ];
+
 
   return (
     <div className="about-page-root" style={{ color: 'var(--text-primary)', position: 'relative' }}>
@@ -155,30 +122,6 @@ const AboutPage = () => {
           <p className="about-pg-bio">{t.bio}</p>
         </div>
 
-        {/* Milestones */}
-        <div className="about-page-section-heading">
-          <Award size={14} style={{ color: '#ef4444', flexShrink: 0 }} />
-          <span>{t.milestonesLabel}</span>
-        </div>
-
-        <div className="about-page-timeline">
-          {milestones.map((m, i) => (
-            <div key={i} className="about-pg-timeline-item">
-              <div className="about-pg-tl-dot">
-                {m.logo ? (
-                  <img src={m.logo} alt="" style={{ width: '22px', height: '22px', objectFit: 'contain' }} />
-                ) : (
-                  <m.icon size={20} style={{ color: '#ef4444' }} />
-                )}
-              </div>
-              <div className="about-pg-tl-content">
-                <p className="about-pg-tl-title">{lang === 'tr' ? m.tr[0] : m.en[0]}</p>
-                <p className="about-pg-tl-desc">{lang === 'tr' ? m.tr[1] : m.en[1]}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
         {/* Toolkit */}
         <div className="about-page-section-heading">
           <Database size={14} style={{ color: '#ef4444', flexShrink: 0 }} />
@@ -220,10 +163,20 @@ const AboutPage = () => {
                 </td>
               </tr>
               <tr>
+                <td className="toolkit-category">Server & DevOps</td>
+                <td className="toolkit-badges">
+                  <span className="tech-badge-premium" style={{"--bg": "#2496ED15", "--color": "#2496ED"}}>Docker</span>
+                  <span className="tech-badge-premium" style={{"--bg": "#F38020ls15", "--color": "#F38020"}}>Cloudflare</span>
+                  <span className="tech-badge-premium" style={{"--bg": "#FCC62415", "--color": "#FCC624"}}>Linux</span>
+                  <span className="tech-badge-premium" style={{"--bg": "#268BEE15", "--color": "#268BEE"}}>Kali Linux</span>
+                  <span className="tech-badge-premium" style={{"--bg": "#00BCD415", "--color": "#00BCD4"}}>CasaOS</span>
+                </td>
+              </tr>
+              <tr>
                 <td className="toolkit-category">FPV & Hardware</td>
                 <td className="toolkit-badges">
                   <span className="tech-badge-premium" style={{"--bg": "#ff910015", "--color": "#ff9100"}}>Soldering</span>
-                  <span className="tech-badge-premium" style={{"--bg": "#27272a15", "--color": "#fff"}}>Betaflight</span>
+                  <span className="tech-badge-premium" style={{"--bg": "#27272a15", "--color": "#aaa"}}>Betaflight</span>
                   <span className="tech-badge-premium" style={{"--bg": "#F0503215", "--color": "#F05032"}}>Git</span>
                 </td>
               </tr>

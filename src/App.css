@@ -3408,3 +3408,235 @@
     overflow-y: visible;
   }
 }
+
+/* ══════════════════════════════════════════════════════════
+   LIGHT MODE GLOBAL OVERRIDES
+══════════════════════════════════════════════════════════ */
+:root[class~="light"] body {
+  background-color: #eef1f7;
+}
+
+/* Scrollbar for light mode */
+:root[class~="light"] ::-webkit-scrollbar-track { background: #e2e8f0; }
+:root[class~="light"] ::-webkit-scrollbar-thumb { background: rgba(220,38,38,0.4); }
+:root[class~="light"] ::-webkit-scrollbar-thumb:hover { background: rgba(220,38,38,0.65); }
+
+/* Hard-coded dark BG overrides */
+:root[class~="light"] .about-page-root,
+:root[class~="light"] .pg-root {
+  background: #eef1f7 !important;
+}
+
+:root[class~="light"] .about-page-card,
+:root[class~="light"] .pg-proj-card-premium,
+:root[class~="light"] .pg-tech-card-premium,
+:root[class~="light"] .pg-cert-card {
+  background: rgba(255,255,255,0.75) !important;
+  border-color: rgba(15,23,42,0.12) !important;
+  box-shadow: 0 4px 24px rgba(15,23,42,0.08) !important;
+}
+
+:root[class~="light"] .about-toolkit-container,
+:root[class~="light"] .about-toolkit-table {
+  background: rgba(255,255,255,0.75) !important;
+  border-color: rgba(15,23,42,0.1) !important;
+  color: #0f172a !important;
+}
+
+:root[class~="light"] .about-toolkit-table th {
+  color: #334155 !important;
+  border-bottom-color: rgba(15,23,42,0.1) !important;
+  background: rgba(15,23,42,0.04) !important;
+}
+
+:root[class~="light"] .about-toolkit-table td {
+  border-bottom-color: rgba(15,23,42,0.06) !important;
+  color: #0f172a !important;
+}
+
+:root[class~="light"] .toolkit-category {
+  color: #334155 !important;
+}
+
+:root[class~="light"] .tech-badge-premium {
+  background: color-mix(in srgb, var(--color) 12%, white) !important;
+  color: var(--color) !important;
+  border-color: color-mix(in srgb, var(--color) 35%, transparent) !important;
+}
+
+:root[class~="light"] .about-page-header,
+:root[class~="light"] .pg-header {
+  background: rgba(238,241,247,0.92) !important;
+  border-bottom-color: rgba(15,23,42,0.1) !important;
+  backdrop-filter: blur(20px);
+}
+
+:root[class~="light"] .about-page-backbtn,
+:root[class~="light"] .pg-backbtn {
+  background: rgba(15,23,42,0.06) !important;
+  border-color: rgba(15,23,42,0.12) !important;
+  color: #334155 !important;
+}
+
+:root[class~="light"] .about-page-backbtn:hover,
+:root[class~="light"] .pg-backbtn:hover {
+  background: rgba(220,38,38,0.1) !important;
+  border-color: rgba(220,38,38,0.4) !important;
+  color: #dc2626 !important;
+}
+
+:root[class~="light"] .pg-tab {
+  color: #475569 !important;
+}
+
+:root[class~="light"] .pg-tab-active {
+  background: rgba(220,38,38,0.1) !important;
+  color: #dc2626 !important;
+  border-color: rgba(220,38,38,0.35) !important;
+}
+
+:root[class~="light"] .pg-section-title,
+:root[class~="light"] .about-pg-name,
+:root[class~="light"] .pg-proj-title,
+:root[class~="light"] .about-pg-tl-title,
+:root[class~="light"] .pg-cert-title {
+  color: #0f172a !important;
+}
+
+:root[class~="light"] .pg-section-sub,
+:root[class~="light"] .pg-proj-desc,
+:root[class~="light"] .about-pg-tl-desc,
+:root[class~="light"] .about-pg-bio,
+:root[class~="light"] .pg-cert-issuer {
+  color: #334155 !important;
+}
+
+:root[class~="light"] .about-pg-tag {
+  background: rgba(15,23,42,0.07) !important;
+  color: #334155 !important;
+  border-color: rgba(15,23,42,0.12) !important;
+}
+
+:root[class~="light"] .about-pg-role {
+  color: #475569 !important;
+}
+
+:root[class~="light"] .about-bio-heading-text {
+  color: #dc2626 !important;
+}
+
+:root[class~="light"] .about-page-section-heading {
+  color: #334155 !important;
+  border-bottom-color: rgba(15,23,42,0.08) !important;
+}
+
+:root[class~="light"] .about-page-timeline .about-pg-tl-dot {
+  background: rgba(220,38,38,0.1) !important;
+  border-color: rgba(220,38,38,0.3) !important;
+}
+
+:root[class~="light"] .about-pg-social-btn {
+  border-color: rgba(15,23,42,0.15) !important;
+}
+
+:root[class~="light"] .about-pg-social-red {
+  background: rgba(220,38,38,0.08) !important;
+  color: #dc2626 !important;
+}
+
+:root[class~="light"] .about-pg-social-ghost {
+  background: rgba(15,23,42,0.04) !important;
+  color: #334155 !important;
+}
+
+/* Dashboard/ticker bar light */
+:root[class~="light"] .section-hero-premium {
+  background: #eef1f7 !important;
+}
+
+:root[class~="light"] footer {
+  background: #e2e8f0 !important;
+  border-top-color: rgba(15,23,42,0.1) !important;
+}
+
+:root[class~="light"] footer span,
+:root[class~="light"] footer p {
+  color: #334155 !important;
+}
+
+/* Pill labels */
+:root[class~="light"] .pg-pill,
+:root[class~="light"] .accent-pill {
+  background: rgba(220,38,38,0.1) !important;
+  border-color: rgba(220,38,38,0.3) !important;
+  color: #dc2626 !important;
+}
+
+/* Project link button */
+:root[class~="light"] .pg-proj-link-premium {
+  background: rgba(15,23,42,0.04) !important;
+  border-color: rgba(15,23,42,0.12) !important;
+  color: #334155 !important;
+}
+
+:root[class~="light"] .pg-proj-link-premium:hover {
+  color: #fff !important;
+}
+
+/* Modal overlay */
+:root[class~="light"] .pg-modal-content {
+  background: #ffffff !important;
+  border-color: rgba(15,23,42,0.12) !important;
+  color: #0f172a !important;
+}
+
+/* Contact page */
+:root[class~="light"] .contact-page-root {
+  background: #eef1f7 !important;
+}
+
+/* Hero text in light mode */
+:root[class~="light"] .hero-headline-premium {
+  color: #0f172a !important;
+}
+
+:root[class~="light"] .hero-sub-desc,
+:root[class~="light"] .hero-skill-list li {
+  color: #334155 !important;
+}
+
+:root[class~="light"] .hero-badge-top {
+  background: rgba(220,38,38,0.1) !important;
+  border-color: rgba(220,38,38,0.3) !important;
+  color: #dc2626 !important;
+}
+
+:root[class~="light"] .whatido-heading {
+  color: #dc2626 !important;
+}
+
+:root[class~="light"] .whatido-list li {
+  color: #334155 !important;
+}
+
+:root[class~="light"] .tech-pill-sm {
+  background: rgba(15,23,42,0.07) !important;
+  border-color: rgba(15,23,42,0.15) !important;
+  color: #334155 !important;
+}
+
+:root[class~="light"] .hero-about-mini {
+  background: rgba(255,255,255,0.75) !important;
+  border-color: rgba(15,23,42,0.1) !important;
+}
+
+:root[class~="light"] .pg-live-text,
+:root[class~="light"] .about-page-live-text {
+  color: #334155 !important;
+}
+
+:root[class~="light"] .pg-divider,
+:root[class~="light"] .about-page-divider {
+  background: rgba(15,23,42,0.08) !important;
+}
+

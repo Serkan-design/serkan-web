@@ -20,16 +20,16 @@
 }
 
 :root[class~="light"] {
-  --bg-dark: #f8fafc;
-  --bg-surface: rgba(15, 23, 42, 0.03);
-  --bg-surface-hover: rgba(15, 23, 42, 0.06);
-  --border-dim: rgba(15, 23, 42, 0.08);
-  --border-accent: rgba(239, 68, 68, 0.45);
+  --bg-dark: #eef1f7;
+  --bg-surface: rgba(15, 23, 42, 0.05);
+  --bg-surface-hover: rgba(15, 23, 42, 0.09);
+  --border-dim: rgba(15, 23, 42, 0.12);
+  --border-accent: rgba(220, 38, 38, 0.5);
   --text-primary: #0f172a;
-  --text-muted: #475569;
-  --text-dimmer: rgba(71, 85, 105, 0.5);
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-border: rgba(15, 23, 42, 0.1);
+  --text-muted: #334155;
+  --text-dimmer: rgba(51, 65, 85, 0.6);
+  --glass-bg: rgba(238, 241, 247, 0.85);
+  --glass-border: rgba(15, 23, 42, 0.14);
 }
 
 * {
