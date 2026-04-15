@@ -1,0 +1,146 @@
+[
+  {
+    "id": "1775146310781",
+    "name": "RAM Test",
+    "url": "https://www.trendyol.com/v-color/prism-pro-rgb-16gb-2x8gb-3600mhz-cl18-ddr4-ram-p-320980598",
+    "currentPrice": 2.476,
+    "lastPrice": 2.476,
+    "initialPrice": 472.99,
+    "targetPrice": 1500,
+    "active": true,
+    "lastChecked": "2026-04-04T20:30:00.983Z",
+    "history": [
+      {
+        "price": 472.99,
+        "date": "2026-04-02T16:11:50.782Z"
+      },
+      {
+        "price": null,
+        "date": "2026-04-04T19:55:00.697Z"
+      },
+      {
+        "price": null,
+        "date": "2026-04-04T20:00:00.745Z"
+      },
+      {
+        "price": null,
+        "date": "2026-04-04T20:20:00.756Z"
+      },
+      {
+        "price": null,
+        "date": "2026-04-04T20:30:00.983Z"
+      }
+    ],
+    "inStock": false
+  },
+  {
+    "id": "1775148409045",
+    "name": "Fashcolle Dynamic Grey Masajlı Oyuncu Koltuğu",
+    "url": "https://ty.gl/7uxhrbcz70xm6",
+    "currentPrice": 4799,
+    "lastPrice": 4799,
+    "initialPrice": null,
+    "targetPrice": 0,
+    "inStock": true,
+    "active": true,
+    "lastChecked": "2026-04-04T20:30:02.447Z",
+    "history": [
+      {
+        "price": null,
+        "date": "2026-04-02T16:46:49.045Z"
+      },
+      {
+        "price": 4.799,
+        "date": "2026-04-04T07:50:13.836Z"
+      },
+      {
+        "price": 4799,
+        "date": "2026-04-04T19:55:01.826Z"
+      },
+      {
+        "price": 4799,
+        "date": "2026-04-04T20:00:02.215Z"
+      },
+      {
+        "price": 4799,
+        "date": "2026-04-04T20:20:04.172Z"
+      },
+      {
+        "price": 4799,
+        "date": "2026-04-04T20:30:02.447Z"
+      }
+    ]
+  },
+  {
+    "id": "1775150395589",
+    "name": "METONTECH 4 Kanallı Araç İçi Kamera",
+    "url": "https://ty.gl/vkszkpxmk9wpo",
+    "currentPrice": 2439,
+    "lastPrice": 2439,
+    "initialPrice": null,
+    "targetPrice": 0,
+    "inStock": true,
+    "active": true,
+    "lastChecked": "2026-04-04T20:30:03.252Z",
+    "history": [
+      {
+        "price": null,
+        "date": "2026-04-02T17:19:55.589Z"
+      },
+      {
+        "price": 2.439,
+        "date": "2026-04-04T07:50:21.603Z"
+      },
+      {
+        "price": 2439,
+        "date": "2026-04-04T19:55:02.937Z"
+      },
+      {
+        "price": 2439,
+        "date": "2026-04-04T20:00:03.465Z"
+      },
+      {
+        "price": 2439,
+        "date": "2026-04-04T20:20:05.310Z"
+      },
+      {
+        "price": 2439,
+        "date": "2026-04-04T20:30:03.252Z"
+      }
+    ]
+  },
+  {
+    "id": "1775289754817",
+    "name": "Wevolt Mb-500 10\" 2,5d Class Dokunmantik Hıgh Tech Ekran Araç Içi Çift Kamera Gece Görüşlü. Araç Kamera.",
+    "url": "https://ty.gl/kk280yd5vmbnt",
+    "currentPrice": 2729.3,
+    "lastPrice": 2729.3,
+    "initialPrice": 100022.729,
+    "targetPrice": 0,
+    "inStock": true,
+    "active": true,
+    "lastChecked": "2026-04-04T20:30:04.407Z",
+    "history": [
+      {
+        "price": 100022.729,
+        "date": "2026-04-04T08:02:34.817Z"
+      },
+      {
+        "price": 2729.3,
+        "date": "2026-04-04T19:55:04.241Z"
+      },
+      {
+        "price": 2729.3,
+        "date": "2026-04-04T20:00:04.259Z"
+      },
+      {
+        "price": 2729.3,
+        "date": "2026-04-04T20:20:06.112Z"
+      },
+      {
+        "price": 2729.3,
+        "date": "2026-04-04T20:30:04.407Z"
+      }
+    ]
+  }
+]
